@@ -70,7 +70,7 @@ The following are limits specific to the Amazon EFS file systems:
 
 + Maximum symbolic link \(symlink\) length: 4080 bytes\.
 
-+ Maximum number of hard links to a file 175\.
++ Maximum number of hard links to a file 177\.
 
 + Maximum size of a single file: 52,673,613,135,872 bytes \(47\.9 TiB\)\.
 
