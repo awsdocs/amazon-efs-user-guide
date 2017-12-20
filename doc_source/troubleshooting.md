@@ -265,7 +265,7 @@ If you encounter this issue, you can resolve it by reducing the size of your fil
 
 ### Command Fails with "Too many links" Error<a name="hardlinkerror"></a>
 
-This error occurs when there are too many hard links to a file\. You can have up to 175 hard links in a file\.
+This error occurs when there are too many hard links to a file\. You can have up to 177 hard links in a file\.
 
 **Action to Take**  
 If you encounter this issue, you can resolve it by reducing the number of hard links to a file to meet the supported limit\.
