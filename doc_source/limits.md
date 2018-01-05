@@ -1,9 +1,9 @@
 # Amazon EFS Limits<a name="limits"></a>
 
-This section describes limitations when working with Amazon EFS\.
+Following, you can find out about limitations when working with Amazon EFS\.
 
 
-+ [Amazon EFS Limits That Can Be Increased](#soft-limits)
++ [Amazon EFS Limits That You Can Increase](#soft-limits)
 + [Resource Limits](#limits-efs-resources-per-account-per-region)
 + [Limits for Client EC2 Instances](#limits-client-specific)
 + [Limits for Amazon EFS File Systems](#limits-fs-specific)
@@ -11,7 +11,7 @@ This section describes limitations when working with Amazon EFS\.
 + [Unsupported NFSv4 Features](#nfs4-unsupported-features)
 + [Additional Considerations](#limits-additional-considerations)
 
-## Amazon EFS Limits That Can Be Increased<a name="soft-limits"></a>
+## Amazon EFS Limits That You Can Increase<a name="soft-limits"></a>
 
 Following are the limits for Amazon EFS that can be increased by contacting AWS Support\.
 
@@ -20,8 +20,8 @@ Following are the limits for Amazon EFS that can be increased by contacting AWS 
 
 | Resource | Default Limit | 
 | --- | --- | 
-| Number of file systems per customer account per AWS region | 10 | 
-| Total throughput per file system for all connected clients |  US East \(Ohio\) Region – 3 GB/s US East \(N\. Virginia\) Region – 3 GB/s US West \(Oregon\) Region – 3 GB/s EU \(Frankfurt\) Region – 1 GB/s EU \(Ireland\) Region – 3 GB/s Asia Pacific \(Sydney\) Region – 3 GB/s  | 
+| Number of file systems for each customer account in an AWS Region | 10 | 
+| Total throughput for each file system for all connected clients |  US East \(Ohio\) Region – 3 GB/s US East \(N\. Virginia\) Region – 3 GB/s US West \(Oregon\) Region – 3 GB/s EU \(Frankfurt\) Region – 1 GB/s EU \(Ireland\) Region – 3 GB/s Asia Pacific \(Sydney\) Region – 3 GB/s  | 
 
 You can take the following steps to request an increase for these limits\. These increases are not granted immediately, so it might take a couple of days for your increase to become effective\.
 
@@ -35,7 +35,7 @@ You can take the following steps to request an increase for these limits\. These
 
 ## Resource Limits<a name="limits-efs-resources-per-account-per-region"></a>
 
-Following are the limits on Amazon EFS resources per customer account in an AWS Region\. 
+Following are the limits on Amazon EFS resources for each customer account in an AWS Region\. 
 
 
 ****  
@@ -43,18 +43,18 @@ Following are the limits on Amazon EFS resources per customer account in an AWS 
 | Resource | Limit | 
 | --- | --- | 
 | Default limit on the number of file systems | 10 | 
-| Number of mount targets per file system per Availability Zone | 1 | 
-| Number of security groups per mount target | 5 | 
-| Number of tags per file system | 50 | 
-| Number of VPCs per file system | 1 | 
+| Number of mount targets for each file system in an Availability Zone | 1 | 
+| Number of security groups for each mount target | 5 | 
+| Number of tags for each file system | 50 | 
+| Number of VPCs for each file system | 1 | 
 
 ## Limits for Client EC2 Instances<a name="limits-client-specific"></a>
 
-The following limits for client EC2 instances apply, assuming a Linux NFSv4\.1 client\.
+The following limits for client EC2 instances apply, assuming a Linux NFSv4\.1 client:
 
-+ The maximum throughput you can drive per Amazon EC2 instance is 250 MB/s\.
++ The maximum throughput you can drive for each Amazon EC2 instance is 250 MB/s\.
 
-+ Up to 128 active user accounts per instance may have files open at the same time\. Each user account represents one local user logged in to the instance\.
++ Up to 128 active user accounts for each instance can have files open at the same time\. Each user account represents one local user logged in to the instance\.
 
 + Up to 32,768 files open at the same time on the instance\.
 
@@ -70,13 +70,13 @@ The following are limits specific to the Amazon EFS file systems:
 
 + Maximum symbolic link \(symlink\) length: 4080 bytes\.
 
-+ Maximum number of hard links to a file 175\.
++ Maximum number of hard links to a file: 177\.
 
 + Maximum size of a single file: 52,673,613,135,872 bytes \(47\.9 TiB\)\.
 
 + Maximum directory depth: 1000 levels deep\.
 
-+ Any one particular file can have up to 87 locks across all users of the file system\. You may mount a file system on one or more Amazon EC2 instances, but the maximum 87\-lock limit for a file applies\.
++ Any one particular file can have up to 87 locks across all users of the file system\. You can mount a file system on one or more Amazon EC2 instances, but the maximum 87\-lock limit for a file applies\.
 
 + In General Purpose mode, there is a limit of 7000 file system operations per second\. This operations limit is calculated for all clients connected to a single file system\.
 
@@ -140,7 +140,7 @@ Although Amazon Elastic File System does not support NFSv2, or NFSv3, Amazon EFS
 
 + Unsupported attributes: FATTR4\_ARCHIVE, FATTR4\_FILES\_AVAIL, FATTR4\_FILES\_FREE, FATTR4\_FILES\_TOTAL, FATTR4\_FS\_LOCATIONS, FATTR4\_MIMETYPE, FATTR4\_QUOTA\_AVAIL\_HARD, FATTR4\_QUOTA\_AVAIL\_SOFT, FATTR4\_QUOTA\_USED, FATTR4\_TIME\_BACKUP, and FATTR4\_ACL\.
 
-   An attempt to set these attributes will result in an `NFS4ERR_ATTRNOTSUPP` error that is sent back to the client\. 
+   An attempt to set these attributes results in an `NFS4ERR_ATTRNOTSUPP` error that is sent back to the client\. 
 
 ## Additional Considerations<a name="limits-additional-considerations"></a>
 

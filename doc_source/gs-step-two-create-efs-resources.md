@@ -4,7 +4,7 @@ In this step, you create your Amazon EFS file system\.
 
 **To create your Amazon EFS file system**
 
-1. Open the Amazon EFS console at [https://console\.aws\.amazon\.com/efs/](https://console.aws.amazon.com/efs/)\.
+1. Open the Amazon EFS Management Console at [https://console\.aws\.amazon\.com/efs/](https://console.aws.amazon.com/efs/)\.
 
 1. Choose **Create File System**\.
 

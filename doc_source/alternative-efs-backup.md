@@ -1,6 +1,10 @@
-# Backing Up Amazon EFS File Systems by Using AWS Data Pipeline<a name="alternative-efs-backup"></a>
+# Backing Up Amazon EFS File Systems Using AWS Data Pipeline<a name="alternative-efs-backup"></a>
 
-In this backup solution, you create a data pipeline by using the AWS Data Pipeline service to copy data from your Amazon EFS file system \(called the *production file system*\) to another Amazon EFS file system \(called the *backup file system*\)\. This solution consists of AWS Data Pipeline templates that implement the following:
+If you need to be able to recover from unintended changes or deletions in your Amazon EFS file systems, we recommend that you use the [EFS\-to\-EFS Backup Solution](https://aws.amazon.com/answers/infrastructure-management/efs-backup/)\. This solution is suitable for all Amazon EFS file systems in all AWS Regions\. It includes an AWS CloudFormation template that launches, configures, and runs the AWS services required to deploy this solution\. This solution follows AWS best practices for security and availability\.
+
+You can also back up EFS file systems by using AWS Data Pipeline\. In this backup solution, you create a data pipeline by using the AWS Data Pipeline service\. This pipeline copies data from your Amazon EFS file system \(called the *production file system*\) to another Amazon EFS file system \(called the *backup file system*\)\. 
+
+This solution consists of AWS Data Pipeline templates that implement the following:
 
 + Automated EFS backups based on a schedule that you define \(for example, hourly, daily, weekly, or monthly\)\.
 
@@ -19,8 +23,8 @@ This solution requires using AWS Data Pipeline in the same AWS Region as your fi
 + [Performance for Amazon EFS Backups Using AWS Data Pipeline](#backup-performance)
 + [Considerations for Amazon EFS Backup by Using AWS Data Pipeline](#backup-considerations)
 + [Assumptions for Amazon EFS Backup with AWS Data Pipeline](#backup-assumptions)
-+ [Backing Up an Amazon EFS File System with AWS Data Pipeline](#backup-steps)
-+ [Additional Resources](#walkthrough4-appendix)
++ [How to Back Up an Amazon EFS File System with AWS Data Pipeline](#backup-steps)
++ [Additional Backup Resources](#walkthrough4-appendix)
 
 ## Performance for Amazon EFS Backups Using AWS Data Pipeline<a name="backup-performance"></a>
 
@@ -38,7 +42,7 @@ When performing data backups and restorations, your file system performance is s
 
 \* These estimates are based on the assumption that data stored in an EFS file system that is 1 TB or larger is organized so that the backup can be spread across multiple backup nodes\. The multiple\-node example scripts divide the backup load across nodes based on the contents of the first\-level directory of your EFS file system\. 
 
-For example, if there are two backup nodes, one node backs up all of the even files and directories located in the first\-level directory, and the odd node does the same for the odd files and directories\. In another example, with six directories in the Amazon EFS file system and four backup nodes, the first node backs up the first and the fifth directories\. The second node backs up the second and the sixth directories, and the third and fourth nodes back up the third and the fourth directories respectively\.
+For example, if there are two backup nodes, one node backs up all of the even files and directories located in the first\-level directory\. The odd node does the same for the odd files and directories\. In another example, with six directories in the Amazon EFS file system and four backup nodes, the first node backs up the first and the fifth directories\. The second node backs up the second and the sixth directories, and the third and fourth nodes back up the third and the fourth directories respectively\.
 
 ## Considerations for Amazon EFS Backup by Using AWS Data Pipeline<a name="backup-considerations"></a>
 
@@ -46,13 +50,13 @@ Consider the following when you're deciding whether to implement an Amazon EFS b
 
 + This approach to EFS backup involves a number of AWS resources\. For this solution, you need to create the following:
 
-  + One production file system and one backup file system that contains a full copy of the production file system\. The system also will contain any incremental changes to your data over the backup rotation period\.
+  + One production file system and one backup file system that contains a full copy of the production file system\. The system also contains any incremental changes to your data over the backup rotation period\.
 
   + Amazon EC2 instances, whose lifecycles are managed by AWS Data Pipeline, that perform restorations and scheduled backups\.
 
   + One regularly scheduled AWS Data Pipeline for backing up data\.
 
-  + An ad hoc AWS Data Pipeline for restoring backups\.
+  + An AWS Data Pipeline for restoring backups\.
 
   When this solution is implemented, it results in billing to your account for these services\. For more information, see the pricing pages for [Amazon EFS](https://aws.amazon.com/efs/pricing/), [Amazon EC2](https://aws.amazon.com/ec2/pricing/), and [AWS Data Pipeline](https://aws.amazon.com/datapipeline/pricing/)\.
 
@@ -82,7 +86,7 @@ The preceding assumptions and examples are reflected in the following initial se
 
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/efs/latest/ug/images/1st-efs-backup-diagram.png)
 
-## Backing Up an Amazon EFS File System with AWS Data Pipeline<a name="backup-steps"></a>
+## How to Back Up an Amazon EFS File System with AWS Data Pipeline<a name="backup-steps"></a>
 
 Follow the steps in this section to back up or restore your Amazon EFS file system with AWS Data Pipeline\.
 
@@ -223,7 +227,7 @@ sudo cp -p /mnt/backup/user/my_home/.profile /mnt/data/users/my_home/.profile
 **Warning**  
 When you are manually restoring individual data files, be careful that you don't accidentally modify the backup itself\. Otherwise, you might corrupt it\.
 
-## Additional Resources<a name="walkthrough4-appendix"></a>
+## Additional Backup Resources<a name="walkthrough4-appendix"></a>
 
 The backup solution presented in this walkthrough uses templates for AWS Data Pipeline\. The templates used in [Step 2: Download the AWS Data Pipeline Template for Backups](#step2-download-template) and [Step 4\.1: Restore an Entire Amazon EFS Backup](#step4-1-full-restore) both use a single Amazon EC2 instance to perform their work\. However, there's no real limit to the number of parallel instances that you can run for backing up or restoring your data in Amazon EFS file systems\. In this topic, you can find links to other AWS Data Pipeline templates configured for multiple EC2 instances that you can download and use for your backup solution\. You can also find instructions for how to modify the templates to include additional instances\.
 
@@ -246,9 +250,9 @@ You can download the following additional templates from GitHub:
 You can add additional nodes to the backup templates used in this walkthrough\. To add a node, modify the following sections of the `2-Node-EFSBackupDataPipeline.json` template\.
 
 **Important**  
-If you're using additional nodes, you can't use spaces in file names and directories stored in the top\-level directory\. If you do, those files and directories won't be backed up or restored\. All files and subdirectories that are at least one level below the top level are backed up and restored as expected\.
+If you're using additional nodes, you can't use spaces in file names and directories stored in the top\-level directory\. If you do, those files and directories aren't backed up or restored\. All files and subdirectories that are at least one level below the top level are backed up and restored as expected\.
 
-+ Create an additional EC2Resource for each additional node you would like to create \(in this example, a fourth EC2 instance\)\.
++ Create an additional EC2Resource for each additional node you want to create \(in this example, a fourth EC2 instance\)\.
 
   ```
   {
@@ -267,7 +271,7 @@ If you're using additional nodes, you can't use spaces in file names and directo
 
   + Update the `runsOn` reference to point to the EC2Resource created previously \(`EC2Resource4` in the following example\)\.
 
-  + Increment the last two `scriptArgument` values to equal the backup part each node will be responsible for and the total number of nodes \(`"3"` and `"4"` in the example below—the backup part is `"3"` for the fourth node in this example because our modulus logic needs to count starting with 0\)\. 
+  + Increment the last two `scriptArgument` values to equal the backup part that each node is responsible for and the total number of nodes\. For `"2"` and `"3"` in the example following, the backup part is `"3"` for the fourth node because in this example our modulus logic needs to count starting with 0\.
 
   ```
   {
@@ -345,7 +349,7 @@ You can add nodes to the restoration templates used in this walkthrough\. To add
 
   + Update the `runsOn` reference to point to the `EC2Resource` created previously \(in this example, `EC2Resource3`\)
 
-  + Increment the last two `scriptArgument` values to equal the backup part each node is be responsible for and the total number of nodes \(in this example, `"2"` and `"3"` in the example following—the backup part is `"3"` for the fourth node in this example because our modulus logic needs to count starting with 0\)\.
+  + Increment the last two `scriptArgument` values to equal the backup part that each node is responsible for and the total number of nodes\. For `"2"` and `"3"` in the example following, the backup part is `"3"` for the fourth node because in this example our modulus logic needs to count starting with 0\.
 
   ```
   {
@@ -383,7 +387,7 @@ You can add nodes to the restoration templates used in this walkthrough\. To add
 
 ### Hosting the rsync Scripts in an Amazon S3 Bucket<a name="hostingscripts"></a>
 
-This backup solution is dependent on running rsync scripts that are hosted in a GitHub repository on the internet\. Therefore, this backup solution is subject to the GitHub repository being available\. This requirement means that if the GitHub repository removes these scripts, or if the GitHub website goes offline for some reason, the backup solution as implemented preceding won't function\.
+This backup solution is dependent on running rsync scripts that are hosted in a GitHub repository on the internet\. Therefore, this backup solution is subject to the GitHub repository being available\. This requirement means that if the GitHub repository removes these scripts, or if the GitHub website goes offline, the backup solution as implemented preceding doesn't function\.
 
 If you'd prefer to eliminate this GitHub dependency, you can choose to host the scripts in an Amazon S3 bucket that you own instead\. Following, you can find the steps necessary to host the scripts yourself\.
 

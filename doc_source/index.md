@@ -1,7 +1,7 @@
 # Amazon Elastic File System User Guide
 
 -----
-*****Copyright &copy; 2017 Amazon Web Services, Inc. and/or its affiliates. All rights reserved.*****
+*****Copyright &copy; 2018 Amazon Web Services, Inc. and/or its affiliates. All rights reserved.*****
 
 -----
 Amazon's trademarks and trade dress may not be used in 
@@ -67,7 +67,6 @@ Amazon's trademarks and trade dress may not be used in
    + [Walkthrough 2: Set Up an Apache Web Server and Serve Amazon EFS Files](wt2-apache-web-server.md)
    + [Walkthrough 3: Create Writable Per-User Subdirectories and Configure Automatic Remounting on Reboot](accessing-fs-nfs-permissions-per-user-subdirs.md)
    + [Walkthrough 4: Backup Solutions for Amazon EFS File Systems](efs-backup.md)
-      + [Backing Up Amazon EFS File Systems by Using AWS Data Pipeline](alternative-efs-backup.md)
    + [Walkthrough 5: Create and Mount a File System On-Premises with AWS Direct Connect](efs-onpremises.md)
    + [Walkthrough 6: Enforcing Encryption on an Amazon EFS File System at Rest](efs-enforce-encryption.md)
    + [Walkthrough 7: Sync Files from an On-Premises File System to Amazon EFS by Using EFS File Sync](walkthrough-file-sync-onpremise.md)
@@ -94,4 +93,6 @@ Amazon's trademarks and trade dress may not be used in
       + [FileSystemSize](API_FileSystemSize.md)
       + [MountTargetDescription](API_MountTargetDescription.md)
       + [Tag](API_Tag.md)
++ [Additional Information for Amazon EFS](appendices.md)
+   + [Backing Up Amazon EFS File Systems Using AWS Data Pipeline](alternative-efs-backup.md)
 + [Document History](document-history.md)

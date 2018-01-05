@@ -1,6 +1,6 @@
 # Step 4: Sync Files from Existing File Systems to Amazon EFS Using EFS File Sync<a name="gs-step-four-sync-files"></a>
 
-Now that you have created a functioning Amazon EFS file system, you can use EFS File Sync to sync files from an existing file system to Amazon EFS\. EFS File Sync can sync your file data, and file system metadata such as ownership, time stamps, and access permissions\.
+Now that you have created a functioning Amazon EFS file system, you can use EFS File Sync to sync files from an existing file system to Amazon EFS\. EFS File Sync can sync your file data, and also file system metadata such as ownership, time stamps, and access permissions\.
 
 In this step, we assume that you have the following:
 
@@ -8,9 +8,17 @@ In this step, we assume that you have the following:
 
 + A destination Amazon EFS file system to sync to\. If you don't have an Amazon EFS file system, create one\. For more information, see [Getting Started with Amazon Elastic File System](getting-started.md)\.
 
-To get started with EFS File Sync, do the following:
++ DNS access as detailed following:
 
-1. On the Amazon EFS Management Console, download and deploy a sync agent\. For on\-premises deployment the sync agent is provided as virtual machine \(VM\) image for VMware ESXi\. For in the cloud deployment, you can create an Amazon EC2 instance from the community AMI\.
+  + For sync agents hosted on Amazon EC2, your sync agent requires access to a DNS server configured in your Amazon VPC\. This server can be the default Amazon DNS server\. For more information, see [Using DNS with Your VPC](http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/vpc-dns.html) in the *Amazon VPC User Guide*\.
+
+  + For sync agents hosted on\-premises, your sync agent requires access to a functioning DNS server that can communicate with AWS\.
+
+**To sync files from an existing file system to Amazon EFS**
+
+1. Open the Amazon EFS Management Console at [https://console\.aws\.amazon\.com/efs/](https://console.aws.amazon.com/efs/)\.
+
+1. Download and deploy a sync agent\. For on\-premises deployment, the sync agent is provided as a virtual machine \(VM\) image for VMware ESXi\. For an AWS Cloud deployment, you can create an Amazon EC2 instance from the community Amazon Machine Image \(AMI\)\.
 
 1. Create a sync task and configure your source and destination file systems\.
 

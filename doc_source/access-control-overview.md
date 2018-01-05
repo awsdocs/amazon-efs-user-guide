@@ -20,6 +20,13 @@ In Amazon Elastic File System, the primary resource is a *file system*\. Amazon 
 
 These resources and subresources have unique Amazon Resource Names \(ARNs\) associated with them as shown in the following table\. 
 
+
+****  
+
+| Resource Type | ARN Format | 
+| --- | --- | 
+| File system | arn:aws:elasticfilesystem:region:account\-id:file\-system/file\-system\-id | 
+
 Amazon EFS provides a set of operations to work with Amazon EFS resources\. For a list of available operations, see Amazon Elastic File System [Actions](API_Operations.md)\.
 
 ## Understanding Resource Ownership<a name="access-control-owner"></a>

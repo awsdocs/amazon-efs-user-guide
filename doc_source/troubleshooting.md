@@ -166,7 +166,7 @@ $ ps aux | grep large_io.py
 root 33253 0.5 0.0 126652 5020 pts/3 D+ 18:22 0:00 python large_io.py /efs/large_file
 ```
 
-After you've verified that this is the case, you can address the issue by waiting for the other write operation to complete, or by implementing a workaround\. In the example of `ls`, you can use the `/bin/ls` command directly, instead of an alias, which will allow the command to proceed without hanging on the file being written\. In general, if the application writing the data can force a data flush periodically, perhaps by using `fsync(2)`, this might help improve the responsiveness of your file system for other applications\. However, this improvement might be at the expense of performance when the application writes data\.
+After you've verified that this is the case, you can address the issue by waiting for the other write operation to complete, or by implementing a workaround\. In the example of `ls`, you can use the `/bin/ls` command directly, instead of an alias, which allows the command to proceed without hanging on the file being written\. In general, if the application writing the data can force a data flush periodically, perhaps by using `fsync(2)`, this might help improve the responsiveness of your file system for other applications\. However, this improvement might be at the expense of performance when the application writes data\.
 
 ### Open and Close Operations Are Serialized<a name="open-close-operations-serialized"></a>
 
@@ -219,7 +219,7 @@ Disabling client\-side caching can potentially reduce your application's perform
 
 ### Creating Backups with Oracle Recovery Manager Is Slow<a name="oracle-backup-slow"></a>
 
-In this issue, Oracle Recovery Manager pauses for 120 seconds before starting a backup job\.
+Creating backups with Oracle Recovery Manager can be slow if Oracle Recovery Manager pauses for 120 seconds before starting a backup job\.
 
 **Action to Take**
 
@@ -265,14 +265,14 @@ If you encounter this issue, you can resolve it by reducing the size of your fil
 
 ### Command Fails with "Too many links" Error<a name="hardlinkerror"></a>
 
-This error occurs when there are too many hard links to a file\. You can have up to 175 hard links in a file\.
+This error occurs when there are too many hard links to a file\. You can have up to 177 hard links in a file\.
 
 **Action to Take**  
 If you encounter this issue, you can resolve it by reducing the number of hard links to a file to meet the supported limit\.
 
 ### Command Fails with "File too large" Error<a name="filesizeerror"></a>
 
-This error occurs when a file is too large\. A single file can be up to 52,673,613,135,872 bytes \(52 TiB\) in size\.
+This error occurs when a file is too large\. A single file can be up to 52,673,613,135,872 bytes \(47\.9 TiB\) in size\.
 
 **Action to Take**  
 If you encounter this issue, you can resolve it by reducing the size of a file to meet the supported limit\.
@@ -354,7 +354,7 @@ This error can occur in the rare case that AWS KMS becomes temporarily unavailab
 
 ### Unusable Encrypted File System<a name="unusable-encrypt"></a>
 
-An encrypted file system consistently returns NFS server errors\. These errors can occur when EFS can't retrieve your master key from KMS for one of the following reasons:
+An encrypted file system consistently returns NFS server errors\. These errors can occur when EFS can't retrieve your master key from AWS KMS for one of the following reasons:
 
 + The key was disabled\.
 
@@ -369,6 +369,6 @@ First, confirm that the AWS KMS key is enabled\. You can do so by viewing the ke
 
 If the key is not enabled, enable it\. For more information, see [Enabling and Disabling Keys](http://docs.aws.amazon.com/kms/latest/developerguide/enabling-keys.html) in the *AWS Key Management Service Developer Guide*\.
 
-If the key is pending deletion, then this will disable the key\. You can cancel the deletion, and re\-enable the key\. For more information, see [Scheduling and Canceling Key Deletion](http://docs.aws.amazon.com/kms/latest/developerguide/deleting-keys.html#deleting-keys-scheduling-key-deletion) in the *AWS Key Management Service Developer Guide*\.
+If the key is pending deletion, then this status disables the key\. You can cancel the deletion, and re\-enable the key\. For more information, see [Scheduling and Canceling Key Deletion](http://docs.aws.amazon.com/kms/latest/developerguide/deleting-keys.html#deleting-keys-scheduling-key-deletion) in the *AWS Key Management Service Developer Guide*\.
 
 If the key is enabled, and you're still experiencing an issue, or if you encounter an issue re\-enabling your key, contact AWS Support\.

@@ -27,7 +27,7 @@ Perform the steps in the following procedure to create a mount target using the 
 1. Sign in to the AWS Management Console and open the Amazon EFS console at [ https://console\.aws\.amazon\.com/efs/](https://console.aws.amazon.com/efs/)\.
 
 1. Choose **Create File System**\.  
-![\[Image NOT FOUND\]](http://docs.aws.amazon.com/efs/latest/ug/)![\[Image NOT FOUND\]](http://docs.aws.amazon.com/efs/latest/ug/)![\[Image NOT FOUND\]](http://docs.aws.amazon.com/efs/latest/ug/)
+![\[Image NOT FOUND\]](http://docs.aws.amazon.com/efs/latest/ug/images/gs-efs-resources-100.png)![\[Image NOT FOUND\]](http://docs.aws.amazon.com/efs/latest/ug/)![\[Image NOT FOUND\]](http://docs.aws.amazon.com/efs/latest/ug/)
 **Note**  
 The console shows the preceding page only if you don't already have any Amazon EFS file systems\. If you have created file systems, the console shows a list of your file systems\. On the list page, choose **Create File System**\.
 
@@ -56,7 +56,7 @@ You can access a file system on an Amazon EC2 instance in one Availability Zone 
         Click in the **Security Group** box and the console will show you the available security groups\. Here you can select a specific security group and remove the **Default** security group, or leave the default in place, depending on how you configured your Amazon EC2 instance\.
 
            
-![\[Image NOT FOUND\]](http://docs.aws.amazon.com/efs/latest/ug/)![\[Image NOT FOUND\]](http://docs.aws.amazon.com/efs/latest/ug/)![\[Image NOT FOUND\]](http://docs.aws.amazon.com/efs/latest/ug/)
+![\[Image NOT FOUND\]](http://docs.aws.amazon.com/efs/latest/ug/images/gs-efs-resources-110.png)![\[Image NOT FOUND\]](http://docs.aws.amazon.com/efs/latest/ug/)![\[Image NOT FOUND\]](http://docs.aws.amazon.com/efs/latest/ug/)
 
 1. On the **Step 2: Configure optional settings** page, specify a value for the **Name** tag \(**MyExampleFileSystem**\) and choose your performance mode\.
 
@@ -64,7 +64,7 @@ You can access a file system on an Amazon EC2 instance in one Availability Zone 
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/efs/latest/ug/images/gs-efs-resources-120.png)
 
 1. On the **Step 3: Review and Create** page, choose **Create File System**\.  
-![\[Image NOT FOUND\]](http://docs.aws.amazon.com/efs/latest/ug/)![\[Image NOT FOUND\]](http://docs.aws.amazon.com/efs/latest/ug/)![\[Image NOT FOUND\]](http://docs.aws.amazon.com/efs/latest/ug/)
+![\[Image NOT FOUND\]](http://docs.aws.amazon.com/efs/latest/ug/images/gs-efs-resources-130.png)![\[Image NOT FOUND\]](http://docs.aws.amazon.com/efs/latest/ug/)![\[Image NOT FOUND\]](http://docs.aws.amazon.com/efs/latest/ug/)
 
 1. The console shows the newly created file system on the **File Systems** page\. Verify that all mount targets show the **Life Cycle State** as **Available**\. It might take a few moments before the mount targets become available \(you can expand/collapse the file system in the EFS console to force it to refresh\)\.
 

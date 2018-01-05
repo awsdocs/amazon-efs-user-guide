@@ -70,4 +70,4 @@ By using your VPC's default security group, with its default inbound and outboun
 
 1. On the **Description** tab, make sure that you have two entries listed next to **security groups**—one for the default VPC security group and one for the security group that you created when you launched the instance\.
 
-1. Make a note of the values listed next to **VPC ID** and **Public DNS**\. You'll need those values later in this exercise\.
+1. Make a note of the values listed next to **VPC ID** and **Public DNS**\. You need those values later in this exercise\.

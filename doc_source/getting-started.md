@@ -29,7 +29,7 @@ For this exercise, we assume the following:
 
 + Your Amazon VPC, Amazon EC2, and Amazon EFS resources are all in the same region\. This guide uses the US West \(Oregon\) Region \(us\-west\-2\)\.
 
-+ You have a default VPC in the region that you're using for this Getting Started exercise\. If you don't have a default VPC, or if you want to mount your file system from a new VPC with new or existing security groups, you can still use this Getting Started exercise as long as you configure [Security Groups for Amazon EC2 Instances and Mount Targets](security-considerations.md#network-access)\.
++ You have a default VPC in the region that you're using for this Getting Started exercise\. If you don't have a default VPC, or if you want to mount your file system from a new VPC with new or existing security groups, you can still use this Getting Started exercise\. To do so, configure [Security Groups for Amazon EC2 Instances and Mount Targets](security-considerations.md#network-access)\.
 
 + You have not changed the default inbound access rule for the default security group\.
 

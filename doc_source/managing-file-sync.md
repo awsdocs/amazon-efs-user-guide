@@ -56,8 +56,8 @@ The following table described each sync task status, and if and when you should 
 | Sync Task Status | Meaning | 
 | --- | --- | 
 | Available | The sync task is configured properly and is available to be started\. | 
-| COMPLETED | The task creating process has completed\. | 
-| CREATING | EFS File Sync is creating the sync task\. | 
+| Completed | The task creating process has completed\. | 
+| Creating | EFS File Sync is creating the sync task\. | 
 | Error |  | 
 | Starting | The task creating process has started\. | 
 | Preparing | The sync task is examining the source and destination file systems to determine which files to sync\. | 
@@ -72,8 +72,8 @@ For a EFS File Sync deployed on\-premises, you can perform the following mainten
 + [Logging in to the Local Console Using Default Credentials](#sync-local-console-login)
 + [Configuring Your EFS File Sync Network](#sync-configure-network)
 + [Testing Your EFS File Sync Connection to the Internet](#sync-test-internet-connectivity)
-+ [Synchronizing Your EFS File Sync VM Time](#sync-synchronize-time)
 + [Viewing Your EFS File Sync System Resource Status](#sync-system-resource-check)
++ [Synchronizing Your EFS File Sync VM Time](#sync-synchronize-time)
 + [Running EFS File Sync Commands on the Local Console](#sync-command-prompt)
 
 ### Logging in to the Local Console Using Default Credentials<a name="sync-local-console-login"></a>
@@ -133,12 +133,6 @@ You can use your EFS File Sync's local console to test your Internet connection\
 1. The endpoint in the selected region displays either a PASSED or FAILED message, as shown following\.    
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/efs/latest/ug/managing-file-sync.html)
 
-### Synchronizing Your EFS File Sync VM Time<a name="sync-synchronize-time"></a>
-
-After your EFS File Sync is deployed and running, in some scenarios the EFS File Sync VM's time can drift\. For example, if there is a prolonged network outage and your hypervisor host and EFS File Sync do not get time updates, then the EFS File Sync VM's time will be different from the true time\. When there is a time drift, a discrepancy occurs between the stated times when operations such as snapshots occur and the actual times that the operations occur\.
-
-For a EFS File Sync deployed on VMware ESXi, setting the hypervisor host time and synchronizing the VM time to the host is sufficient to avoid time drift\.
-
 ### Viewing Your EFS File Sync System Resource Status<a name="sync-system-resource-check"></a>
 
 When your gateway starts, it checks its virtual CPU cores, root volume size, and RAM and determines whether these system resources are sufficient for your EFS File Sync to function properly\. You can view the results of this check on the EFS File Sync's local console\.
@@ -156,6 +150,12 @@ When your gateway starts, it checks its virtual CPU cores, root volume size, and
    The console also displays the number of errors and warnings next to the resource check menu option\.
 
    The following screenshot shows a **\[FAIL\]** message and the accompanying error message\.
+
+### Synchronizing Your EFS File Sync VM Time<a name="sync-synchronize-time"></a>
+
+After your EFS File Sync is deployed and running, in some scenarios the EFS File Sync VM's time can drift\. For example, if there is a prolonged network outage and your hypervisor host and EFS File Sync do not get time updates, then the EFS File Sync VM's time will be different from the true time\. When there is a time drift, a discrepancy occurs between the stated times when operations such as snapshots occur and the actual times that the operations occur\.
+
+For a EFS File Sync deployed on VMware ESXi, setting the hypervisor host time and synchronizing the VM time to the host is sufficient to avoid time drift\.
 
 ### Running EFS File Sync Commands on the Local Console<a name="sync-command-prompt"></a>
 
@@ -182,8 +182,8 @@ Some maintenance tasks require that you log in to the local console when running
 
 + [Logging In to Amazon EC2 EFS File Sync Local Console](#sync-ec2-local-console-login)
 + [Testing EFS File Sync Connectivity to the Internet](#sync-test-ec2-connectivity)
-+ [Running EFS File Sync Commands on the Local Console](#sync-ec2-command-prompt)
 + [Viewing EFS File Sync System Resource Status](#sync-ec2-resource-check)
++ [Running EFS File Sync Commands on the Local Console](#sync-ec2-command-prompt)
 
 ### Logging In to Amazon EC2 EFS File Sync Local Console<a name="sync-ec2-local-console-login"></a>
 
@@ -214,6 +214,24 @@ You can use your EFS File Sync's local console to test your Internet connection\
 1. The endpoint in the region you select displays either a **\[PASSED\]** or **\[FAILED\]** message, as shown following\.    
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/efs/latest/ug/managing-file-sync.html)
 
+### Viewing EFS File Sync System Resource Status<a name="sync-ec2-resource-check"></a>
+
+When your EFS File Sync starts, it checks its virtual CPU cores, root volume size, and RAM and determines whether these system resources are sufficient for your EFS File Sync to function properly\. You can view the results of this check on the EFS File Sync's local console\.
+
+**To view the status of a system resource check**
+
+1. Log in to your EFS File Sync's local console\. For instructions, see [Logging In to Amazon EC2 EFS File Sync Local Console](#sync-ec2-local-console-login)\.
+
+1. In the **Amazon EFS File Sync Configuration** main menu, type **2** to view the results of a system resource check\.  
+![\[Image NOT FOUND\]](http://docs.aws.amazon.com/efs/latest/ug/images/sync-ec2-local-console1.png)
+
+   The console displays an **\[OK**\], **\[WARNING\]**, or **\[FAIL\]** message for each resource as described in the table following\.    
+[\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/efs/latest/ug/managing-file-sync.html)
+
+   The console also displays the number of errors and warnings next to the resource check menu option\.
+
+   The following screenshot shows a **\[FAIL\]** message and the accompanying error message\.
+
 ### Running EFS File Sync Commands on the Local Console<a name="sync-ec2-command-prompt"></a>
 
 The EFS File Sync local console helps provide a secure environment for configuring and diagnosing issues with your EFS File Sync\. Using the local console commands, you can perform maintenance tasks such as saving routing tables or connecting to AWS Support\. 
@@ -231,21 +249,3 @@ The EFS File Sync local console helps provide a secure environment for configuri
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/efs/latest/ug/images/sync-ec2-local-console2.png)
 
 1. To learn about a command, type **man** \+ ***command name*** at the **EFS File Sync Console** prompt\.
-
-### Viewing EFS File Sync System Resource Status<a name="sync-ec2-resource-check"></a>
-
-When your EFS File Sync starts, it checks its virtual CPU cores, root volume size, and RAM and determines whether these system resources are sufficient for your EFS File Sync to function properly\. You can view the results of this check on the EFS File Sync's local console\.
-
-**To view the status of a system resource check**
-
-1. Log in to your EFS File Sync's local console\. For instructions, see [Logging In to Amazon EC2 EFS File Sync Local Console](#sync-ec2-local-console-login)\.
-
-1. In the **Amazon EFS File Sync Configuration** main menu, type **3** to view the results of a system resource check\.  
-![\[Image NOT FOUND\]](http://docs.aws.amazon.com/efs/latest/ug/images/sync-ec2-local-console1.png)
-
-   The console displays an **\[OK**\], **\[WARNING\]**, or **\[FAIL\]** message for each resource as described in the table following\.    
-[\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/efs/latest/ug/managing-file-sync.html)
-
-   The console also displays the number of errors and warnings next to the resource check menu option\.
-
-   The following screenshot shows a **\[FAIL\]** message and the accompanying error message\.

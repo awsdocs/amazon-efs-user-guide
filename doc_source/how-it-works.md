@@ -40,7 +40,7 @@ Amazon EFS file systems can be mounted on Amazon EC2 instances, or on\-premises 
 
 The following illustration shows an example VPC accessing an Amazon EFS file system\. Here, EC2 instances in the VPC have file systems mounted\.
 
-
+![\[Image NOT FOUND\]](http://docs.aws.amazon.com/efs/latest/ug/images/overview-flow.png)
 
 In this illustration, the VPC has three Availability Zones, and each has one mount target created in it\. We recommend that you access the file system from a mount target within the same Availability Zone\. Note that one of the Availability Zones has two subnets\. However, a mount target is created in only one of the subnets\. Creating this setup works as follows:
 
@@ -68,7 +68,7 @@ There is no additional cost for on\-premises access to your Amazon EFS file syst
 
 The following illustration shows an example of how to access an Amazon EFS file system from on\-premises \(the on\-premises servers have the file systems mounted\)\.
 
-
+![\[Image NOT FOUND\]](http://docs.aws.amazon.com/efs/latest/ug/images/onprem-overview-flow.png)
 
 You can use any one of the mount targets in your VPC as long as the subnet of the mount target is reachable by using the AWS Direct Connect connection between your on\-premises server and your Amazon VPC\. To access Amazon EFS from a on\-premises server, you need to add a rule to your mount target security group to allow inbound traffic to the NFS port \(2049\) from your on\-premises server\.
 
