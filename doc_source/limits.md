@@ -92,7 +92,7 @@ Following are the limits on EFS File Sync resources for each customer account in
 | Maximum number of sync tasks | 10 | 
 | Maximum number of files for each sync task | 35,000,000  | 
 | Maximum file ingest rate for each sync task | 500 files per second | 
-| Maximum data throughput | 1 Gbps | 
+| Maximum data throughput for each sync task | 1 Gbps | 
 
 ## Unsupported NFSv4 Features<a name="nfs4-unsupported-features"></a>
 

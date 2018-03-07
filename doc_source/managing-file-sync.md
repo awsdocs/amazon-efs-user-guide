@@ -82,7 +82,7 @@ When the VM is ready for you to log in, the login screen is displayed\.
 
 **To log in to the EFS File Sync's local console**
 
-+ If this is your first time logging in to the local console, log in to the VM with the user name *sguser* and password *sgpassword*\. Otherwise, use your credentials to log in\.
++ If this is your first time logging in to the local console, log in to the VM with the user name: *admin* and password: *password*\. Otherwise, use your credentials to log in\.
 
 After you log in, you see the** Amazon EFS File Sync** **Configuration** main menu, as shown in the following screenshot\.
 
@@ -172,8 +172,8 @@ The EFS File Sync console helps provide a secure environment for configuring and
 
    The console displays the **Available Commands** menu with the available commands and after the menu a **Command Prompt**, as shown in the following screenshot\.  
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/efs/latest/ug/images/sync-on-premise-local-console2.png)
-
-1. To learn about a command, type **man** \+ ***command name*** at the **EFS File Sync Console** prompt\.
+**Note**  
+The man command is disabled in the EFS File Sync local console\.
 
 ## Performing Tasks on Amazon EC2 EFS File Sync Local Console<a name="sync-ec2-local-console-tasks"></a>
 
@@ -191,7 +191,7 @@ You can connect to your Amazon EC2 instance by using a Secure Shell \(SSH\) clie
 
 **To log in to the EFS File Sync local console**
 
-1. Log in to your local console\. If you are connecting to your EC2 instance from a Windows computer, log in as *sguser*\.
+1. Log in to your local console\. If you are connecting to your EC2 instance from a Windows computer, log in as *admin*\.
 
 1. After you log in, you see the **Amazon EFS File Sync Configuration** main menu, as shown in the following screenshot\.  
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/efs/latest/ug/images/sync-ec2-local-console1.png)    
@@ -247,5 +247,5 @@ The EFS File Sync local console helps provide a secure environment for configuri
 
    The console displays the **Available Commands** menu with the available commands\. After the menu, a **EFS File Sync Console** prompt appears, as shown in the following screenshot\.  
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/efs/latest/ug/images/sync-ec2-local-console2.png)
-
-1. To learn about a command, type **man** \+ ***command name*** at the **EFS File Sync Console** prompt\.
+**Note**  
+The man command is disabled in the EFS File Sync local console\.

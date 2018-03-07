@@ -8,7 +8,7 @@ Once you've created a trail, it starts logging events automatically for that reg
 
 When CloudTrail logging is enabled in your AWS account, API calls made to Amazon EFS are tracked in CloudTrail log files, where they are written with other AWS service records\. CloudTrail determines when to create and write to a new log file based on a time period and file size\.
 
-All Amazon EFS API calls are logged by CloudTrail\. For example, calls to the `CreateFileSystem`, `CreateMountTarget` and `CreateTags` actions generate entries in the CloudTrail log files\. 
+All Amazon EFS [API calls](api-reference.md) are logged by CloudTrail\. For example, calls to the `CreateFileSystem`, `CreateMountTarget` and `CreateTags` actions generate entries in the CloudTrail log files\. 
 
 Each log file contains at least one API call\. Some Amazon EFS API calls will trigger other API calls for other services\. For example, the Amazon EFS `CreateMountTarget` API call will trigger a `CreateNetworkInterface` Amazon EC2 API call\. For more information on which Amazon EFS API actions will trigger API calls in other services, see the **Required Permissions \(API Actions\)** column of the table in [Amazon EFS API Permissions: Actions, Resources, and Conditions Reference](efs-api-permissions-ref.md)\.
 

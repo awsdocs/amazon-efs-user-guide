@@ -14,17 +14,17 @@ GET /2015-02-01/mount-targets?FileSystemId=FileSystemId&Marker=Marker&MaxItems=M
 
 The request requires the following URI parameters\.
 
- ** FileSystemId **   
+ ** [FileSystemId](#API_DescribeMountTargets_RequestSyntax) **   <a name="efs-DescribeMountTargets-request-FileSystemId"></a>
 \(Optional\) ID of the file system whose mount targets you want to list \(String\)\. It must be included in your request if `MountTargetId` is not included\.
 
- ** Marker **   
+ ** [Marker](#API_DescribeMountTargets_RequestSyntax) **   <a name="efs-DescribeMountTargets-request-Marker"></a>
 \(Optional\) Opaque pagination token returned from a previous `DescribeMountTargets` operation \(String\)\. If present, it specifies to continue the list from where the previous returning call left off\.
 
- ** MaxItems **   
+ ** [MaxItems](#API_DescribeMountTargets_RequestSyntax) **   <a name="efs-DescribeMountTargets-request-MaxItems"></a>
 \(Optional\) Maximum number of mount targets to return in the response\. It must be an integer with a value greater than zero\.  
 Valid Range: Minimum value of 1\.
 
- ** MountTargetId **   
+ ** [MountTargetId](#API_DescribeMountTargets_RequestSyntax) **   <a name="efs-DescribeMountTargets-request-MountTargetId"></a>
 \(Optional\) ID of the mount target that you want to have described \(String\)\. It must be included in your request if `FileSystemId` is not included\.
 
 ## Request Body<a name="API_DescribeMountTargets_RequestBody"></a>
@@ -38,19 +38,19 @@ HTTP/1.1 200
 Content-type: application/json
 
 {
-   "Marker": "string",
-   "MountTargets": [ 
+   "[Marker](#efs-DescribeMountTargets-response-Marker)": "string",
+   "[MountTargets](#efs-DescribeMountTargets-response-MountTargets)": [ 
       { 
-         "FileSystemId": "string",
-         "IpAddress": "string",
-         "LifeCycleState": "string",
-         "MountTargetId": "string",
-         "NetworkInterfaceId": "string",
-         "OwnerId": "string",
-         "SubnetId": "string"
+         "[FileSystemId](API_MountTargetDescription.md#efs-Type-MountTargetDescription-FileSystemId)": "string",
+         "[IpAddress](API_MountTargetDescription.md#efs-Type-MountTargetDescription-IpAddress)": "string",
+         "[LifeCycleState](API_MountTargetDescription.md#efs-Type-MountTargetDescription-LifeCycleState)": "string",
+         "[MountTargetId](API_MountTargetDescription.md#efs-Type-MountTargetDescription-MountTargetId)": "string",
+         "[NetworkInterfaceId](API_MountTargetDescription.md#efs-Type-MountTargetDescription-NetworkInterfaceId)": "string",
+         "[OwnerId](API_MountTargetDescription.md#efs-Type-MountTargetDescription-OwnerId)": "string",
+         "[SubnetId](API_MountTargetDescription.md#efs-Type-MountTargetDescription-SubnetId)": "string"
       }
    ],
-   "NextMarker": "string"
+   "[NextMarker](#efs-DescribeMountTargets-response-NextMarker)": "string"
 }
 ```
 
@@ -60,15 +60,15 @@ If the action is successful, the service sends back an HTTP 200 response\.
 
 The following data is returned in JSON format by the service\.
 
- ** Marker **   
+ ** [Marker](#API_DescribeMountTargets_ResponseSyntax) **   <a name="efs-DescribeMountTargets-response-Marker"></a>
 If the request included the `Marker`, the response returns that value in this field\.  
 Type: String
 
- ** MountTargets **   
+ ** [MountTargets](#API_DescribeMountTargets_ResponseSyntax) **   <a name="efs-DescribeMountTargets-response-MountTargets"></a>
 Returns the file system's mount targets as an array of `MountTargetDescription` objects\.  
 Type: Array of [MountTargetDescription](API_MountTargetDescription.md) objects
 
- ** NextMarker **   
+ ** [NextMarker](#API_DescribeMountTargets_ResponseSyntax) **   <a name="efs-DescribeMountTargets-response-NextMarker"></a>
 If a value is present, there are more mount targets to return\. In a subsequent request, you can provide `Marker` in your request with this value to retrieve the next set of mount targets\.  
 Type: String
 

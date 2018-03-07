@@ -11,10 +11,10 @@ POST /2015-02-01/create-tags/FileSystemId HTTP/1.1
 Content-type: application/json
 
 {
-   "Tags": [ 
+   "[Tags](#efs-CreateTags-request-Tags)": [ 
       { 
-         "Key": "string",
-         "Value": "string"
+         "[Key](API_Tag.md#efs-Type-Tag-Key)": "string",
+         "[Value](API_Tag.md#efs-Type-Tag-Value)": "string"
       }
    ]
 }
@@ -24,14 +24,14 @@ Content-type: application/json
 
 The request requires the following URI parameters\.
 
- ** FileSystemId **   
+ ** [FileSystemId](#API_CreateTags_RequestSyntax) **   <a name="efs-CreateTags-request-FileSystemId"></a>
 ID of the file system whose tags you want to modify \(String\)\. This operation modifies the tags only, not the file system\.
 
 ## Request Body<a name="API_CreateTags_RequestBody"></a>
 
 The request accepts the following data in JSON format\.
 
- ** Tags **   
+ ** [Tags](#API_CreateTags_RequestSyntax) **   <a name="efs-CreateTags-request-Tags"></a>
 Array of `Tag` objects to add\. Each `Tag` object is a key\-value pair\.   
 Type: Array of [Tag](API_Tag.md) objects  
 Required: Yes

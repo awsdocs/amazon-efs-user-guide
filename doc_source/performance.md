@@ -74,11 +74,11 @@ File systems in the Max I/O mode can scale to higher levels of aggregate through
 
 Our recommendation for determining which performance mode to use is as follows:
 
-1. Create a new file system using the default General Purpose performance mode\.
+1. [Create a new file system](gs-step-two-create-efs-resources.md) using the default General Purpose performance mode\.
 
 1. Run your application \(or a use case similar to your application\) for a period of time to test its performance\.
 
-1. Monitor the PercentIOLimit Amazon CloudWatch metric for Amazon EFS during the performance test\. For more information about accessing this and other metrics, see Amazon CloudWatch Metrics\.
+1. Monitor the [PercentIOLimit](monitoring-cloudwatch.md#efs-metrics) Amazon CloudWatch metric for Amazon EFS during the performance test\. For more information about accessing this and other metrics, see [Amazon CloudWatch Metrics](monitoring_overview.md)\.
 
 If the `PercentIOLimit` percentage returned was at or near 100 percent for a significant amount of time during the test, your application should use the Max I/O performance mode\. Otherwise, it should use the default General Purpose mode\.
 

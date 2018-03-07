@@ -16,7 +16,7 @@
 
 **To access metrics from the AWS CLI**
 
-+  Use the [http://docs.aws.amazon.com/cli/latest/reference/cloudwatch/list-metrics.html](http://docs.aws.amazon.com/cli/latest/reference/cloudwatch/list-metrics.html) command with the `--namespace "AWS/EFS"` namespace\. For more information, see the [AWS Command Line Interface Reference](http://docs.aws.amazon.com/cli/latest/reference/)\. 
++  Use the [http://docs.aws.amazon.com/cli/latest/reference/cloudwatch/list-metrics.html](http://docs.aws.amazon.com/cli/latest/reference/cloudwatch/list-metrics.html) command with the `--namespace "AWS/EFS"` namespace\. For more information, see the [AWS CLI Command Reference](http://docs.aws.amazon.com/cli/latest/reference/)\. 
 
 **To access metrics from the CloudWatch API**
 

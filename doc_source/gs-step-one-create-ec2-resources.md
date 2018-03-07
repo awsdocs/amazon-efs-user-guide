@@ -23,8 +23,7 @@ If you choose either the **Amazon Linux AMI 2016\.03\.0** or **Amazon Linux�
 
 1. In **Step 3: Configure Instance Details**, choose **Network**, and then choose the entry for your default VPC\. It should look something like `vpc-xxxxxxx (172.31.0.0/16) (default)`\. 
 
-   1. Choose **Subnet**, and then choose a subnet in any Availability Zone\.  
-![\[Image NOT FOUND\]](http://docs.aws.amazon.com/efs/latest/ug/images/gs-configure-instance-details-600w.png)
+   1. Choose **Subnet**, and then choose a subnet in any Availability Zone\.
 
    1. Choose **Next: Add Storage**\.
 

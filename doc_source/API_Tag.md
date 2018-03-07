@@ -4,13 +4,13 @@ A tag is a key\-value pair\. Allowed characters: letters, whitespace, and number
 
 ## Contents<a name="API_Tag_Contents"></a>
 
- **Key**   
+ **Key**   <a name="efs-Type-Tag-Key"></a>
 Tag key \(String\)\. The key can't start with `aws:`\.  
 Type: String  
 Length Constraints: Minimum length of 1\. Maximum length of 128\.  
 Required: Yes
 
- **Value**   
+ **Value**   <a name="efs-Type-Tag-Value"></a>
 Value of the tag key\.  
 Type: String  
 Length Constraints: Maximum length of 256\.  

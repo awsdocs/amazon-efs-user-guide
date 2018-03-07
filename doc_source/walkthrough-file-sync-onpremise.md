@@ -24,7 +24,7 @@ In this walkthrough, we assume the following:
 
 ## Step 1: Create a Sync Agent<a name="create-sync-agent-op"></a>
 
-To create a sync agent, you download a virtual machine \(VM\) image and deploy it into your on\-premises environment so that it can mount your source file system\. Once deployed, you activate the agent to securely associate it with your AWS account\.
+To create a sync agent, you download a virtual machine \(VM\) image and deploy it into your on\-premises environment so that it can mount your source file system\. Once deployed, you activate the agent to securely associate it with your AWS account\.<a name="syncagent-onpremise"></a>
 
 **To create a sync agent for on\-premises data**
 

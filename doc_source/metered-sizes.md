@@ -52,7 +52,7 @@ This metered size for an Amazon EFS file system can be seen in the following way
 
 + **File Systems table** – For each file system listed in the AWS Management Console\.
 
-+ **DF command** – In Linux, the `df` command can be run at the terminal prompt of an EC2 instance\.
++ **DF command** – In Linux, the `df` command can be run at the terminal prompt of an EC2 instance\. Note that this is the `df` command and not the `du` command\. Don't use the `du` command on the root of the file system for storage metering purposes\. The results don't provide full data\.
 
 **Note**  
 The metered size is also used to determine your I/O throughput baseline and burst rates\. For more information, see [Throughput Scaling in Amazon EFS](performance.md#bursting)\. 

@@ -18,7 +18,7 @@ GET /2015-02-01/mount-targets/MountTargetId/security-groups HTTP/1.1
 
 The request requires the following URI parameters\.
 
- ** MountTargetId **   
+ ** [MountTargetId](#API_DescribeMountTargetSecurityGroups_RequestSyntax) **   <a name="efs-DescribeMountTargetSecurityGroups-request-MountTargetId"></a>
 ID of the mount target whose security groups you want to retrieve\.
 
 ## Request Body<a name="API_DescribeMountTargetSecurityGroups_RequestBody"></a>
@@ -32,7 +32,7 @@ HTTP/1.1 200
 Content-type: application/json
 
 {
-   "SecurityGroups": [ "string" ]
+   "[SecurityGroups](#efs-DescribeMountTargetSecurityGroups-response-SecurityGroups)": [ "string" ]
 }
 ```
 
@@ -42,7 +42,7 @@ If the action is successful, the service sends back an HTTP 200 response\.
 
 The following data is returned in JSON format by the service\.
 
- ** SecurityGroups **   
+ ** [SecurityGroups](#API_DescribeMountTargetSecurityGroups_ResponseSyntax) **   <a name="efs-DescribeMountTargetSecurityGroups-response-SecurityGroups"></a>
 Array of security groups\.  
 Type: Array of strings  
 Array Members: Maximum number of 5 items\.

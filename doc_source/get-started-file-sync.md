@@ -16,7 +16,7 @@ When deploying Amazon EFS File Sync on\-premises, you must make sure that the un
 
 + Four virtual processors assigned to the VM\. 
 
-+  16 GB of RAM assigned to the VM 
++  32 GB of RAM assigned to the VM 
 
 +  80 GB of disk space for installation of VM image and system data 
 
@@ -32,6 +32,10 @@ EFS File Sync supports the following hypervisor versions and hosts:
 
 + EC2 instance – EFS File Sync provides an Amazon Machine Image \(AMI\) that contains the EFS File Sync VM image\. We recommend using the **Memory optimized r4\.xlarge** instance types\.
 
+### Supported NFS Protocols<a name="requirements-nfs-versions"></a>
+
+EFS File Sync supports NFS v3\.x, NFS v4\.0 and NFS v4\.1\.
+
 ### Allowing EFS File Sync Access Through Firewalls and Routers<a name="file-sync-endpoints"></a>
 
 EFS File Sync requires access to the following endpoints to communicate with AWS\. If you use a firewall or router to filter or limit network traffic, you must configure your firewall and router to allow these service endpoints for outbound communication to AWS\.
@@ -42,6 +46,14 @@ The following endpoints are required by EFS File Sync\.
 cp-sync.$region.amazonaws.com       
 activation-sync.$region.amazonaws.com
 ec2-*.amazonaws.com
+repo.$region.amazonaws.com
+repo.default.amazonaws.com
+packages.$region.amazonaws.com
+0.amazon.pool.ntp.org
+1.amazon.pool.ntp.org
+2.amazon.pool.ntp.org
+3.amazon.pool.ntp.org
+54.201.223.107
 ```
 
 For information about supported AWS Regions, see [Amazon Elastic File System](http://docs.aws.amazon.com/general/latest/gr/rande.html#elasticfilesystem-region) in the AWS General Reference\.
@@ -64,7 +76,7 @@ EFS File Sync requires the following ports for its operation\.
 |  EFS File Sync VM  |  Domain Name Service \(DNS\) server  |  TCP/UDP  |  53 \(DNS\)  |  For communication between EFS File Sync VM and the DNS server\.  | 
 |  EFS File Sync VM  |  AWS  |  TCP  |  22 \(Support channel\)  |  Allows AWS Support to access your EFS File Sync to help you with troubleshooting EFS File Sync issues\. You don't need this port open for normal operation, but it is required for troubleshooting\.  | 
 |  EFS File Sync VM  |  NTP server  |  UDP  |  123 \(NTP\)  |  By local systems to synchronize VM time to the host time\.   | 
-|  NFS client  |  EFS File Sync VM  |  TCP/UDP  |  2049 \(NFS\)  |  By local systems to connect to the NFS shares that EFS File Sync exposes\.  | 
+|  EFS File Sync VM  |  NFS Server  |  TCP/UDP  |  2049 \(NFS\)  |  By EFS File Sync VM to mount source NFS filesystem\. Supports NFS v3\.x, NFS v4\.0 and NFS v4\.1\.  | 
 
 Following is an illustration of the required ports and lists the ports required by EFS File Sync\.
 

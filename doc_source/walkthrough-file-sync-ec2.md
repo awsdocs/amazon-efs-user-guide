@@ -22,11 +22,11 @@ In this walkthrough, we assume the following:
 
 ## Step 1: Create a Sync Agent<a name="create-sync-agent-ec2"></a>
 
-To create a sync agent in Amazon EC2, you will use the AMI provided to create an Amazon EC2 instance that can mount the source file system in your AWS environment\. This Amazon EC2 instance will run in the same AWS Region as your source file system\. Once deployed, you will activate the agent to securely associate it with your AWS account\.
+To create a sync agent in Amazon EC2, you will use the AMI provided to create an Amazon EC2 instance that can mount the source file system in your AWS environment\. This Amazon EC2 instance will run in the same AWS Region as your source file system\. Once deployed, you will activate the agent to securely associate it with your AWS account\.<a name="syncagent-ec2"></a>
 
 **To create a sync agent for data in AWS**
 
-1. Open the Amazon EFS Management Console at [https://console\.aws\.amazon\.com/efs/](https://console.aws.amazon.com/efs/) and choose the AWS Region where you created your destination file system\.
+1. Open the Amazon EFS Management Console at [https://console\.aws\.amazon\.com/efs/](https://console.aws.amazon.com/efs/) and choose the AWS Region where you created your source file system\.
 
 1. Choose **File syncs**\. If you haven't used EFS File Sync in this AWS Region, you see an introductory page\. Choose **Get started** to open the **Select a host platform** page\.
 

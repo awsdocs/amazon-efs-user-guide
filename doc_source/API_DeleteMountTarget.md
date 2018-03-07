@@ -25,7 +25,7 @@ DELETE /2015-02-01/mount-targets/MountTargetId HTTP/1.1
 
 The request requires the following URI parameters\.
 
- ** MountTargetId **   
+ ** [MountTargetId](#API_DeleteMountTarget_RequestSyntax) **   <a name="efs-DeleteMountTarget-request-MountTargetId"></a>
 ID of the mount target to delete \(String\)\.
 
 ## Request Body<a name="API_DeleteMountTarget_RequestBody"></a>

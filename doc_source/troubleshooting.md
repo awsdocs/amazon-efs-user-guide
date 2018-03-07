@@ -13,6 +13,7 @@ Following, you can find information on how to troubleshoot issues for Amazon Ela
 Following, you can find information about general troubleshooting issues related to Amazon EFS\. For information on performance, see [Amazon EFS Performance](performance.md)\.
 
 
++ [Mounting Multiple Amazon EFS File Systems in /etc/fstab Fails](#automount-fix-multiple-fs)
 + [Mount Command Fails with "wrong fs type" Error Message](#mount-error-wrong-fs)
 + [Mount Command Fails with "incorrect mount option" Error Message](#mount-error-incorrect-mount)
 + [File System Mount Fails Immediately After File System Creation](#mount-fails-propegation)
@@ -27,6 +28,39 @@ Following, you can find information about general troubleshooting issues related
 + [Operations on Newly Mounted File System Return "bad file handle" Error](#operations-return-bad-file-handle)
 + [Custom NFS Settings Causing Write Delays](#custom-nfs-settings-write-delays)
 + [Creating Backups with Oracle Recovery Manager Is Slow](#oracle-backup-slow)
+
+### Mounting Multiple Amazon EFS File Systems in /etc/fstab Fails<a name="automount-fix-multiple-fs"></a>
+
+For instances that use the systemd init system with two or more Amazon EFS entries at `/etc/fstab`, there might be times where some or all of these entries are not mounted\. In this case, the `dmesg` output shows one or more lines similar to the following\.
+
+```
+NFS: nfs4_discover_server_trunking unhandled error -512. Exiting with error EIO
+```
+
+**Action to Take**  
+We recommend that you create a new systemd service file in `/etc/systemd/system/mount-nfs-sequentially.service` with the following contents\.
+
+```
+[Unit]
+Description=Workaround for mounting NFS file systems sequentially at boot time
+After=remote-fs.target
+
+[Service]
+Type=oneshot
+ExecStart=/bin/mount -avt nfs4
+RemainAfterExit=yes
+
+[Install]
+WantedBy=multi-user.target
+```
+
+After you do so, run the following two commands:
+
+1. `sudo systemctl daemon-reload`
+
+1. `sudo systemctl enable mount-nfs-sequentially.service`
+
+Finally, restart your Amazon EC2 instance\. The file systems are mounted on demand, generally within a second\.
 
 ### Mount Command Fails with "wrong fs type" Error Message<a name="mount-error-wrong-fs"></a>
 

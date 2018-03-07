@@ -11,7 +11,7 @@ POST /2015-02-01/delete-tags/FileSystemId HTTP/1.1
 Content-type: application/json
 
 {
-   "TagKeys": [ "string" ]
+   "[TagKeys](#efs-DeleteTags-request-TagKeys)": [ "string" ]
 }
 ```
 
@@ -19,14 +19,14 @@ Content-type: application/json
 
 The request requires the following URI parameters\.
 
- ** FileSystemId **   
+ ** [FileSystemId](#API_DeleteTags_RequestSyntax) **   <a name="efs-DeleteTags-request-FileSystemId"></a>
 ID of the file system whose tags you want to delete \(String\)\.
 
 ## Request Body<a name="API_DeleteTags_RequestBody"></a>
 
 The request accepts the following data in JSON format\.
 
- ** TagKeys **   
+ ** [TagKeys](#API_DeleteTags_RequestSyntax) **   <a name="efs-DeleteTags-request-TagKeys"></a>
 List of tag keys to delete\.  
 Type: Array of strings  
 Length Constraints: Minimum length of 1\. Maximum length of 128\.  

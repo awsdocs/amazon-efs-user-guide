@@ -22,17 +22,17 @@ GET /2015-02-01/file-systems?CreationToken=CreationToken&FileSystemId=FileSystem
 
 The request requires the following URI parameters\.
 
- ** CreationToken **   
+ ** [CreationToken](#API_DescribeFileSystems_RequestSyntax) **   <a name="efs-DescribeFileSystems-request-CreationToken"></a>
 \(Optional\) Restricts the list to the file system with this creation token \(String\)\. You specify a creation token when you create an Amazon EFS file system\.  
 Length Constraints: Minimum length of 1\. Maximum length of 64\.
 
- ** FileSystemId **   
+ ** [FileSystemId](#API_DescribeFileSystems_RequestSyntax) **   <a name="efs-DescribeFileSystems-request-FileSystemId"></a>
 \(Optional\) ID of the file system whose description you want to retrieve \(String\)\.
 
- ** Marker **   
+ ** [Marker](#API_DescribeFileSystems_RequestSyntax) **   <a name="efs-DescribeFileSystems-request-Marker"></a>
 \(Optional\) Opaque pagination token returned from a previous `DescribeFileSystems` operation \(String\)\. If present, specifies to continue the list from where the returning call had left off\. 
 
- ** MaxItems **   
+ ** [MaxItems](#API_DescribeFileSystems_RequestSyntax) **   <a name="efs-DescribeFileSystems-request-MaxItems"></a>
 \(Optional\) Specifies the maximum number of file systems to return in the response \(integer\)\. This parameter value must be greater than 0\. The number of items that Amazon EFS returns is the minimum of the `MaxItems` parameter specified in the request and the service's internal maximum number of items per page\.   
 Valid Range: Minimum value of 1\.
 
@@ -47,26 +47,26 @@ HTTP/1.1 200
 Content-type: application/json
 
 {
-   "FileSystems": [ 
+   "[FileSystems](#efs-DescribeFileSystems-response-FileSystems)": [ 
       { 
-         "CreationTime": number,
-         "CreationToken": "string",
-         "Encrypted": boolean,
-         "FileSystemId": "string",
-         "KmsKeyId": "string",
-         "LifeCycleState": "string",
-         "Name": "string",
-         "NumberOfMountTargets": number,
-         "OwnerId": "string",
-         "PerformanceMode": "string",
-         "SizeInBytes": { 
-            "Timestamp": number,
-            "Value": number
+         "[CreationTime](API_FileSystemDescription.md#efs-Type-FileSystemDescription-CreationTime)": number,
+         "[CreationToken](API_FileSystemDescription.md#efs-Type-FileSystemDescription-CreationToken)": "string",
+         "[Encrypted](API_FileSystemDescription.md#efs-Type-FileSystemDescription-Encrypted)": boolean,
+         "[FileSystemId](API_FileSystemDescription.md#efs-Type-FileSystemDescription-FileSystemId)": "string",
+         "[KmsKeyId](API_FileSystemDescription.md#efs-Type-FileSystemDescription-KmsKeyId)": "string",
+         "[LifeCycleState](API_FileSystemDescription.md#efs-Type-FileSystemDescription-LifeCycleState)": "string",
+         "[Name](API_FileSystemDescription.md#efs-Type-FileSystemDescription-Name)": "string",
+         "[NumberOfMountTargets](API_FileSystemDescription.md#efs-Type-FileSystemDescription-NumberOfMountTargets)": number,
+         "[OwnerId](API_FileSystemDescription.md#efs-Type-FileSystemDescription-OwnerId)": "string",
+         "[PerformanceMode](API_FileSystemDescription.md#efs-Type-FileSystemDescription-PerformanceMode)": "string",
+         "[SizeInBytes](API_FileSystemDescription.md#efs-Type-FileSystemDescription-SizeInBytes)": { 
+            "[Timestamp](API_FileSystemSize.md#efs-Type-FileSystemSize-Timestamp)": number,
+            "[Value](API_FileSystemSize.md#efs-Type-FileSystemSize-Value)": number
          }
       }
    ],
-   "Marker": "string",
-   "NextMarker": "string"
+   "[Marker](#efs-DescribeFileSystems-response-Marker)": "string",
+   "[NextMarker](#efs-DescribeFileSystems-response-NextMarker)": "string"
 }
 ```
 
@@ -76,15 +76,15 @@ If the action is successful, the service sends back an HTTP 200 response\.
 
 The following data is returned in JSON format by the service\.
 
- ** FileSystems **   
+ ** [FileSystems](#API_DescribeFileSystems_ResponseSyntax) **   <a name="efs-DescribeFileSystems-response-FileSystems"></a>
 Array of file system descriptions\.  
 Type: Array of [FileSystemDescription](API_FileSystemDescription.md) objects
 
- ** Marker **   
+ ** [Marker](#API_DescribeFileSystems_ResponseSyntax) **   <a name="efs-DescribeFileSystems-response-Marker"></a>
 Present if provided by caller in the request \(String\)\.  
 Type: String
 
- ** NextMarker **   
+ ** [NextMarker](#API_DescribeFileSystems_ResponseSyntax) **   <a name="efs-DescribeFileSystems-response-NextMarker"></a>
 Present if there are more file systems than returned in the response \(String\)\. You can use the `NextMarker` in the subsequent request to fetch the descriptions\.  
 Type: String
 

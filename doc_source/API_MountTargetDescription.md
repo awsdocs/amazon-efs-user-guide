@@ -4,38 +4,38 @@ Provides a description of a mount target\.
 
 ## Contents<a name="API_MountTargetDescription_Contents"></a>
 
- **FileSystemId**   
+ **FileSystemId**   <a name="efs-Type-MountTargetDescription-FileSystemId"></a>
 ID of the file system for which the mount target is intended\.  
 Type: String  
 Required: Yes
 
- **IpAddress**   
+ **IpAddress**   <a name="efs-Type-MountTargetDescription-IpAddress"></a>
 Address at which the file system may be mounted via the mount target\.  
 Type: String  
 Required: No
 
- **LifeCycleState**   
+ **LifeCycleState**   <a name="efs-Type-MountTargetDescription-LifeCycleState"></a>
 Lifecycle state of the mount target\.  
 Type: String  
 Valid Values:` creating | available | deleting | deleted`   
 Required: Yes
 
- **MountTargetId**   
+ **MountTargetId**   <a name="efs-Type-MountTargetDescription-MountTargetId"></a>
 System\-assigned mount target ID\.  
 Type: String  
 Required: Yes
 
- **NetworkInterfaceId**   
+ **NetworkInterfaceId**   <a name="efs-Type-MountTargetDescription-NetworkInterfaceId"></a>
 ID of the network interface that Amazon EFS created when it created the mount target\.  
 Type: String  
 Required: No
 
- **OwnerId**   
+ **OwnerId**   <a name="efs-Type-MountTargetDescription-OwnerId"></a>
 AWS account ID that owns the resource\.  
 Type: String  
 Required: No
 
- **SubnetId**   
+ **SubnetId**   <a name="efs-Type-MountTargetDescription-SubnetId"></a>
 ID of the mount target's subnet\.  
 Type: String  
 Required: Yes

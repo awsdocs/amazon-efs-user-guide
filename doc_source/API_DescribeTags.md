@@ -14,13 +14,13 @@ GET /2015-02-01/tags/FileSystemId/?Marker=Marker&MaxItems=MaxItems HTTP/1.1
 
 The request requires the following URI parameters\.
 
- ** FileSystemId **   
+ ** [FileSystemId](#API_DescribeTags_RequestSyntax) **   <a name="efs-DescribeTags-request-FileSystemId"></a>
 ID of the file system whose tag set you want to retrieve\.
 
- ** Marker **   
+ ** [Marker](#API_DescribeTags_RequestSyntax) **   <a name="efs-DescribeTags-request-Marker"></a>
 \(Optional\) Opaque pagination token returned from a previous `DescribeTags` operation \(String\)\. If present, it specifies to continue the list from where the previous call left off\.
 
- ** MaxItems **   
+ ** [MaxItems](#API_DescribeTags_RequestSyntax) **   <a name="efs-DescribeTags-request-MaxItems"></a>
 \(Optional\) Maximum number of file system tags to return in the response\. It must be an integer with a value greater than zero\.  
 Valid Range: Minimum value of 1\.
 
@@ -35,12 +35,12 @@ HTTP/1.1 200
 Content-type: application/json
 
 {
-   "Marker": "string",
-   "NextMarker": "string",
-   "Tags": [ 
+   "[Marker](#efs-DescribeTags-response-Marker)": "string",
+   "[NextMarker](#efs-DescribeTags-response-NextMarker)": "string",
+   "[Tags](#efs-DescribeTags-response-Tags)": [ 
       { 
-         "Key": "string",
-         "Value": "string"
+         "[Key](API_Tag.md#efs-Type-Tag-Key)": "string",
+         "[Value](API_Tag.md#efs-Type-Tag-Value)": "string"
       }
    ]
 }
@@ -52,15 +52,15 @@ If the action is successful, the service sends back an HTTP 200 response\.
 
 The following data is returned in JSON format by the service\.
 
- ** Marker **   
+ ** [Marker](#API_DescribeTags_ResponseSyntax) **   <a name="efs-DescribeTags-response-Marker"></a>
 If the request included a `Marker`, the response returns that value in this field\.  
 Type: String
 
- ** NextMarker **   
+ ** [NextMarker](#API_DescribeTags_ResponseSyntax) **   <a name="efs-DescribeTags-response-NextMarker"></a>
 If a value is present, there are more tags to return\. In a subsequent request, you can provide the value of `NextMarker` as the value of the `Marker` parameter in your next request to retrieve the next set of tags\.  
 Type: String
 
- ** Tags **   
+ ** [Tags](#API_DescribeTags_ResponseSyntax) **   <a name="efs-DescribeTags-response-Tags"></a>
 Returns tags associated with the file system as an array of `Tag` objects\.   
 Type: Array of [Tag](API_Tag.md) objects
 

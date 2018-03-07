@@ -2,9 +2,9 @@
 
 You can have EC2 instances running the Apache web server serving files stored on your Amazon EFS file system\. It can be one EC2 instance, or if your application needs, you can have multiple EC2 instances serving files from your Amazon EFS file system\. The following procedures are described\.
 
-+ Set up an Apache web server on an EC2 instance\.
++ [Set up an Apache web server on an EC2 instance](#wt2-apache-web-server-one-ec2-host)\.
 
-+  Set up an Apache web server on multiple EC2 instances by creating an Auto Scaling group\. You can create multiple EC2 instances using Auto Scaling, an AWS service that allows you to increase or decrease the number of EC2 instances in a group according to your application needs\. When you have multiple web servers, you also need a load balancer to distribute request traffic among them\. 
++ [ Set up an Apache web server on multiple EC2 instances by creating an Auto Scaling group](#wt2-apache-web-server-auto-scale-group)\. You can create multiple EC2 instances using Amazon EC2 Auto Scaling, an AWS service that allows you to increase or decrease the number of EC2 instances in a group according to your application needs\. When you have multiple web servers, you also need a load balancer to distribute request traffic among them\. 
 
 **Note**  
 For both procedures, you create all resources in the US West \(Oregon\) Region \(`us-west-2`\)\. 
@@ -215,7 +215,7 @@ Don't add any EC2 instances\. Later, you create an Auto Scaling Group in which y
 
       1. For **Health Check Type**, choose **ELB**\.
 
-   Follow the instructions to create an Auto Scaling group at [Set Up a Scaled and Load\-Balanced Application](http://docs.aws.amazon.com/autoscaling/latest/userguide/as-register-lbs-with-asg.html) in the *Auto Scaling User Guide*\. Use the information in the preceding tables where applicable\.
+   Follow the instructions to create an Auto Scaling group at [Set Up a Scaled and Load\-Balanced Application](http://docs.aws.amazon.com/autoscaling/latest/userguide/as-register-lbs-with-asg.html) in the *Amazon EC2 Auto Scaling User Guide*\. Use the information in the preceding tables where applicable\.
 
 1. Upon successful creation of the Auto Scaling group, you have two EC2 instances with `nfs-utils` and the Apache web server installed\. On each instance, verify that you have the `/var/www/html/efs-mount-point` subdirectory with your Amazon EFS file system mounted on it\. For instructions to connect to an EC2 instance, see [Step 3: Connect to Your Amazon EC2 Instance and Mount the Amazon EFS File System](gs-step-three-connect-to-ec2-instance.md)\.
 **Note**  
