@@ -123,6 +123,7 @@ If you're using an encrypted file system, the calls that Amazon EFS makes on you
 | --- | --- | 
 | US East \(Ohio\) | 771736226457 | 
 | US East \(N\. Virginia\) | 055650462987 | 
+| US West \(N\. California\) | 208867197265 | 
 | US West \(Oregon\) | 736298361104 | 
 | EU \(Frankfurt\) | 992038834663 | 
 | EU \(Ireland\) | 805538244694 | 
