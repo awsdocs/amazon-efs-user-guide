@@ -21,7 +21,7 @@ Following are the limits for Amazon EFS that can be increased by contacting AWS 
 | Resource | Default Limit | 
 | --- | --- | 
 | Number of file systems for each customer account in an AWS Region | 10 | 
-| Total throughput for each file system for all connected clients |  US East \(Ohio\) Region – 3 GB/s US East \(N\. Virginia\) Region – 3 GB/s US West \(Oregon\) Region – 3 GB/s EU \(Frankfurt\) Region – 1 GB/s EU \(Ireland\) Region – 3 GB/s Asia Pacific \(Sydney\) Region – 3 GB/s  | 
+| Total throughput for each file system for all connected clients |  US East \(Ohio\) Region – 3 GB/s US East \(N\. Virginia\) Region – 3 GB/s US West \(N\. California\) Region – 1 GB/s US West \(Oregon\) Region – 3 GB/s EU \(Frankfurt\) Region – 1 GB/s EU \(Ireland\) Region – 3 GB/s Asia Pacific \(Sydney\) Region – 3 GB/s  | 
 
 You can take the following steps to request an increase for these limits\. These increases are not granted immediately, so it might take a couple of days for your increase to become effective\.
 
