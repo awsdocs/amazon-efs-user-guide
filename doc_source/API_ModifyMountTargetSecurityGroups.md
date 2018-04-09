@@ -5,9 +5,7 @@ Modifies the set of security groups in effect for a mount target\.
 When you create a mount target, Amazon EFS also creates a new network interface\. For more information, see [CreateMountTarget](API_CreateMountTarget.md)\. This operation replaces the security groups in effect for the network interface associated with a mount target, with the `SecurityGroups` provided in the request\. This operation requires that the network interface of the mount target has been created and the lifecycle state of the mount target is not `deleted`\. 
 
 The operation requires permissions for the following actions:
-
 +  `elasticfilesystem:ModifyMountTargetSecurityGroups` action on the mount target's file system\. 
-
 +  `ec2:ModifyNetworkInterfaceAttribute` action on the mount target's network interface\. 
 
 ## Request Syntax<a name="API_ModifyMountTargetSecurityGroups_RequestSyntax"></a>
@@ -107,21 +105,12 @@ x-amzn-RequestId: 088fb0b4-0c1d-4af7-9de1-933207fbdb46
 ## See Also<a name="API_ModifyMountTargetSecurityGroups_SeeAlso"></a>
 
 For more information about using this API in one of the language\-specific AWS SDKs, see the following:
-
 +  [AWS Command Line Interface](http://docs.aws.amazon.com/goto/aws-cli/elasticfilesystem-2015-02-01/ModifyMountTargetSecurityGroups) 
-
 +  [AWS SDK for \.NET](http://docs.aws.amazon.com/goto/DotNetSDKV3/elasticfilesystem-2015-02-01/ModifyMountTargetSecurityGroups) 
-
 +  [AWS SDK for C\+\+](http://docs.aws.amazon.com/goto/SdkForCpp/elasticfilesystem-2015-02-01/ModifyMountTargetSecurityGroups) 
-
 +  [AWS SDK for Go](http://docs.aws.amazon.com/goto/SdkForGoV1/elasticfilesystem-2015-02-01/ModifyMountTargetSecurityGroups) 
-
 +  [AWS SDK for Java](http://docs.aws.amazon.com/goto/SdkForJava/elasticfilesystem-2015-02-01/ModifyMountTargetSecurityGroups) 
-
 +  [AWS SDK for JavaScript](http://docs.aws.amazon.com/goto/AWSJavaScriptSDK/elasticfilesystem-2015-02-01/ModifyMountTargetSecurityGroups) 
-
 +  [AWS SDK for PHP V3](http://docs.aws.amazon.com/goto/SdkForPHPV3/elasticfilesystem-2015-02-01/ModifyMountTargetSecurityGroups) 
-
 +  [AWS SDK for Python](http://docs.aws.amazon.com/goto/boto3/elasticfilesystem-2015-02-01/ModifyMountTargetSecurityGroups) 
-
 +  [AWS SDK for Ruby V2](http://docs.aws.amazon.com/goto/SdkForRubyV2/elasticfilesystem-2015-02-01/ModifyMountTargetSecurityGroups) 

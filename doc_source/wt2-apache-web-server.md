@@ -1,9 +1,7 @@
 # Walkthrough 2: Set Up an Apache Web Server and Serve Amazon EFS Files<a name="wt2-apache-web-server"></a>
 
 You can have EC2 instances running the Apache web server serving files stored on your Amazon EFS file system\. It can be one EC2 instance, or if your application needs, you can have multiple EC2 instances serving files from your Amazon EFS file system\. The following procedures are described\.
-
 + [Set up an Apache web server on an EC2 instance](#wt2-apache-web-server-one-ec2-host)\.
-
 + [ Set up an Apache web server on multiple EC2 instances by creating an Auto Scaling group](#wt2-apache-web-server-auto-scale-group)\. You can create multiple EC2 instances using Amazon EC2 Auto Scaling, an AWS service that allows you to increase or decrease the number of EC2 instances in a group according to your application needs\. When you have multiple web servers, you also need a load balancer to distribute request traffic among them\. 
 
 **Note**  
@@ -14,17 +12,12 @@ For both procedures, you create all resources in the US West \(Oregon\) Region \
 Follow the steps to set up an Apache web server on one EC2 instance to serve files you create in your Amazon EFS file system\.
 
 1. Follow the steps in the Getting Started exercise so that you have a working configuration consisting of the following:
-
    + Amazon EFS file system
-
    + EC2 instance
-
    + File system mounted on the EC2 instance
 
    For instructions, see [Getting Started with Amazon Elastic File System](getting-started.md)\. As you follow the steps, write down the following:
-
    + Public DNS name of the EC2 instance\.
-
    + Public DNS name of the mount target created in the same Availability Zone where you launched the EC2 instance\.
 
 1. \(Optional\) You may choose to unmount the file system from the mount point you created in the Getting Started exercise\. 
@@ -131,13 +124,9 @@ For this walkthrough, you don't use the EC2 instance that you created in the Get
    1. Assign security groups
 
       Create a new security group for the load balancer to allow HTTP access from port 80 from anywhere, as shown following:
-
       + Type: HTTP
-
       + Protocol: TCP
-
       + Port Range: 80
-
       + Source: Anywhere \(0\.0\.0\.0/0\)
 **Note**  
 When everything works, you can also update the EC2 instance security group inbound rule access to allow HTTP traffic only from the load balancer\. 
@@ -161,25 +150,19 @@ Don't add any EC2 instances\. Later, you create an Auto Scaling Group in which y
    1. From **Quick Start**, select the latest version of the **Amazon Linux \(HVM\)** AMI\. This is same AMI you used in [Step 1: Create Your EC2 Resources and Launch Your EC2 Instance](gs-step-one-create-ec2-resources.md) of the Getting Started exercise\.
 
    1. In the **Advanced** section, do the following:
-
       + For **IP Address Type**, choose **Assign a public IP address to every instance**\. 
-
       + Copy/paste the following script in the **User data** box\. 
 
         You must update the script by providing values for the *file\-system\-id* and *aws\-region* \(if you followed the Getting Started exercise, you created the file system in the us\-west\-2 region\)\. 
 
         In the script, note the following:
-
         + The script installs the NFS client and the Apache web server\.
-
         + The echo command writes the following entry in the `/etc/fstab` file identifying the file system's DNS name and subdirectory on which to mount it\. This entry ensures that the file gets mounted after each system reboot\. Note that the file system's DNS name is dynamically constructed\. For more information, see [Mounting on Amazon EC2 with a DNS Name](mounting-fs-mount-cmd-dns-name.md)\. 
 
           ```
           file-system-ID.efs.aws-region.amazonaws.com:/ /var/www/html/efs-mount-point   nfs4   defaults
           ```
-
         + Creates efs\-mount\-point subdirectory and mounts the file system on it\.
-
         + Creates a test\.html page so ELB health check can find the file \(when creating a load balancer you specified this file as the ping point\)\.
 
         For more information about user data scripts, see [Adding User Data](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-metadata.html#instancedata-add-user-data) in the *Amazon EC2 User Guide for Linux Instances*\.

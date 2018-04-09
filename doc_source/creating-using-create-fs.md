@@ -5,7 +5,7 @@ Following, you can find an explanation about how to create an Amazon EFS file sy
 **Note**  
 If you are new to Amazon EFS, we recommend you go through the Getting Started exercise, which provides console\-based end\-to\-end instructions to create and access a file system in your VPC\. For more information, see [Getting Started](getting-started.md)\. 
 
-
+**Topics**
 + [Requirements](#reqs-fs-create)
 + [Permissions Required](#perm-fs-api)
 + [Creating a File System](#creating-using-create-fs-part1)
@@ -51,7 +51,7 @@ To create the file system mount targets in your VPC, you must specify VPC subnet
 
 When creating a file system, you also choose a performance mode\. There are two performance modes to choose from—General Purpose and Max I/O\. For the majority of use cases, we recommend that you use the general purpose performance mode for your file system\. For more information about the different performance modes, see [Performance Modes](performance.md#performancemodes)\.
 
-You can enable encryption when creating a file system\. If you enable encryption for your file system, all data and metadata stored on it is encrypted\. For more information about EFS encryption, see [Security](security-considerations.md)\.
+You can enable encryption at rest when creating a file system\. If you enable encryption at rest for your file system, all data and metadata stored on it is encrypted\. You can enable encryption in transit later, when you mount the file system\. For more information about Amazon EFS encryption, see [Security](security-considerations.md)\.
 
 When you choose **Create File System**, the console sends a series of API requests to create the file system\. The console then sends API requests to create tags and mount targets for the file system\. The following example console shows the **MyFS** file system\. It has the **Name** tag and three mount targets that are being created\. The mount target lifecycle state must be **Available** before you can use it to mount the file system on an EC2 instance\.
 
@@ -64,7 +64,6 @@ For instructions on how to create an Amazon EFS file system using the console, s
 When using the AWS CLI, you create these resources in order\. First, you create a file system\. Then, you can create mount targets and optional tags for the file system using corresponding AWS CLI commands\.
 
 The following examples use the `adminuser` as the `profile` parameter value\. You need to use an appropriate user profile to provide your credentials\. For information about the AWS CLI, see [Getting Set Up with the AWS Command Line Interface](http://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-set-up.html) in the *AWS Command Line Interface User Guide*\. 
-
 + To create a file system, use the Amazon EFS `create-file-system` CLI command \(corresponding operation is [CreateFileSystem](API_CreateFileSystem.md)\), as shown following\.
 
   ```
@@ -109,7 +108,6 @@ The following examples use the `adminuser` as the `profile` parameter value\. Yo
   ```
 
   Amazon EFS returns a list of the file systems in your AWS account created in the specified region\.
-
 + To create tags, use the Amazon EFS `create-tags` CLI command \(the corresponding API operation is [CreateTags](API_CreateTags.md)\)\. The following example command adds the `Name` tag to the file system\.
 
   ```

@@ -2,7 +2,7 @@
 
 This walkthrough shows the steps how to sync files from a file system that is in AWS to Amazon EFS using EFS File Sync\. 
 
-
+**Topics**
 + [Before You Begin](#walkthrough-file-sync-ec2-prepare)
 + [Step 1: Create a Sync Agent](#create-sync-agent-ec2)
 + [Step 2: Create a Sync Task](#create-sync-task-ec2)
@@ -13,9 +13,7 @@ This walkthrough shows the steps how to sync files from a file system that is in
 ## Before You Begin<a name="walkthrough-file-sync-ec2-prepare"></a>
 
 In this walkthrough, we assume the following:
-
 + You have a Network File System \(NFS\) file server on an Amazon EC2 instance\.
-
 + You have created an Amazon EFS file system\. If you don't have an Amazon EFS file system, create one now and come back to this walkthrough when you are done\. For more information about how to create an Amazon EFS file system, see [Getting Started with Amazon Elastic File System](getting-started.md)\. 
 
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/efs/latest/ug/images/sync-walkthrough8.png)
@@ -82,22 +80,16 @@ Create a sync task and configure the source and destination file systems\.
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/efs/latest/ug/images/sync-config-source-location.png)
 
 1. Provide the following information for the source file system:
-
    + For **NFS server**, type the domain name or IP address of the source NFS server\. 
-
    + For **Mount Path**, type the mount path for your source file system\. 
-
    + For **Agent**, choose the sync agent that you created earlier\.
 
 1. Choose **Next: Configure destination**\. The **Configure destination location** page appears\.  
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/efs/latest/ug/images/sync-config-destination-location.png)
 
 1. Provide the following information for the destination file system:
-
    + For **Amazon EFS file system**, choose the EFS file system you want to sync to\. If you don't have an Amazon EFS file system, create one now and restart this walkthrough when you are done\. For more information about how to create an Amazon EFS file system, see [Getting Started with Amazon Elastic File System](getting-started.md)\. 
-
    + For **File system path**, type the path of the file system that you want to write data to\. This path must exist in the destination file system\.
-
    + For **Security group**, choose a security group that allows access to the destination Amazon EFS file system you selected\.
 
 1. Choose **Next: Configure settings**\. The **Configure sync settings** page appears\.  
@@ -106,15 +98,10 @@ Create a sync task and configure the source and destination file systems\.
 1. Configure the default settings that you want this sync task to use for synchronizing your files:
 **Note**  
 You can override these settings later when you start a sync task\.
-
    + Choose **Ownership \(User/Group ID\)** to copy the user and group IDs from the source files\.
-
    + Choose **Permissions** to copy the source files permissions\.
-
    + Choose **Timestamps** to copy time stamps from the source files\.
-
    + Choose **File deletion** to keep all files in the destination that are not found in the source file system\. If this box is cleared, all files in the destination that are not found in the source file system will be deleted\. 
-
    + Choose **Verification mode** to check that the destination file system is an exact copy of the source file system after the sync task completes\. If you do not choose this option, only the data that is transferred is verified\. Changes made to files while they are being actively transferred and changes made to files that are not actively being transferred, will not be discovered\. We recommend choosing full verification\.
 
 1. Choose **Next: Review and Create**, and then review your sync task settings\. When you are ready, choose **Create sync task**\.  
@@ -155,11 +142,7 @@ For information about how to connect using AWS Direct Connect, see [Walkthrough 
 If you no longer need the resources you created, you should remove them to protect your account:
 
 If you no longer need the resources you created, you should remove them:
-
 + Delete the task you created\. For more information, see [Deleting a Sync Task](managing-file-sync.md#delete-sync-task)\.
-
 + Delete the sync agent you created\. This will not delete the Amazon EC2 instance you launched\. \.
-
 + Clean up the Amazon EFS resources you created\. For more information, see [Step 5: Clean Up Resources and Protect Your AWS Account](gs-step-four-cleanup.md)\.
-
 + Clean up your instance if you created your EFS File Sync on Amazon EC2\. For more information, see [Step 3: Clean Up Your Instance](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EC2_GetStarted.html#ec2-clean-up-your-instance) in the *Amazon EC2 User Guide for Linux Instances\.*

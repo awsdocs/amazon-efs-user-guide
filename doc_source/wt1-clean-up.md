@@ -1,9 +1,7 @@
 # Step 4: Clean Up<a name="wt1-clean-up"></a>
 
 If you no longer need the resources you created, you should remove them\. You can do this with the CLI\.
-
 + Remove EC2 resources \(the EC2 instance and the two security groups\)\. Amazon EFS deletes the network interface when you delete the mount target\. 
-
 + Remove Amazon EFS resources \(file system, mount target\)\.
 
 **To delete AWS resources created in this walkthrough**

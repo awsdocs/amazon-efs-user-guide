@@ -1,9 +1,7 @@
 # CreateFileSystem<a name="API_CreateFileSystem"></a>
 
 Creates a new, empty file system\. The operation requires a creation token in the request that Amazon EFS uses to ensure idempotent creation \(calling the operation with same creation token has no effect\)\. If a file system does not currently exist that is owned by the caller's AWS account with the specified creation token, this operation does the following:
-
 + Creates a new, empty file system\. The file system will have an Amazon EFS assigned ID, and an initial lifecycle state `creating`\.
-
 + Returns with the description of the created file system\.
 
 Otherwise, this operation returns a `FileSystemAlreadyExists` error with the ID of the existing file system\.
@@ -57,13 +55,9 @@ Required: No
 
  ** [KmsKeyId](#API_CreateFileSystem_RequestSyntax) **   <a name="efs-CreateFileSystem-request-KmsKeyId"></a>
 The ID of the AWS KMS CMK to be used to protect the encrypted file system\. This parameter is only required if you want to use a non\-default CMK\. If this parameter is not specified, the default CMK for Amazon EFS is used\. This ID can be in one of the following formats:  
-
 + Key ID \- A unique identifier of the key, for example, `1234abcd-12ab-34cd-56ef-1234567890ab`\.
-
 + ARN \- An Amazon Resource Name \(ARN\) for the key, for example, `arn:aws:kms:us-west-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab`\.
-
 + Key alias \- A previously created display name for a key\. For example, `alias/projectKey1`\.
-
 + Key alias ARN \- An ARN for a key alias, for example, `arn:aws:kms:us-west-2:444455556666:alias/projectKey1`\.
 If KmsKeyId is specified, the [CreateFileSystem:Encrypted](#efs-CreateFileSystem-request-Encrypted) parameter must be set to true\.  
 Type: String  
@@ -222,21 +216,12 @@ Content-Length: 319
 ## See Also<a name="API_CreateFileSystem_SeeAlso"></a>
 
 For more information about using this API in one of the language\-specific AWS SDKs, see the following:
-
 +  [AWS Command Line Interface](http://docs.aws.amazon.com/goto/aws-cli/elasticfilesystem-2015-02-01/CreateFileSystem) 
-
 +  [AWS SDK for \.NET](http://docs.aws.amazon.com/goto/DotNetSDKV3/elasticfilesystem-2015-02-01/CreateFileSystem) 
-
 +  [AWS SDK for C\+\+](http://docs.aws.amazon.com/goto/SdkForCpp/elasticfilesystem-2015-02-01/CreateFileSystem) 
-
 +  [AWS SDK for Go](http://docs.aws.amazon.com/goto/SdkForGoV1/elasticfilesystem-2015-02-01/CreateFileSystem) 
-
 +  [AWS SDK for Java](http://docs.aws.amazon.com/goto/SdkForJava/elasticfilesystem-2015-02-01/CreateFileSystem) 
-
 +  [AWS SDK for JavaScript](http://docs.aws.amazon.com/goto/AWSJavaScriptSDK/elasticfilesystem-2015-02-01/CreateFileSystem) 
-
 +  [AWS SDK for PHP V3](http://docs.aws.amazon.com/goto/SdkForPHPV3/elasticfilesystem-2015-02-01/CreateFileSystem) 
-
 +  [AWS SDK for Python](http://docs.aws.amazon.com/goto/boto3/elasticfilesystem-2015-02-01/CreateFileSystem) 
-
 +  [AWS SDK for Ruby V2](http://docs.aws.amazon.com/goto/SdkForRubyV2/elasticfilesystem-2015-02-01/CreateFileSystem) 

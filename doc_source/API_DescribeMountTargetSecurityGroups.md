@@ -3,9 +3,7 @@
 Returns the security groups currently in effect for a mount target\. This operation requires that the network interface of the mount target has been created and the lifecycle state of the mount target is not `deleted`\.
 
 This operation requires permissions for the following actions:
-
 +  `elasticfilesystem:DescribeMountTargetSecurityGroups` action on the mount target's file system\. 
-
 +  `ec2:DescribeNetworkInterfaceAttribute` action on the mount target's network interface\. 
 
 ## Request Syntax<a name="API_DescribeMountTargetSecurityGroups_RequestSyntax"></a>
@@ -97,21 +95,12 @@ Content-Length: 57
 ## See Also<a name="API_DescribeMountTargetSecurityGroups_SeeAlso"></a>
 
 For more information about using this API in one of the language\-specific AWS SDKs, see the following:
-
 +  [AWS Command Line Interface](http://docs.aws.amazon.com/goto/aws-cli/elasticfilesystem-2015-02-01/DescribeMountTargetSecurityGroups) 
-
 +  [AWS SDK for \.NET](http://docs.aws.amazon.com/goto/DotNetSDKV3/elasticfilesystem-2015-02-01/DescribeMountTargetSecurityGroups) 
-
 +  [AWS SDK for C\+\+](http://docs.aws.amazon.com/goto/SdkForCpp/elasticfilesystem-2015-02-01/DescribeMountTargetSecurityGroups) 
-
 +  [AWS SDK for Go](http://docs.aws.amazon.com/goto/SdkForGoV1/elasticfilesystem-2015-02-01/DescribeMountTargetSecurityGroups) 
-
 +  [AWS SDK for Java](http://docs.aws.amazon.com/goto/SdkForJava/elasticfilesystem-2015-02-01/DescribeMountTargetSecurityGroups) 
-
 +  [AWS SDK for JavaScript](http://docs.aws.amazon.com/goto/AWSJavaScriptSDK/elasticfilesystem-2015-02-01/DescribeMountTargetSecurityGroups) 
-
 +  [AWS SDK for PHP V3](http://docs.aws.amazon.com/goto/SdkForPHPV3/elasticfilesystem-2015-02-01/DescribeMountTargetSecurityGroups) 
-
 +  [AWS SDK for Python](http://docs.aws.amazon.com/goto/boto3/elasticfilesystem-2015-02-01/DescribeMountTargetSecurityGroups) 
-
 +  [AWS SDK for Ruby V2](http://docs.aws.amazon.com/goto/SdkForRubyV2/elasticfilesystem-2015-02-01/DescribeMountTargetSecurityGroups) 

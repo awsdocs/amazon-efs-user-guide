@@ -1,8 +1,8 @@
 # Amazon EFS File Sync<a name="get-started-file-sync"></a>
 
-Using Amazon EFS File Sync, you can easily and efficiently sync files from an existing source file system into a destination Amazon EFS file system\. The source file system can be on\-premises or in the cloud\. With EFS File Sync, you can migrate file\-based applications to Amazon EC2 and sync existing datasets into Amazon EFS\. EFS File Sync copies your file data, and also file system metadata such as ownership, timestamps, and access permissions\. 
+Using Amazon EFS File Sync, you can copy files from an existing on\-premises or in\-cloud file system into an Amazon EFS file system\. EFS File Sync copies your file data, and also file system metadata such as ownership, timestamps, and access permissions\. You can copy your files over the internet or AWS Direct Connect with relative security and efficiency\. For information about how to use AWS Direct Connect , see [Walkthrough 5: Create and Mount a File System On\-Premises with AWS Direct Connect](efs-onpremises.md)\.
 
-
+**Topics**
 + [Requirements for EFS File Sync](#file-sync-requirements)
 + [EFS File Sync Architecture](#file-sync-architecture)
 
@@ -13,11 +13,8 @@ Unless otherwise noted, the following are required for creating Amazon EFS File 
 ### Hardware Requirements<a name="file-sync-hardware"></a>
 
 When deploying Amazon EFS File Sync on\-premises, you must make sure that the underlying hardware on which you are deploying the file sync VM can dedicate the following minimum resources:
-
 + Four virtual processors assigned to the VM\. 
-
 +  32 GB of RAM assigned to the VM 
-
 +  80 GB of disk space for installation of VM image and system data 
 
 When deploying Amazon EFS File Sync on Amazon EC2, the instance size must be at least **xlarge** for your Amazon EFS File Sync to function\. We recommend using one of the **Memory optimized r4\.xlarge** instance types\. 
@@ -27,9 +24,7 @@ When deploying Amazon EFS File Sync on Amazon EC2, the instance size must be at 
 You can choose to run EFS File Sync either on\-premises as a virtual machine \(VM\), or in AWS as an Amazon Elastic Compute Cloud \(Amazon EC2\) instance\.
 
 EFS File Sync supports the following hypervisor versions and hosts:
-
 + VMware ESXi Hypervisor \(version 4\.1, 5\.0, 5\.1, 5\.5, 6\.0 or 6\.5\) – A free version of VMware is available on the [VMware website](http://www.vmware.com/products/vsphere-hypervisor/overview.html)\. You also need a VMware vSphere client to connect to the host\. 
-
 + EC2 instance – EFS File Sync provides an Amazon Machine Image \(AMI\) that contains the EFS File Sync VM image\. We recommend using the **Memory optimized r4\.xlarge** instance types\.
 
 ### Supported NFS Protocols<a name="requirements-nfs-versions"></a>
@@ -76,7 +71,7 @@ EFS File Sync requires the following ports for its operation\.
 |  EFS File Sync VM  |  Domain Name Service \(DNS\) server  |  TCP/UDP  |  53 \(DNS\)  |  For communication between EFS File Sync VM and the DNS server\.  | 
 |  EFS File Sync VM  |  AWS  |  TCP  |  22 \(Support channel\)  |  Allows AWS Support to access your EFS File Sync to help you with troubleshooting EFS File Sync issues\. You don't need this port open for normal operation, but it is required for troubleshooting\.  | 
 |  EFS File Sync VM  |  NTP server  |  UDP  |  123 \(NTP\)  |  By local systems to synchronize VM time to the host time\.   | 
-|  EFS File Sync VM  |  NFS Server  |  TCP/UDP  |  2049 \(NFS\)  |  By EFS File Sync VM to mount source NFS filesystem\. Supports NFS v3\.x, NFS v4\.0 and NFS v4\.1\.  | 
+|  EFS File Sync VM  |  NFS Server  |  TCP/UDP  |  2049 \(NFS\)  |  By EFS File Sync VM to mount a source NFS file system\. Supports NFS v3\.x, NFS v4\.0 and NFS v4\.1\.  | 
 
 Following is an illustration of the required ports and lists the ports required by EFS File Sync\.
 
@@ -85,12 +80,10 @@ Following is an illustration of the required ports and lists the ports required 
 ## EFS File Sync Architecture<a name="file-sync-architecture"></a>
 
 EFS File Sync provides the following benefits:
-
 + Efficient high\-performance parallel data transfer that tolerates unreliable and high\-latency networks\.
-
 + Encryption of data transferred from your IT environment to AWS\.
-
 + Data transfer rate up to five times faster than standard Linux copy tools\.
++ Full and incremental syncs for repetitive transfers\.
 
 The following diagram shows a high\-level view of the EFS File Sync architecture\.
 
@@ -109,7 +102,5 @@ The following diagram shows a high\-level view of the EFS File Sync architecture
 1. Monitor your sync task on the Amazon EFS console or from Amazon CloudWatch\. For more information, see [Monitoring EFS File Sync with Amazon CloudWatch](monitoring-file-sync.md)\.
 
 For more details on the EFS File Sync process, see the following:
-
 + For information about how to sync files from an on\-premises file system to Amazon EFS, see [Walkthrough 7: Sync Files from an On\-Premises File System to Amazon EFS by Using EFS File Sync](walkthrough-file-sync-onpremise.md)\.
-
 + For information about how to sync files from Amazon EC2 to Amazon EFS, see [Walkthrough 8: Sync a File System from Amazon EC2 to Amazon EFS Using EFS File Sync](walkthrough-file-sync-ec2.md)\.

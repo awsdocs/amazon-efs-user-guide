@@ -2,26 +2,22 @@
 
 In this step, you do the following:
 
-
+**Topics**
 + [Step 3\.1: Gather Information](#wt1-connect-test-gather-info)
 + [Step 3\.2: Install the NFS Client on Your EC2 Instance](#wt1-connect-install-nfs-client)
 + [Step 3\.3: Mount File System on Your EC2 Instance and Test](#wt1-mount-fs-and-test)
 + [Next Step](#step3-next-step)
-
 + Install an NFS client on your EC2 instance\. 
-
 + Mount the file system on your EC2 instance and test the setup\.
 
 ## Step 3\.1: Gather Information<a name="wt1-connect-test-gather-info"></a>
 
 Make sure you have the following information as you follow the steps in this section:
-
 + Public DNS name of your EC2 instance in the following format: 
 
   ```
   ec2-xx-xxx-xxx-xx.aws-region.compute.amazonaws.com 
   ```
-
 + DNS name of your file system\. You can construct this DNS name using the following generic form:
 
   ```
@@ -40,15 +36,11 @@ You can connect to your EC2 instance from Windows or from a computer running Lin
 **To install an NFS client**
 
 1. Connect to your EC2 instance:
-
    + To connect to your instance from a computer running Mac OS or Linux, you specify the \.pem file to your ssh command with the `-i` option and the path to your private key\.
-
    + To connect to your instance from a computer running Windows, you can use either MindTerm or PuTTY\. If you plan to use PuTTY, you need to install it and use the following procedure to convert the \.pem file to a \.ppk file\. 
 
    For more information, see the following topics in the *Amazon EC2 User Guide for Linux Instances*:
-
    +  [Connecting to Your Linux Instance from Windows Using PuTTY](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/putty.html) 
-
    +  [Connecting to Your Linux Instance Using SSH](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AccessingInstancesLinux.html)
 
 1. Execute the following commands on the EC2 instance by using the SSH session:

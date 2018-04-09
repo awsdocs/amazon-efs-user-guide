@@ -1,6 +1,6 @@
 # Network File System \(NFS\)–Level Users, Groups, and Permissions<a name="accessing-fs-nfs-permissions"></a>
 
-
+**Topics**
 + [Example Amazon EFS File System Use Cases and Permissions](#accessing-fs-nfs-permissions-ex-scenarios)
 + [User and group ID permissions on files and directories within a file system](#accessing-fs-nfs-permissions-uid-gid)
 + [No Root Squashing](#accessing-fs-nfs-permissions-root-user)
@@ -30,25 +30,18 @@ sudo mount -t nfs -o nfsvers=4.1,rsize=1048576,wsize=1048576,hard,timeo=600,retr
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/efs/latest/ug/images/nfs-perm-10.png)
 
 The initial permissions mode allows: 
-
 + `read-write-execute` permissions to the owner *root*
-
 + `read-execute` permissions to the group *root* 
-
 + `read-execute` permissions to others
 
 Note that only the root user can modify this directory\. The root user can also grant other users permissions to write to this directory\. For example:
-
 + Create writable per\-user subdirectories\. For step\-by\-step instructions, see [Walkthrough 3: Create Writable Per\-User Subdirectories and Configure Automatic Remounting on Reboot](accessing-fs-nfs-permissions-per-user-subdirs.md)\.
-
 + Allow users to write to the Amazon EFS file system root\. A user with root privileges can grant other users access to the file system\. 
-
   + To change the Amazon EFS file system ownership to a non\-*root* user and group, use the following:
 
     ```
     $ sudo chown user:group /EFSroot
     ```
-
   + To change permissions of the file system to something more permissive, use the following:
 
     ```
@@ -65,11 +58,8 @@ Files and directories in an Amazon EFS file system support standard Unix\-style 
 When you create a user on an EC2 instance, you can assign any numeric UID and GID to the user\. The numeric user IDs are set in the `/etc/passwd` file on Linux systems\. The numeric group IDs are in the `/etc/group` file\. These files define the mappings between names and IDs\. Outside of the EC2 instance, Amazon EFS does not perform any authentication of these IDs, including the root ID of 0\.
 
 If a user accesses an Amazon EFS file system from two different EC2 instances, depending on whether the UID for the user is the same or different on those instances, you see different behavior as follows:
-
 + If the user IDs are the same on both EC2 instances, Amazon EFS considers them to be the same user, regardless of the EC2 instance they use\. The user experience when accessing the file system is the same from both EC2 instances\.
-
 + If the user IDs are not the same on both EC2 instances, Amazon EFS considers them to be different users, and the user experience will not be the same when accessing the Amazon EFS file system from the two different EC2 instances\.
-
 + If two different users on different EC2 instances share an ID, Amazon EFS considers them the same user\. 
 
 You might consider managing user ID mappings across EC2 instances consistently\. Users can check their numeric ID using the `id` command, as shown following:

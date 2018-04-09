@@ -2,7 +2,7 @@
 
 Following, you can find a description about how Amazon EFS works, its implementation details, and security considerations\.
 
-
+**Topics**
 + [Overview](#how-it-works-conceptual)
 + [How Amazon EFS Works with Amazon EC2](#how-it-works-ec2)
 + [How Amazon EFS Works with AWS Direct Connect](#how-it-works-direct-connect)
@@ -14,14 +14,12 @@ Following, you can find a description about how Amazon EFS works, its implementa
 
 Amazon EFS provides file storage in the AWS Cloud\. With Amazon EFS, you can create a file system, mount the file system on an Amazon EC2 instance, and then read and write data from to and from your file system\. You can mount an Amazon EFS file system in your VPC, through the Network File System versions 4\.0 and 4\.1 \(NFSv4\) protocol\. 
 
-For a list of Amazon EC2 Linux Amazon Machine Images \(AMIs\) that support this protocol, see [NFS Support](mounting-fs.md#mounting-fs-nfs-info)\. We recommend using a current generation Linux NFSv4\.1 client, such as those found in Amazon Linux and Ubuntu AMIs\. For some AMIs, you'll need to install an NFS client to mount your file system on your Amazon EC2 instance\. For instructions, see [Installing the NFS Client](mounting-fs.md#mounting-fs-install-nfsclient)\.
+For a list of Amazon EC2 Linux Amazon Machine Images \(AMIs\) that support this protocol, see [NFS Support](mounting-fs-old.md#mounting-fs-nfs-info)\. We recommend using a current generation Linux NFSv4\.1 client, such as those found in Amazon Linux and Ubuntu AMIs\. For some AMIs, you'll need to install an NFS client to mount your file system on your Amazon EC2 instance\. For instructions, see [Installing the NFS Client](mounting-fs-old.md#mounting-fs-install-nfsclient)\.
 
 You can access your Amazon EFS file system concurrently from Amazon EC2 instances in your Amazon VPC, so applications that scale beyond a single connection can access a file system\. Amazon EC2 instances running in multiple Availability Zones within the same region can access the file system, so that many users can access and share a common data source\.
 
 Note the following restrictions:
-
 + You can mount an Amazon EFS file system on instances in only one VPC at a time\.
-
 + Both the file system and VPC must be in the same AWS Region\.
 
 For a list of AWS regions where you can create an Amazon EFS file system, see the [Amazon Web Services General Reference](http://docs.aws.amazon.com/general/latest/gr/rande.html#elasticfilesystem_region)\. 
@@ -57,11 +55,8 @@ For detailed steps, see [Getting Started with Amazon Elastic File System](gettin
 By using an Amazon EFS file system mounted on an on\-premises server, you can migrate on\-premises data into the AWS Cloud hosted in an Amazon EFS file system\. You can also take advantage of bursting, meaning that you can move data from your on\-premises servers into Amazon EFS, analyze it on a fleet of Amazon EC2 instances in your Amazon VPC, and then store the results permanently in your file system or move the results back to your on\-premises server\.
 
 Keep the following considerations in mind when using Amazon EFS with AWS Direct Connect:
-
 + Your on\-premises server must have a Linux based operating system\. We recommend Linux kernel version 4\.0 or later\.
-
 + For the sake of simplicity, we recommend mounting an Amazon EFS file system on an on\-premises server using a mount target IP address instead of a DNS name\.
-
 + AWS VPN is not supported for accessing an Amazon EFS file system from an on\-premises server\.
 
 There is no additional cost for on\-premises access to your Amazon EFS file systems\. Note that you'll be charged for the AWS Direct Connect connection to your Amazon VPC\. For more information, see [AWS Direct Connect Pricing](https://aws.amazon.com/directconnect/pricing/)\.
@@ -87,7 +82,6 @@ For detailed steps, see [Walkthrough 5: Create and Mount a File System On\-Premi
 In Amazon EFS, a file system is the primary resource\. Each file system has properties such as ID, creation token, creation time, file system size in bytes, number of mount targets created for the file system, and the file system state\. For more information, see [CreateFileSystem](API_CreateFileSystem.md)\.
 
 Amazon EFS also supports other resources to configure the primary resource\. These include mount targets and tags:
-
 + **Mount target** – To access your file system, you must create mount targets in your VPC\. Each mount target has the following properties: the mount target ID, the subnet ID in which it is created, the file system ID for which it is created, an IP address at which the file system may be mounted, and the mount target state\. You can use the IP address or the DNS name in your `mount` command\. Each file system has a DNS name of the following form\.
 
   ```
@@ -101,21 +95,15 @@ Amazon EFS also supports other resources to configure the primary resource\. The
   ```
 
   For more information, see [Creating Mount Targets](accessing-fs.md)\. First, you need to install the NFS client on your EC2 instance\. The [Getting Started](getting-started.md) exercise provides step\-by\-step instructions\.
-
 + **Tags** – To help organize your file systems, you can assign your own metadata to each of the file systems you create\. Each tag is a key\-value pair\.
 
 You can think of mount targets and tags as *subresources* that don't exist without being associated with a file system\.
 
 Amazon EFS provides API operations for you to create and manage these resources\. In addition to the create and delete operations for each resource, Amazon EFS also supports a describe operation that enables you to retrieve resource information\. You have the following options for creating and managing these resources:
-
 + Use the Amazon EFS console – For an example, see [Getting Started](getting-started.md)\.
-
 + Use the Amazon EFS command line interface \(CLI\) – For an example, see [Walkthrough 1: Create Amazon EFS File System and Mount It on an EC2 Instance Using the AWS CLI](wt1-getting-started.md)\.
-
 + You can also manage these resources programmatically as follows:
-
   + Use the AWS SDKs – The AWS SDKs simplify your programming tasks by wrapping the underlying Amazon EFS API\. The SDK clients also authenticate your requests by using access keys that you provide\. For more information, see [Sample Code and Libraries](https://aws.amazon.com/code)\.
-
   + Call the Amazon EFS API directly from your application – If you cannot use the SDKs for some reason, you can make the Amazon EFS API calls directly from your application\. However, you need to write the necessary code to authenticate your requests if you use this option\. For more information about the Amazon EFS API, see [Amazon EFS API](api-reference.md)\.
 
 ## Authentication and Access Control<a name="auth-access-intro"></a>
@@ -127,9 +115,7 @@ You must have valid credentials to make Amazon EFS API requests, such as create 
 Amazon EFS provides the open\-after\-close consistency semantics that applications expect from NFS\.
 
  In Amazon EFS, write operations will be durably stored across Availability Zones when:
-
 + An application performs a synchronous write operation \(for example, using the `open` Linux command with the `O_DIRECT` flag, or the `fsync` Linux command\)\.
-
 + An application closes a file\.
 
 Amazon EFS provides stronger consistency guarantees than open\-after\-close semantics depending on the access pattern\. Applications that perform synchronous data access and perform non\-appending writes will have read\-after\-write consistency for data access\.

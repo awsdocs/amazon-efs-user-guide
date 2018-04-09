@@ -1,84 +1,79 @@
 # Mounting File Systems<a name="mounting-fs"></a>
 
-In the following section, you can learn how to install the Network File System \(NFS\) client and how to mount your Amazon EFS file system on an Amazon EC2 instance\. You also can find an explanation of the `mount` command and the available options for specifying your file system's Domain Name System \(DNS\) name in the `mount` command\. In addition, you can find how to use the file `fstab` to automatically remount your file system after any system restarts\.
+In the following section, you can learn how to mount your Amazon EFS file system on a Linux instance using the Amazon EFS mount helper\. In addition, you can find how to use the file `fstab` to automatically remount your file system after any system restarts\.
+
+Before the Amazon EFS mount helper was available, we recommended mounting your Amazon EFS file systems using the standard Linux NFS client\. For more information on those changes, see [Mounting File Systems Without the EFS Mount Helper](mounting-fs-old.md)\.
 
 **Note**  
 Before you can mount a file system, you must create, configure, and launch your related AWS resources\. For detailed instructions, see [Getting Started with Amazon Elastic File System](getting-started.md)\.
 
-
-+ [NFS Support](#mounting-fs-nfs-info)
-+ [Installing the NFS Client](#mounting-fs-install-nfsclient)
-+ [Mounting on Amazon EC2 with a DNS Name](mounting-fs-mount-cmd-dns-name.md)
-+ [Mounting with an IP Address](mounting-fs-mount-cmd-ip-addr.md)
-+ [Mounting Automatically](mount-fs-auto-mount-onreboot.md)
+**Topics**
++ [Troubleshooting AMI and Kernel Versions](#ami-kernel-versions-troubleshooting)
++ [Installing the amazon\-efs\-utils Package](#mounting-fs-install-amazon-efs-utils)
++ [Mounting with the EFS Mount Helper](#mounting-fs-mount-helper)
++ [Mounting Your Amazon EFS File System Automatically](mount-fs-auto-mount-onreboot.md)
 + [Additional Mounting Considerations](mounting-fs-mount-cmd-general.md)
 
-## NFS Support<a name="mounting-fs-nfs-info"></a>
+## Troubleshooting AMI and Kernel Versions<a name="ami-kernel-versions-troubleshooting"></a>
 
-Amazon EFS supports the Network File System versions 4\.0 and 4\.1 \(NFSv4\) and NFSv4\.0 protocols when mounting your file systems on Amazon EC2 instances\. While NFSv4\.0 is supported, we recommend that you use NFSv4\.1\. Mounting your Amazon EFS file system on your Amazon EC2 instance also requires an NFS client that supports your chosen NFSv4 protocol\.
+To troubleshoot issues related to certain Amazon Machine Image \(AMI\) or kernel versions when using Amazon EFS from an Amazon EC2 instance, see [Troubleshooting AMI and Kernel Issues](troubleshooting.md#troubleshooting-efs-ami-kernel)\.
 
-To get the best performance out of your file system, use an Amazon EC2 Amazon Machine Image \(AMI\) that includes a Linux kernel that is version 4\.0 or newer\. We recommend using **Amazon Linux AMI 2016\.03\.0** or **Amazon Linux AMI 2016\.09\.0** as the AMI for the Amazon EC2 instance to mount your file system to\.
+## Installing the amazon\-efs\-utils Package<a name="mounting-fs-install-amazon-efs-utils"></a>
+
+To mount your Amazon EFS file system on your Amazon EC2 instance, we recommend that you use the mount helper in the amazon\-efs\-utils package\. The amazon\-efs\-utils package is an open\-source collection of Amazon EFS tools\. For more information, see [Installing the amazon\-efs\-utils Package on Amazon Linux](using-amazon-efs-utils.md#installing-amazon-efs-utils)\.
+
+## Mounting with the EFS Mount Helper<a name="mounting-fs-mount-helper"></a>
+
+You can mount an Amazon EFS file system on a number of clients using the Amazon EFS mount helper\. The following sections, you can find the mount helper process for the different types of clients\.
+
+**Topics**
++ [Mounting on Amazon EC2 with the EFS Mount Helper](#mounting-fs-mount-helper-ec2)
++ [Mounting on Your On\-Premises Linux Client with the EFS Mount Helper over AWS Direct Connect](#mounting-fs-mount-helper-direct)
+
+### Mounting on Amazon EC2 with the EFS Mount Helper<a name="mounting-fs-mount-helper-ec2"></a>
+
+You can mount an Amazon EFS file system on an Amazon EC2 instance using the Amazon EFS mount helper\. For more information on the mount helper, see [EFS Mount Helper](using-amazon-efs-utils.md#efs-mount-helper)\. To use the mount helper, you need the following:
++ **An Amazon EFS file system ID** – After you create an Amazon EFS file system, you can get that file system's ID from the console or programmatically through the Amazon EFS API\. This ID is in this format: `fs-12345678`\.
++ **An Amazon EFS mount target** – You create mount targets in your VPC\. If you create your file system in the console, you create your mount targets at the same time\. For more information, see [Creating a Mount Target Using the Amazon EFS console](accessing-fs.md#create-mount-target-console)\.
++ **An Amazon EC2 instance running a supported distribution of Linux** – The supported Linux distributions for mounting your file system with the mount helper are Amazon Linux 2, Amazon Linux 2017\.09 and newer, Red Hat Enterprise Linux \(and derivatives such as CentOS\) version 7 and newer, and Ubuntu 16\.04 LTS and newer\.
++ **The Amazon EFS mount helper installed** – The mount helper is a tool in amazon\-efs\-utils\. For information on how to install amazon\-efs\-utils, see [Installing the amazon\-efs\-utils Package on Amazon Linux](using-amazon-efs-utils.md#installing-amazon-efs-utils)\.
+
+**To mount your Amazon EFS file system with the mount helper**
+
+1. Access the terminal for your instance through Secure Shell \(SSH\), and log in with the appropriate user name\. For more information on how to do this, see [Connecting to Your Linux Instance Using SSH](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AccessingInstancesLinux.html) in the *Amazon EC2 User Guide for Linux Instances\.*
+
+1. Run the following command to mount your file system\.
+
+   ```
+   sudo mount -t efs fs-12345678:/ /mnt/efs
+   ```
+
+   Alternatively, if you want to use encryption of data in transit, you can mount your file system with the following command\.
+
+   ```
+   sudo mount -t efs -o tls fs-12345678:/ /mnt/efs
+   ```
+
+You also have the option of mounting automatically by adding an entry to your `/etc/fstab` file\. When you mount automatically using `/etc/fstab`, you must add the `_netdev` mount option\. For more information, see [Updating an Existing EC2 Instance to Mount Automatically](mount-fs-auto-mount-onreboot.md#mount-fs-auto-mount-update-fstab)\.
 
 **Note**  
-Using Amazon EFS with Microsoft Windows Amazon EC2 instances is not supported\.
+Mounting with the mount helper automatically uses the following mount options that are optimized for Amazon EFS:  
+`nfsvers=4.1`
+`rsize=1048576`
+`wsize=1048576`
+`hard`
+`timeo=600`
+`retrans=2`
 
-### Troubleshooting AMI/Kernel Versions<a name="ami-kernel-versions-troubleshooting"></a>
-
-To troubleshoot issues related to certain AMI or kernel versions when using Amazon EFS from an EC2 instance, see [Troubleshooting AMI and Kernel Issues](troubleshooting.md#troubleshooting-efs-ami-kernel)\.
-
-## Installing the NFS Client<a name="mounting-fs-install-nfsclient"></a>
-
-To mount your Amazon EFS file system on your Amazon EC2 instance, first you need to install an NFS client\. To connect to your EC2 instance and install an NFS client, you need the public DNS name of the EC2 instance and a user name to log in\. That user name is `ec2-user` when connecting from computers running Linux or Windows\.
-
-**To connect your EC2 instance and install the NFS client**
-
-1. Connect to your EC2 instance\. Note the following about connecting to the instance:
-
-   + To connect to your instance from a computer running Mac OS or Linux, specify the \.pem file to your SSH client with the `-i` option and the path to your private key\.
-
-   + To connect to your instance from a computer running Windows, you can use either MindTerm or PuTTY\. If you plan to use PuTTY, you need to install it and use the following procedure to convert the \.pem file to a \.ppk file\. 
-
-   For more information, see the following topics in the *Amazon EC2 User Guide for Linux Instances*:
-
-   +  [Connecting to Your Linux Instance from Windows Using PuTTY](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/putty.html) 
-
-   +  [Connecting to Your Linux Instance Using SSH](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AccessingInstancesLinux.html)
-
-     The key file cannot be publicly viewable for SSH\. You can use the `chmod 400` *filename*`.pem` command to set these permissions\. For more information, see [Create a Key Pair](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/get-set-up-for-amazon-ec2.html#create-a-key-pair)\.
-
-1. \(Optional\) Get updates and reboot\.
-
-   ```
-   $  sudo yum -y update  
-   $  sudo reboot
-   ```
-
-1. After the reboot, reconnect to your EC2 instance\.
-
-1. Install the NFS client\.
-
-   If you're using an Amazon Linux AMI or Red Hat Linux AMI, install the NFS client with the following command\.
-
-   ```
-   $ sudo yum -y install nfs-utils
-   ```
-
-   If you're using an Ubuntu Amazon EC2 AMI, install the NFS client with the following command\.
-
-   ```
-   $ sudo apt-get -y install nfs-common
-   ```
-
-If you use a custom kernel \(build a custom AMI\), you need to include at a minimum the NFSv4\.1 client kernel module and the right NFS4 userspace mount helper\.
+To use the `mount` command, the following must be true:
++ The connecting EC2 instance must be in a VPC and must be configured to use the DNS server provided by Amazon\. For information about the Amazon DNS server, see [DHCP Options Sets](http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_DHCP_Options.html) in the *Amazon VPC User Guide*\. 
++ The VPC of the connecting EC2 instance must have DNS host names enabled\. For more information, see [Viewing DNS Hostnames for Your EC2 Instance](http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/vpc-dns.html#vpc-dns-viewing) in the *Amazon VPC User Guide*\. 
 
 **Note**  
-If you choose the **Amazon Linux AMI 2016\.03\.0** or **Amazon Linux AMI 2016\.09\.0** Amazon Linux AMI when launching your Amazon EC2 instance, you won't need to install `nfs-utils` because it's already included in the AMI by default\.
+We recommend that you wait 90 seconds after creating a mount target before you mount your file system\. This wait lets the DNS records propagate fully in the AWS Region where the file system is\.
 
-**Next: Mount Your File System**  
-Use one of the following procedures to mount your file system\.
+### Mounting on Your On\-Premises Linux Client with the EFS Mount Helper over AWS Direct Connect<a name="mounting-fs-mount-helper-direct"></a>
 
-+ [Mounting on Amazon EC2 with a DNS Name](mounting-fs-mount-cmd-dns-name.md)
+You can mount your Amazon EFS file systems on your on\-premises data center servers when connected to your Amazon VPC with AWS Direct Connect\. Mounting your Amazon EFS file systems with amazon\-efs\-utils also makes mounting simpler with the mount helper and allows you to enable encryption of data in transit\. 
 
-+ [Mounting with an IP Address](mounting-fs-mount-cmd-ip-addr.md)
-
-+ [Mounting Automatically](mount-fs-auto-mount-onreboot.md)
+To see how to use amazon\-efs\-utils with AWS Direct Connect to mount Amazon EFS file systems onto on\-premises Linux clients, see [Walkthrough 5: Create and Mount a File System On\-Premises with AWS Direct Connect](efs-onpremises.md)\.

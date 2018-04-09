@@ -2,7 +2,7 @@
 
 Following, you can find information on how to troubleshoot issues with EFS File Sync\.
 
-
+**Topics**
 + [Your On\-Premises Source File System Is Stuck in Mounting Status](#sync-onpremise-location-stuck-mounting)
 + [Your Amazon EC2 Source File System Is Stuck in Mounting Status](#sync-ec2-location-stuck-mounting)
 + [Your Sync Task Is Stuck in Starting Status](#sync-task-stuck-starting)
@@ -69,7 +69,7 @@ EFS File Sync provides a local console you can use to perform several maintenanc
    The local console looks like the following\.  
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/efs/latest/ug/images/sync-on-premise-local-console1.png)
 
-1. At the prompt, type **5** to open the help menu\. 
+1. At the prompt, type **4** to open the help menu\. 
 
 1. Type **h** to open the **AVAILABLE COMMANDS** window\.
 
@@ -95,7 +95,7 @@ If you add a new rule to an existing security group, the new rule applies to all
 
 To let AWS Support connect to your EFS File Sync, you first log in to the local console for the Amazon EC2 instance, navigate to the EFS File Sync's console, and then provide the access\.
 
-**To enable AWS support access to a EFS File Sync deployed on an Amazon EC2 instance**
+**To enable AWS support access to an EFS File Sync deployed on an Amazon EC2 instance**
 
 1. Log in to the local console for your Amazon EC2 instance\. For instructions, go to [Connect to Your Instance](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AccessingInstances.html) in the *Amazon EC2 User Guide*\.
 
@@ -111,7 +111,7 @@ The *INSTANCE\-PUBLIC\-DNS\-NAME* is the public Domain Name System \(DNS\) name 
     The local console looks like the following\.   
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/efs/latest/ug/images/sync-ec2-local-console1.png)
 
-1. At the prompt, type **3** to open the help menu\. 
+1. At the prompt, type **2** to open the help menu\. 
 
 1. Type **h** to open the **AVAILABLE COMMANDS** window\.
 

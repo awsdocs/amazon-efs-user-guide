@@ -6,11 +6,8 @@ This topic provides examples of identity\-based policies that demonstrate how an
 We recommend that you first review the introductory topics that explain the basic concepts and options available for you to manage access to your Amazon Elastic File System resources\. For more information, see [Overview of Managing Access Permissions to Your Amazon EFS Resources](access-control-overview.md)\. 
 
 The sections in this topic cover the following:
-
 +  [Permissions Required to Use the Amazon EFS Console](#additional-console-required-permissions) 
-
 + [AWS Managed \(Predefined\) Policies for Amazon EFS](#access-policy-examples-aws-managed)
-
 + [Customer Managed Policy Examples](#access-policy-examples-for-sdk-cli)
 
 The following shows an example of a permissions policy\.
@@ -43,9 +40,7 @@ The following shows an example of a permissions policy\.
 ```
 
 The policy has two statements:
-
 + The first statement grants permissions for two Amazon EFS actions \(`elasticfilesystem:CreateFileSystem` and `elasticfilesystem:CreateMountTarget`\) on a resource using the *Amazon Resource Name \(ARN\)* for the file system\. The ARN specifies a wildcard character \(\*\) because you don't know the file system ID until after you create a file system\. 
-
 + The second statement grants permissions for some of the Amazon EC2 actions because the `elasticfilesystem:CreateMountTarget` action in the first statement requires permissions for specific Amazon EC2 actions\. Because these Amazon EC2 actions don't support resource\-level permissions, the policy specifies the wildcard character \(\*\) as the `Resource` value instead of specifying a file system ARN\.
 
 The policy doesn't specify the `Principal` element because in an identity\-based policy you don't specify the principal who gets the permission\. When you attach policy to a user, the user is the implicit principal\. When you attach a permissions policy to an IAM role, the principal identified in the role's trust policy gets the permissions\. 
@@ -88,21 +83,16 @@ To use the Amazon EFS console, you need to grant permissions for additional acti
 ```
 
 The Amazon EFS console needs these additional permissions for the following reasons:
-
 + Permissions for the Amazon EFS actions enable the console to display Amazon EFS resources in the account\.
-
 + The console needs permissions for the `ec2` actions to query Amazon EC2 so it can display Availability Zones, VPCs, security groups, and account attributes\.
-
-+ The console needs permissions for the `kms` actions to create an encrypted file system\. For more information on encrypted file systems, see [Encrypting Data and Metadata at Rest in EFS](encryption.md)\.
++ The console needs permissions for the `kms` actions to create an encrypted file system\. For more information on encrypted file systems, see [Encrypting Data and Metadata in EFS](encryption.md)\.
 
 ## AWS Managed \(Predefined\) Policies for Amazon EFS<a name="access-policy-examples-aws-managed"></a>
 
 AWS addresses many common use cases by providing standalone IAM policies that are created and administered by AWS\. Managed policies grant necessary permissions for common use cases so you can avoid having to investigate what permissions are needed\. For more information, see [AWS Managed Policies](http://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_managed-vs-inline.html#aws-managed-policies) in the *IAM User Guide*\. 
 
 The following AWS managed policies, which you can attach to users in your account, are specific to Amazon EFS:
-
 + **AmazonElasticFileSystemReadOnlyAccess** – Grants read\-only access to Amazon EFS resources\.
-
 + **AmazonElasticFileSystemFullAccess** – Grants full access to Amazon EFS resources\.
 
 **Note**  
@@ -117,7 +107,7 @@ In this section, you can find example user policies that grant permissions for v
 **Note**  
 All examples use the us\-west\-2 region and contain fictitious account IDs\.
 
-
+**Topics**
 + [Example 1: Allow a User to Create a Mount Target and Tags on an Existing File System](#access-policy-example-allow-create-mount-target)
 + [Example 2: Allow a User to Perform All Amazon EFS Actions](#access-policy-example-allow-perform-all-actions)
 

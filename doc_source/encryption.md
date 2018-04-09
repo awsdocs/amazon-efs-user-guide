@@ -1,6 +1,55 @@
-# Encrypting Data and Metadata at Rest in EFS<a name="encryption"></a>
+# Encrypting Data and Metadata in EFS<a name="encryption"></a>
 
-If you create an encrypted file system, data and metadata are encrypted at rest\. You choose whether to enable encryption for a file system when creating it\.
+Amazon EFS supports two forms of encryption for file systems, encryption of data in transit and encryption at rest\. You can enable encryption of data at rest when creating an Amazon EFS file system\. You can enable encryption of data in transit when you mount the file system\.
+
+## When to Use Encryption<a name="whenencrypt"></a>
+
+If your organization is subject to corporate or regulatory policies that require encryption of data and metadata at rest, we recommend creating an encrypted file system mounting your file system using encryption of data in transit\.
+
+## Encrypting Data in Transit<a name="encryption-in-transit"></a>
+
+You can encrypt data in transit using an Amazon EFS file system, without needing to modify your applications\.
+
+### Encrypting Data in Transit with TLS<a name="encrypt-mount"></a>
+
+Enabling encryption of data in transit for your Amazon EFS file system is done by enabling Transport Layer Security \(TLS\) when you mount your file system using the Amazon EFS mount helper\. For more information, see [Mounting with the EFS Mount Helper](mounting-fs.md#mounting-fs-mount-helper)\.
+
+When encryption of data in transit is declared as a mount option for your Amazon EFS file system, the mount helper initializes a client stunnel process\. Stunnel is an open source multipurpose network relay\. The client stunnel process listens on a local port for inbound traffic, and the mount helper redirects NFS client traffic to this local port\. The mount helper uses a Transport Layer Security \(TLS\) version 1\.2 to communicate with your file system\.
+
+**Mounting your Amazon EFS file system with the mount helper with encryption of data in transit enabled**
+
+1. Access the terminal for your instance through Secure Shell \(SSH\), and log in with the appropriate user name\. For more information on how to do this, see [Connecting to Your Linux Instance Using SSH](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AccessingInstancesLinux.html) in the Amazon EC2 User Guide for Linux Instances\.
+
+1. Run the following command to mount your file system\.
+
+   ```
+   sudo mount -t efs  -o tls fs-12345678:/ /mnt/efs
+   ```
+
+### How Encrypting in Transit Works<a name="how-encrypt-transit"></a>
+
+Encryption of data in transit is enabled by connecting to Amazon EFS using TLS\. We recommend using the mount helper because it's the simplest option\.
+
+If you're not using the mount helper, you can still enable encryption of data in transit\. At a high level, the following are the steps to do so\.
+
+**To enable encryption of data in transit without the mount helper**
+
+1. Download and install stunnel, and note the port that the application is listening on\.
+
+1. Run stunnel to connect to your Amazon EFS file system on port 2049 using TLS\.
+
+1. Using the NFS client, mount `localhost:port`, where `port` is the port that you noted in the first step\.
+
+Because encryption of data in transit is configured on a per\-connection basis, each configured mount has a dedicated stunnel process running on the instance\. By default, the stunnel process used by the mount helper listens on local ports 20049 and 20449, and it connects to Amazon EFS on port 2049\.
+
+**Note**  
+We recommend using Stunnel version 5\.1\.5 or newer for the strongest security\. Stunnel versions 5\.1\.5 and newer support host name validation, which is required for certificate authenticity\.   
+However, Stunnel version 4\.5\.6 and newer are also supported, because these versions are compiled with a version of OpenSSL \(version 1\.0\.2 or newer\) that is required for the cryptography used in encryption of data in transit\.  
+You can download the latest version of stunnel on the [stunnel: Downloads](https://www.stunnel.org/downloads.html) webpage\.
+
+When you use the mount helper for encryption of data in transit, it also creates a process called `amazon-efs-mount-watchdog`\. This process ensures that each mount's stunnel process is running, and stops the stunnel when the Amazon EFS file system is unmounted\. If for some reason a stunnel process is terminated unexpectedly, the watchdog process restarts it\.
+
+## Encrypting Data at Rest<a name="encryption-at-rest"></a>
 
 As with unencrypted file systems, you can create encrypted file systems through the AWS Management Console, the AWS CLI, or programmatically through the Amazon EFS API or one of the AWS SDKs\. Your organization might require the encryption of all data that meets a specific classification or is associated with a particular application, workload, or environment\. 
 
@@ -9,13 +58,9 @@ You can enforce data encryption policies for Amazon EFS file systems by using Am
 **Note**  
 The AWS key management infrastructure uses Federal Information Processing Standards \(FIPS\) 140\-2 approved cryptographic algorithms\. The infrastructure is consistent with National Institute of Standards and Technology \(NIST\) 800\-57 recommendations\.
 
-## When to Use Encryption<a name="whenencrypt"></a>
+### Encrypting a File System at Rest Using the Console<a name="encrypt-console"></a>
 
-If your organization is subject to corporate or regulatory policies that require encryption of data and metadata at rest, we recommend creating an encrypted file system\.
-
-## Encrypting a File System Using the Console<a name="encrypt-console"></a>
-
-You can choose to enable encryption for a file system when you create it\. The following procedure describes how to enable encryption for a new file system when you create it from the console\.
+You can choose to enable encryption at rest for a file system when you create it\. The following procedure describes how to enable encryption for a new file system when you create it from the console\.
 
 **To encrypt a new file system on the console**
 
@@ -29,62 +74,43 @@ You can choose to enable encryption for a file system when you create it\. The f
 
 1. For **Step 3: Review and create**, review your settings, and choose **Create File System**\.
 
-You now have a new encrypted file system\.
+You now have a new encrypted\-at\-rest file system\.
 
-## How Encryption Works with Amazon EFS<a name="howencrypt"></a>
+### How Encryption at Rest Works<a name="howencrypt"></a>
 
-In an encrypted file system, data and metadata are automatically encrypted before being written to the file system\. Similarly, as data and metadata are read, they are automatically decrypted before being presented to the application\. These processes are handled transparently by Amazon EFS, so you don’t have to modify your applications\.
+In an encrypted\-at\-rest file system, data and metadata are automatically encrypted before being written to the file system\. Similarly, as data and metadata are read, they are automatically decrypted before being presented to the application\. These processes are handled transparently by Amazon EFS, so you don’t have to modify your applications\.
 
-Amazon EFS uses an industry\-standard AES\-256 encryption algorithm to encrypt EFS data and metadata\. For more information, see [Cryptography Basics](http://docs.aws.amazon.com/kms/latest/developerguide/crypto-intro.html) in the *AWS Key Management Service Developer Guide*\.
+Amazon EFS uses an industry\-standard AES\-256 encryption algorithm to encrypt EFS data and metadata at rest\. For more information, see [Cryptography Basics](http://docs.aws.amazon.com/kms/latest/developerguide/crypto-intro.html) in the *AWS Key Management Service Developer Guide*\.
 
-### How Amazon EFS Uses AWS KMS<a name="EFSKMS"></a>
+#### How Amazon EFS Uses AWS KMS<a name="EFSKMS"></a>
 
 Amazon EFS integrates with AWS Key Management Service \(AWS KMS\) for key management\. Amazon EFS uses customer master keys \(CMKs\) to encrypt your file system in the following way:
-
-+ **Encrypting metadata** – An EFS\-managed key is used to encrypt and decrypt file system metadata \(that is, file names, directory names, and directory contents\)\.
-
-+ **Encrypting file data** – You choose the CMK used to encrypt and decrypt file data \(that is, the contents of your files\)\. You can enable, disable, or revoke grants on this CMK\. This CMK can be one of the two following types:
-
++ **Encrypting metadata at rest** – An EFS\-managed key is used to encrypt and decrypt file system metadata \(that is, file names, directory names, and directory contents\)\.
++ **Encrypting file data at rest** – You choose the CMK used to encrypt and decrypt file data \(that is, the contents of your files\)\. You can enable, disable, or revoke grants on this CMK\. This CMK can be one of the two following types:
   + **AWS\-managed CMK** – This is the default CMK, and it's free to use\.
-
   + **Customer\-managed CMK** – This is the most flexible master key to use, because you can configure its key policies and grants for multiple users or services\. For more information on creating CMKs, see [Creating Keys](http://docs.aws.amazon.com/kms/latest/developerguide/create-keys.html) in the* AWS Key Management Service Developer Guide\.*
 
     If you use a customer\-managed CMK as your master key for file data encryption and decryption, you can enable key rotation\. When you enable key rotation, AWS KMS automatically rotates your key once per year\. Additionally, with a customer\-managed CMK, you can choose when to disable, re\-enable, delete, or revoke access to your CMK at any time\. For more information, see [Disabling, Deleting, or Revoking Access to the CMK for a File System](managing.md#disable-efs-cmk)\.
 
-Data encryption and decryption are handled transparently\. However, AWS account IDs specific to Amazon EFS will appear in your AWS CloudTrail logs related to AWS KMS actions\. For more information, see [Amazon EFS Log File Entries for Encrypted File Systems](logging-using-cloudtrail.md#efs-encryption-cloudtrail)\.
+Data encryption and decryption at rest are handled transparently\. However, AWS account IDs specific to Amazon EFS appear in your AWS CloudTrail logs related to AWS KMS actions\. For more information, see [Amazon EFS Log File Entries for Encrypted\-at\-Rest File Systems](logging-using-cloudtrail.md#efs-encryption-cloudtrail)\.
 
- 
+#### Amazon EFS Key Policies for AWS KMS<a name="EFSKMSPolicy"></a>
 
-### Amazon EFS Key Policies for AWS KMS<a name="EFSKMSPolicy"></a>
-
-Key policies are the primary way to control access to CMKs\. For more information on key policies, see [Using Key Policies in AWS KMS](http://docs.aws.amazon.com/kms/latest/developerguide/key-policies.html) in the *AWS Key Management Service Developer Guide\. *The following list describes all the AWS KMS\-related permissions supported by Amazon EFS for encrypted file systems:
-
+Key policies are the primary way to control access to CMKs\. For more information on key policies, see [Using Key Policies in AWS KMS](http://docs.aws.amazon.com/kms/latest/developerguide/key-policies.html) in the *AWS Key Management Service Developer Guide\. *The following list describes all the AWS KMS\-related permissions supported by Amazon EFS for encrypted at rest file systems:
 + **kms:Encrypt** – \(Optional\) Encrypts plaintext into ciphertext\. This permission is included in the default key policy\.
-
 + **kms:Decrypt** – \(Required\) Decrypts ciphertext\. Ciphertext is plaintext that has been previously encrypted\. This permission is included in the default key policy\.
-
 + **kms:ReEncrypt** – \(Optional\) Encrypts data on the server side with a new customer master key \(CMK\), without exposing the plaintext of the data on the client side\. The data is first decrypted and then re\-encrypted\. This permission is included in the default key policy\.
-
 + **kms:GenerateDataKeyWithoutPlaintext** – \(Required\) Returns a data encryption key encrypted under a CMK\. This permission is included in the default key policy under **kms:GenerateDataKey\***\.
-
 + **kms:CreateGrant** – \(Required\) Adds a grant to a key to specify who can use the key and under what conditions\. Grants are alternate permission mechanisms to key policies\. For more information on grants, see [Using Grants](http://docs.aws.amazon.com/kms/latest/developerguide/grants.html) in the *AWS Key Management Service Developer Guide\.* This permission is included in the default key policy\.
-
 + **kms:DescribeKey** – \(Required\) Provides detailed information about the specified customer master key\. This permission is included in the default key policy\.
-
 + **kms:ListAliases** – \(Optional\) Lists all of the key aliases in the account\. When you use the console to create an encrypted file system, this permission populates the **Select KMS master key** list\. We recommend using this permission to provide the best user experience\. This permission is included in the default key policy\.
 
 ## Related Topics<a name="relatedencrypt"></a>
 
 For more information on encryption with Amazon EFS, see these related topics:
-
 + [Creating Resources for Amazon EFS](creating-using.md)
-
 + [Managing Access to Encrypted File Systems](managing.md#managing-encrypt)
-
 + [Amazon EFS Performance Tips](performance.md#performance-tips)
-
 + [Amazon EFS API Permissions: Actions, Resources, and Conditions Reference](efs-api-permissions-ref.md)
-
-+ [Amazon EFS Log File Entries for Encrypted File Systems](logging-using-cloudtrail.md#efs-encryption-cloudtrail)
-
-+ [Troubleshooting Encrypted File Systems](troubleshooting.md#troubleshooting-efs-encryption)
++ [Amazon EFS Log File Entries for Encrypted\-at\-Rest File Systems](logging-using-cloudtrail.md#efs-encryption-cloudtrail)
++ [Troubleshooting Encrypted\-at\-Rest File Systems](troubleshooting.md#troubleshooting-efs-encryption)

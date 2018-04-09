@@ -1,9 +1,7 @@
 # Step 3: Connect to Your Amazon EC2 Instance and Mount the Amazon EFS File System<a name="gs-step-three-connect-to-ec2-instance"></a>
 
 You can connect to your Amazon EC2 instance from a computer running Windows or Linux\. To connect to your Amazon EC2 instance and mount the Amazon EFS file system, you need the following information:
-
 + The **Public DNS** name of the Amazon EC2 instance\. You made a note of this value at the end of [Step 1: Create Your EC2 Resources and Launch Your EC2 Instance](gs-step-one-create-ec2-resources.md)\.
-
 + The **File system ID** value for the mount target for your Amazon EFS file system\. You made a note of this value at the end of [Step 2: Create Your Amazon EFS File System](gs-step-two-create-efs-resources.md)\.
 
 **To connect to your Amazon EC2 instance and mount the Amazon EFS file system**
@@ -36,7 +34,7 @@ You can connect to your Amazon EC2 instance from a computer running Windows or L
    $ sudo mount -t nfs -o nfsvers=4.1,rsize=1048576,wsize=1048576,hard,timeo=600,retrans=2 file-system-id.efs.aws-region.amazonaws.com:/ efs
    ```
 **Note**  
-We recommend that you wait 90 seconds after creating a mount target before you mount the file system, as the DNS records propagate fully in the region\.
+We recommend that you wait 90 seconds after creating a mount target before you mount your file system\. This wait lets the DNS records propagate fully in the AWS Region where the file system is\.
 
 1. Change directories to the new directory that you created with the following command\.
 

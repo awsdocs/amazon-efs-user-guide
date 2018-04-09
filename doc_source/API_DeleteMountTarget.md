@@ -5,14 +5,12 @@ Deletes the specified mount target\.
 This operation forcibly breaks any mounts of the file system via the mount target that is being deleted, which might disrupt instances or applications using those mounts\. To avoid applications getting cut off abruptly, you might consider unmounting any mounts of the mount target, if feasible\. The operation also deletes the associated network interface\. Uncommitted writes may be lost, but breaking a mount target using this operation does not corrupt the file system itself\. The file system you created remains\. You can mount an EC2 instance in your VPC via another mount target\.
 
 This operation requires permissions for the following action on the file system:
-
 +  `elasticfilesystem:DeleteMountTarget` 
 
 **Note**  
 The `DeleteMountTarget` call returns while the mount target state is still `deleting`\. You can check the mount target deletion by calling the [DescribeMountTargets](API_DescribeMountTargets.md) operation, which returns a list of mount target descriptions for the given file system\. 
 
 The operation also requires permissions for the following Amazon EC2 action on the mount target's network interface:
-
 +  `ec2:DeleteNetworkInterface` 
 
 ## Request Syntax<a name="API_DeleteMountTarget_RequestSyntax"></a>
@@ -85,21 +83,12 @@ x-amzn-RequestId: 76787670-2797-48ee-a34f-fce2ce122fef
 ## See Also<a name="API_DeleteMountTarget_SeeAlso"></a>
 
 For more information about using this API in one of the language\-specific AWS SDKs, see the following:
-
 +  [AWS Command Line Interface](http://docs.aws.amazon.com/goto/aws-cli/elasticfilesystem-2015-02-01/DeleteMountTarget) 
-
 +  [AWS SDK for \.NET](http://docs.aws.amazon.com/goto/DotNetSDKV3/elasticfilesystem-2015-02-01/DeleteMountTarget) 
-
 +  [AWS SDK for C\+\+](http://docs.aws.amazon.com/goto/SdkForCpp/elasticfilesystem-2015-02-01/DeleteMountTarget) 
-
 +  [AWS SDK for Go](http://docs.aws.amazon.com/goto/SdkForGoV1/elasticfilesystem-2015-02-01/DeleteMountTarget) 
-
 +  [AWS SDK for Java](http://docs.aws.amazon.com/goto/SdkForJava/elasticfilesystem-2015-02-01/DeleteMountTarget) 
-
 +  [AWS SDK for JavaScript](http://docs.aws.amazon.com/goto/AWSJavaScriptSDK/elasticfilesystem-2015-02-01/DeleteMountTarget) 
-
 +  [AWS SDK for PHP V3](http://docs.aws.amazon.com/goto/SdkForPHPV3/elasticfilesystem-2015-02-01/DeleteMountTarget) 
-
 +  [AWS SDK for Python](http://docs.aws.amazon.com/goto/boto3/elasticfilesystem-2015-02-01/DeleteMountTarget) 
-
 +  [AWS SDK for Ruby V2](http://docs.aws.amazon.com/goto/SdkForRubyV2/elasticfilesystem-2015-02-01/DeleteMountTarget) 

@@ -1,12 +1,10 @@
 # Step 2: Create Amazon EFS Resources<a name="wt1-create-efs-resources"></a>
 
 In this step, you do the following:
-
 + Create an Amazon EFS file system\. 
-
 + Create a mount target in the Availability Zone where you have your EC2 instance launched\.
 
-
+**Topics**
 + [Step 2\.1: Create Amazon EFS File System](#wt1-create-file-system)
 + [Step 2\.2: Create a Mount Target](#wt1-create-mount-target)
 
@@ -100,13 +98,10 @@ In this step, you create an Amazon EFS file system\. Write down the `FileSystemI
 In this step, you create a mount target for your file system in the Availability Zone where you have your EC2 instance launched\. 
 
 1. Make sure you have the following information:
-
    + ID of the file system \(for example, `fs-example`\) for which you are creating the mount target\. 
-
    + VPC subnet ID where you launched the EC2 instance in [Step 1](http://docs.aws.amazon.com/efs/latest/ug/wt1-create-ec2-resources.html)\. 
 
      For this walkthrough, you create the mount target in the same subnet in which you launched the EC2 instance, so you need the subnet ID \(for example, `subnet-example`\)\. 
-
    + ID of the security group you created for the mount target in the preceding step\.
 
 1. At the command prompt, run the following AWS CLI `create-mount-target` command\. 

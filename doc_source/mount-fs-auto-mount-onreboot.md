@@ -1,13 +1,13 @@
-# Mounting Automatically<a name="mount-fs-auto-mount-onreboot"></a>
+# Mounting Your Amazon EFS File System Automatically<a name="mount-fs-auto-mount-onreboot"></a>
 
-You can use the file `fstab` to automatically mount your Amazon EFS file system whenever the Amazon EC2 instance it is mounted on reboots\. There are two ways to set up automatic mounting\. You can update the `/etc/fstab` file in your EC2 instance after you connect to the instance for the first time, or you can configure automatic mounting of your EFS file system when you create your EC2 instance\.
+You can use `fstab` to automatically mount your Amazon EFS file system using the mount helper whenever the Amazon EC2 instance it is mounted on reboots\. For more information on the mount helper, see [EFS Mount Helper](using-amazon-efs-utils.md#efs-mount-helper)\. You can set up automatic mounting in two ways\. You can update the `/etc/fstab` file in your EC2 instance after you connect to the instance for the first time, or you can configure automatic mounting of your EFS file system when you create your EC2 instance\.
 
 ## Updating an Existing EC2 Instance to Mount Automatically<a name="mount-fs-auto-mount-update-fstab"></a>
 
 To automatically remount your Amazon EFS file system directory when the Amazon EC2 instance reboots, you can use the file `fstab`\. The file `fstab` contains information about file systems, and the command `mount -a`, which runs during instance startup, mounts the file systems listed in the `fstab` file\.
 
 **Note**  
-Before you can update the /etc/fstab file of your EC2 instance, make sure that you've already created your Amazon EFS file system and that you're connected to your Amazon EC2 instance\. For more information, see [Step 2: Create Your Amazon EFS File System](gs-step-two-create-efs-resources.md) in the Amazon EFS Getting Started exercise\.
+Before you can update the /etc/fstab file of your EC2 instance, make sure that you've already created your Amazon EFS file system\. For more information, see [Step 2: Create Your Amazon EFS File System](gs-step-two-create-efs-resources.md) in the Amazon EFS Getting Started exercise\.
 
 **To update the /etc/fstab file in your EC2 instance**
 
@@ -16,10 +16,10 @@ Before you can update the /etc/fstab file of your EC2 instance, make sure that y
 1. Add the following line to the `/etc/fstab` file\.
 
    ```
-   mount-target-DNS:/ efs-mount-point nfs4 nfsvers=4.1,rsize=1048576,wsize=1048576,hard,timeo=600,retrans=2,_netdev 0 0
+   fs-12345678 /mnt/efs efs defaults,_netdev 0 0
    ```
-
-   If you want to copy the contents of your `/etc/fstab` file between EC2 instances in different Availability Zones \(AZ\), we recommend that you use the file system DNS name\. You shouldn't copy the `/etc/fstab` file between AZs if you're using the mount target DNS name, because then each file system will have a unique DNS name for each Availability Zone with a mount target\. For more information about DNS names, see [Mounting on Amazon EC2 with a DNS Name](mounting-fs-mount-cmd-dns-name.md)\.
+**Warning**  
+Use the `_netdev` option, used to identify network file systems, when mounting your file system automatically\. If `_netdev` is missing, your EC2 instance might stop responding\. This result is because network file systems need to be initialized after the compute instance starts its networking\. For more information, see [Automatic Mounting Fails and the Instance Is Unresponsive](troubleshooting.md#automount-fails)\.
 
 1. Save the changes to the file\.
 
@@ -33,11 +33,11 @@ The line of code you added to the /etc/fstab file does the following\.
 
 | Field | Description | 
 | --- | --- | 
-|  `mount-target-DNS:/`  |  The Domain Name Server \(DNS\) name for the file system that you want to mount\. This is the same value used in `mount` commands to mount the subdirectory of your EFS file system\.  | 
-|  `efs-mount-point`  |  The mount point for the EFS file system on your EC2 instance\.  | 
-|  `nfs4`  |  The type of file system\. For EFS, this type is always `nfs4`\.  | 
-|  `mount options`  |  Mount options for the file system\. This is a comma\-separated list of the following options: [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/efs/latest/ug/mount-fs-auto-mount-onreboot.html) For more information, see [Additional Mounting Considerations](mounting-fs-mount-cmd-general.md)\.  | 
-|  `0`  |  A nonzero value indicates the file system should be backed up by `dump`\. For EFS, this value should be `0`\.  | 
+|  `fs-12345678:/`  |  The ID for your Amazon EFS file system\. You can get this ID from the console or programmatically from the CLI or an AWS SDK\.  | 
+|  `/mnt/efs`  |  The mount point for the EFS file system on your EC2 instance\.  | 
+|  `efs`  |  The type of file system\. When you're using the mount helper, this type is always `efs`\.  | 
+|  `mount options`  |  Mount options for the file system\. This is a comma\-separated list of the following options: [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/efs/latest/ug/mount-fs-auto-mount-onreboot.html)  | 
+|  `0`  |  A nonzero value indicates that the file system should be backed up by `dump`\. For EFS, this value should be `0`\.  | 
 |  `0`  |  The order in which `fsck` checks file systems at boot\. For EFS file systems, this value should be `0` to indicate that `fsck` should not run at startup\.  | 
 
 ## Configuring an EFS File System to Mount Automatically at EC2 Instance Launch<a name="mount-fs-auto-mount-on-creation"></a>
@@ -54,19 +54,26 @@ For more information about the customized version of `cloud-init` used by Amazon
 
 1. When you reach **Step 3: Configure Instance Details**, configure your instance details, expand the **Advanced** section, and then do the following:
 
-   1. Paste the following script into **User data**\. You must update the script by providing the appropriate values for *file\-system\-id*, *aws\-region*, and *efs\-mount\-point*:
+   1. Paste the following script into **User data**\. You must update the script by providing the appropriate values for *fs\-12345678* and */mnt/efs*:
 
      ```
      #cloud-config
-     package_upgrade: true
+     repo_update: true
+     repo_upgrade: all
+     
      packages:
-     - nfs-utils
+     - amazon-efs-utils
+     
      runcmd:
-     - mkdir -p /var/www/html/efs-mount-point/
-     - chown ec2-user:ec2-user /var/www/html/efs-mount-point/
-     - echo "file-system-id.efs.aws-region.amazonaws.com:/ /var/www/html/efs-mount-point nfs4 nfsvers=4.1,rsize=1048576,wsize=1048576,hard,timeo=600,retrans=2 0 0" >> /etc/fstab
-     - mount -a -t nfs4
+     - file_system_id_01=fs-12345678
+     - efs_directory=/mnt/efs
+     
+     - mkdir -p ${efs_directory}
+     - echo "${file_system_id_01}:/ ${efs_directory} efs tls,_netdev" >> /etc/fstab
+     - mount -a -t efs defaults
      ```
+**Warning**  
+Use the `_netdev` option, used to identify network file systems, when mounting your file system automatically\. If `_netdev` is missing, your EC2 instance might stop responding\. This result is because network file systems need to be initialized after the compute instance starts its networking\. For more information, see [Automatic Mounting Fails and the Instance Is Unresponsive](troubleshooting.md#automount-fails)\.
 
      If you are specifying a custom path to your mount point, as in the example, you may want to use `mkdir -p`, because the `-p` option creates intermediate parent directories as needed\. The `- chown` line of the preceding example changes the ownership of the directory at the mount point from the root user to the default Linux system user account for Amazon Linux, `ec2-user`\. You can specify any user with this command, or leave it out of the script to keep ownership of that directory with the root user\.
 

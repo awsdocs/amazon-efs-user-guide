@@ -51,4 +51,4 @@ Now user mike's home directory is a subdirectory, writable by mike, in the Amazo
 
 ## Automatic Remounting on Reboot<a name="accessing-fs-nfs-permissions-per-user-subdirs-auto-mount-on-reboot"></a>
 
- You can use the file `fstab` to automatically remount your file system after any system reboots\. For more information, see [Mounting Automatically](mount-fs-auto-mount-onreboot.md)\. 
+ You can use the file `fstab` to automatically remount your file system after any system reboots\. For more information, see [Mounting Your Amazon EFS File System Automatically](mount-fs-auto-mount-onreboot.md)\. 

@@ -7,33 +7,22 @@ You can create one mount target in each Availability Zone in your VPC\. All EC2 
 In the request, you also specify a file system ID for which you are creating the mount target and the file system's lifecycle state must be `available`\. For more information, see [DescribeFileSystems](API_DescribeFileSystems.md)\.
 
 In the request, you also provide a subnet ID, which determines the following:
-
 + VPC in which Amazon EFS creates the mount target
-
 + Availability Zone in which Amazon EFS creates the mount target
-
 + IP address range from which Amazon EFS selects the IP address of the mount target \(if you don't specify an IP address in the request\)
 
 After creating the mount target, Amazon EFS returns a response that includes, a `MountTargetId` and an `IpAddress`\. You use this IP address when mounting the file system in an EC2 instance\. You can also use the mount target's DNS name when mounting the file system\. The EC2 instance on which you mount the file system via the mount target can resolve the mount target's DNS name to its IP address\. For more information, see [How it Works: Implementation Overview](http://docs.aws.amazon.com/efs/latest/ug/how-it-works.html#how-it-works-implementation)\. 
 
 Note that you can create mount targets for a file system in only one VPC, and there can be only one mount target per Availability Zone\. That is, if the file system already has one or more mount targets created for it, the subnet specified in the request to add another mount target must meet the following requirements:
-
 + Must belong to the same VPC as the subnets of the existing mount targets
-
 + Must not be in the same Availability Zone as any of the subnets of the existing mount targets
 
 If the request satisfies the requirements, Amazon EFS does the following:
-
 + Creates a new mount target in the specified subnet\.
-
 + Also creates a new network interface in the subnet as follows:
-
   + If the request provides an `IpAddress`, Amazon EFS assigns that IP address to the network interface\. Otherwise, Amazon EFS assigns a free address in the subnet \(in the same way that the Amazon EC2 `CreateNetworkInterface` call does when a request does not specify a primary private IP address\)\.
-
   + If the request provides `SecurityGroups`, this network interface is associated with those security groups\. Otherwise, it belongs to the default security group for the subnet's VPC\.
-
   + Assigns the description `Mount target fsmt-id for file system fs-id ` where ` fsmt-id ` is the mount target ID, and ` fs-id ` is the `FileSystemId`\.
-
   + Sets the `requesterManaged` property of the network interface to `true`, and the `requesterId` value to `EFS`\.
 
   Each Amazon EFS mount target has one corresponding requester\-managed EC2 network interface\. After the network interface is created, Amazon EFS sets the `NetworkInterfaceId` field in the mount target's description to the network interface ID, and the `IpAddress` field to its address\. If network interface creation fails, the entire `CreateMountTarget` operation fails\.
@@ -44,15 +33,11 @@ The `CreateMountTarget` call returns only after creating the network interface, 
 We recommend you create a mount target in each of the Availability Zones\. There are cost considerations for using a file system in an Availability Zone through a mount target created in another Availability Zone\. For more information, see [Amazon EFS](http://aws.amazon.com/efs/)\. In addition, by always using a mount target local to the instance's Availability Zone, you eliminate a partial failure scenario\. If the Availability Zone in which your mount target is created goes down, then you won't be able to access your file system through that mount target\. 
 
 This operation requires permissions for the following action on the file system:
-
 +  `elasticfilesystem:CreateMountTarget` 
 
 This operation also requires permissions for the following Amazon EC2 actions:
-
 +  `ec2:DescribeSubnets` 
-
 +  `ec2:DescribeNetworkInterfaces` 
-
 +  `ec2:CreateNetworkInterface` 
 
 ## Request Syntax<a name="API_CreateMountTarget_RequestSyntax"></a>
@@ -284,21 +269,12 @@ Content-Length: 252
 ## See Also<a name="API_CreateMountTarget_SeeAlso"></a>
 
 For more information about using this API in one of the language\-specific AWS SDKs, see the following:
-
 +  [AWS Command Line Interface](http://docs.aws.amazon.com/goto/aws-cli/elasticfilesystem-2015-02-01/CreateMountTarget) 
-
 +  [AWS SDK for \.NET](http://docs.aws.amazon.com/goto/DotNetSDKV3/elasticfilesystem-2015-02-01/CreateMountTarget) 
-
 +  [AWS SDK for C\+\+](http://docs.aws.amazon.com/goto/SdkForCpp/elasticfilesystem-2015-02-01/CreateMountTarget) 
-
 +  [AWS SDK for Go](http://docs.aws.amazon.com/goto/SdkForGoV1/elasticfilesystem-2015-02-01/CreateMountTarget) 
-
 +  [AWS SDK for Java](http://docs.aws.amazon.com/goto/SdkForJava/elasticfilesystem-2015-02-01/CreateMountTarget) 
-
 +  [AWS SDK for JavaScript](http://docs.aws.amazon.com/goto/AWSJavaScriptSDK/elasticfilesystem-2015-02-01/CreateMountTarget) 
-
 +  [AWS SDK for PHP V3](http://docs.aws.amazon.com/goto/SdkForPHPV3/elasticfilesystem-2015-02-01/CreateMountTarget) 
-
 +  [AWS SDK for Python](http://docs.aws.amazon.com/goto/boto3/elasticfilesystem-2015-02-01/CreateMountTarget) 
-
 +  [AWS SDK for Ruby V2](http://docs.aws.amazon.com/goto/SdkForRubyV2/elasticfilesystem-2015-02-01/CreateMountTarget) 

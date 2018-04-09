@@ -1,14 +1,11 @@
 # Step 1: Create Amazon EC2 Resources<a name="wt1-create-ec2-resources"></a>
 
 In this step, you do the following: 
-
 + Create two security groups\.
-
 +  Add rules to the security groups to authorize additional access\.
-
 + Launch an EC2 instance\. You create and mount an Amazon EFS file system on this instance in the next step\. 
 
-
+**Topics**
 + [Step 1\.1: Create Two Security Groups](#wt1-create-sg)
 + [Step 1\.2: Add Rules to the Security Groups to Authorize Inbound/Outbound Access](#wt1-update-sg)
 + [Step 1\.3: Launch an EC2 instance](#wt1-create-ec2-instance)
@@ -77,9 +74,7 @@ In this section, you create security groups in your VPC for your EC2 instance an
    Both should have only one outbound rule that allows all traffic to leave\.
 
    In the next section, you authorize additional access that enable the following: 
-
    + Enable you to connect to your EC2 instance\. 
-
    + Enable traffic between an EC2 instance and an Amazon EFS mount target \(to which you will associate these security groups later in this walkthrough\)\.
 
 ## Step 1\.2: Add Rules to the Security Groups to Authorize Inbound/Outbound Access<a name="wt1-update-sg"></a>
@@ -141,9 +136,7 @@ In this step, you launch an EC2 instance\.
 1. Gather the following information that you need to provide when launching an EC2 instance:
 
    1. Key pair name\.
-
       + For introductory information, see [Setting Up with Amazon EC2](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/get-set-up-for-amazon-ec2.html) in the *Amazon EC2 User Guide for Linux Instances*\.
-
       + For instructions to create a \.pem file, see [Create a Key Pair](http://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/get-set-up-for-amazon-ec2.html#create-a-key-pair) in the *Amazon EC2 User Guide for Linux Instances*\.
 
    1. The AMI ID you want to launch\. 
@@ -153,9 +146,7 @@ In this step, you launch an EC2 instance\.
 You can use most general purpose Linux\-based AMIs\. If you use another Linux API, keep in mind that you will use yum to install NFS client on the instance and you might need to add software packages as you need them\.
 
       For the Amazon Linux HVM AMI, you can find the latest IDs at [Amazon Linux AMI](https://aws.amazon.com/amazon-linux-ami/)\. You choose the ID value from the Amazon Linux AMI IDs table as follows:
-
       + Choose the **US West Oregon** region\. This walkthrough assumes you are creating all resources in the US West \(Oregon\) Region \(us\-west\-2\)\.
-
       + Choose the **EBS\-backed HVM 64\-bit** type \(because in the CLI command you specify the `t2.micro` instance type, which does not support instance store\)\.
 
    1. ID of the security group you created for an EC2 instance\. 
@@ -172,9 +163,7 @@ You can use most general purpose Linux\-based AMIs\. If you use another Linux AP
       ```
 
       After you choose subnet ID, write down the following values from the `describe-subnets` result:
-
       + **subnet ID** – You need this value when you create a mount target\. In this exercise, you create a mount target in the same subnet where you launch an EC2 instance\. 
-
       + **Availability Zone of the subnet** – You need this to construct your mount target DNS name, which you use to mount a file system on the EC2 instance\. 
 
 1. Run the following AWS CLI `run-instances` command to launch an EC2 instance\.

@@ -36,9 +36,6 @@ The documentation describes API version 2015\-02\-01\.
 ## Related Topics<a name="api-reference-related-topics"></a>
 
 The following sections provide descriptions of the API operations, how to create a signature for request authentication, and how to grant permissions for these API operations using the IAM policies\.
-
 + [Authentication and Access Control for Amazon EFS](auth-and-access-control.md)
-
 + [Actions](API_Operations.md)
-
 + [Data Types](API_Types.md)

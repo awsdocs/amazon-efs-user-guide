@@ -13,11 +13,8 @@ All Amazon EFS [API calls](api-reference.md) are logged by CloudTrail\. For exam
 Each log file contains at least one API call\. Some Amazon EFS API calls will trigger other API calls for other services\. For example, the Amazon EFS `CreateMountTarget` API call will trigger a `CreateNetworkInterface` Amazon EC2 API call\. For more information on which Amazon EFS API actions will trigger API calls in other services, see the **Required Permissions \(API Actions\)** column of the table in [Amazon EFS API Permissions: Actions, Resources, and Conditions Reference](efs-api-permissions-ref.md)\.
 
 Every log entry contains information about who generated the request\. The user identity information in the log entry helps you determine the following: 
-
 + Whether the request was made with root or IAM user credentials
-
 + Whether the request was made with temporary security credentials for a role or federated user
-
 + Whether the request was made by another AWS service
 
 For more information, see the [CloudTrail userIdentity Element](http://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-event-reference-user-identity.html)\.
@@ -112,11 +109,11 @@ The following example shows a CloudTrail log entry that demonstrates the `Delete
 }
 ```
 
-## Amazon EFS Log File Entries for Encrypted File Systems<a name="efs-encryption-cloudtrail"></a>
+## Amazon EFS Log File Entries for Encrypted\-at\-Rest File Systems<a name="efs-encryption-cloudtrail"></a>
 
-Amazon EFS gives you the option of creating encrypted file systems\. For more information, see [Encrypting Data and Metadata at Rest in EFS](encryption.md)\.
+Amazon EFS gives you the option of using encryption at rest, encryption in transit, or both, for your file systems\. For more information, see [Encrypting Data and Metadata in EFS](encryption.md)\.
 
-If you're using an encrypted file system, the calls that Amazon EFS makes on your behalf appear in your AWS CloudTrail logs as coming from an AWS\-owned account\. If you see one of the following account IDs in your CloudTrail logs, depending on the AWS Region that your file system is created in, this ID is one owned by the Amazon EFS service\.
+If you're using an encrypted\-at\-rest file system, the calls that Amazon EFS makes on your behalf appear in your AWS CloudTrail logs as coming from an AWS\-owned account\. If you see one of the following account IDs in your CloudTrail logs, depending on the AWS Region that your file system is created in, this ID is one owned by the Amazon EFS service\.
 
 
 | AWS Region | Account ID | 
@@ -129,9 +126,9 @@ If you're using an encrypted file system, the calls that Amazon EFS makes on you
 | EU \(Ireland\) | 805538244694 | 
 | Asia Pacific \(Sydney\) | 288718191711 | 
 
-### Amazon EFS Encryption Context<a name="EFSKMSContext"></a>
+### Amazon EFS Encryption Context for Encryption at Rest<a name="EFSKMSContext"></a>
 
-Amazon EFS sends [encryption context](http://docs.aws.amazon.com/kms/latest/developerguide/encryption-context.html) when making AWS KMS API requests to generate data keys and decrypt\. Amazon EFS using the file system ID as the encryption context for all file systems\. In the `requestParameters` field of a CloudTrail log entry, the encryption context looks similar to the following\.
+Amazon EFS sends [encryption context](http://docs.aws.amazon.com/kms/latest/developerguide/encryption-context.html) when making AWS KMS API requests to generate data keys and decrypt Amazon EFS data\. The file system ID is the encryption context for all file systems that are encrypted at rest\. In the `requestParameters` field of a CloudTrail log entry, the encryption context looks similar to the following\.
 
 ```
 "EncryptionContextEquals": {}

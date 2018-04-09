@@ -6,7 +6,6 @@ Before you can launch and connect to an Amazon EC2 instance, you need to create 
 Using Amazon EFS with Microsoft Windows Amazon EC2 instances is not supported\.
 
 **To create a key pair**
-
 + Follow the steps in [Setting Up with Amazon EC2](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/get-set-up-for-amazon-ec2.html) in the *Amazon EC2 User Guide for Linux Instances* to create a key pair\. If you already have a key pair, you do not need to create a new one and you can use your existing key pair for this exercise\.
 
 **To launch the EC2 instance**
@@ -32,13 +31,9 @@ If you choose either the **Amazon Linux AMI 2016\.03\.0** or **Amazon Linux�
 1. Name your instance and choose **Next: Configure Security Group**\.
 
 1. In **Step 6: Configure Security Group**, review the contents of this page, ensure that **Assign a security group** is set to **Create a new security group**, and verify that the inbound rule being created has the following default values\.
-
    + **Type:** SSH
-
    + **Protocol:** TCP
-
    + **Port Range:** 22
-
    + **Source:** Anywhere 0\.0\.0\.0/0  
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/efs/latest/ug/images/gs-review-security-group-600w.png)
 **Note**  

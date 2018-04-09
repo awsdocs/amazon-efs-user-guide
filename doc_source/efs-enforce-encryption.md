@@ -2,15 +2,20 @@
 
 Following, you can find details about how to enforce encryption at rest using Amazon CloudWatch and AWS CloudTrail\. This walkthrough is based upon the AWS whitepaper [Encrypt Data at Rest with Amazon EFS Encrypted File Systems](https://d1.awsstatic.com/whitepapers/Security/amazon-efs-encrypted-filesystems.pdf)\. 
 
+**Note**  
+Currently, you can't enforce encryption in transit\.
+
 ## Enforcing Encryption at Rest<a name="efs-enforce-overview"></a>
 
-Your organization might require the encryption of all data that meets a specific classification or is associated with a particular application, workload, or environment\. You can enforce data encryption policies for Amazon EFS file systems by using detective controls that detect the creation of a file system and verify that encryption is enabled\. If an unencrypted file system is detected, you can respond in a number of ways, ranging from deleting the file system and mount targets to notifying an administrator\.
+Your organization might require the encryption at rest of all data that meets a specific classification or that is associated with a particular application, workload, or environment\. You can enforce policies for data encryption at rest for Amazon EFS file systems by using detective controls\. These controls detect the creation of a file system and verify that encryption at rest is enabled\. 
 
-If you want to delete an unencrypted file system but want to retain the data, you should first create a new encrypted file system\. Next, you should copy the data over to the new encrypted file system\. After the data is copied over, you can delete the unencrypted file system\. 
+If a file system that doesn't have encryption at rest is detected, you can respond in a number of ways\. These range from deleting the file system and mount targets to notifying an administrator\.
 
-### Detecting Unencrypted File Systems<a name="efs-detecting-unencrypted"></a>
+If you want to delete an unencrypted\-at\-rest file system but want to retain the data, first create a new encrypted\-at\-rest file system\. Next, copy the data over to the new encrypted\-at\-rest file system\. After the data is copied over, you can delete the unencrypted\-at\-rest file system\. 
 
-You can create an CloudWatch alarm to monitor CloudTrail logs for the `CreateFileSystem` event\. You can then trigger the alarm to notify an administrator if the file system that was created was unencrypted\.
+### Detecting Files Systems That Are Unencrypted at Rest<a name="efs-detecting-unencrypted"></a>
+
+You can create an CloudWatch alarm to monitor CloudTrail logs for the `CreateFileSystem` event\. You can then trigger the alarm to notify an administrator if the file system that was created was unencrypted at rest\.
 
 ### Create a Metric Filter<a name="efs-create-unencrypted-filter"></a>
 
@@ -57,38 +62,26 @@ After you create the metric filter, use the following procedure to create an ala
 1. On the **Filters** for the **Log\_Group\_Name** page, next to the **UnencryptedFileSystemCreated** filter name, choose **Create Alarm**\.
 
 1. On the **Create Alarm** page, set the following parameters:
-
    + For **Name**, type **Unencrypted File System Created**
-
    + For **Whenever**, do the following:
-
      + Set **is** to *> = 1*
-
      + Set **for:** to *1* consecutive period\(s\)\.
-
    + For **Treat missing data as**, choose **good \(not breaching threshold\)**\.
-
    + For **Actions**, do the following:
-
      + For **Whenever this alarm**, choose **State is ALARM**\. 
-
      + For **Send notification to**, choose **NotifyMe**, choose **New list**, and then type a unique topic name for this list\.
-
      + For **Email list**, type in the email address where you want notifications sent\. You should receive an email at this address to confirm that you created this alarm\.
-
    + For **Alarm Preview**, do the following:
-
      + For **Period**, choose **1 Minute**\.
-
      + For **Statistic**, choose **Standard** and **Sum**\.
 
 1. Choose **Create Alarm**\.
 
 ### Test the Alarm for the Creation of Unencrypted File Systems<a name="efs-test-unencrypted-alarm"></a>
 
-You can test the alarm by creating an unencrypted file system, as follows\.
+You can test the alarm by creating an unencrypted\-at\-rest file system, as follows\.
 
-**To test the alarm by creating an unencrypted file system**
+**To test the alarm by creating an unencrypted\-at\-rest file system**
 
 1. Open the Amazon EFS console at [https://console\.aws\.amazon\.com/efs](https://console.aws.amazon.com/efs)\.
 

@@ -5,13 +5,9 @@ If you need to be able to recover from unintended changes or deletions in your A
 You can also back up EFS file systems by using AWS Data Pipeline\. In this backup solution, you create a data pipeline by using the AWS Data Pipeline service\. This pipeline copies data from your Amazon EFS file system \(called the *production file system*\) to another Amazon EFS file system \(called the *backup file system*\)\. 
 
 This solution consists of AWS Data Pipeline templates that implement the following:
-
 + Automated EFS backups based on a schedule that you define \(for example, hourly, daily, weekly, or monthly\)\.
-
 + Automated rotation of the backups, where the oldest backup is replaced with the newest backup based on the number of backups that you want to retain\.
-
 + Quicker backups using rsync, which only back up the changes made between one backup to the next\.
-
 + Efficient storage of backups using hard links\. A *hard link* is a directory entry that associates a name with a file in a file system\. By setting up a hard link, you can perform a full restoration of data from any backup while only storing what changed from backup to backup\.
 
 After you set up the backup solution, this walkthrough shows you how to access your backups to restore your data\. This backup solution depends on running scripts that are hosted on GitHub, and is therefore subject to GitHub availability\. If you'd prefer to eliminate this reliance and host the scripts in an Amazon S3 bucket instead, see [Hosting the rsync Scripts in an Amazon S3 Bucket](#hostingscripts)\.
@@ -19,7 +15,7 @@ After you set up the backup solution, this walkthrough shows you how to access y
 **Important**  
 This solution requires using AWS Data Pipeline in the same AWS Region as your file system\. Because AWS Data Pipeline is not supported in US East \(Ohio\), this solution doesn't work in that AWS Region\. We recommend that if you want to back up your file system using this solution, you use your file system in one of the other supported AWS Regions\.
 
-
+**Topics**
 + [Performance for Amazon EFS Backups Using AWS Data Pipeline](#backup-performance)
 + [Considerations for Amazon EFS Backup by Using AWS Data Pipeline](#backup-considerations)
 + [Assumptions for Amazon EFS Backup with AWS Data Pipeline](#backup-assumptions)
@@ -28,7 +24,7 @@ This solution requires using AWS Data Pipeline in the same AWS Region as your fi
 
 ## Performance for Amazon EFS Backups Using AWS Data Pipeline<a name="backup-performance"></a>
 
-When performing data backups and restorations, your file system performance is subject to [Amazon EFS Performance](performance.md), including baseline and burst throughput capacity\. Be aware that the throughput used by your backup solution counts toward your total file system throughput\. The following table provides some recommendations for the Amazon EFS file system and Amazon EC2 instance sizes that work for this solution, assuming that your backup window is 15 minutes long\.
+When performing data backups and restorations, your file system performance is subject to [Amazon EFS Performance](performance.md), including baseline and burst throughput capacity\. The throughput used by your backup solution counts toward your total file system throughput\. The following table provides some recommendations for the Amazon EFS file system and Amazon EC2 instance sizes that work for this solution, assuming that your backup window is 15 minutes long\.
 
 
 | EFS Size \(30 MB Average File Size\) | Daily Change Volume | Remaining Burst Hours | Minimum Number of Backup Agents | 
@@ -47,39 +43,25 @@ For example, if there are two backup nodes, one node backs up all of the even fi
 ## Considerations for Amazon EFS Backup by Using AWS Data Pipeline<a name="backup-considerations"></a>
 
 Consider the following when you're deciding whether to implement an Amazon EFS backup solution using AWS Data Pipeline:
-
 + This approach to EFS backup involves a number of AWS resources\. For this solution, you need to create the following:
-
   + One production file system and one backup file system that contains a full copy of the production file system\. The system also contains any incremental changes to your data over the backup rotation period\.
-
   + Amazon EC2 instances, whose lifecycles are managed by AWS Data Pipeline, that perform restorations and scheduled backups\.
-
   + One regularly scheduled AWS Data Pipeline for backing up data\.
-
   + An AWS Data Pipeline for restoring backups\.
 
   When this solution is implemented, it results in billing to your account for these services\. For more information, see the pricing pages for [Amazon EFS](https://aws.amazon.com/efs/pricing/), [Amazon EC2](https://aws.amazon.com/ec2/pricing/), and [AWS Data Pipeline](https://aws.amazon.com/datapipeline/pricing/)\.
-
 + This solution isn't an offline backup solution\. To ensure a fully consistent and complete backup, pause any file writes to the file system or unmount the file system while the backup occurs\. We recommend that you perform all backups during scheduled downtime or off hours\.
 
 ## Assumptions for Amazon EFS Backup with AWS Data Pipeline<a name="backup-assumptions"></a>
 
 This walkthrough makes several assumptions and declares example values as follows:
-
 + Before you get started, this walkthrough assumes that you already completed [Getting Started](getting-started.md)\.
-
 + After you've completed the Getting Started exercise, you have two security groups, a VPC subnet, and a file system mount target for the file system that you want to back up\. For the rest of this walkthrough, you use the following example values:
-
   + The ID of the file system that you back up in this walkthrough is `fs-12345678`\.
-
   + The security group for the file system that is associated with the mount target is called `efs-mt-sg (sg-1111111a)`\.
-
   + The security group that grants Amazon EC2 instances the ability to connect to the production EFS mount point is called `efs-ec2-sg (sg-1111111b)`\.
-
   + The VPC subnet has the ID value of `subnet-abcd1234`\.
-
   + The source file system mount target IP address for the file system that you want to back up is `10.0.1.32:/`\.
-
   + The example assumes that the production file system is a content management system serving media files with an average size of 30 MB\.
 
 The preceding assumptions and examples are reflected in the following initial setup diagram\.
@@ -90,7 +72,7 @@ The preceding assumptions and examples are reflected in the following initial se
 
 Follow the steps in this section to back up or restore your Amazon EFS file system with AWS Data Pipeline\.
 
-
+**Topics**
 + [Step 1: Create Your Backup Amazon EFS File System](#step1-create-backup)
 + [Step 2: Download the AWS Data Pipeline Template for Backups](#step2-download-template)
 + [Step 3: Create a Data Pipeline for Backup](#step3-create-pipeline)
@@ -231,7 +213,7 @@ When you are manually restoring individual data files, be careful that you don't
 
 The backup solution presented in this walkthrough uses templates for AWS Data Pipeline\. The templates used in [Step 2: Download the AWS Data Pipeline Template for Backups](#step2-download-template) and [Step 4\.1: Restore an Entire Amazon EFS Backup](#step4-1-full-restore) both use a single Amazon EC2 instance to perform their work\. However, there's no real limit to the number of parallel instances that you can run for backing up or restoring your data in Amazon EFS file systems\. In this topic, you can find links to other AWS Data Pipeline templates configured for multiple EC2 instances that you can download and use for your backup solution\. You can also find instructions for how to modify the templates to include additional instances\.
 
-
+**Topics**
 + [Using Additional Templates](#additional-templates)
 + [Adding Additional Backup Instances](#add-backup-instances)
 + [Adding Additional Restoration Instances](#add-restore-instances)
@@ -240,9 +222,7 @@ The backup solution presented in this walkthrough uses templates for AWS Data Pi
 ### Using Additional Templates<a name="additional-templates"></a>
 
 You can download the following additional templates from GitHub:
-
-+ [2\-Node\-EFSBackupPipeline\.json](https://github.com/awslabs/data-pipeline-samples/blob/master/samples/EFSBackup/2-Node-EFSBackupPipeline.json) – This template starts two parallel Amazon EC2 instances to backup your production Amazon EFS file system\.
-
++ [2\-Node\-EFSBackupPipeline\.json](https://github.com/awslabs/data-pipeline-samples/blob/master/samples/EFSBackup/2-Node-EFSBackupPipeline.json) – This template starts two parallel Amazon EC2 instances to back up your production Amazon EFS file system\.
 + [2\-Node\-EFSRestorePipeline\.json](https://github.com/awslabs/data-pipeline-samples/blob/master/samples/EFSBackup/2-Node-EFSRestorePipeline.json) – This template starts two parallel Amazon EC2 instances to restore a backup of your production Amazon EFS file system\.
 
 ### Adding Additional Backup Instances<a name="add-backup-instances"></a>
@@ -251,7 +231,6 @@ You can add additional nodes to the backup templates used in this walkthrough\. 
 
 **Important**  
 If you're using additional nodes, you can't use spaces in file names and directories stored in the top\-level directory\. If you do, those files and directories aren't backed up or restored\. All files and subdirectories that are at least one level below the top level are backed up and restored as expected\.
-
 + Create an additional EC2Resource for each additional node you want to create \(in this example, a fourth EC2 instance\)\.
 
   ```
@@ -266,11 +245,8 @@ If you're using additional nodes, you can't use spaces in file names and directo
   "associatePublicIpAddress": "true"
   },
   ```
-
 + Create an additional data pipeline activity for each additional node \(in this case, activity `BackupPart4`\), make sure to configure the following sections:
-
   + Update the `runsOn` reference to point to the EC2Resource created previously \(`EC2Resource4` in the following example\)\.
-
   + Increment the last two `scriptArgument` values to equal the backup part that each node is responsible for and the total number of nodes\. For `"2"` and `"3"` in the example following, the backup part is `"3"` for the fourth node because in this example our modulus logic needs to count starting with 0\.
 
   ```
@@ -289,7 +265,6 @@ If you're using additional nodes, you can't use spaces in file names and directo
   "stage": "true"
   },
   ```
-
 + Increment the last value in all existing `scriptArgument` values to the number of nodes \(in this example, `"4"`\)\.
 
   ```
@@ -312,7 +287,6 @@ If you're using additional nodes, you can't use spaces in file names and directo
   ...
   },
   ```
-
 + Update `FinalizeBackup` activity and add the new backup activity to the `dependsOn` list \(`BackupPart4` in this case\)\.
 
   ```
@@ -329,7 +303,6 @@ If you're using additional nodes, you can't use spaces in file names and directo
 ### Adding Additional Restoration Instances<a name="add-restore-instances"></a>
 
 You can add nodes to the restoration templates used in this walkthrough\. To add a node, modify the following sections of the `2-Node-EFSRestorePipeline.json` template\.
-
 + Create an additional EC2Resource for each additional node you want to create \(in this case, a third EC2 instance called `EC2Resource3`\)\.
 
   ```
@@ -344,11 +317,8 @@ You can add nodes to the restoration templates used in this walkthrough\. To add
   "associatePublicIpAddress": "true"
   },
   ```
-
 + Create an additional data pipeline activity for each additional node \(in this case, Activity `RestorePart3`\)\. Make sure to configure the following sections:
-
-  + Update the `runsOn` reference to point to the `EC2Resource` created previously \(in this example, `EC2Resource3`\)
-
+  + Update the `runsOn` reference to point to the `EC2Resource` created previously \(in this example, `EC2Resource3`\)\.
   + Increment the last two `scriptArgument` values to equal the backup part that each node is responsible for and the total number of nodes\. For `"2"` and `"3"` in the example following, the backup part is `"3"` for the fourth node because in this example our modulus logic needs to count starting with 0\.
 
   ```
@@ -367,7 +337,6 @@ You can add nodes to the restoration templates used in this walkthrough\. To add
   "stage": "true"
   },
   ```
-
 + Increment the last value in all existing `scriptArgument` values to the number of nodes \(in this example, `"3"`\)\.
 
   ```

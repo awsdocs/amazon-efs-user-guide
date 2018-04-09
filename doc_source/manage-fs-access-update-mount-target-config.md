@@ -1,6 +1,6 @@
 # Updating the Mount Target Configuration<a name="manage-fs-access-update-mount-target-config"></a>
 
-After you create a mount target for your file system, you may want to update security groups that are in effect\. You cannot change the IP address of an existing mount target\. To change IP address you must delete the mount target and create a new one with the new address\. Note that deleting a mount target will break any existing file system mounts\. 
+After you create a mount target for your file system, you may want to update security groups that are in effect\. You cannot change the IP address of an existing mount target\. To change IP address you must delete the mount target and create a new one with the new address\. Deleting a mount target breaks any existing file system mounts\. 
 
 ## Modifying the Security Group<a name="manage-fs-access-update-mount-target-config-sg"></a>
 

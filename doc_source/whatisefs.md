@@ -14,7 +14,7 @@ Amazon EFS provides file system access semantics, such as strong data consistenc
 
  Amazon EFS also allows you to control access to your file systems through Portable Operating System Interface \(POSIX\) permissions\. For more information, see [Security](security-considerations.md)\.
 
-You can enable encryption when creating an Amazon EFS file system\. If you do, all your data and metadata is encrypted\. For more information, see [Encrypting Data and Metadata at Rest in EFS](encryption.md)\.
+Amazon EFS supports two forms of encryption for file systems, encryption in transit and encryption at rest\. You can enable encryption at rest when creating an Amazon EFS file system\. If you do, all your data and metadata is encrypted\. You can enable encryption in transit when you mount the file system\. For more information, see [Encrypting Data and Metadata in EFS](encryption.md)\.
 
 Amazon EFS is designed to provide the throughput, IOPS, and low latency needed for a broad range of workloads\. With Amazon EFS, throughput and IOPS scale as a file system grows, and file operations are delivered with consistent, low latencies\. For more information, see [Amazon EFS Performance](performance.md)\.
 
@@ -30,15 +30,10 @@ Using Amazon EFS with Microsoft Windows Amazon EC2 instances is not supported\.
 1. For an Amazon EFS technical overview, see [Amazon EFS: How It Works](how-it-works.md)\. 
 
 1. Try the introductory exercises:
-
    + [Getting Started](getting-started.md)
-
    + [Walkthroughs](walkthroughs.md)
 
 If you would like to learn more about Amazon EFS, the following topics discuss the service in greater detail:
-
 + [Creating Resources for Amazon EFS](creating-using.md)
-
 + [Managing Amazon EFS File Systems](managing.md)
-
 + [Amazon EFS API](api-reference.md)

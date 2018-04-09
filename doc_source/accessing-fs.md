@@ -7,11 +7,8 @@ After you create a file system, you can create mount targets and then you can mo
 For more information about creating a file system, see [Creating an Amazon Elastic File System](creating-using-create-fs.md)\.
 
 The mount target security group acts as a virtual firewall that controls the traffic\. For example, it determines which Amazon EC2 instances can access the file system\. This section explains the following:
-
 + Mount target security groups and how to enable traffic\.
-
 + How to mount the file system on your Amazon EC2 instance\.
-
 + NFS\-level permissions considerations\. 
 
   Initially, only the root user on the Amazon EC2 instance has read\-write\-execute permissions on the file system\. This topic discusses NFS\-level permissions and provides examples that show you how to grant permissions in common scenarios\. For more information, see [Network File System \(NFS\)–Level Users, Groups, and Permissions](accessing-fs-nfs-permissions.md)\.
@@ -44,13 +41,10 @@ If the Amazon VPC you want is not listed, verify the region in the global naviga
 You can access a file system on an Amazon EC2 instance in one Availability Zone by using a mount target created in another Availability Zone, but there are costs associated with cross–Availability Zone access\.
 
       For each Availability Zone, do the following: 
-
       + Choose a **Subnet** from the list where you want to create the mount target\.
 
         You can create one mount target in each Availability Zone\. If you have multiple subnets in an Availability Zone where you launched your Amazon EC2 instance, you don't have to create mount target in the same subnet, it can be any subnet in the Availability Zone\. 
-
       + Leave **IP Address** select to **Automatic**\. Amazon EFS will select one of the available IP addresses for the mount target\.
-
       + Specify the **Security Group** you created specifically for the mount target, or the default security group for the default VPC\. Both security groups will have the necessary inbound rule that allows inbound access from the EC2 instance security group\.
 
         Click in the **Security Group** box and the console will show you the available security groups\. Here you can select a specific security group and remove the **Default** security group, or leave the default in place, depending on how you configured your Amazon EC2 instance\.

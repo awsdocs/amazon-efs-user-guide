@@ -6,9 +6,7 @@ The following section is specific to Amazon EC2 and discusses how to create secu
 Both an Amazon EC2 instance and a mount target have associated security groups\. These security groups act as a virtual firewall that controls the traffic between them\. If you don't provide a security group when creating a mount target, Amazon EFS associates the default security group of the VPC with it\.
 
 Regardless, to enable traffic between an EC2 instance and a mount target \(and thus the file system\), you must configure the following rules in these security groups:
-
 + The security groups you associate with a mount target must allow inbound access for the TCP protocol on the NFS port from all EC2 instances on which you want to mount the file system\.
-
 + Each EC2 instance that mounts the file system must have a security group that allows outbound access to the mount target on the NFS port\. 
 
 For more information about security groups, see [Amazon EC2 Security Groups](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-network-security.html) in the *Amazon EC2 User Guide for Linux Instances*\. 
