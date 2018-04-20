@@ -204,7 +204,7 @@ As a result, the following file is created\.
 You can also mount your file system automatically by adding an entry to the `/etc/fstab` file\. For more information, see [Mounting Your Amazon EFS File System Automatically](mount-fs-auto-mount-onreboot.md)\.
 
 **Warning**  
-Use the `_netdev` option, used to identify network file systems, when mounting your file system automatically\. If `_netdev` is missing, your EC2 instance might stop responding\. This result is because network file systems need to be initialized after the compute instance starts its networking\. For more information, see [Automatic Mounting Fails and the Instance Is Unresponsive](troubleshooting.md#automount-fails)\.
+Use the `_netdev` option, used to identify network file systems, when mounting your file system automatically\. If `_netdev` is missing, your EC2 instance might stop responding\. This result is because network file systems need to be initialized after the compute instance starts its networking\. For more information, see [Automatic Mounting Fails and the Instance Is Unresponsive](troubleshooting-efs-mounting.md#automount-fails)\.
 
 ## Step 4: Clean Up Resources and Protect Your AWS Account<a name="wt5-step4-cleanup"></a>
 

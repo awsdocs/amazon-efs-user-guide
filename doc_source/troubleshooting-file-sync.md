@@ -7,6 +7,8 @@ Following, you can find information on how to troubleshoot issues with EFS File 
 + [Your Amazon EC2 Source File System Is Stuck in Mounting Status](#sync-ec2-location-stuck-mounting)
 + [Your Sync Task Is Stuck in Starting Status](#sync-task-stuck-starting)
 + [Your Sync Task Failed with Permission Denied Error Message](#sync-task-permission-denied)
++ [How Long Does the Preparing Status of a Sync Task Take to Complete?](#Preparing-status-too-long)
++ [How Long Does the Verifying Status of a Sync Task Take to Complete?](#verifying-status-too-long)
 + [Enabling AWS Support to Help Troubleshoot Your EFS File Sync Running On\-Premises](#enable-support-access-sync)
 + [Enabling AWS Support to Help Troubleshoot Your EFS File Sync Running on Amazon EC2](#Sync-EC2-EnableAWSSupportAccess)
 
@@ -56,7 +58,21 @@ You can get a permissions denied error message if you configure your NFS server 
 **Action to Take**  
 To fix this issue, either configure the NFS export with no\_root\_squash, or ensure that the permissions for all of the files you want to sync allow read access for all users\. Doing either enables the sync agent to read the files\. For the sync agent to access directories, you must additionally enable all execute access\. For information about NFS export configuration, see [18\.7\. The /etc/exports Configuration File](https://www.centos.org/docs/5/html/Deployment_Guide-en-US/s1-nfs-server-config-exports.html) in the Centos documentation\.
 
-If you perform these actions and the issue isn't resolved, open a support channel and engage AWS customer support\. For information about how to open a support channel, see [Enabling AWS Support to Help Troubleshoot Your EFS File Sync Running On\-Premises](#enable-support-access-sync) or [Enabling AWS Support to Help Troubleshoot Your EFS File Sync Running on Amazon EC2](#Sync-EC2-EnableAWSSupportAccess)\.
+If you perform these actions and the issue isn't resolved, contact AWS customer support\. 
+
+## How Long Does the Preparing Status of a Sync Task Take to Complete?<a name="Preparing-status-too-long"></a>
+
+The time EFS File Sync spends in the **Preparing** status depends on the number of files in both the source and destination file systems, and the performance of these file systems\. When a sync task starts, EFS File Sync performs a recursive directory listing to discover all files and file metadata in the source and destination file system\. These listings are used to identify differences and determine what to copy\.
+
+**Action to take**  
+You don't need to take any action\. Wait for the **Preparing** status to complete and status changes to **Syncing**\. If the status doesn’t change to **Syncing** status, contact AWS customer support\.
+
+## How Long Does the Verifying Status of a Sync Task Take to Complete?<a name="verifying-status-too-long"></a>
+
+The time EFS File Sync spends in the **Verifying** status depends on the number of files, the total size of all files in both the source and destination file systems, and the performance of these file systems\. By default, **Verification mode** is enabled in the sync setting\. The verification EFS File Sync performs includes a SHA256 checksum on all file content and an exact comparison of all file metadata\.
+
+**Action to take**  
+You don't need to take any action\. Wait for the **Verifying** status to complete\. If the **Verifying** status doesn’t complete, contact AWS customer support\.
 
 ## Enabling AWS Support to Help Troubleshoot Your EFS File Sync Running On\-Premises<a name="enable-support-access-sync"></a>
 
@@ -105,7 +121,7 @@ To let AWS Support connect to your EFS File Sync, you first log in to the local 
    ssh –i PRIVATE-KEY admin@INSTANCE-PUBLIC-DNS-NAME
    ```
 **Note**  
-The *PRIVATE\-KEY* is the `.pem` file containing the private certificate of the EC2 key pair that you used to launch the Amazon EC2 instance\. For more information, see [Retrieving the Public Key for Your Key Pair](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html#retriving-the-public-key) in the *Amazon EC2 User Guide*\.  
+The *PRIVATE\-KEY* is the `.pen` file containing the private certificate of the EC2 key pair that you used to launch the Amazon EC2 instance\. For more information, see [Retrieving the Public Key for Your Key Pair](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html#retriving-the-public-key) in the *Amazon EC2 User Guide*\.  
 The *INSTANCE\-PUBLIC\-DNS\-NAME* is the public Domain Name System \(DNS\) name of your Amazon EC2 instance that your EFS File Sync is running on\. You obtain this public DNS name by selecting the Amazon EC2 instance in the EC2 console and clicking the **Description** tab\.
 
     The local console looks like the following\.   

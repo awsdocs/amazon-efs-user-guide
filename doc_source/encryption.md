@@ -43,9 +43,28 @@ If you're not using the mount helper, you can still enable encryption of data in
 Because encryption of data in transit is configured on a per\-connection basis, each configured mount has a dedicated stunnel process running on the instance\. By default, the stunnel process used by the mount helper listens on local ports 20049 and 20449, and it connects to Amazon EFS on port 2049\.
 
 **Note**  
-We recommend using Stunnel version 5\.1\.5 or newer for the strongest security\. Stunnel versions 5\.1\.5 and newer support host name validation, which is required for certificate authenticity\.   
-However, Stunnel version 4\.5\.6 and newer are also supported, because these versions are compiled with a version of OpenSSL \(version 1\.0\.2 or newer\) that is required for the cryptography used in encryption of data in transit\.  
-You can download the latest version of stunnel on the [stunnel: Downloads](https://www.stunnel.org/downloads.html) webpage\.
+By default, when using the Amazon EFS mount helper with TLS, it enforces the use of the Online Certificate Status Protocol \(OCSP\) and certificate hostname checking\. The Amazon EFS mount helper uses the stunnel program for its TLS functionality\. Note that some versions of Linux don't include a version of stunnel that supports these TLS features by default\. When using one of those Linux versions, mounting an Amazon EFS file system using TLS will fail\.  
+Once you've installed the amazon\-efs\-utils package, to upgrade your system's version of stunnel, see [Upgrading Stunnel](using-amazon-efs-utils.md#upgrading-stunnel)\.  
+For issues with encryption, see [ Troubleshooting Encryption    Mounting with Encryption of Data in Transit Fails  By default, when using the Amazon EFS mount helper with TLS, it enforces use of the Online Certificate Status Protocol \(OCSP\) and certificate hostname checking\. If your system does not support either of these features \(for example, when using Red Hat Enterprise Linux or CentOS\), mounting an EFS file system using TLS will fail\.   Mounting with Encryption of Data in Transit is Interrupted  It's possible, however unlikely, that your encrypted connection to your Amazon EFS file system can hang or be interrupted by client\-side events\.  Action to Take If your connection to your Amazon EFS file system with encryption of data in transit is interrupted, take the following steps:    Ensure that the stunnel service is running on the client\.   Confirm that the watchdog application `amazon-efs-mount-watchdog` is running on the client\. You can find out whether this application is running with the following command: 
+
+   ```
+   ps aux | grep [a]mazon-efs-mount-watchdog
+   ```   Check your support logs\. For more information, see [Getting Support Logs](using-amazon-efs-utils.md#mount-helper-logs)\.   Optionally, you can enable your stunnel logs and check the information in those as well\. You can change the configuration of your logs in `/etc/amazon/efs/amazon-efs-utils.conf` to enable the stunnel logs\. However, doing so requires unmounting and then remounting the file system with the mount helper for the changes to take effect\.  Enabling the stunnel logs can use up a nontrivial amount of space on your file system\.    If the interruptions continue, contact AWS Support\.   Encrypted\-at\-Rest File System Can't Be Created  You've tried to create a new encrypted\-at\-rest file system\. However, you get an error message saying that AWS KMS is unavailable\.  Action to Take This error can occur in the rare case that AWS KMS becomes temporarily unavailable in your AWS Region\. If this happens, wait until AWS KMS returns to full availability, and then try again to create the file system\.     Unusable Encrypted File System  An encrypted file system consistently returns NFS server errors\. These errors can occur when EFS can't retrieve your master key from AWS KMS for one of the following reasons:   The key was disabled\.   The key was deleted\.   Permission for Amazon EFS to use the key was revoked\.   AWS KMS is temporarily unavailable\.    Action to Take First, confirm that the AWS KMS key is enabled\. You can do so by viewing the keys in the console\. For more information, see [Viewing Keys](http://docs.aws.amazon.com/kms/latest/developerguide/viewing-keys.html) in the *AWS Key Management Service Developer Guide*\.  If the key is not enabled, enable it\. For more information, see [Enabling and Disabling Keys](http://docs.aws.amazon.com/kms/latest/developerguide/enabling-keys.html) in the *AWS Key Management Service Developer Guide*\. If the key is pending deletion, then this status disables the key\. You can cancel the deletion, and re\-enable the key\. For more information, see [Scheduling and Canceling Key Deletion](http://docs.aws.amazon.com/kms/latest/developerguide/deleting-keys.html#deleting-keys-scheduling-key-deletion) in the *AWS Key Management Service Developer Guide*\. If the key is enabled, and you're still experiencing an issue, or if you encounter an issue re\-enabling your key, contact AWS Support\.  ](troubleshooting-efs-encryption.md)\.
+
+When using encryption of data in transit, your NFS client setup is changed\. When you inspecting your actively mounted file systems, you will see one mounted to 127\.0\.0\.1, or localhost, as in the following example\.
+
+```
+$ mount | column -t
+127.0.0.1:/  on  /home/ec2-user/efs        type  nfs4         (rw,relatime,vers=4.1,rsize=1048576,wsize=1048576,namlen=255,hard,proto=tcp,port=20127,timeo=600,retrans=2,sec=sys,clientaddr=127.0.0.1,local_lock=none,addr=127.0.0.1)
+```
+
+When mounting with TLS and the Amazon EFS mount helper, you are reconfiguring your NFS client to mount to a local port\. The mount helper starts a client stunnel process which is listening on this local port, and stunnel is opening an encrypted connection to EFS using TLS\. The EFS mount helper is responsible for setting up and maintaining this encrypted connection and associated configuration\.
+
+To determine which Amazon EFS file system ID corresponds to which local mount point, you can use the following command\. Remember to replace *efs\-mount\-point* with the local path where you’ve mounted your file system\.
+
+```
+grep -E "Successfully mounted.*efs-mount-point" /var/log/amazon/efs/mount.log | tail -1
+```
 
 When you use the mount helper for encryption of data in transit, it also creates a process called `amazon-efs-mount-watchdog`\. This process ensures that each mount's stunnel process is running, and stops the stunnel when the Amazon EFS file system is unmounted\. If for some reason a stunnel process is terminated unexpectedly, the watchdog process restarts it\.
 
@@ -113,4 +132,4 @@ For more information on encryption with Amazon EFS, see these related topics:
 + [Amazon EFS Performance Tips](performance.md#performance-tips)
 + [Amazon EFS API Permissions: Actions, Resources, and Conditions Reference](efs-api-permissions-ref.md)
 + [Amazon EFS Log File Entries for Encrypted\-at\-Rest File Systems](logging-using-cloudtrail.md#efs-encryption-cloudtrail)
-+ [Troubleshooting Encrypted\-at\-Rest File Systems](troubleshooting.md#troubleshooting-efs-encryption)
++ [Troubleshooting Encryption](troubleshooting-efs-encryption.md)

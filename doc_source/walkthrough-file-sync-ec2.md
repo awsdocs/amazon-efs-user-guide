@@ -59,8 +59,7 @@ At a minimum, your security group must allow inbound access to HTTP port 80 from
 **Note**  
 The IP address doesn’t need to be accessible from outside your network\.
 **Important**  
-If your source file system and destination Amazon EFS file system are in different AWS Regions, you open the Amazon EFS Console in the AWS Region where your destination Amazon EFS file system is located to connect\.  
-Your source and destination file system must be in different virtual private clouds \(VPCs\)\.
+If your source file system and destination Amazon EFS file system are in different AWS Regions, you open the Amazon EFS Console in the AWS Region where your destination Amazon EFS file system is located to connect\.
 
 1. Choose **File syncs**, choose **Create sync agent**, and then choose **Next: Connect to agent** on the **Select host platform** page\.
 

@@ -57,6 +57,8 @@ Amazon's trademarks and trade dress may not be used in
    + [Encrypting Data and Metadata in EFS](encryption.md)
 + [Amazon EFS Limits](limits.md)
 + [Troubleshooting Amazon EFS](troubleshooting.md)
+   + [Troubleshooting Mount Issues](troubleshooting-efs-mounting.md)
+   + [Troubleshooting Encryption](troubleshooting-efs-encryption.md)
 + [Troubleshooting EFS File Sync](troubleshooting-file-sync.md)
 + [Amazon Elastic File System Walkthroughs](walkthroughs.md)
    + [Walkthrough 1: Create Amazon EFS File System and Mount It on an EC2 Instance Using the AWS CLI](wt1-getting-started.md)

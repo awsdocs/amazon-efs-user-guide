@@ -58,7 +58,6 @@ The following table described each sync task status, and if and when you should 
 | Available | The sync task is configured properly and is available to be started\. | 
 | Completed | The task creating process has completed\. | 
 | Creating | EFS File Sync is creating the sync task\. | 
-| Error |  | 
 | Starting | The task creating process has started\. | 
 | Preparing | The sync task is examining the source and destination file systems to determine which files to sync\. | 
 | Syncing | EFS File Sync is syncing file from the source file system to the destination Amazon EFS file system\. | 
@@ -173,7 +172,7 @@ You can connect to your Amazon EC2 instance by using a Secure Shell \(SSH\) clie
 
 **To log in to the EFS File Sync local console**
 
-1. Log in to your local console\. If you are connecting to your EC2 instance from a Windows computer, log in as *admin*\.
+1. Log in to your local console\. If you are connecting to your EC2 instance from a Windows computer, log in as user name: *admin* and password: *password*\. Otherwise, use your credentials to log in
 
 1. After you log in, you see the **Amazon EFS File Sync Configuration** main menu, as shown in the following screenshot\.  
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/efs/latest/ug/images/sync-ec2-local-console1.png)    
