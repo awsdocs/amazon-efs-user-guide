@@ -15,9 +15,16 @@ Before you can update the /etc/fstab file of your EC2 instance, make sure that y
 
 1. Add the following line to the `/etc/fstab` file\.
 
+**For File System witm amazon-efs-utils**
    ```
    fs-12345678:/ /mnt/efs efs defaults,_netdev 0 0
    ```
+   
+**For File System without amazon-efs-utils**
+   ```
+   fs-12345678 /mnt/efs nfs4 nfsvers=4.1,rsize=1048576,wsize=1048576,hard,timeo=600,retrans=2,_netdev 0 0
+   ```
+   
 **Warning**  
 Use the `_netdev` option, used to identify network file systems, when mounting your file system automatically\. If `_netdev` is missing, your EC2 instance might stop responding\. This result is because network file systems need to be initialized after the compute instance starts its networking\. For more information, see [Automatic Mounting Fails and the Instance Is Unresponsive](troubleshooting-efs-mounting.md#automount-fails)\.
 
