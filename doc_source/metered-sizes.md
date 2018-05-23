@@ -4,7 +4,7 @@ This section explains how Amazon EFS reports file system sizes and sizes of obje
 
 ## Metering Amazon EFS File System Objects<a name="metered-sizes-fs-objects"></a>
 
-Customer\-visible objects in an Amazon EFS system can be regular files, directories, symbolic links, and special files \(FIFOs and sockets\)\. Each of these objects is metered for 2 KiB \(kibibytes\) of metadata \(for its inode\) and one or more increments of 4 KiB of data\. The following list explains the metered data size for different types of file system objects\.
+Customer\-visible objects in an Amazon EFS system can be regular files, directories, symbolic links, and special files \(FIFOs and sockets\)\. Each of these objects is metered for 2 kibibytes \(KiB\) of metadata \(for its inode\) and one or more increments of 4 KiB of data\. The following list explains the metered data size for different types of file system objects\.
 + **Regular files** – The metered data size of a regular file is the logical size of the file rounded to the next 4\-KiB increment, except that it may be less for sparse files\.
 
   A sparse file is a file to which data is not written to all positions of the file before its logical size is reached\. For a sparse file, if the actual storage used is less than the logical size rounded to the next 4\-KiB increment, Amazon EFS reports actual storage used as the metered data size\.

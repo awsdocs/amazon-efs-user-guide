@@ -20,5 +20,5 @@ You can get the mount target IP address for your EFS file system through the con
 You can specify the IP address of a mount target in the `mount` command, as shown following\.
 
 ```
-$ sudo mount -t nfs -o nfsvers=4.1,rsize=1048576,wsize=1048576,hard,timeo=600,retrans=2 mount-target-IP:/   ~/efs-mount-point  
+$ sudo mount -t nfs -o nfsvers=4.1,rsize=1048576,wsize=1048576,hard,timeo=600,retrans=2,noresvport mount-target-IP:/   ~/efs-mount-point  
 ```

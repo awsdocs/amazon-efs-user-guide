@@ -2,7 +2,7 @@
 
 Creates a mount target for a file system\. You can then mount the file system on EC2 instances via the mount target\.
 
-You can create one mount target in each Availability Zone in your VPC\. All EC2 instances in a VPC within a given Availability Zone share a single mount target for a given file system\. If you have multiple subnets in an Availability Zone, you create a mount target in one of the subnets\. EC2 instances do not need to be in the same subnet as the mount target in order to access their file system\. For more information, see [Amazon EFS: How it Works](http://docs.aws.amazon.com/efs/latest/ug/how-it-works.html)\. 
+You can create one mount target in each Availability Zone in your VPC\. All EC2 instances in a VPC within a given Availability Zone share a single mount target for a given file system\. If you have multiple subnets in an Availability Zone, you create a mount target in one of the subnets\. EC2 instances do not need to be in the same subnet as the mount target in order to access their file system\. For more information, see [Amazon EFS: How it Works](https://docs.aws.amazon.com/efs/latest/ug/how-it-works.html)\. 
 
 In the request, you also specify a file system ID for which you are creating the mount target and the file system's lifecycle state must be `available`\. For more information, see [DescribeFileSystems](API_DescribeFileSystems.md)\.
 
@@ -11,7 +11,7 @@ In the request, you also provide a subnet ID, which determines the following:
 + Availability Zone in which Amazon EFS creates the mount target
 + IP address range from which Amazon EFS selects the IP address of the mount target \(if you don't specify an IP address in the request\)
 
-After creating the mount target, Amazon EFS returns a response that includes, a `MountTargetId` and an `IpAddress`\. You use this IP address when mounting the file system in an EC2 instance\. You can also use the mount target's DNS name when mounting the file system\. The EC2 instance on which you mount the file system via the mount target can resolve the mount target's DNS name to its IP address\. For more information, see [How it Works: Implementation Overview](http://docs.aws.amazon.com/efs/latest/ug/how-it-works.html#how-it-works-implementation)\. 
+After creating the mount target, Amazon EFS returns a response that includes, a `MountTargetId` and an `IpAddress`\. You use this IP address when mounting the file system in an EC2 instance\. You can also use the mount target's DNS name when mounting the file system\. The EC2 instance on which you mount the file system via the mount target can resolve the mount target's DNS name to its IP address\. For more information, see [How it Works: Implementation Overview](https://docs.aws.amazon.com/efs/latest/ug/how-it-works.html#how-it-works-implementation)\. 
 
 Note that you can create mount targets for a file system in only one VPC, and there can be only one mount target per Availability Zone\. That is, if the file system already has one or more mount targets created for it, the subnet specified in the request to add another mount target must meet the following requirements:
 + Must belong to the same VPC as the subnets of the existing mount targets
@@ -162,7 +162,7 @@ Returned if the mount target would violate one of the specified restrictions bas
 HTTP Status Code: 409
 
  **NetworkInterfaceLimitExceeded**   
- The calling account has reached the ENI limit for the specific AWS region\. Client should try to delete some ENIs or get its account limit raised\. For more information, see [Amazon VPC Limits](http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_Appendix_Limits.html) in the Amazon Virtual Private Cloud User Guide \(see the Network interfaces per VPC entry in the table\)\.   
+ The calling account has reached the ENI limit for the specific AWS region\. Client should try to delete some ENIs or get its account limit raised\. For more information, see [Amazon VPC Limits](https://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_Appendix_Limits.html) in the Amazon Virtual Private Cloud User Guide \(see the Network interfaces per VPC entry in the table\)\.   
 HTTP Status Code: 409
 
  **NoFreeAddressesInSubnet**   
@@ -269,12 +269,12 @@ Content-Length: 252
 ## See Also<a name="API_CreateMountTarget_SeeAlso"></a>
 
 For more information about using this API in one of the language\-specific AWS SDKs, see the following:
-+  [AWS Command Line Interface](http://docs.aws.amazon.com/goto/aws-cli/elasticfilesystem-2015-02-01/CreateMountTarget) 
-+  [AWS SDK for \.NET](http://docs.aws.amazon.com/goto/DotNetSDKV3/elasticfilesystem-2015-02-01/CreateMountTarget) 
-+  [AWS SDK for C\+\+](http://docs.aws.amazon.com/goto/SdkForCpp/elasticfilesystem-2015-02-01/CreateMountTarget) 
-+  [AWS SDK for Go](http://docs.aws.amazon.com/goto/SdkForGoV1/elasticfilesystem-2015-02-01/CreateMountTarget) 
-+  [AWS SDK for Java](http://docs.aws.amazon.com/goto/SdkForJava/elasticfilesystem-2015-02-01/CreateMountTarget) 
-+  [AWS SDK for JavaScript](http://docs.aws.amazon.com/goto/AWSJavaScriptSDK/elasticfilesystem-2015-02-01/CreateMountTarget) 
-+  [AWS SDK for PHP V3](http://docs.aws.amazon.com/goto/SdkForPHPV3/elasticfilesystem-2015-02-01/CreateMountTarget) 
-+  [AWS SDK for Python](http://docs.aws.amazon.com/goto/boto3/elasticfilesystem-2015-02-01/CreateMountTarget) 
-+  [AWS SDK for Ruby V2](http://docs.aws.amazon.com/goto/SdkForRubyV2/elasticfilesystem-2015-02-01/CreateMountTarget) 
++  [AWS Command Line Interface](https://docs.aws.amazon.com/goto/aws-cli/elasticfilesystem-2015-02-01/CreateMountTarget) 
++  [AWS SDK for \.NET](https://docs.aws.amazon.com/goto/DotNetSDKV3/elasticfilesystem-2015-02-01/CreateMountTarget) 
++  [AWS SDK for C\+\+](https://docs.aws.amazon.com/goto/SdkForCpp/elasticfilesystem-2015-02-01/CreateMountTarget) 
++  [AWS SDK for Go](https://docs.aws.amazon.com/goto/SdkForGoV1/elasticfilesystem-2015-02-01/CreateMountTarget) 
++  [AWS SDK for Java](https://docs.aws.amazon.com/goto/SdkForJava/elasticfilesystem-2015-02-01/CreateMountTarget) 
++  [AWS SDK for JavaScript](https://docs.aws.amazon.com/goto/AWSJavaScriptSDK/elasticfilesystem-2015-02-01/CreateMountTarget) 
++  [AWS SDK for PHP V3](https://docs.aws.amazon.com/goto/SdkForPHPV3/elasticfilesystem-2015-02-01/CreateMountTarget) 
++  [AWS SDK for Python](https://docs.aws.amazon.com/goto/boto3/elasticfilesystem-2015-02-01/CreateMountTarget) 
++  [AWS SDK for Ruby V2](https://docs.aws.amazon.com/goto/SdkForRubyV2/elasticfilesystem-2015-02-01/CreateMountTarget) 

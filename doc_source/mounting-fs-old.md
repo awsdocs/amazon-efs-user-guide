@@ -18,10 +18,18 @@ Before you can mount a file system, you must create, configure, and launch your 
 
 Amazon EFS supports the Network File System versions 4\.0 and 4\.1 \(NFSv4\) and NFSv4\.0 protocols when mounting your file systems on Amazon EC2 instances\. Although NFSv4\.0 is supported, we recommend that you use NFSv4\.1\. Mounting your Amazon EFS file system on your Amazon EC2 instance also requires an NFS client that supports your chosen NFSv4 protocol\.
 
-To get the best performance out of your file system, use an Amazon EC2 Amazon Machine Image \(AMI\) that includes a Linux kernel that is version 4\.0 or newer\. We recommend using **Amazon Linux AMI 2016\.03\.0** or **Amazon Linux AMI 2016\.09\.0** as the AMI for the Amazon EC2 instance to mount your file system to\.
+For optimal performance and to avoid a variety of known NFS client bugs, we recommend working with a recent Linux kernel\. If you are using an enterprise Linux distribution, we recommend the following:
++ Amazon Linux 2015\.09 or newer
++ RHEL 7\.3 or newer
++ RHEL 6\.9 with kernel 2\.6\.32\-704 or newer
++ All versions of Ubuntu 16\.04
++ Ubuntu 14\.04 with kernel 3\.13\.0\-83 or newer
++ SLES 12 Sp2 or later
+
+If you are using another distribution or a custom kernel, we recommend kernel version 4\.3 or newer\.
 
 **Note**  
-Using Amazon EFS with Microsoft Windows Amazon EC2 instances is not supported\.
+Using Amazon EFS with Amazon EC2 instances based on Microsoft Windows is not supported\.
 
 ### Troubleshooting AMI and Kernel Versions<a name="ami-kernel-versions-troubleshooting"></a>
 

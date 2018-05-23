@@ -6,6 +6,7 @@ Following, you can find a description of security considerations for working wit
 + [AWS Identity and Access Management \(IAM\) Permissions for API Calls](#iam-permissions-for-api-calls)
 + [Security Groups for Amazon EC2 Instances and Mount Targets](#network-access)
 + [Read, Write, and Execute Permissions for EFS Files and Directories](#user-and-group-permissions)
++ [Source Ports for Working with EFS](#source-ports)
 + [Encrypting Data and Metadata in EFS](encryption.md)
 
 ## AWS Identity and Access Management \(IAM\) Permissions for API Calls<a name="iam-permissions-for-api-calls"></a>
@@ -71,3 +72,13 @@ Files and directories in an EFS file system support standard Unix\-style read, w
 This layer of access control depends on trusting the NFSv4\.1 client in its assertion of the user and group ID\. There is no authentication of the identity of the NFSv4\.1 client when establishing a mount connection\. Thus, any NFSv4\.1 client that can make a network connection to the NFS port of a file system's mount target IP address can read and write the file system as the root user ID\. 
 
 As an example of read, write, and execute permissions for files and directories, Alice might have permissions to read and write to any files that she wants to in her personal directory on a file system, /alice\. However, in this example Alice is not allowed to read or write to any files in Mark's personal directory on the same file system, /mark\. Both Alice and Mark are allowed to read but not write files in the shared directory /share\. 
+
+## Source Ports for Working with EFS<a name="source-ports"></a>
+
+To support a broad set of NFS clients, Amazon EFS allows connections from any source port\. If you require that only privileged users can access Amazon EFS, we recommend using the following client firewall rule\.
+
+```
+iptables -I OUTPUT 1 -m owner --uid-owner 1-4294967294 -m tcp -p tcp --dport 2049 -j DROP
+```
+
+This command inserts a new rule at the start of the OUTPUT chain \(`-I OUTPUT 1`\)\. The rule prevents any unprivileged, nonkernel process \(`-m owner --uid-owner 1-4294967294`\) from opening a connection to the NFS port \(`-m tcp -p tcp –dport 2049`\)\.

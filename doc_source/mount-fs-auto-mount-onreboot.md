@@ -18,6 +18,8 @@ Before you can update the /etc/fstab file of your EC2 instance, make sure that y
    ```
    fs-12345678:/ /mnt/efs efs defaults,_netdev 0 0
    ```
+
+   If you're mounting without amazon\-efs\-utils, see [Mounting Automatically](mount-fs-auto-mount-onreboot-old.md)\.
 **Warning**  
 Use the `_netdev` option, used to identify network file systems, when mounting your file system automatically\. If `_netdev` is missing, your EC2 instance might stop responding\. This result is because network file systems need to be initialized after the compute instance starts its networking\. For more information, see [Automatic Mounting Fails and the Instance Is Unresponsive](troubleshooting-efs-mounting.md#automount-fails)\.
 

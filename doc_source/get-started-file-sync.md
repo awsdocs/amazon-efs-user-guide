@@ -1,6 +1,9 @@
 # Amazon EFS File Sync<a name="get-started-file-sync"></a>
 
-Using Amazon EFS File Sync, you can copy files from an existing on\-premises or in\-cloud file system into an Amazon EFS file system\. EFS File Sync copies your file data, and also file system metadata such as ownership, timestamps, and access permissions\. You can copy your files over the internet or AWS Direct Connect with relative security and efficiency\. For information about how to use AWS Direct Connect , see [Walkthrough 5: Create and Mount a File System On\-Premises with AWS Direct Connect](efs-onpremises.md)\.
+Amazon EFS File Sync copies files from an existing on\-premises or cloud file system into an Amazon EFS file system\. EFS File Sync securely and efficiently copies files over the internet or an AWS Direct Connect connection\. It copies file data and file system metadata such as ownership, timestamps, and access permissions\. For information about how to use AWS Direct Connect, see [Walkthrough 5: Create and Mount a File System On\-Premises with AWS Direct Connect](efs-onpremises.md)\. 
+
+**Note**  
+You don’t need to set up AWS Direct Connect to use EFS File Sync\.
 
 **Topics**
 + [Requirements for EFS File Sync](#file-sync-requirements)
@@ -108,7 +111,7 @@ For more details on the EFS File Sync process, see the following:
 
 ## How EFS File Sync Transfers Files<a name="transfering-files"></a>
 
-When a sync task starts, it goes through three different statuses: **Preparing**, **Synching** and **Verifying**\. In the **Preparing** status, EFS File Sync examines the source and destination file systems to determine which files to sync\. It does so by recursively scanning the contents of the source and destination file systems for differences\. The files it examines include files that have been modified, deleted, added and files that have their metadata modified\.
+When a sync task starts, it goes through three different statuses: **Preparing**, **Syncing** and **Verifying**\. In the **Preparing** status, EFS File Sync examines the source and destination file systems to determine which files to sync\. It does so by recursively scanning the contents of the source and destination file systems for differences\. The files it examines include files that have been modified, deleted, added and files that have their metadata modified\.
 
 After the scanning is done, and the differences are calculated, EFS File Sync transitions to the **Syncing** status\. At this point, EFS File Sync starts transferring files from the source file system to the destination Amazon EFS file system\. Only files that have been added, modified, or deleted are transferred\. This incremental transfer doesn't depend on the sync task you use but rather depends on the contents of your source and destination file system\. In the Configure sync settings dialog box, you can choose which metadata in source file system you want to preserve\. You can also configure your sync tasks settings to keep or delete files in the destination even if they aren't found in the source file system\.
 

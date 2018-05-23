@@ -42,7 +42,7 @@ In the following steps, you create a user \(mike\), create a subdirectory for th
 1. Use the `mount` command to mount the *EFSroot*/mike subdirectory onto mike's home directory\.
 
    ```
-   $  sudo mount -t nfs -o nfsvers=4.1,rsize=1048576,wsize=1048576,hard,timeo=600,retrans=2 mount-target-DNS:/mike  /home/mike
+   $  sudo mount -t nfs -o nfsvers=4.1,rsize=1048576,wsize=1048576,hard,timeo=600,retrans=2,noresvport mount-target-DNS:/mike  /home/mike
    ```
 
    The *mount\-target\-DNS* address identifies the remote Amazon EFS file system root\. 

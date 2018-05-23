@@ -14,9 +14,7 @@ Using Amazon EFS with Microsoft Windows Amazon EC2 instances is not supported\.
 
 1. Choose **Launch Instance**\.
 
-1. In **Step 1: Choose an Amazon Machine Image \(AMI\)**, find the Amazon Linux AMI at the top of the list and choose **Select**\.
-**Note**  
-If you choose either the **Amazon Linux AMI 2016\.03\.0** or **Amazon Linux AMI 2016\.09\.0** AMI when launching your Amazon EC2 instance, you don't need to install `nfs-utils` because it's already included in the AMI by default\.
+1. In **Step 1: Choose an Amazon Machine Image \(AMI\)**, find an Amazon Linux AMI at the top of the list and choose **Select**\.
 
 1. In **Step 2: Choose an Instance Type**, choose **Next: Configure Instance Details**\.
 

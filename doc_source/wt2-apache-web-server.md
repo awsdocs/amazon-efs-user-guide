@@ -57,7 +57,7 @@ Follow the steps to set up an Apache web server on one EC2 instance to serve fil
       1. Mount your Amazon EFS file system\. You need to update the following command by providing your file system ID and AWS region \(if you followed the Getting Started exercise to create a file system, the getting started assumes us\-west\-2 AWS Region\)\.
 
          ```
-         $ sudo mount -t nfs -o nfsvers=4.1,rsize=1048576,wsize=1048576,hard,timeo=600,retrans=2 file-system-id.efs.aws-region.amazonaws.com:/ /var/www/html/efs-mount-point
+         $ sudo mount -t nfs -o nfsvers=4.1,rsize=1048576,wsize=1048576,hard,timeo=600,retrans=2,noresvport file-system-id.efs.aws-region.amazonaws.com:/ /var/www/html/efs-mount-point
          ```
 
          Here you dynamically construct DNS name of the mount target from the EC2 instance you are on\. For more information, see [Mounting on Amazon EC2 with a DNS Name](mounting-fs-mount-cmd-dns-name.md)\.

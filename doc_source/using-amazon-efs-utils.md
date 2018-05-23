@@ -5,6 +5,7 @@ Following, you can find a description of amazon\-efs\-utils, an open\-source col
 **Topics**
 + [Overview](#overview-amazon-efs-utils)
 + [Installing the amazon\-efs\-utils Package on Amazon Linux](#installing-amazon-efs-utils)
++ [Installing the amazon\-efs\-utils Package on Other Linux Distributions](#installing-other-distro)
 + [Upgrading Stunnel](#upgrading-stunnel)
 + [EFS Mount Helper](#efs-mount-helper)
 
@@ -21,13 +22,9 @@ The following dependencies exist for amazon\-efs\-utils and are installed when y
 + OpenSSL 1\.0\.2 or newer
 
 **Note**  
-By default, when using the Amazon EFS mount helper with TLS, it enforces the use of the Online Certificate Status Protocol \(OCSP\) and certificate hostname checking\. The Amazon EFS mount helper uses the stunnel program for its TLS functionality\. Note that some versions of Linux don't include a version of stunnel that supports these TLS features by default\. When using one of those Linux versions, mounting an Amazon EFS file system using TLS will fail\.  
-Once you've installed the amazon\-efs\-utils package, to upgrade your system's version of stunnel, see [Upgrading Stunnel](#upgrading-stunnel)\.  
-For issues with encryption, see [ Troubleshooting Encryption    Mounting with Encryption of Data in Transit Fails  By default, when using the Amazon EFS mount helper with TLS, it enforces use of the Online Certificate Status Protocol \(OCSP\) and certificate hostname checking\. If your system does not support either of these features \(for example, when using Red Hat Enterprise Linux or CentOS\), mounting an EFS file system using TLS will fail\.   Mounting with Encryption of Data in Transit is Interrupted  It's possible, however unlikely, that your encrypted connection to your Amazon EFS file system can hang or be interrupted by client\-side events\.  Action to Take If your connection to your Amazon EFS file system with encryption of data in transit is interrupted, take the following steps:    Ensure that the stunnel service is running on the client\.   Confirm that the watchdog application `amazon-efs-mount-watchdog` is running on the client\. You can find out whether this application is running with the following command: 
-
-   ```
-   ps aux | grep [a]mazon-efs-mount-watchdog
-   ```   Check your support logs\. For more information, see [Getting Support Logs](using-amazon-efs-utils.md#mount-helper-logs)\.   Optionally, you can enable your stunnel logs and check the information in those as well\. You can change the configuration of your logs in `/etc/amazon/efs/amazon-efs-utils.conf` to enable the stunnel logs\. However, doing so requires unmounting and then remounting the file system with the mount helper for the changes to take effect\.  Enabling the stunnel logs can use up a nontrivial amount of space on your file system\.    If the interruptions continue, contact AWS Support\.   Encrypted\-at\-Rest File System Can't Be Created  You've tried to create a new encrypted\-at\-rest file system\. However, you get an error message saying that AWS KMS is unavailable\.  Action to Take This error can occur in the rare case that AWS KMS becomes temporarily unavailable in your AWS Region\. If this happens, wait until AWS KMS returns to full availability, and then try again to create the file system\.     Unusable Encrypted File System  An encrypted file system consistently returns NFS server errors\. These errors can occur when EFS can't retrieve your master key from AWS KMS for one of the following reasons:   The key was disabled\.   The key was deleted\.   Permission for Amazon EFS to use the key was revoked\.   AWS KMS is temporarily unavailable\.    Action to Take First, confirm that the AWS KMS key is enabled\. You can do so by viewing the keys in the console\. For more information, see [Viewing Keys](http://docs.aws.amazon.com/kms/latest/developerguide/viewing-keys.html) in the *AWS Key Management Service Developer Guide*\.  If the key is not enabled, enable it\. For more information, see [Enabling and Disabling Keys](http://docs.aws.amazon.com/kms/latest/developerguide/enabling-keys.html) in the *AWS Key Management Service Developer Guide*\. If the key is pending deletion, then this status disables the key\. You can cancel the deletion, and re\-enable the key\. For more information, see [Scheduling and Canceling Key Deletion](http://docs.aws.amazon.com/kms/latest/developerguide/deleting-keys.html#deleting-keys-scheduling-key-deletion) in the *AWS Key Management Service Developer Guide*\. If the key is enabled, and you're still experiencing an issue, or if you encounter an issue re\-enabling your key, contact AWS Support\.  ](troubleshooting-efs-encryption.md)\.
+By default, when using the Amazon EFS mount helper with Transport Layer Security \(TLS\), the mount helper enforces the use of the Online Certificate Status Protocol \(OCSP\) and certificate hostname checking\. The Amazon EFS mount helper uses the stunnel program for its TLS functionality\. Some versions of Linux don't include a version of stunnel that supports these TLS features by default\. When using one of those Linux versions, mounting an Amazon EFS file system using TLS fails\.  
+When you've installed the amazon\-efs\-utils package, to upgrade your system's version of stunnel, see [Upgrading Stunnel](#upgrading-stunnel)\.  
+For issues with encryption, see [Troubleshooting Encryption](troubleshooting-efs-encryption.md)\.
 
 The following Linux distributions support amazon\-efs\-utils:
 + Amazon Linux 2
@@ -44,7 +41,7 @@ The amazon\-efs\-utils package is available for installation in Amazon Linux and
 **Note**  
 If you're using AWS Direct Connect, you can find installation instructions in [Walkthrough 5: Create and Mount a File System On\-Premises with AWS Direct Connect](efs-onpremises.md)\.
 
-**Installing amazon\-efs\-utils Package**
+**To install the amazon\-efs\-utils package**
 
 1. Make sure that you've created an Amazon Linux or Amazon Linux 2 EC2 instance\. For information on how to do this, see [Step 1: Launch an Instance](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EC2_GetStarted.html#ec2-launch-instance) in the* Amazon EC2 User Guide for Linux Instances\.*
 
@@ -56,15 +53,15 @@ If you're using AWS Direct Connect, you can find installation instructions in [W
    sudo yum install -y amazon-efs-utils
    ```
 
-### Installing the amazon\-efs\-utils Package on Other Linux Distributions<a name="installing-other-distro"></a>
+## Installing the amazon\-efs\-utils Package on Other Linux Distributions<a name="installing-other-distro"></a>
 
-If you're not using Amazon Linux, the amazon\-efs\-utils package is also available on GitHub\. 
+If you don't want to get the amazon\-efs\-utils package from Amazon Linux or Amazon Linux 2 AMIs, the amazon\-efs\-utils package is also available on GitHub\. 
 
-**Cloning amazon\-efs\-utils from GitHub**
+**To clone amazon\-efs\-utils from GitHub**
 
-1. Make sure that you've created an EC2 instance of the supported AMI type\. For more information on how to do this, see [Step 1: Launch an Instance](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EC2_GetStarted.html#ec2-launch-instance) in the *Amazon EC2 User Guide for Linux Instances\.*
+1. Make sure that you've created an Amazon EC2 instance of the supported AMI type\. For more information on how to do this, see [Step 1: Launch an Instance](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EC2_GetStarted.html#ec2-launch-instance) in the *Amazon EC2 User Guide for Linux Instances\.*
 
-1. Access the terminal for your instance through SSH, and log in with the appropriate user name\. For more information on how to do this, see [Connecting to Your Linux Instance Using SSH](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AccessingInstancesLinux.html) in the *Amazon EC2 User Guide for Linux Instances\.*
+1. Access the terminal for your instance through Secure Shell \(SSH\), and log in with the appropriate user name\. For more information on how to do this, see [Connecting to Your Linux Instance Using SSH](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AccessingInstancesLinux.html) in the *Amazon EC2 User Guide for Linux Instances\.*
 
 1. From the terminal, clone the amazon\-efs\-utils tool from GitHub to a directory of your choice, with the following command\. 
 
@@ -72,35 +69,47 @@ If you're not using Amazon Linux, the amazon\-efs\-utils package is also availab
    git clone https://github.com/aws/efs-utils
    ```
 
-Once you clone the package, you can build and install amazon\-efs\-utils using one of the following methods, depending on the package type supported by your Linux distribution:
+   Since you'll need the bash command 'make', you can install it with the following command:
+
+   ```
+        sudo yum -y install make
+   ```
+
+After you clone the package, you can build and install amazon\-efs\-utils using one of the following methods, depending on the package type supported by your Linux distribution:
 + **RPM** – This package type is supported by Amazon Linux, Red Hat Linux, CentOS, and similar\.
 + **DEB** – This package type is supported by Ubuntu, Debian, and similar\.
 
 **To build and install amazon\-efs\-utils as an RPM package**
 
-1. Open a terminal on your client and navigate to the directory that has the cloned amazon\-efs\-utils package from GitHub\.
+1. Open a terminal on your client and navigate to the directory that has the cloned amazon\-efs\-utils package from GitHub \(for example "/home/centos/efs\-utils"\)\.
 
 1. Build the package with the following command\.
 
    ```
-   make rpm
+   sudo make rpm
    ```
 **Note**  
-If you haven't already, you'll need to install the rpm\-builder package with the following command:  
+If you haven't done so already, install the rpm\-builder package with the following command\.  
 
    ```
    sudo yum -y install rpm-build
    ```
 
-1. Install the package with the following command\.
+1. Install the amazon\-efs\-utils package with the following command\.
 
    ```
-   sudo yum -y install build/amazon-efs-utils*rpm
+   sudo yum -y install ./build/amazon-efs-utils*rpm
    ```
 
 **To build and install amazon\-efs\-utils as a DEB package**
 
 1. Open a terminal on your client and navigate to the directory that has the cloned amazon\-efs\-utils package from GitHub\.
+
+1. Install the binutils package, a dependency for building DEB packages\.
+
+   ```
+   sudo apt-get -y install binutils
+   ```
 
 1. Build the package with the following command\.
 
@@ -111,44 +120,52 @@ If you haven't already, you'll need to install the rpm\-builder package with the
 1. Install the package with the following command\.
 
    ```
-   sudo apt-get install build/amazon-efs-utils*deb
+   sudo apt-get -y install ./build/amazon-efs-utils*deb
    ```
 
 ## Upgrading Stunnel<a name="upgrading-stunnel"></a>
 
->Using encryption of data in transit with the Amazon EFS mount helper requires OpenSSL version 1\.0\.2 or newer, and a version of stunnel that supports both OSCP and certificate hostname checking\. The Amazon EFS mount helper uses the stunnel program for its TLS functionality\. Note that some versions of Linux don't include a version of stunnel that supports these TLS features by default\. When using one of those Linux versions, mounting an Amazon EFS file system using TLS will fail\.
+Using encryption of data in transit with the Amazon EFS mount helper requires OpenSSL version 1\.0\.2 or newer, and a version of stunnel that supports both OSCP and certificate hostname checking\. The Amazon EFS mount helper uses the stunnel program for its TLS functionality\. Note that some versions of Linux don't include a version of stunnel that supports these TLS features by default\. When using one of those Linux versions, mounting an Amazon EFS file system using TLS fails\.
 
 After installing the Amazon EFS mount helper, you can upgrade your system's version of stunnel with the following instructions\.
+
+**To upgrade stunnel**
 
 1. Open a terminal on your Linux client, and run the following commands in order\.
 
 1. `sudo yum install -y gcc openssl-devel tcp_wrappers-devel`
 
-1. `curl -o stunnel-5.44.tar.gz https://www.stunnel.org/downloads/stunnel-5.44.tar.gz`
+1. `sudo curl -o stunnel-5.45.tar.gz https://www.stunnel.org/downloads/stunnel-5.45.tar.gz`
 
-1. `tar xvfz stunnel-5.44.tar.gz`
+1. `sudo tar xvfz sstunnel-5.45.tar.gz`
 
-1. `cd stunnel-5.44/`
+1. `cd stunnel-5.45/`
 
-1. `./configure`
+1. `sudo ./configure`
 
-1. `make`
+1. `sudo make`
 
 1. `sudo make install` 
 
 1. 
+**Note**  
+The default CentOS shell is csh, which has different syntax than the bash shell\. The following code first invokes bash, then runs\.
 
    ```
-   if [[-f /bin/stunnel ]]; then
+   bash
+   ```
+
+   ```
+   if [[ -f /bin/stunnel ]]; then
    sudo mv /bin/stunnel /root
    fi
    ```
 
 1. `sudo ln -s /usr/local/bin/stunnel /bin/stunnel`
 
-Once you've installed a version of stunnel with the required features, you can mount your file system using TLS with the recommended settings\.
+After you've installed a version of stunnel with the required features, you can mount your file system using TLS with the recommended settings\.
 
-If you are unable to install the required dependencies, you can optionally disable OCSP and certificate hostname checking inside the Amazon EFS mount helper configuration\. We do not recommend that you disable these features in production environments\. To do so:
+If you are unable to install the required dependencies, you can optionally disable OCSP and certificate hostname checking inside the Amazon EFS mount helper configuration\. We do not recommend that you disable these features in production environments\. To disable OCSP and certificate host name checking, do the following:
 
 1. Using your text editor of choice, open the `/etc/amazon/efs/efs-utils.conf` file\.
 
@@ -171,7 +188,7 @@ The mount helper defines a new network file system type, called `efs`, which is 
 **Warning**  
 Use the `_netdev` option, used to identify network file systems, when mounting your file system automatically\. If `_netdev` is missing, your EC2 instance might stop responding\. This result is because network file systems need to be initialized after the compute instance starts its networking\. For more information, see [Automatic Mounting Fails and the Instance Is Unresponsive](troubleshooting-efs-mounting.md#automount-fails)\.
 
-When encryption of data in transit is declared as a mount option for your Amazon EFS file system, the mount helper initializes a client stunnel process, and a supervisor process called `amazon-efs-mount-watchdog`\. Stunnel is an multipurpose network relay that is open\-source\. The client stunnel process listens on a local port for inbound traffic, and the mount helper redirects NFS client traffic to this local port\. The mount helper uses Transport Layer Security \(TLS\) version 1\.2 to communicate with your file system\.
+When encryption of data in transit is declared as a mount option for your Amazon EFS file system, the mount helper initializes a client stunnel process, and a supervisor process called `amazon-efs-mount-watchdog`\. Stunnel is a multipurpose network relay that is open\-source\. The client stunnel process listens on a local port for inbound traffic, and the mount helper redirects NFS client traffic to this local port\. The mount helper uses TLS version 1\.2 to communicate with your file system\.
 
 Using TLS requires certificates, and these certificates are signed by a trusted Amazon Certificate Authority\. For more information on how encryption works, see [Encrypting Data and Metadata in EFS](encryption.md)\.
 

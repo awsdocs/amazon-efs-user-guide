@@ -12,6 +12,7 @@
 + [Mount Target Lifecycle State Is Stuck](#mount-target-lifecycle-stuck)
 + [Mount Does Not Respond](#mount-unresponsive)
 + [Operations on Newly Mounted File System Return "bad file handle" Error](#operations-return-bad-file-handle)
++ [Unmounting a File System Fails](#troubhleshooting-unmounting)
 
 ## File System Mount on Windows Instance Fails<a name="mount-windows-instance-fails"></a>
 
@@ -103,7 +104,7 @@ If you're programmatically creating and mounting file systems, for example with 
 The file system mount command hangs for a minute or two, and then fails with a timeout error\. The following code shows an example\.
 
 ```
-$ sudo mount -t nfs -o nfsvers=4.1,rsize=1048576,wsize=1048576,hard,timeo=600,retrans=2 mount-target-ip:/ mnt
+$ sudo mount -t nfs -o nfsvers=4.1,rsize=1048576,wsize=1048576,hard,timeo=600,retrans=2,noresvport mount-target-ip:/ mnt
 
 [2+ minute wait here]
 mount.nfs: Connection timed out
@@ -121,7 +122,7 @@ Verify that the mount target IP address that you specified is valid\. If you spe
 A file system mount that is using a DNS name fails\. The following code shows an example\.
 
 ```
-$ sudo mount -t nfs -o nfsvers=4.1,rsize=1048576,wsize=1048576,hard,timeo=600,retrans=2 file-system-id.efs.aws-region.amazonaws.com:/ mnt   
+$ sudo mount -t nfs -o nfsvers=4.1,rsize=1048576,wsize=1048576,hard,timeo=600,retrans=2,noresvport file-system-id.efs.aws-region.amazonaws.com:/ mnt   
 mount.nfs: Failed to resolve server file-system-id.efs.aws-region.amazonaws.com: 
   Name or service not known.   
 
@@ -135,7 +136,7 @@ Check your VPC configuration\. If you are using a custom VPC, make sure that DNS
 To specify a DNS name in the `mount` command, you must do the following:
 + Ensure that there's an Amazon EFS mount target in the same Availability Zone as the Amazon EC2 instance\.
 + Connect your Amazon EC2 instance inside an Amazon VPC configured to use the DNS server provided by Amazon\. For more information, see [DHCP Options Sets](http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_DHCP_Options.html) in the *Amazon VPC User Guide*\.
-+ Ensure that the Amazon VPC of the connecting Amazon EC2 instance has DNS host names enabled\. For more information, see [Updating DNS Support for Your VPC](http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/vpc-dns.html#vpc-dns-updating) in the *Amazon VPC User Guide*\.
++ Ensure that the Amazon VPC of the connecting Amazon EC2 instance has DNS hostnames enabled\. For more information, see [Updating DNS Support for Your VPC](http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/vpc-dns.html#vpc-dns-updating) in the *Amazon VPC User Guide*\.
 
 ## Mount Target Lifecycle State Is Stuck<a name="mount-target-lifecycle-stuck"></a>
 
@@ -169,3 +170,14 @@ This error can happen if an Amazon EC2 instance was connected to one file system
 
 **Action to Take**  
 You can resolve this error by unmounting the file system, and then remounting the file system on the Amazon EC2 instance\. For more information about unmounting your Amazon EFS file system, see [Unmounting File Systems](mounting-fs-mount-cmd-general.md#unmounting-fs)\.
+
+## Unmounting a File System Fails<a name="troubhleshooting-unmounting"></a>
+
+If your file system is busy, you can't unmount it\.
+
+**Action to Take**  
+You can resolve this issue in the following ways:
++ Wait for all read and write operations to finish, and then attempt the `umount` command again\.
++ Force the `umount` command to finish with the `-f` option\.
+**Warning**  
+Forcing an unmount interrupts any data read or write operations that are currently in process for the file system\.

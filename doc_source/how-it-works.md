@@ -12,7 +12,7 @@ Following, you can find a description about how Amazon EFS works, its implementa
 
 ## Overview<a name="how-it-works-conceptual"></a>
 
-Amazon EFS provides file storage in the AWS Cloud\. With Amazon EFS, you can create a file system, mount the file system on an Amazon EC2 instance, and then read and write data from to and from your file system\. You can mount an Amazon EFS file system in your VPC, through the Network File System versions 4\.0 and 4\.1 \(NFSv4\) protocol\. 
+Amazon EFS provides file storage in the AWS Cloud\. With Amazon EFS, you can create a file system, mount the file system on an Amazon EC2 instance, and then read and write data to and from your file system\. You can mount an Amazon EFS file system in your VPC, through the Network File System versions 4\.0 and 4\.1 \(NFSv4\) protocol\. 
 
 For a list of Amazon EC2 Linux Amazon Machine Images \(AMIs\) that support this protocol, see [NFS Support](mounting-fs-old.md#mounting-fs-nfs-info)\. We recommend using a current generation Linux NFSv4\.1 client, such as those found in Amazon Linux and Ubuntu AMIs\. For some AMIs, you'll need to install an NFS client to mount your file system on your Amazon EC2 instance\. For instructions, see [Installing the NFS Client](mounting-fs-old.md#mounting-fs-install-nfsclient)\.
 
@@ -91,7 +91,7 @@ Amazon EFS also supports other resources to configure the primary resource\. The
   You can specify this DNS name in your `mount` command to mount the Amazon EFS file system\. Suppose you create an `efs-mount-point` subdirectory off of your home directory on your EC2 instance or on\-premises server\. Then, you can use the mount command to mount the file system\. For example, on an Amazon Linux AMI, you can use following `mount` command\.
 
   ```
-  $ sudo mount -t nfs -o nfsvers=4.1,rsize=1048576,wsize=1048576,hard,timeo=600,retrans=2 file-system-DNS-name:/ ~/efs-mount-point 
+  $ sudo mount -t nfs -o nfsvers=4.1,rsize=1048576,wsize=1048576,hard,timeo=600,retrans=2,noresvport file-system-DNS-name:/ ~/efs-mount-point 
   ```
 
   For more information, see [Creating Mount Targets](accessing-fs.md)\. First, you need to install the NFS client on your EC2 instance\. The [Getting Started](getting-started.md) exercise provides step\-by\-step instructions\.

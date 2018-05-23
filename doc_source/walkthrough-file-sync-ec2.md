@@ -34,7 +34,7 @@ To create a sync agent in Amazon EC2, you will use the AMI provided to create an
 **Note**  
 A sync agent syncs files to EFS file systems in the AWS region where the sync agent is activated\. Standard Amazon EC2 rates apply to the instance\.
 
-1. On the **Choose an Instance Type** page, choose the hardware configuration of your instance\. When deploying your sync agent on Amazon EC2,we recommend choosing one of the **Memory optimized** instance types for your sync agent\. The instance size you choose must be at least **xlarge**\.
+1. On the **Choose an Instance Type** page, choose the hardware configuration of your instance\. When deploying your sync agent on Amazon EC2, we recommend choosing one of the **Memory optimized** instance types for your sync agent\. The instance size you choose must be at least **xlarge**\.
 
 1. Choose **Next: Configure Instance Details**\.
 

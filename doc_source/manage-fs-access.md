@@ -26,7 +26,7 @@ We recommend that you create mount targets in all the Availability Zones so you 
 **Warning**  
 If you change the IP address of a mount target, you break any existing file system mounts and you need to remount the file system\.
 
-None of the configuration changes to file system network accessibility affect the file system itself\. Your file system and data remain\. 
+None of the configuration changes to file system network accessibility affects the file system itself\. Your file system and data remain\. 
 
 The following sections provide information about managing network accessibility of your file system\. 
 

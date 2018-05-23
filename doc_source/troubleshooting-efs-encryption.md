@@ -8,7 +8,10 @@
 
 ## Mounting with Encryption of Data in Transit Fails<a name="mounting-tls-fails"></a>
 
-By default, when using the Amazon EFS mount helper with TLS, it enforces use of the Online Certificate Status Protocol \(OCSP\) and certificate hostname checking\. If your system does not support either of these features \(for example, when using Red Hat Enterprise Linux or CentOS\), mounting an EFS file system using TLS will fail\.
+By default, when using the Amazon EFS mount helper with TLS, it enforces use of the Online Certificate Status Protocol \(OCSP\) and certificate hostname checking\. If your system doesn't support either of these features \(for example, when using Red Hat Enterprise Linux or CentOS\), mounting an EFS file system using TLS fails\.
+
+**Action to Take**  
+ We recommend upgrading the version of stunnel on your client to support these features\. For more information, see [Upgrading Stunnel](using-amazon-efs-utils.md#upgrading-stunnel)\.
 
 ## Mounting with Encryption of Data in Transit is Interrupted<a name="mounting-tls-interrupt"></a>
 

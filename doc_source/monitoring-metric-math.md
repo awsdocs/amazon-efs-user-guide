@@ -1,6 +1,6 @@
 # Using Metric Math with Amazon EFS<a name="monitoring-metric-math"></a>
 
-Using metric math, you can query multiple CloudWatch metrics and use math expressions to create new time series based on these metrics\. You can visualize the resulting time series in the CloudWatch console and add them to dashboards\. For example, using Amazon EFS metrics, you can take the sample count of `DataRead` operations divided by 60 to get the average number of reads per second on your file system for a given 1\-minute period\. For more information on metric math, see [Use Metric Math](http://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/using-metric-math.html) in the* Amazon CloudWatch User Guide\.*
+Using metric math, you can query multiple CloudWatch metrics and use math expressions to create new time series based on these metrics\. You can visualize the resulting time series in the CloudWatch console and add them to dashboards\. For example, you can use Amazon EFS metrics to take the sample count of `DataRead` operations divided by 60\. The result is the average number of reads per second on your file system for a given 1\-minute period\. For more information on metric math, see [Use Metric Math](http://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/using-metric-math.html) in the* Amazon CloudWatch User Guide\.*
 
 Following, find some useful metric math expressions for Amazon EFS\.
 

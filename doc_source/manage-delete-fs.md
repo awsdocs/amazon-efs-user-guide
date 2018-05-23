@@ -1,6 +1,6 @@
 # Deleting an Amazon EFS File System<a name="manage-delete-fs"></a>
 
-File system deletion is a destructive action that cannot be undone\. You lose the file system and any data you have in it\. 
+File system deletion is a destructive action that you can't undo\. You lose the file system and any data you have in it\. Any data that you delete from a file system is gone, and you can't restore the data\.
 
 **Important**  
 You should always unmount a file system before you delete it\.

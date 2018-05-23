@@ -123,7 +123,17 @@ If you haven't already, you'll need to install the rpm\-builder package with the
    sudo apt-get install build/amazon-efs-utils*deb
    ```
 
-Now that the amazon\-efs\-utils package is installed, you can mount your file system to your on\-premises client\.
+After the package is installed, configure amazon\-efs\-utils for use in your AWS Region with AWS Direct Connect\.
+
+**To configure amazon\-efs\-utils for use in your AWS Region**
+
+1. Using your text editor of choice, open `/etc/amazon/efs/amazon-efs-utils.conf` for editing\.
+
+1. Find the line `“dns_name_format = {fs_id}.efs.{region}.amazonaws.com”`\.
+
+1. Change `{region}` with the ID for your AWS Region, for example `us-west-2`\.
+
+Now that the amazon\-efs\-utils package is installed and configured, you can mount your file system to your on\-premises client\.
 
 ## Step 3: Mount the Amazon EFS File System on Your On\-Premises Client<a name="wt5-step3-connect"></a>
 
@@ -131,7 +141,7 @@ To mount the EFS file system on your on\-premises client, first open a terminal 
 
 When you have that information, you can mount your file system in three steps:
 
-1. Choose your preferred IP address of the mount target in the Availability Zone\. You can measure the latency from your on\-premises Linux clients by using terminal\-based tools like `ping` against the IP address of your different mount targets to find the one with the lowest latency\.
+1. Choose your preferred IP address of the mount target in the Availability Zone\. You can measure the latency from your on\-premises Linux clients\. To do so, use a terminal\-based tool like `ping` against the IP address of your EC2 instances in different Availability Zones to find the one with the lowest latency\.
 
 1. Add an entry to your local `/etc/hosts` file with the file system ID and the mount target IP address, in the following format\.
 
@@ -162,7 +172,7 @@ When you have that information, you can mount your file system in three steps:
 **Example**  
 
    ```
-   sudo mount -t -o tls efs fs-12345678 ~/efs
+   sudo mount -t efs -o tls fs-12345678 ~/efs
    ```
 
 Now that you've mounted your Amazon EFS file system, you can test it out with the following procedure\.

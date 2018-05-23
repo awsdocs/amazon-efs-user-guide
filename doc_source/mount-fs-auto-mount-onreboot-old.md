@@ -16,7 +16,7 @@ Before you can update the /etc/fstab file of your EC2 instance, make sure that y
 1. Add the following line to the `/etc/fstab` file\.
 
    ```
-   mount-target-DNS:/ efs-mount-point nfs4 nfsvers=4.1,rsize=1048576,wsize=1048576,hard,timeo=600,retrans=2,_netdev 0 0
+   mount-target-DNS:/ efs-mount-point nfs4 nfsvers=4.1,rsize=1048576,wsize=1048576,hard,timeo=600,retrans=2,_netdev,noresvport 0 0
    ```
 
    If you want to copy the contents of your `/etc/fstab` file between EC2 instances in different Availability Zones \(AZ\), we recommend that you use the file system DNS name\. Don't copy the `/etc/fstab` file between AZs if you're using the mount target DNS name\. If you do, then each file system has a unique DNS name for each Availability Zone with a mount target\. For more information about DNS names, see [Mounting on Amazon EC2 with a DNS Name](mounting-fs-mount-cmd-dns-name.md)\.

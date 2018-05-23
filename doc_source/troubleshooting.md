@@ -1,6 +1,6 @@
 # Troubleshooting Amazon EFS<a name="troubleshooting"></a>
 
-Following, you can find information on how to troubleshoot issues for Amazon Elastic File System \(Amazon EFS\)\. For optimal performance and to avoid a variety of known NFS client bugs, we recommend a Linux kernel that is version 4\.0 or newer\.
+Following, you can find information on how to troubleshoot issues for Amazon Elastic File System \(Amazon EFS\)\. 
 
 **Topics**
 + [Troubleshooting Amazon EFS: General Issues](#troubleshooting-efs-general)
@@ -12,6 +12,16 @@ Following, you can find information on how to troubleshoot issues for Amazon Ela
 ## Troubleshooting Amazon EFS: General Issues<a name="troubleshooting-efs-general"></a>
 
 Following, you can find information about general troubleshooting issues related to Amazon EFS\. For information on performance, see [Amazon EFS Performance](performance.md)\.
+
+In general, if you encounter issues with Amazon EFS that you have trouble resolving, confirm that you're using a recent Linux kernel\. If you are using an enterprise Linux distribution, we recommend the following:
++ Amazon Linux 2015\.09 or newer
++ RHEL 7\.3 or newer
++ RHEL 6\.9 with kernel 2\.6\.32\-704 or newer
++ All versions of Ubuntu 16\.04
++ Ubuntu 14\.04 with kernel 3\.13\.0\-83 or newer
++ SLES 12 Sp2 or later
+
+If you are using another distribution or a custom kernel, we recommend kernel version 4\.3 or newer\.
 
 **Topics**
 + [Amazon EC2 Instance Hangs](#ec2-instance-hangs)
@@ -55,9 +65,9 @@ Open and close operations that are performed on a file system by a user on a sin
 
 **Action to Take**
 
-This issue can be resolved by using NFS protocol version 4\.1, and an Amazon EC2 Amazon Machine Image \(AMI\) that includes a Linux kernel version 4\.0 or newer\. By using NFSv4\.1 when mounting your file systems, you enable parallelized open and close operations on files\. We recommend using **Amazon Linux AMI 2016\.03\.0** as the AMI for the Amazon EC2 instance that you mount your file system to\. 
+To resolve this issue, use NFS protocol version 4\.1 and one of the suggested Linux kernels\. By using NFSv4\.1 when mounting your file systems, you enable parallelized open and close operations on files\. We recommend using **Amazon Linux AMI 2016\.03\.0** as the AMI for the Amazon EC2 instance that you mount your file system to\. 
 
-If you can't use NFSv4\.1, note that the Linux NFSv4\.0 client serializes open and close requests by user ID and group IDs\. This serialization happens even if multiple processes or multiple threads issue requests at the same time\. The client only sends one open or close operation to an NFS server at a time, when all of the IDs match\.
+If you can't use NFSv4\.1, be aware that the Linux NFSv4\.0 client serializes open and close requests by user ID and group IDs\. This serialization happens even if multiple processes or multiple threads issue requests at the same time\. The client only sends one open or close operation to an NFS server at a time, when all of the IDs match\.
 
 In addition, you can perform any of the following actions to resolve this issue:
 + You can run each process from a different user ID on the same Amazon EC2 instance\.
@@ -174,7 +184,7 @@ You can resolve this error by doing the following:
 A file system gets stuck performing repeated operations due to a client bug\.
 
 **Action to Take**  
-Update the client software to the latest version \(currently, **Linux kernel version 4\.1**\)\. 
+Update the client software to the latest version\.
 
 ### Deadlocked Client<a name="deadlocked-client"></a>
 
