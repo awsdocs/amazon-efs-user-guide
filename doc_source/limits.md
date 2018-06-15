@@ -20,7 +20,7 @@ Following are the limits for Amazon EFS that can be increased by contacting AWS 
 
 | Resource | Default Limit | 
 | --- | --- | 
-| Total throughput for each file system for all connected clients |  US East \(Ohio\) Region – 3 GB/s US East \(N\. Virginia\) Region – 3 GB/s US West \(N\. California\) Region – 1 GB/s US West \(Oregon\) Region – 3 GB/s EU \(Frankfurt\) Region – 1 GB/s EU \(Ireland\) Region – 3 GB/s Asia Pacific \(Sydney\) Region – 3 GB/s  | 
+| Total throughput for each file system for all connected clients |  US East \(Ohio\) Region – 3 GB/s US East \(N\. Virginia\) Region – 3 GB/s US West \(N\. California\) Region – 1 GB/s US West \(Oregon\) Region – 3 GB/s Asia Pacific \(Seoul\) 1 GB/s EU \(Frankfurt\) Region – 1 GB/s EU \(Ireland\) Region – 3 GB/s Asia Pacific \(Sydney\) Region – 3 GB/s  | 
 
 You can take the following steps to request an increase for these limits\. These increases are not granted immediately, so it might take a couple of days for your increase to become effective\.
 
@@ -41,7 +41,7 @@ Following are the limits on Amazon EFS resources for each customer account in an
 
 | Resource | Limit | 
 | --- | --- | 
-| Number of file systems |  US East \(Ohio\) Region – 125 US East \(N\. Virginia\) Region – 70 US West \(N\. California\) Region – 125 US West \(Oregon\) Region – 125 EU \(Frankfurt\) Region – 125 EU \(Ireland\) Region – 125 Asia Pacific \(Sydney\) Region – 125  | 
+| Number of file systems |  US East \(Ohio\) Region – 125 US East \(N\. Virginia\) Region – 70 US West \(N\. California\) Region – 125 US West \(Oregon\) Region – 125 Asia Pacific \(Seoul\) 125 EU \(Frankfurt\) Region – 125 EU \(Ireland\) Region – 125 Asia Pacific \(Sydney\) Region – 125  | 
 | Number of mount targets for each file system in an Availability Zone | 1 | 
 | Number of security groups for each mount target | 5 | 
 | Number of tags for each file system | 50 | 

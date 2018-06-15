@@ -2,13 +2,14 @@
 
 The following table describes important changes to the *Amazon Elastic File System User Guide*\.
 + **API version**: 2015\-02\-01
-+ **Latest documentation update**: April 4, 2018
++ **Latest documentation update**: May 30, 2018
 
 
 | Change | Description | Date Changed | 
 | --- | --- | --- | 
-| Added CloudWatch metric math support | Metric math enables you to query multiple CloudWatch metrics and use math expressions to create new time series based on these metrics\. For more information, see [Using Metric Math with Amazon EFS](monitoring-metric-math.md)\. | In this release | 
-| Added the amazon\-efs\-utils set of open\-source tools, and added encryption in transit | The amazon\-efs\-utils tools are a set of open\-source executable files that simplifies aspects of using Amazon EFS, like mounting\. There's no additional cost to use amazon\-efs\-utils, and you can download these tools from GitHub\. For more information, see [Using the amazon\-efs\-utils Tools](using-amazon-efs-utils.md)\. Also in this release, Amazon EFS now supports encryption in transit through Transport Layer Security \(TLS\) tunneling\. For more information, see [Encrypting Data and Metadata in EFS](encryption.md)\. | In this release | 
+| Additional AWS Region support added | Amazon EFS is now available to all users in the Asia Pacific \(Seoul\) AWS Region\. | In this release | 
+| Added CloudWatch metric math support | Metric math enables you to query multiple CloudWatch metrics and use math expressions to create new time series based on these metrics\. For more information, see [Using Metric Math with Amazon EFS](monitoring-metric-math.md)\. | April 4, 2018 | 
+| Added the amazon\-efs\-utils set of open\-source tools, and added encryption in transit | The amazon\-efs\-utils tools are a set of open\-source executable files that simplifies aspects of using Amazon EFS, like mounting\. There's no additional cost to use amazon\-efs\-utils, and you can download these tools from GitHub\. For more information, see [Using the amazon\-efs\-utils Tools](using-amazon-efs-utils.md)\. Also in this release, Amazon EFS now supports encryption in transit through Transport Layer Security \(TLS\) tunneling\. For more information, see [Encrypting Data and Metadata in EFS](encryption.md)\. | April 4, 2018 | 
 | Updated file system limits per AWS Region | Amazon EFS has increased the limit on the number of file systems for all accounts in all AWS Regions\. For more information, see [Resource Limits](limits.md#limits-efs-resources-per-account-per-region)\. | March 15, 2018 | 
 | Additional AWS Region support added | Amazon EFS is now available to all users in the US West \(N\. California\) AWS Region\. | March 14, 2018 | 
 | Amazon EFS File Sync \(EFS File Sync\) | Amazon EFS now supports copying files from your on\-premises data center or from the cloud to Amazon EFS by using EFS File Sync\. EFS File Sync copies file systems accessed using Network File System \(NFS\) version 3 or NFS version 4 to Amazon EFS file systems\. To get started, see [Amazon EFS File Sync](get-started-file-sync.md)\. | November 22, 2017 | 

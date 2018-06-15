@@ -1,8 +1,9 @@
 # Mounting File Systems Without the EFS Mount Helper<a name="mounting-fs-old"></a>
 
 **Note**  
+In this section, you can learn how to mount your Amazon EFS file system without the amazon\-efs\-utils package\. To use encryption of data in transit with your file system, you must mount your file system with Transport Layer Security \(TLS\)\. To do so, we recommend using the amazon\-efs\-utils package\. For more information, see [Using the amazon\-efs\-utils Tools](using-amazon-efs-utils.md)
 
-In the following section, you can learn how to install the Network File System \(NFS\) client and how to mount your Amazon EFS file system on an Amazon EC2 instance\. You also can find an explanation of the `mount` command and the available options for specifying your file system's Domain Name System \(DNS\) name in the `mount` command\. In addition, you can find how to use the file `fstab` to automatically remount your file system after any system restarts\.
+Following, you can learn how to install the Network File System \(NFS\) client and how to mount your Amazon EFS file system on an Amazon EC2 instance\. You also can find an explanation of the `mount` command and the available options for specifying your file system's Domain Name System \(DNS\) name in the `mount` command\. In addition, you can find how to use the file `fstab` to automatically remount your file system after any system restarts\.
 
 **Note**  
 Before you can mount a file system, you must create, configure, and launch your related AWS resources\. For detailed instructions, see [Getting Started with Amazon Elastic File System](getting-started.md)\.

@@ -55,7 +55,7 @@ If you're using AWS Direct Connect, you can find installation instructions in [W
 
 ## Installing the amazon\-efs\-utils Package on Other Linux Distributions<a name="installing-other-distro"></a>
 
-If you don't want to get the amazon\-efs\-utils package from Amazon Linux or Amazon Linux 2 AMIs, the amazon\-efs\-utils package is also available on GitHub\. 
+If you don't want to get the amazon\-efs\-utils package from Amazon Linux or Amazon Linux 2 AMIs, the amazon\-efs\-utils package is also available on GitHub\.
 
 **To clone amazon\-efs\-utils from GitHub**
 
@@ -63,13 +63,19 @@ If you don't want to get the amazon\-efs\-utils package from Amazon Linux or Ama
 
 1. Access the terminal for your instance through Secure Shell \(SSH\), and log in with the appropriate user name\. For more information on how to do this, see [Connecting to Your Linux Instance Using SSH](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AccessingInstancesLinux.html) in the *Amazon EC2 User Guide for Linux Instances\.*
 
-1. From the terminal, clone the amazon\-efs\-utils tool from GitHub to a directory of your choice, with the following command\. 
+1. If you haven't done so already, install gi with the following command\.
+
+   ```
+   sudo yum -y install git
+   ```
+
+1. From the terminal, clone the amazon\-efs\-utils tool from GitHub to a directory of your choice, with the following command\.
 
    ```
    git clone https://github.com/aws/efs-utils
    ```
 
-   Since you'll need the bash command 'make', you can install it with the following command:
+   Because you need the bash command `make`, you can install it with the following command if your operating system doesn't already have it\.
 
    ```
         sudo yum -y install make
@@ -83,16 +89,16 @@ After you clone the package, you can build and install amazon\-efs\-utils using 
 
 1. Open a terminal on your client and navigate to the directory that has the cloned amazon\-efs\-utils package from GitHub \(for example "/home/centos/efs\-utils"\)\.
 
+1. If you haven't done so already, install the rpm\-builder package with the following command\.
+
+   ```
+   sudo yum -y install rpm-build
+   ```
+
 1. Build the package with the following command\.
 
    ```
    sudo make rpm
-   ```
-**Note**  
-If you haven't done so already, install the rpm\-builder package with the following command\.  
-
-   ```
-   sudo yum -y install rpm-build
    ```
 
 1. Install the amazon\-efs\-utils package with the following command\.
@@ -135,15 +141,21 @@ After installing the Amazon EFS mount helper, you can upgrade your system's vers
 
 1. `sudo yum install -y gcc openssl-devel tcp_wrappers-devel`
 
-1. `sudo curl -o stunnel-5.45.tar.gz https://www.stunnel.org/downloads/stunnel-5.45.tar.gz`
+1. `sudo curl -o stunnel-5.46.tar.gz https://www.stunnel.org/downloads/stunnel-5.45.tar.gz`
 
-1. `sudo tar xvfz sstunnel-5.45.tar.gz`
+1. `sudo tar xvfz stunnel-5.46.tar.gz`
 
-1. `cd stunnel-5.45/`
+1. `cd stunnel-5.46/`
 
 1. `sudo ./configure`
 
 1. `sudo make`
+
+1. The current amazon\-efs\-utils package is installed in `bin/stunnel`\. So that the new version can be installed, remove that directory with the following command\.
+
+   ```
+   sudo rm /bin/stunnel
+   ```
 
 1. `sudo make install` 
 

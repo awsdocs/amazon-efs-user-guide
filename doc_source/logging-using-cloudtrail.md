@@ -122,6 +122,7 @@ If you're using an encrypted\-at\-rest file system, the calls that Amazon EFS ma
 | US East \(N\. Virginia\) | 055650462987 | 
 | US West \(N\. California\) | 208867197265 | 
 | US West \(Oregon\) | 736298361104 | 
+| Asia Pacific \(Seoul\) | 518632624599 | 
 | EU \(Frankfurt\) | 992038834663 | 
 | EU \(Ireland\) | 805538244694 | 
 | Asia Pacific \(Sydney\) | 288718191711 | 
