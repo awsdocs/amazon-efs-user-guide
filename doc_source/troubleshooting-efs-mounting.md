@@ -59,7 +59,7 @@ After you do so, run the following two commands:
 
 1. `sudo systemctl enable mount-nfs-sequentially.service`
 
-Then restart your Amazon EC2 instance\. The file systems are mounted on demand, generally within a second\.
+Then restart your Amazon EC2 instance\.
 
 ## Mount Command Fails with "wrong fs type" Error Message<a name="mount-error-wrong-fs"></a>
 
