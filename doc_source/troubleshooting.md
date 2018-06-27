@@ -16,7 +16,7 @@ Following, you can find information about general troubleshooting issues related
 In general, if you encounter issues with Amazon EFS that you have trouble resolving, confirm that you're using a recent Linux kernel\. If you are using an enterprise Linux distribution, we recommend the following:
 + Amazon Linux 2015\.09 or newer
 + RHEL 7\.3 or newer
-+ RHEL 6\.9 with kernel 2\.6\.32\-704 or newer
++ RHEL 6\.9 with kernel 2\.6\.32\-696 or newer
 + All versions of Ubuntu 16\.04
 + Ubuntu 14\.04 with kernel 3\.13\.0\-83 or newer
 + SLES 12 Sp2 or later

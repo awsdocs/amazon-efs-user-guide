@@ -131,7 +131,7 @@ The following table provides more detailed examples of bursting behavior for fil
 | 4096 | 200\.0 | 400 | 720  | 50\.0% | 
 
 **Note**  
-As previously mentioned, new file systems have an initial burst credit balance of 2\.1 TB\. With this starting balance, you can burst at 100 MB/s for 6\.12 hours \(which is calculated by `2.1 x 1024 x (1024/100/3600)` to get 6\.116 hours, rounded up to 6\.12\) without spending any credits that you’re earning from your storage\.
+As previously mentioned, new file systems have an initial burst credit balance of 2\.1 TiB\. With this starting balance, you can burst at 100 MB/s for 6\.12 hours \(which is calculated by `2.1 x 1024 x (1024/100/3600)` to get 6\.116 hours, rounded up to 6\.12\) without spending any credits that you’re earning from your storage\.
 
 ### Managing Burst Credits<a name="managecredits"></a>
 
