@@ -25,9 +25,60 @@ $ sudo mount -t nfs -o nfsvers=4.1,rsize=1048576,wsize=1048576,hard,timeo=600,re
 # Mounting with an IP Address through AWS Cnf<a name="mounting-fs-mount-ip-addr"></a>
 You can also configure mounting a file system using the mount target IP address via AWS CloudFormation.
 
-Before mounting to a traget Ip address, you have to [create EFS with a specific IP addpress](/creating-fs-ip-addr). It's just like you can select an IP from the range fo Ip's subnets have.
+Before mounting to a traget Ip address, you have to create EFS with a specific IP addpress. It's just like you can select an IP from the range fo Ip's subnets have.
 
-Mounting-EFS-IP-addr.config
+*Creating-EFS-IP-addr.config*
+```
+option_settings:
+  aws:elasticbeanstalk:customoption:
+    EFSVolumeName: "EFS_Dir"
+    VPCId: "xxxx"
+## Subnet Options
+    SubnetA: "xxxx"
+  aws:elasticbeanstalk:application:environment:
+    FILE_SYSTEM_ID: '`{"Ref" : "FileSystem"}`'
+    MOUNT_TARGET_IP: 'xxxx'
+    MOUNT_DIRECTORY: '/efs'
+    REGION: '`{"Ref": "AWS::Region"}`'
+Resources:
+## Mount Target Resources
+  MountTargetA:
+    Type: AWS::EFS::MountTarget
+    Properties:
+      FileSystemId: {Ref: FileSystem}
+      IpAddress: xx.xx.xx.xx
+      SecurityGroups:
+      - {Ref: MountTargetSecurityGroup}
+      SubnetId:
+        Fn::GetOptionSetting: {OptionName: SubnetA}
+
+##############################################
+#### Do not modify values below this line ####
+##############################################
+
+  FileSystem:
+    Type: AWS::EFS::FileSystem
+    Properties:
+      FileSystemTags:
+      - Key: Name
+        Value:
+          Fn::GetOptionSetting: {OptionName: EFSVolumeName, DefaultValue: "EFS_Dir"}
+
+  MountTargetSecurityGroup:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: Security group for mount target
+      SecurityGroupIngress:
+      - FromPort: '2049'
+        IpProtocol: tcp
+        SourceSecurityGroupId:
+          Fn::GetAtt: [AWSEBSecurityGroup, GroupId]
+        ToPort: '2049'
+      VpcId:
+        Fn::GetOptionSetting: {OptionName: VPCId}
+```
+
+*Mounting-EFS-IP-addr.config*
 
 ```
 option_settings:
