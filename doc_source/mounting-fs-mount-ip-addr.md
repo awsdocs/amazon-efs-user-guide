@@ -25,7 +25,7 @@ $ sudo mount -t nfs -o nfsvers=4.1,rsize=1048576,wsize=1048576,hard,timeo=600,re
 # Mounting with an IP Address through AWS Cnf<a name="mounting-fs-mount-ip-addr"></a>
 You can also configure mounting a file system using the mount target IP address via AWS CloudFormation.
 
-Before mounting to a traget Ip address, you have to create EFS with a specific IP addpress. It's just like you can select an IP from the range fo Ip's subnets have.
+Before mounting to a target Ip address, you have to create EFS with a specific IP address. It's just like you can select an IP from the range of Ip's subnets have.
 
 *Creating-EFS-IP-addr.config*
 ```
@@ -83,10 +83,8 @@ Resources:
 ```
 option_settings:
   aws:elasticbeanstalk:application:environment:
-    FILE_SYSTEM_ID: '`{"Ref" : "FileSystem"}`'
     MOUNT_TARGET_IP: 'xxxxx'
     MOUNT_DIRECTORY: '/efs'
-    REGION: '`{"Ref": "AWS::Region"}`'
 
 packages:
   yum:
@@ -103,10 +101,8 @@ files:
       content : |
         #!/bin/bash
 
-        EFS_REGION=$(/opt/elasticbeanstalk/bin/get-config environment | jq -r '.REGION')
         EFS_MOUNT_DIR=$(/opt/elasticbeanstalk/bin/get-config environment | jq -r '.MOUNT_DIRECTORY')
-        EFS_FILE_SYSTEM_ID=$(/opt/elasticbeanstalk/bin/get-config environment | jq -r '.FILE_SYSTEM_ID')
-        EFS_FILE_SYSTEM_IP=$(/opt/elasticbeanstalk/bin/get-config environment | jq -r '.MOUNT_TARGET_IP')
+        EFS_MOUNT_TARGET_IP=$(/opt/elasticbeanstalk/bin/get-config environment | jq -r '.MOUNT_TARGET_IP')
 
         echo "Mounting EFS filesystem ${EFS_DNS_NAME} to directory ${EFS_MOUNT_DIR} ..."
 
@@ -136,8 +132,8 @@ files:
 
         mountpoint -q ${EFS_MOUNT_DIR}
         if [ $? -ne 0 ]; then
-            echo "mount -t nfs4 -o nfsvers=4.1,rsize=1048576,wsize=1048576,hard,timeo=600,retrans=2 ${EFS_FILE_SYSTEM_IP}:/ ${EFS_MOUNT_DIR}"
-            mount -t nfs4 -o nfsvers=4.1,rsize=1048576,wsize=1048576,hard,timeo=600,retrans=2 ${EFS_FILE_SYSTEM_IP}:/ ${EFS_MOUNT_DIR}
+            echo "mount -t nfs4 -o nfsvers=4.1,rsize=1048576,wsize=1048576,hard,timeo=600,retrans=2 ${EFS_MOUNT_TARGET_IP}:/ ${EFS_MOUNT_DIR}"
+            mount -t nfs4 -o nfsvers=4.1,rsize=1048576,wsize=1048576,hard,timeo=600,retrans=2 ${EFS_MOUNT_TARGET_IP}:/ ${EFS_MOUNT_DIR}
             if [ $? -ne 0 ] ; then
                 echo 'ERROR: Mount command failed!'
                 exit 1
