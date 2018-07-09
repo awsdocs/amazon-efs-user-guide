@@ -63,7 +63,7 @@ If you don't want to get the amazon\-efs\-utils package from Amazon Linux or Ama
 
 1. Access the terminal for your instance through Secure Shell \(SSH\), and log in with the appropriate user name\. For more information on how to do this, see [Connecting to Your Linux Instance Using SSH](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AccessingInstancesLinux.html) in the *Amazon EC2 User Guide for Linux Instances\.*
 
-1. If you haven't done so already, install gi with the following command\.
+1. If you haven't done so already, install git with the following command\.
 
    ```
    sudo yum -y install git
