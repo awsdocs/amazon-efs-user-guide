@@ -12,3 +12,4 @@ The following actions are supported:
 +  [DescribeMountTargetSecurityGroups](API_DescribeMountTargetSecurityGroups.md) 
 +  [DescribeTags](API_DescribeTags.md) 
 +  [ModifyMountTargetSecurityGroups](API_ModifyMountTargetSecurityGroups.md) 
++  [UpdateFileSystem](API_UpdateFileSystem.md) 

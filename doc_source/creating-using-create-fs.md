@@ -51,6 +51,11 @@ To create the file system mount targets in your VPC, you must specify VPC subnet
 
 When creating a file system, you also choose a performance mode\. There are two performance modes to choose from—General Purpose and Max I/O\. For the majority of use cases, we recommend that you use the general purpose performance mode for your file system\. For more information about the different performance modes, see [Performance Modes](performance.md#performancemodes)\.
 
+In addition to performance modes, you can also choose your throughput mode\. There are two throughput modes to choose from—Bursting and Provisioned\. The default Bursting Throughput mode is simple to work with and is suitable for a majority of applications and a wide range of performance requirements\. Provisioned mode is for applications that require a greater ratio of throughput to storage capacity than allowed by Bursting Throughput mode\. For more information, see [Specifying Throughput with Provisioned Mode](performance.md#provisioned-throughput)\.
+
+**Note**  
+There are additional charges associated with using Provisioned Throughput mode\. For more information, see [https://aws\.amazon\.com/efs/pricing](https://aws.amazon.com/efs/pricing/)\.
+
 You can enable encryption at rest when creating a file system\. If you enable encryption at rest for your file system, all data and metadata stored on it is encrypted\. You can enable encryption in transit later, when you mount the file system\. For more information about Amazon EFS encryption, see [Security](security-considerations.md)\.
 
 When you choose **Create File System**, the console sends a series of API requests to create the file system\. The console then sends API requests to create tags and mount targets for the file system\. The following example console shows the **MyFS** file system\. It has the **Name** tag and three mount targets that are being created\. The mount target lifecycle state must be **Available** before you can use it to mount the file system on an EC2 instance\.
@@ -63,21 +68,25 @@ For instructions on how to create an Amazon EFS file system using the console, s
 
 When using the AWS CLI, you create these resources in order\. First, you create a file system\. Then, you can create mount targets and optional tags for the file system using corresponding AWS CLI commands\.
 
-The following examples use the `adminuser` as the `profile` parameter value\. You need to use an appropriate user profile to provide your credentials\. For information about the AWS CLI, see [Getting Set Up with the AWS Command Line Interface](http://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-set-up.html) in the *AWS Command Line Interface User Guide*\. 
+The following examples use the `adminuser` as the `profile` parameter value\. You need to use an appropriate user profile to provide your credentials\. For information about the AWS CLI, see [Getting Set Up with the AWS Command Line Interface](http://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-set-up.html) in the *AWS Command Line Interface User Guide*\.
 + To create a file system, use the Amazon EFS `create-file-system` CLI command \(corresponding operation is [CreateFileSystem](API_CreateFileSystem.md)\), as shown following\.
 
   ```
   $ aws efs create-file-system \
   --creation-token creation-token \
+  --performance-mode generalPurpose \
+  --throughput-mode bursting \
   --region aws-region \
   --profile adminuser
   ```
 
-  For example, the following `create-file-system` command creates a file system in the **us\-west\-2** region\. The command specifies **MyFirstFS** as the creation token\. For a list of AWS regions where you can create an Amazon EFS file system, see the [Amazon Web Services General Reference](http://docs.aws.amazon.com/general/latest/gr/rande.html#elasticfilesystem_region)\.
+  For example, the following `create-file-system` command creates a file system in the **us\-west\-2**  AWS Region\. The command specifies **MyFirstFS** as the creation token\. For a list of AWS regions where you can create an Amazon EFS file system, see the [Amazon Web Services General Reference](http://docs.aws.amazon.com/general/latest/gr/rande.html#elasticfilesystem_region)\.
 
   ```
   $  aws efs create-file-system \
   --creation-token MyFirstFS \
+  --performance-mode generalPurpose \
+  --throughput-mode bursting \
   --region us-west-2 \
   --profile adminuser
   ```
@@ -92,7 +101,8 @@ The following examples use the `adminuser` as the `profile` parameter value\. Yo
       "CreationToken": "MyFirstFS",
       "CreationTime": 1422823614.0,
       "FileSystemId": "fs-c7a0456e",
-      "PerformanceMode" : "generalPurpose",
+      "PerformanceMode": "generalPurpose",
+      "ThroughputMode": "bursting",
       "NumberOfMountTargets": 0,
       "LifeCycleState": "available",
       "OwnerId": "231243201240"
@@ -133,8 +143,9 @@ The following examples use the `adminuser` as the `profile` parameter value\. Yo
   {
       "Tags": [
           {
-              "Value": "MyFS",
-              "Key": "Name"
+              "Key": "Name",
+              "Value": "MyFS"
+              
           }
       ]
   }

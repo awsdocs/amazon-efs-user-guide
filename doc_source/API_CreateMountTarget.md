@@ -117,7 +117,7 @@ Type: String
  ** [LifeCycleState](#API_CreateMountTarget_ResponseSyntax) **   <a name="efs-CreateMountTarget-response-LifeCycleState"></a>
 Lifecycle state of the mount target\.  
 Type: String  
-Valid Values:` creating | available | deleting | deleted` 
+Valid Values:` creating | available | updating | deleting | deleted` 
 
  ** [MountTargetId](#API_CreateMountTarget_ResponseSyntax) **   <a name="efs-CreateMountTarget-response-MountTargetId"></a>
 System\-assigned mount target ID\.  
@@ -142,11 +142,11 @@ Returned if the request is malformed or contains an error such as an invalid par
 HTTP Status Code: 400
 
  **FileSystemNotFound**   
-Returned if the specified `FileSystemId` does not exist in the requester's AWS account\.  
+Returned if the specified `FileSystemId` value doesn't exist in the requester's AWS account\.  
 HTTP Status Code: 404
 
  **IncorrectFileSystemLifeCycleState**   
-Returned if the file system's life cycle state is not "created"\.  
+Returned if the file system's lifecycle state is not "available"\.  
 HTTP Status Code: 409
 
  **InternalServerError**   
@@ -162,7 +162,7 @@ Returned if the mount target would violate one of the specified restrictions bas
 HTTP Status Code: 409
 
  **NetworkInterfaceLimitExceeded**   
- The calling account has reached the ENI limit for the specific AWS region\. Client should try to delete some ENIs or get its account limit raised\. For more information, see [Amazon VPC Limits](https://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_Appendix_Limits.html) in the Amazon Virtual Private Cloud User Guide \(see the Network interfaces per VPC entry in the table\)\.   
+The calling account has reached the limit for elastic network interfaces for the specific AWS Region\. The client should try to delete some elastic network interfaces or get the account limit raised\. For more information, see [Amazon VPC Limits](https://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_Appendix_Limits.html) in the *Amazon VPC User Guide * \(see the Network interfaces per VPC entry in the table\)\.   
 HTTP Status Code: 409
 
  **NoFreeAddressesInSubnet**   
@@ -174,7 +174,7 @@ Returned if the size of `SecurityGroups` specified in the request is greater tha
 HTTP Status Code: 400
 
  **SecurityGroupNotFound**   
-Returned if one of the specified security groups does not exist in the subnet's VPC\.  
+Returned if one of the specified security groups doesn't exist in the subnet's VPC\.  
 HTTP Status Code: 400
 
  **SubnetNotFound**   

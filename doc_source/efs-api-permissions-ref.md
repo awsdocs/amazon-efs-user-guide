@@ -16,12 +16,13 @@ If you see an expand arrow \(**↗**\) in the upper\-right corner of the table, 
 | --- | --- | --- | 
 |   [CreateFileSystem](API_CreateFileSystem.md)   | elasticfilesystem:CreateFileSystem For information about KMS\-related permissions for encrypted file systems, see [Amazon EFS Key Policies for AWS KMS](encryption.md#EFSKMSPolicy)\.   |  `arn:aws:elasticfilesystem:region:account-id:file-system/*`  | 
 |   [CreateMountTarget](API_CreateMountTarget.md)  |  `elasticfilesystem:CreateMountTarget` `ec2:DescribeSubnets` `ec2:DescribeNetworkInterfaces` `ec2:CreateNetworkInterface`  | arn:aws:elasticfilesystem:region:account\-id:file\-system/file\-system\-id | 
-|   [CreateTags](API_CreateTags.md)   | elasticfilesystem:CreateTags | arn:aws:elasticfilesystem:region:account\-id:file\-system/filesystem\-id | 
-| [DeleteFileSystem](API_DeleteFileSystem.md) | elasticfilesystem:DeleteFileSystem | arn:aws:elasticfilesystem:region:account\-id:file\-system/filesystem\-id | 
-| [DeleteMountTarget](API_DeleteMountTarget.md)  |  `elasticfilesystem:DeleteMountTarget` `ec2:DeleteNetworkInterface`  | arn:aws:elasticfilesystem:region:account\-id:file\-system/filesystem\-id | 
-|  [DeleteTags](API_DeleteTags.md) | elasticfilesystem:DeleteTags | arn:aws:elasticfilesystem:region:account\-id:file\-system/filesystem\-id | 
-| [DescribeFileSystems](API_DescribeFileSystems.md) | elasticfilesystem:DescribeFileSystems |  `arn:aws:elasticfilesystem:region:account-id:file-system/filesystem-id` or `arn:aws:elasticfilesystem:region:account-id:file-system/*`  | 
-| [DescribeMountTargetSecurityGroups](API_DescribeMountTargetSecurityGroups.md) |  `elasticfilesystem:DescribeMountTargetSecurityGroups` `ec2:DescribeNetworkInterfaceAttribute`  | arn:aws:elasticfilesystem:region:account\-id:file\-system/filesystem\-id | 
-| [DescribeMountTargets](API_DescribeMountTargets.md) | elasticfilesystem:DescribeMountTargets | arn:aws:elasticfilesystem:region:account\-id:file\-system/filesystem\-id | 
-| [DescribeTags](API_DescribeTags.md) | elasticfilesystem:DescribeTags | arn:aws:elasticfilesystem:region:account\-id:file\-system/filesystem\-id | 
-| [ModifyMountTargetSecurityGroups](API_ModifyMountTargetSecurityGroups.md) |  `elasticfilesystem:ModifyMountTargetSecurityGroups` ` ec2:ModifyNetworkInterfaceAttribute `  | arn:aws:elasticfilesystem:region:account\-id:file\-system/filesystem\-id | 
+|   [CreateTags](API_CreateTags.md)   | elasticfilesystem:CreateTags | arn:aws:elasticfilesystem:region:account\-id:file\-system/file\-system\-id | 
+| [DeleteFileSystem](API_DeleteFileSystem.md) | elasticfilesystem:DeleteFileSystem | arn:aws:elasticfilesystem:region:account\-id:file\-system/file\-system\-id | 
+| [DeleteMountTarget](API_DeleteMountTarget.md)  |  `elasticfilesystem:DeleteMountTarget` `ec2:DeleteNetworkInterface`  | arn:aws:elasticfilesystem:region:account\-id:file\-system/file\-system\-id | 
+|  [DeleteTags](API_DeleteTags.md) | elasticfilesystem:DeleteTags | arn:aws:elasticfilesystem:region:account\-id:file\-system/file\-system\-id | 
+| [DescribeFileSystems](API_DescribeFileSystems.md) | elasticfilesystem:DescribeFileSystems |  `arn:aws:elasticfilesystem:region:account-id:file-system/file-system-id` or `arn:aws:elasticfilesystem:region:account-id:file-system/*`  | 
+| [DescribeMountTargetSecurityGroups](API_DescribeMountTargetSecurityGroups.md) |  `elasticfilesystem:DescribeMountTargetSecurityGroups` `ec2:DescribeNetworkInterfaceAttribute`  | arn:aws:elasticfilesystem:region:account\-id:file\-system/file\-system\-id | 
+| [DescribeMountTargets](API_DescribeMountTargets.md) | elasticfilesystem:DescribeMountTargets | arn:aws:elasticfilesystem:region:account\-id:file\-system/file\-system\-id | 
+| [DescribeTags](API_DescribeTags.md) | elasticfilesystem:DescribeTags | arn:aws:elasticfilesystem:region:account\-id:file\-system/file\-system\-id | 
+| [ModifyMountTargetSecurityGroups](API_ModifyMountTargetSecurityGroups.md) |  `elasticfilesystem:ModifyMountTargetSecurityGroups` ` ec2:ModifyNetworkInterfaceAttribute `  | arn:aws:elasticfilesystem:region:account\-id:file\-system/file\-system\-id | 
+| [UpdateFileSystem](API_UpdateFileSystem.md) |  `elasticfilesystem:UpdateFileSystem` `elasticfilesystem:UpdateFileSystem`  | arn:aws:elasticfilesystem:region:account\-id:file\-system/file\-system\-id | 

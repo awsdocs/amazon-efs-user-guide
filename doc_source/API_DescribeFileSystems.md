@@ -59,10 +59,12 @@ Content-type: application/json
          "[NumberOfMountTargets](API_FileSystemDescription.md#efs-Type-FileSystemDescription-NumberOfMountTargets)": number,
          "[OwnerId](API_FileSystemDescription.md#efs-Type-FileSystemDescription-OwnerId)": "string",
          "[PerformanceMode](API_FileSystemDescription.md#efs-Type-FileSystemDescription-PerformanceMode)": "string",
+         "[ProvisionedThroughputInMibps](API_FileSystemDescription.md#efs-Type-FileSystemDescription-ProvisionedThroughputInMibps)": number,
          "[SizeInBytes](API_FileSystemDescription.md#efs-Type-FileSystemDescription-SizeInBytes)": { 
             "[Timestamp](API_FileSystemSize.md#efs-Type-FileSystemSize-Timestamp)": number,
             "[Value](API_FileSystemSize.md#efs-Type-FileSystemSize-Value)": number
-         }
+         },
+         "[ThroughputMode](API_FileSystemDescription.md#efs-Type-FileSystemDescription-ThroughputMode)": "string"
       }
    ],
    "[Marker](#efs-DescribeFileSystems-response-Marker)": "string",
@@ -95,7 +97,7 @@ Returned if the request is malformed or contains an error such as an invalid par
 HTTP Status Code: 400
 
  **FileSystemNotFound**   
-Returned if the specified `FileSystemId` does not exist in the requester's AWS account\.  
+Returned if the specified `FileSystemId` value doesn't exist in the requester's AWS account\.  
 HTTP Status Code: 404
 
  **InternalServerError**   

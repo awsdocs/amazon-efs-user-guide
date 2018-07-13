@@ -79,7 +79,7 @@ Returned if the request is malformed or contains an error such as an invalid par
 HTTP Status Code: 400
 
  **FileSystemNotFound**   
-Returned if the specified `FileSystemId` does not exist in the requester's AWS account\.  
+Returned if the specified `FileSystemId` value doesn't exist in the requester's AWS account\.  
 HTTP Status Code: 404
 
  **InternalServerError**   

@@ -125,7 +125,7 @@ Key policies are the primary way to control access to CMKs\. For more informatio
 For more information on encryption with Amazon EFS, see these related topics:
 + [Creating Resources for Amazon EFS](creating-using.md)
 + [Managing Access to Encrypted File Systems](managing.md#managing-encrypt)
-+ [Amazon EFS Performance Tips](performance.md#performance-tips)
++ [Amazon EFS Performance Tips](performance-tips.md)
 + [Amazon EFS API Permissions: Actions, Resources, and Conditions Reference](efs-api-permissions-ref.md)
 + [Amazon EFS Log File Entries for Encrypted\-at\-Rest File Systems](logging-using-cloudtrail.md#efs-encryption-cloudtrail)
 + [Troubleshooting Encryption](troubleshooting-efs-encryption.md)

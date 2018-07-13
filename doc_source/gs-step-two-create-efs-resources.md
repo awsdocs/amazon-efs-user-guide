@@ -15,7 +15,7 @@ In this step, you create your Amazon EFS file system\.
 
 1. Choose **Next Step**\.
 
-1. Name your file system, keep **general purpose** selected as your default performance mode, and choose **Next Step**\.
+1. Name your file system, keep **General Purpose** and **Bursting** selected as your default performance and throughput modes, and then choose **Next Step**\.
 
 1. Choose **Create File System**\.
 

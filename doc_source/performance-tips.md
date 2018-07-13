@@ -1,0 +1,15 @@
+# Amazon EFS Performance Tips<a name="performance-tips"></a>
+
+When using Amazon EFS, keep the following performance tips in mind:
++ **Average I/O Size** – The distributed nature of Amazon EFS enables high levels of availability, durability, and scalability\. This distributed architecture results in a small latency overhead for each file operation\. Due to this per\-operation latency, overall throughput generally increases as the average I/O size increases, because the overhead is amortized over a larger amount of data\.
++ **Simultaneous Connections** – Amazon EFS file systems can be mounted on up to thousands of Amazon EC2 instances concurrently\. If you can parallelize your application across more instances, you can drive higher throughput levels on your file system in aggregate across instances\.
++ **Request Model** – By enabling asynchronous writes to your file system, pending write operations are buffered on the Amazon EC2 instance before they are written to Amazon EFS asynchronously\. Asynchronous writes typically have lower latencies\. When performing asynchronous writes, the kernel uses additional memory for caching\. A file system that has enabled synchronous writes, or one that opens files using an option that bypasses the cache \(for example, O\_DIRECT\), issues synchronous requests to Amazon EFS\. Every operation goes through a round trip between the client and Amazon EFS\.
+**Note**  
+Your chosen request model has tradeoffs in consistency \(if you're using multiple Amazon EC2 instances\) and speed\.
++ **NFS Client Mount Settings** – Verify that you’re using the recommended mount options as outlined in [Mounting File Systems](mounting-fs.md) and in [Additional Mounting Considerations](mounting-fs-mount-cmd-general.md)\. Amazon EFS supports the Network File System versions 4\.0 and 4\.1 \(NFSv4\) and NFSv4\.0 protocols when mounting your file systems on Amazon EC2 instances\. NFSv4\.1 provides better performance\.
+**Note**  
+You might want to increase the size of the read and write buffers for your NFS client to 1 MB when you mount your file system\.
++ **Amazon EC2 Instances** – Applications that perform a large number of read and write operations likely need more memory or computing capacity than applications that don't\. When launching your Amazon EC2 instances, choose instance types that have the amount of these resources that your application needs\. The performance characteristics of Amazon EFS file systems don't depend on the use of EBS\-optimized instances\.
++ **Encryption** – Amazon EFS supports two forms of encryption, encryption in transit and encryption at rest\. This option is for encryption at rest\. Choosing to enable either or both types of encryption for your file system has a minimal effect on I/O latency and throughput\.
+
+For information about the Amazon EFS limits for total file system throughput, per\-instance throughput, and operations per second in General Purpose performance mode, see [Amazon EFS Limits](limits.md)\.

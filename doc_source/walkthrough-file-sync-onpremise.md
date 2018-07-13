@@ -44,7 +44,7 @@ You don't need to add additional disks to the VM\. EFS File Sync uses only the r
 
 1. On the Amazon EFS Console, choose **Next: Connect to agent** 
 
-1. For** IP address**, type the VM's IP address, and then choose **Next: Activate agent**\. Your browser will connect to this IP address to get a unique activation key from your sync agent\. This key securely associates your sync agent with your AWS account\. This IP address doesn't need to be accessible from outside your network, but must be accessible from your browser\.
+1. For **IP address**, type the VM's IP address, and then choose **Next: Activate agent**\. Your browser will connect to this IP address to get a unique activation key from your sync agent\. This key securely associates your sync agent with your AWS account\. This IP address doesn't need to be accessible from outside your network, but must be accessible from your browser\.
 
 1. On the** Activate agent** page, type a name for your sync agent, and then choose **Activate agent**\.   
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/efs/latest/ug/images/sync-file-sync-console.png)

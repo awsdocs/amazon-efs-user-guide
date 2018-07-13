@@ -13,14 +13,21 @@ Following, you can find out about limitations when working with Amazon EFS\.
 
 ## Amazon EFS Limits That You Can Increase<a name="soft-limits"></a>
 
-Following are the limits for Amazon EFS that can be increased by contacting AWS Support\.
+Following are the limits for Amazon EFS that you can increase by contacting AWS Support\. These are throughput limits, and they are defined by the throughput mode that you choose for your file system, Bursting or Provisioned\. For more information on these different modes, see [Amazon EFS Performance](performance.md)\.
 
+Bursting Throughput mode limits are as follows\.
 
-****  
 
 | Resource | Default Limit | 
 | --- | --- | 
-| Total throughput for each file system for all connected clients |  US East \(Ohio\) Region – 3 GB/s US East \(N\. Virginia\) Region – 3 GB/s US West \(N\. California\) Region – 1 GB/s US West \(Oregon\) Region – 3 GB/s Asia Pacific \(Seoul\) 1 GB/s EU \(Frankfurt\) Region – 1 GB/s EU \(Ireland\) Region – 3 GB/s Asia Pacific \(Sydney\) Region – 3 GB/s  | 
+| Total throughput for all connected clients |  US East \(Ohio\) Region – 3 GB/s US East \(N\. Virginia\) Region – 3 GB/s US West \(N\. California\) Region – 1 GB/s US West \(Oregon\) Region – 3 GB/s Asia Pacific \(Seoul\) – 1 GB/s Asia Pacific \(Tokyo\) – 1 GB/s EU \(Frankfurt\) Region – 1 GB/s EU \(Ireland\) Region – 3 GB/s Asia Pacific \(Sydney\) Region – 3 GB/s  | 
+
+Provisioned Throughput mode limits are as follows\.
+
+
+| Resource | Default Limit | 
+| --- | --- | 
+| Total throughput for all clients |  All regions – 1 GB/s  | 
 
 You can take the following steps to request an increase for these limits\. These increases are not granted immediately, so it might take a couple of days for your increase to become effective\.
 
@@ -37,11 +44,9 @@ You can take the following steps to request an increase for these limits\. These
 Following are the limits on Amazon EFS resources for each customer account in an AWS Region\. 
 
 
-****  
-
 | Resource | Limit | 
 | --- | --- | 
-| Number of file systems |  US East \(Ohio\) Region – 125 US East \(N\. Virginia\) Region – 70 US West \(N\. California\) Region – 125 US West \(Oregon\) Region – 125 Asia Pacific \(Seoul\) 125 EU \(Frankfurt\) Region – 125 EU \(Ireland\) Region – 125 Asia Pacific \(Sydney\) Region – 125  | 
+| Number of file systems |  US East \(Ohio\) Region – 125 US East \(N\. Virginia\) Region – 70 US West \(N\. California\) Region – 125 US West \(Oregon\) Region – 125 Asia Pacific \(Seoul\) 125 Asia Pacific \(Tokyo\) 125 EU \(Frankfurt\) Region – 125 EU \(Ireland\) Region – 125 Asia Pacific \(Sydney\) Region – 125  | 
 | Number of mount targets for each file system in an Availability Zone | 1 | 
 | Number of security groups for each mount target | 5 | 
 | Number of tags for each file system | 50 | 
@@ -71,8 +76,6 @@ The following are limits specific to the Amazon EFS file systems:
 
 Following are the limits on EFS File Sync resources for each customer account in an AWS Region\. 
 
-
-****  
 
 | Resource | Limit | 
 | --- | --- | 
@@ -117,4 +120,4 @@ In addition, note the following:
 + Some AWS accounts created before 2012 might have access to Availability Zones in us\-east\-1 that don't support creating mount targets\. If you can't create a mount target in one of these AWS Regions, try a different Availability Zone in that AWS Region\. However, there are cost considerations for mounting a file system on an EC2 instance in an Availability Zone through a mount target created in another Availability Zone\. 
 + You mount your file system from EC2 instances in your VPC by using the mount targets you create in the VPC\. You can also mount your file system on your EC2\-Classic instances \(which are not in the VPC\), but you must first link them to your VPC by using ClassicLink\. For more information about using ClassicLink, see [ClassicLink](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/vpc-classiclink.html) in the *Amazon EC2 User Guide for Linux Instances*\.
 + You can mount an Amazon EFS file system from on\-premises data center servers using AWS Direct Connect\.
-+ VPC peering within a single AWS Region when using C5 or M5 instances is supported\. However, other VPC private connectivity mechanisms such as a VPN connection, interregion VPC peering, and intraregion VPC peering using other instance types are not supported\.
++ VPC peering within a single AWS Region when using C5 or M5 instances is supported\. However, other VPC private connectivity mechanisms such as a VPN connection, inter\-region VPC peering, and intraregion VPC peering using other instance types are not supported\.

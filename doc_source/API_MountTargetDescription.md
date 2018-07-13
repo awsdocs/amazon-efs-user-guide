@@ -17,7 +17,7 @@ Required: No
  **LifeCycleState**   <a name="efs-Type-MountTargetDescription-LifeCycleState"></a>
 Lifecycle state of the mount target\.  
 Type: String  
-Valid Values:` creating | available | deleting | deleted`   
+Valid Values:` creating | available | updating | deleting | deleted`   
 Required: Yes
 
  **MountTargetId**   <a name="efs-Type-MountTargetDescription-MountTargetId"></a>

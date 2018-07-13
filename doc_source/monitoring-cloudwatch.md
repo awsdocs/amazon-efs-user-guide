@@ -20,7 +20,7 @@ The `AWS/EFS` namespace includes the following metrics\.
 
 ## Bytes Reported in CloudWatch<a name="cloudwatch-bytes"></a>
 
-As with Amazon S3 and Amazon EBS, Amazon EFS CloudWatch metrics are reported as raw *Bytes*\. Bytes are not rounded to either a decimal or binary multiple of the unit\. Keep this in mind when calculating your burst rate using the data you get from the metrics\. For more information on bursting, see [Throughput Scaling in Amazon EFS](performance.md#bursting)\.
+As with Amazon S3 and Amazon EBS, Amazon EFS CloudWatch metrics are reported as raw *Bytes*\. Bytes are not rounded to either a decimal or binary multiple of the unit\. Keep this in mind when calculating your burst rate using the data you get from the metrics\. For more information on bursting, see [Throughput Scaling with Bursting Mode](performance.md#bursting)\.
 
 ## Amazon EFS Dimensions<a name="efs-dimensions"></a>
 

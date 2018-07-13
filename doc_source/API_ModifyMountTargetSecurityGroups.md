@@ -69,7 +69,7 @@ Returned if the size of `SecurityGroups` specified in the request is greater tha
 HTTP Status Code: 400
 
  **SecurityGroupNotFound**   
-Returned if one of the specified security groups does not exist in the subnet's VPC\.  
+Returned if one of the specified security groups doesn't exist in the subnet's VPC\.  
 HTTP Status Code: 400
 
 ## Example<a name="API_ModifyMountTargetSecurityGroups_Examples"></a>

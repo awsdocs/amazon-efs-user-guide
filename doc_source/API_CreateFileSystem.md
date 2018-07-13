@@ -30,7 +30,9 @@ Content-type: application/json
    "[CreationToken](#efs-CreateFileSystem-request-CreationToken)": "string",
    "[Encrypted](#efs-CreateFileSystem-request-Encrypted)": boolean,
    "[KmsKeyId](#efs-CreateFileSystem-request-KmsKeyId)": "string",
-   "[PerformanceMode](#efs-CreateFileSystem-request-PerformanceMode)": "string"
+   "[PerformanceMode](#efs-CreateFileSystem-request-PerformanceMode)": "string",
+   "[ProvisionedThroughputInMibps](#efs-CreateFileSystem-request-ProvisionedThroughputInMibps)": number,
+   "[ThroughputMode](#efs-CreateFileSystem-request-ThroughputMode)": "string"
 }
 ```
 
@@ -70,6 +72,18 @@ Type: String
 Valid Values:` generalPurpose | maxIO`   
 Required: No
 
+ ** [ProvisionedThroughputInMibps](#API_CreateFileSystem_RequestSyntax) **   <a name="efs-CreateFileSystem-request-ProvisionedThroughputInMibps"></a>
+The throughput, measured in MiB/s, that you want to provision for a file system that you're creating\. The limit on throughput is 1024 MiB/s\. You can get these limits increased by contacting AWS Support\. For more information, see [Amazon EFS Limits That You Can Increase](https://docs.aws.amazon.com/efs/latest/ug/limits.html#soft-limits) in the *Amazon EFS User Guide\.*   
+Type: Double  
+Valid Range: Minimum value of 0\.0\.  
+Required: No
+
+ ** [ThroughputMode](#API_CreateFileSystem_RequestSyntax) **   <a name="efs-CreateFileSystem-request-ThroughputMode"></a>
+The throughput mode for the file system to be created\. There are two throughput modes to choose from for your file system: bursting and provisioned\. You can decrease your file system's throughput in Provisioned Throughput mode or change between the throughput modes as long as it’s been more than 24 hours since the last decrease or throughput mode change\.  
+Type: String  
+Valid Values:` bursting | provisioned`   
+Required: No
+
 ## Response Syntax<a name="API_CreateFileSystem_ResponseSyntax"></a>
 
 ```
@@ -87,10 +101,12 @@ Content-type: application/json
    "[NumberOfMountTargets](#efs-CreateFileSystem-response-NumberOfMountTargets)": number,
    "[OwnerId](#efs-CreateFileSystem-response-OwnerId)": "string",
    "[PerformanceMode](#efs-CreateFileSystem-response-PerformanceMode)": "string",
+   "[ProvisionedThroughputInMibps](#efs-CreateFileSystem-response-ProvisionedThroughputInMibps)": number,
    "[SizeInBytes](#efs-CreateFileSystem-response-SizeInBytes)": { 
       "[Timestamp](API_FileSystemSize.md#efs-Type-FileSystemSize-Timestamp)": number,
       "[Value](API_FileSystemSize.md#efs-Type-FileSystemSize-Value)": number
-   }
+   },
+   "[ThroughputMode](#efs-CreateFileSystem-response-ThroughputMode)": "string"
 }
 ```
 
@@ -125,7 +141,7 @@ Length Constraints: Minimum length of 1\. Maximum length of 2048\.
  ** [LifeCycleState](#API_CreateFileSystem_ResponseSyntax) **   <a name="efs-CreateFileSystem-response-LifeCycleState"></a>
 Lifecycle phase of the file system\.  
 Type: String  
-Valid Values:` creating | available | deleting | deleted` 
+Valid Values:` creating | available | updating | deleting | deleted` 
 
  ** [Name](#API_CreateFileSystem_ResponseSyntax) **   <a name="efs-CreateFileSystem-response-Name"></a>
 You can add tags to a file system, including a `Name` tag\. For more information, see [CreateTags](API_CreateTags.md)\. If the file system has a `Name` tag, Amazon EFS returns the value in this field\.   
@@ -146,9 +162,19 @@ The `PerformanceMode` of the file system\.
 Type: String  
 Valid Values:` generalPurpose | maxIO` 
 
+ ** [ProvisionedThroughputInMibps](#API_CreateFileSystem_ResponseSyntax) **   <a name="efs-CreateFileSystem-response-ProvisionedThroughputInMibps"></a>
+The throughput, measured in MiB/s, that you want to provision for a file system\. The limit on throughput is 1024 MiB/s\. You can get these limits increased by contacting AWS Support\. For more information, see [Amazon EFS Limits That You Can Increase](https://docs.aws.amazon.com/efs/latest/ug/limits.html#soft-limits) in the *Amazon EFS User Guide\.*   
+Type: Double  
+Valid Range: Minimum value of 0\.0\.
+
  ** [SizeInBytes](#API_CreateFileSystem_ResponseSyntax) **   <a name="efs-CreateFileSystem-response-SizeInBytes"></a>
-Latest known metered size \(in bytes\) of data stored in the file system, in bytes, in its `Value` field, and the time at which that size was determined in its `Timestamp` field\. The `Timestamp` value is the integer number of seconds since 1970\-01\-01T00:00:00Z\. Note that the value does not represent the size of a consistent snapshot of the file system, but it is eventually consistent when there are no writes to the file system\. That is, the value will represent actual size only if the file system is not modified for a period longer than a couple of hours\. Otherwise, the value is not the exact size the file system was at any instant in time\.   
+Latest known metered size \(in bytes\) of data stored in the file system, in its `Value` field, and the time at which that size was determined in its `Timestamp` field\. The `Timestamp` value is the integer number of seconds since 1970\-01\-01T00:00:00Z\. The `SizeInBytes` value doesn't represent the size of a consistent snapshot of the file system, but it is eventually consistent when there are no writes to the file system\. That is, `SizeInBytes` represents actual size only if the file system is not modified for a period longer than a couple of hours\. Otherwise, the value is not the exact size that the file system was at any point in time\.   
 Type: [FileSystemSize](API_FileSystemSize.md) object
+
+ ** [ThroughputMode](#API_CreateFileSystem_ResponseSyntax) **   <a name="efs-CreateFileSystem-response-ThroughputMode"></a>
+The throughput mode for a file system\. There are two throughput modes to choose from for your file system: bursting and provisioned\. You can decrease your file system's throughput in Provisioned Throughput mode or change between the throughput modes as long as it’s been more than 24 hours since the last decrease or throughput mode change\.  
+Type: String  
+Valid Values:` bursting | provisioned` 
 
 ## Errors<a name="API_CreateFileSystem_Errors"></a>
 
@@ -161,12 +187,20 @@ Returned if the file system you are trying to create already exists, with the cr
 HTTP Status Code: 409
 
  **FileSystemLimitExceeded**   
-Returned if the AWS account has already created maximum number of file systems allowed per account\.  
+Returned if the AWS account has already created the maximum number of file systems allowed per account\.  
 HTTP Status Code: 403
+
+ **InsufficientThroughputCapacity**   
+Returned if there's not enough capacity to provision additional throughput\. This value might be returned when you try to create a file system in provisioned throughput mode, when you attempt to increase the provisioned throughput of an existing file system, or when you attempt to change an existing file system from bursting to provisioned throughput mode\.  
+HTTP Status Code: 503
 
  **InternalServerError**   
 Returned if an error occurred on the server side\.  
 HTTP Status Code: 500
+
+ **ThroughputLimitExceeded**   
+Returned if the throughput mode or amount of provisioned throughput can't be changed because the throughput limit of 1024 MiB/s has been reached\.  
+HTTP Status Code: 400
 
 ## Example<a name="API_CreateFileSystem_Examples"></a>
 

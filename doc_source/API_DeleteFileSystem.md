@@ -47,7 +47,7 @@ Returned if a file system has mount targets\.
 HTTP Status Code: 409
 
  **FileSystemNotFound**   
-Returned if the specified `FileSystemId` does not exist in the requester's AWS account\.  
+Returned if the specified `FileSystemId` value doesn't exist in the requester's AWS account\.  
 HTTP Status Code: 404
 
  **InternalServerError**   
