@@ -22,3 +22,7 @@ You can specify the IP address of a mount target in the `mount` command, as show
 ```
 $ sudo mount -t nfs -o nfsvers=4.1,rsize=1048576,wsize=1048576,hard,timeo=600,retrans=2,noresvport mount-target-IP:/   ~/efs-mount-point  
 ```
+
+## Mounting with an IP Address in AWS CloudFormation<a name="mount-fs-ip-addr-cloudformation"></a>
+
+You can also mount your file system using an IP address in a AWS CloudFormation template\. For more information, see [storage\-efs\-mountfilesystem\-ip\-addr\.config](https://github.com/awsdocs/elastic-beanstalk-samples/blob/master/configuration-files/community-provided/instance-configuration/storage-efs-mountfilesystem-ip-addr.config) in the **awsdocs/elastic\-beanstalk\-samples** repository for community\-provided configuration files on GitHub\.

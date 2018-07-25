@@ -53,6 +53,7 @@ packages.$region.amazonaws.com
 2.amazon.pool.ntp.org
 3.amazon.pool.ntp.org
 54.201.223.107
+169.254.169.123
 ```
 
 For information about supported AWS Regions, see [Amazon Elastic File System](http://docs.aws.amazon.com/general/latest/gr/rande.html#elasticfilesystem-region) in the AWS General Reference\.
