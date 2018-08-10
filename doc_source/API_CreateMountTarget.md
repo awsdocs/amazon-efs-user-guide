@@ -1,6 +1,6 @@
 # CreateMountTarget<a name="API_CreateMountTarget"></a>
 
-Creates a mount target for a file system\. You can then mount the file system on EC2 instances via the mount target\.
+Creates a mount target for a file system\. You can then mount the file system on EC2 instances by using the mount target\.
 
 You can create one mount target in each Availability Zone in your VPC\. All EC2 instances in a VPC within a given Availability Zone share a single mount target for a given file system\. If you have multiple subnets in an Availability Zone, you create a mount target in one of the subnets\. EC2 instances do not need to be in the same subnet as the mount target in order to access their file system\. For more information, see [Amazon EFS: How it Works](https://docs.aws.amazon.com/efs/latest/ug/how-it-works.html)\. 
 
@@ -11,7 +11,7 @@ In the request, you also provide a subnet ID, which determines the following:
 + Availability Zone in which Amazon EFS creates the mount target
 + IP address range from which Amazon EFS selects the IP address of the mount target \(if you don't specify an IP address in the request\)
 
-After creating the mount target, Amazon EFS returns a response that includes, a `MountTargetId` and an `IpAddress`\. You use this IP address when mounting the file system in an EC2 instance\. You can also use the mount target's DNS name when mounting the file system\. The EC2 instance on which you mount the file system via the mount target can resolve the mount target's DNS name to its IP address\. For more information, see [How it Works: Implementation Overview](https://docs.aws.amazon.com/efs/latest/ug/how-it-works.html#how-it-works-implementation)\. 
+After creating the mount target, Amazon EFS returns a response that includes, a `MountTargetId` and an `IpAddress`\. You use this IP address when mounting the file system in an EC2 instance\. You can also use the mount target's DNS name when mounting the file system\. The EC2 instance on which you mount the file system by using the mount target can resolve the mount target's DNS name to its IP address\. For more information, see [How it Works: Implementation Overview](https://docs.aws.amazon.com/efs/latest/ug/how-it-works.html#how-it-works-implementation)\. 
 
 Note that you can create mount targets for a file system in only one VPC, and there can be only one mount target per Availability Zone\. That is, if the file system already has one or more mount targets created for it, the subnet specified in the request to add another mount target must meet the following requirements:
 + Must belong to the same VPC as the subnets of the existing mount targets
@@ -111,7 +111,7 @@ ID of the file system for which the mount target is intended\.
 Type: String
 
  ** [IpAddress](#API_CreateMountTarget_ResponseSyntax) **   <a name="efs-CreateMountTarget-response-IpAddress"></a>
-Address at which the file system may be mounted via the mount target\.  
+Address at which the file system can be mounted by using the mount target\.  
 Type: String
 
  ** [LifeCycleState](#API_CreateMountTarget_ResponseSyntax) **   <a name="efs-CreateMountTarget-response-LifeCycleState"></a>

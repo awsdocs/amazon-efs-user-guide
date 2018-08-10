@@ -1,6 +1,6 @@
 # Tag<a name="API_Tag"></a>
 
-A tag is a key\-value pair\. Allowed characters: letters, whitespace, and numbers, representable in UTF\-8, and the following characters:` + - = . _ : /` 
+A tag is a key\-value pair\. Allowed characters: letters, white space, and numbers, representable in UTF\-8, and the following characters:` + - = . _ : /` 
 
 ## Contents<a name="API_Tag_Contents"></a>
 

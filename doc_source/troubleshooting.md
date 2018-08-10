@@ -121,10 +121,15 @@ If you encounter this issue, you can resolve it by identifying which of the prec
 
 ### Command Fails with "I/O error"<a name="ioerror"></a>
 
- This error occurs when more than 128 active user accounts for each instance have files open at once\.
+This error occurs when you encounter one of the following issues:
++ More than 128 active user accounts for each instance have files open at once\.
 
 **Action to Take**  
 If you encounter this issue, you can resolve it by meeting the supported limit of open files on your instances\. To do so, reduce the number of active users that have files from your Amazon EFS file system open simultaneously on your instances\.
++ The AWS KMS key encrypting your file system was deleted\.
+
+**Action to Take**  
+If you encounter this issue, you can no longer decrypt the data that was encrypted under that key, which means that data becomes unrecoverable\.
 
 ### Command Fails with "File name is too long" Error<a name="filenametoolong"></a>
 

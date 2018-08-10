@@ -21,7 +21,7 @@ ID of the file system whose tag set you want to retrieve\.
 \(Optional\) Opaque pagination token returned from a previous `DescribeTags` operation \(String\)\. If present, it specifies to continue the list from where the previous call left off\.
 
  ** [MaxItems](#API_DescribeTags_RequestSyntax) **   <a name="efs-DescribeTags-request-MaxItems"></a>
-\(Optional\) Maximum number of file system tags to return in the response\. It must be an integer with a value greater than zero\.  
+\(Optional\) Maximum number of file system tags to return in the response\. Currently, this number is automatically set to 10\.  
 Valid Range: Minimum value of 1\.
 
 ## Request Body<a name="API_DescribeTags_RequestBody"></a>

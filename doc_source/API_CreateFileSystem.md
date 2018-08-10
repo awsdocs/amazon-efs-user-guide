@@ -16,7 +16,7 @@ The `CreateFileSystem` call returns while the file system's lifecycle state is s
 
 This operation also takes an optional `PerformanceMode` parameter that you choose for your file system\. We recommend `generalPurpose` performance mode for most file systems\. File systems using the `maxIO` performance mode can scale to higher levels of aggregate throughput and operations per second with a tradeoff of slightly higher latencies for most file operations\. The performance mode can't be changed after the file system has been created\. For more information, see [Amazon EFS: Performance Modes](https://docs.aws.amazon.com/efs/latest/ug/performance.html#performancemodes.html)\.
 
-After the file system is fully created, Amazon EFS sets its lifecycle state to `available`, at which point you can create one or more mount targets for the file system in your VPC\. For more information, see [CreateMountTarget](API_CreateMountTarget.md)\. You mount your Amazon EFS file system on an EC2 instances in your VPC via the mount target\. For more information, see [Amazon EFS: How it Works](https://docs.aws.amazon.com/efs/latest/ug/how-it-works.html)\. 
+After the file system is fully created, Amazon EFS sets its lifecycle state to `available`, at which point you can create one or more mount targets for the file system in your VPC\. For more information, see [CreateMountTarget](API_CreateMountTarget.md)\. You mount your Amazon EFS file system on an EC2 instances in your VPC by using the mount target\. For more information, see [Amazon EFS: How it Works](https://docs.aws.amazon.com/efs/latest/ug/how-it-works.html)\. 
 
  This operation requires permissions for the `elasticfilesystem:CreateFileSystem` action\. 
 

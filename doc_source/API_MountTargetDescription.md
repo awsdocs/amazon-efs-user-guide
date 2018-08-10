@@ -10,7 +10,7 @@ Type: String
 Required: Yes
 
  **IpAddress**   <a name="efs-Type-MountTargetDescription-IpAddress"></a>
-Address at which the file system may be mounted via the mount target\.  
+Address at which the file system can be mounted by using the mount target\.  
 Type: String  
 Required: No
 

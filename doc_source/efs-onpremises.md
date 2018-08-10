@@ -2,6 +2,9 @@
 
 This walkthrough uses the AWS Management Console to create and mount a file system on an on\-premises client using an AWS Direct Connect connection\.
 
+**Note**  
+Using Amazon EFS with Microsoft Windows–based clients is not supported\.
+
 In this walkthrough, we assume that you already have an AWS Direct Connect connection\. If you don't have one, you can begin the connection process now and come back to this walkthrough when your connection is established\. For more information, see [AWS Direct Connect Product Details](https://aws.amazon.com/directconnect/details/)\.
 
 When you have an AWS Direct Connect connection, you create an Amazon EFS file system and a mount target in your Amazon VPC\. After that, you download and install the amazon\-efs\-utils tools\. Then, you test the file system from your on\-premises client\. Finally, the clean\-up step at the end of the walkthrough provides information for you to remove these resources\.
