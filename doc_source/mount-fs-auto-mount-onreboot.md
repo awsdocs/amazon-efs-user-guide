@@ -44,13 +44,15 @@ The line of code you added to the /etc/fstab file does the following\.
 
 ## Configuring an EFS File System to Mount Automatically at EC2 Instance Launch<a name="mount-fs-auto-mount-on-creation"></a>
 
-You can configure an Amazon EC2 instance to mount your Amazon EFS file system automatically when it is first launched with a script that works with `cloud-init`\. You add the script during the **Launch Instance** wizard of the EC2 management console\. For an example of how to launch an EC2 instance from the console, see [Getting Started](getting-started.md)\.
+You can configure an Amazon EC2 instance to mount your Amazon EFS file system automatically when it is first launched with a script that works with `cloud-init`\. You add the script during the **Launch Instance** wizard of the EC2 management console\. 
 
 The script installs the NFS client and writes an entry in the `/etc/fstab` file that will identify the mount target DNS name as well as the subdirectory in your EC2 instance on which to mount the EFS file system\. The script ensures the file gets mounted when the EC2 instance is launched and after each system reboot\.
 
 For more information about the customized version of `cloud-init` used by Amazon Linux, see [http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AmazonLinuxAMIBasics.html#CloudInit](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AmazonLinuxAMIBasics.html#CloudInit) in the *Amazon EC2 User Guide for Linux Instances*\.
 
 **To configure your EC2 instance to mount an EFS file system automatically at launch**
+**Note**  
+Before you can you perform this procedure, make sure that you've already created your Amazon EFS file system\. For more information, see [Step 2: Create Your Amazon EFS File System](gs-step-two-create-efs-resources.md) in the Amazon EFS Getting Started exercise\.
 
 1. Open the Amazon EC2 console in your web browser, and begin the **Launch Instance** wizard\.
 
@@ -82,7 +84,17 @@ Use the `_netdev` option, used to identify network file systems, when mounting y
      For more information about user data scripts, see [Adding User Data](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-metadata.html#instancedata-add-user-data) in the *Amazon EC2 User Guide for Linux Instances*\. 
 
 1. Complete the **Launch Instance** wizard\.
-**Note**  
-To verify that your EC2 instance is working correctly, you can integrate these steps into the Getting Started exercise\. For more information, see [Getting Started](getting-started.md)\.
+
+1. While the EC2 instance is launching and while **Status Checks** reads **Initializing**, you must add the security group associated with the EFS mount target for the file system\. In the Getting Started exercise, this is the default security group\. To add the security group to your EC2 instance, do the following: 
+
+   1. Open the EC2 management console and from the left navigation pane, choose **Instances**\.
+
+   1. Find the EC2 instance you just created\.
+
+   1. From **Actions**, select **Networking** and then select **Change Security Groups**\.
+
+   1. Add the security group associated with your file system\. In the Getting Started exercise, this is the default security group\.
+
+   1. Choose **Assign Security Groups**\.
 
 Your EC2 instance is now configured to mount the EFS file system at launch\.

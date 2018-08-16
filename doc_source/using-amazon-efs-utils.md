@@ -141,7 +141,7 @@ After installing the Amazon EFS mount helper, you can upgrade your system's vers
 
 1. `sudo yum install -y gcc openssl-devel tcp_wrappers-devel`
 
-1. `sudo curl -o stunnel-5.48.tar.gz https://www.stunnel.org/downloads/stunnel-5.48.tar.gz`
+1. `sudo curl -o stunnel-5.48.tar.gz https://www.stunnel.org/downloads.html.tar.gz`
 
 1. `sudo tar xvfz stunnel-5.48.tar.gz`
 
