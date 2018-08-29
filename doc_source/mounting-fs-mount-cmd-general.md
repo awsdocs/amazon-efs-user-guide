@@ -10,11 +10,13 @@ When mounting your Amazon EFS file system on an Amazon EC2 instance, note the fo
   timeo=600
   retrans=2
   noresvport
+  _netdev
   ```
 + If you must change the IO size parameters \(`rsize` and `wsize`\), we recommend that you use the largest size possible \(up to `1048576`\) to avoid diminished performance\.
 + If you must change the timeout parameter \(`timeo`\), we recommend that you use a value of at least `150`, which is equivalent to 15 seconds\. The timeo parameter is in deciseconds, so 15 seconds is equal to 150 deciseconds\.
 + We recommend that you use the hard mount option\. However, if you use a soft mount, you need to set the `timeo` parameter to at least `150` deciseconds\.
 + With the `noresvport` option, the NFS client uses a new Transmission Control Protocol \(TCP\) source port when a network connection is reestablished\. Doing this helps ensure uninterrupted availability after a network recovery event\.
++ The `_netdev` option prevents the client from attempting to mount the file system until the network has been enabled.
 + Avoid setting any other mount options that are different from the defaults\. For example, changing read or write buffer sizes, or disabling attribute caching can result in reduced performance\.
 + Amazon EFS ignores source ports\. If you change Amazon EFS source ports, it doesn't have any effect\.
 + Amazon EFS does not support any of the Kerberos security variants\.  For example, the following will cause a mount to fail:
