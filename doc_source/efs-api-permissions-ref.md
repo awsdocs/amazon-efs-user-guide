@@ -25,4 +25,4 @@ If you see an expand arrow \(**↗**\) in the upper\-right corner of the table, 
 | [DescribeMountTargets](API_DescribeMountTargets.md) | elasticfilesystem:DescribeMountTargets | arn:aws:elasticfilesystem:region:account\-id:file\-system/file\-system\-id | 
 | [DescribeTags](API_DescribeTags.md) | elasticfilesystem:DescribeTags | arn:aws:elasticfilesystem:region:account\-id:file\-system/file\-system\-id | 
 | [ModifyMountTargetSecurityGroups](API_ModifyMountTargetSecurityGroups.md) |  `elasticfilesystem:ModifyMountTargetSecurityGroups` ` ec2:ModifyNetworkInterfaceAttribute `  | arn:aws:elasticfilesystem:region:account\-id:file\-system/file\-system\-id | 
-| [UpdateFileSystem](API_UpdateFileSystem.md) |  `elasticfilesystem:UpdateFileSystem` `elasticfilesystem:UpdateFileSystem`  | arn:aws:elasticfilesystem:region:account\-id:file\-system/file\-system\-id | 
+| [UpdateFileSystem](API_UpdateFileSystem.md) |  `elasticfilesystem:UpdateFileSystem`  | arn:aws:elasticfilesystem:region:account\-id:file\-system/file\-system\-id | 

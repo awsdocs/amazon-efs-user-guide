@@ -19,7 +19,7 @@ If your local application needs to know if the EFS file system is available, you
 You can use the root credentials of your AWS account to sign in to the console and try this exercise\. However, AWS Identity and Access Management \(IAM\) best practices recommend that you don't use the root credentials of your AWS account\. Instead, create an administrator user in your account and use those credentials to manage resources in your account\. For more information, see [Setting Up](setting-up.md)\.
 
 You can use a default VPC or a custom VPC that you have created in your account\. For this walkthrough, the default VPC configuration works\. However, if you use a custom VPC, verify the following:
-+ The internet gateway is attached to your VPC\. For more information, see [Internet Gateways](http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_Internet_Gateway.html) in the *Amazon VPC User Guide*\.
++ The internet gateway is attached to your VPC\. For more information, see [Internet Gateways](http://docs.aws.amazon.com/vpc/latest/userguide/VPC_Internet_Gateway.html) in the *Amazon VPC User Guide*\.
 + The VPC route table includes a rule to send all internet\-bound traffic to the Internet gateway\.
 
 ## Step 1: Create Your Amazon Elastic File System Resources<a name="wt5-step1-efs"></a>

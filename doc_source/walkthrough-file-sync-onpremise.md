@@ -55,6 +55,10 @@ At this point, you should see your activated sync agent on the Amazon EFS consol
 
 Create a sync task and configure the source and destination file systems\.
 
+**Note**  
+EFS File Sync doesn't support syncing from an EFS source to a NFS destination\.  
+You can't create a sync task while your source or destination files are being modified\.
+
 **To create a sync task**
 
 1. Choose **Create sync task**\. The **Configure source location** page appears\.  

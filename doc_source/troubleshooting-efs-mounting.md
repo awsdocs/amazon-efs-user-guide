@@ -131,12 +131,12 @@ $ 
 
 **Action to Take**
 
-Check your VPC configuration\. If you are using a custom VPC, make sure that DNS settings are enabled\. For more information, see [Using DNS with Your VPC](http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/vpc-dns.html) in the *Amazon VPC User Guide*\. 
+Check your VPC configuration\. If you are using a custom VPC, make sure that DNS settings are enabled\. For more information, see [Using DNS with Your VPC](http://docs.aws.amazon.com/vpc/latest/userguide/vpc-dns.html) in the *Amazon VPC User Guide*\. 
 
 To specify a DNS name in the `mount` command, you must do the following:
 + Ensure that there's an Amazon EFS mount target in the same Availability Zone as the Amazon EC2 instance\.
-+ Connect your Amazon EC2 instance inside an Amazon VPC configured to use the DNS server provided by Amazon\. For more information, see [DHCP Options Sets](http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_DHCP_Options.html) in the *Amazon VPC User Guide*\.
-+ Ensure that the Amazon VPC of the connecting Amazon EC2 instance has DNS hostnames enabled\. For more information, see [Updating DNS Support for Your VPC](http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/vpc-dns.html#vpc-dns-updating) in the *Amazon VPC User Guide*\.
++ Connect your Amazon EC2 instance inside an Amazon VPC configured to use the DNS server provided by Amazon\. For more information, see [DHCP Options Sets](http://docs.aws.amazon.com/vpc/latest/userguide/VPC_DHCP_Options.html) in the *Amazon VPC User Guide*\.
++ Ensure that the Amazon VPC of the connecting Amazon EC2 instance has DNS hostnames enabled\. For more information, see [Updating DNS Support for Your VPC](http://docs.aws.amazon.com/vpc/latest/userguide/vpc-dns.html#vpc-dns-updating) in the *Amazon VPC User Guide*\.
 
 ## Mount Target Lifecycle State Is Stuck<a name="mount-target-lifecycle-stuck"></a>
 

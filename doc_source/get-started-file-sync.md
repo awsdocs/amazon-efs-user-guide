@@ -5,6 +5,9 @@ Amazon EFS File Sync copies files from an existing on\-premises or cloud file sy
 **Note**  
 You don’t need to set up AWS Direct Connect to use EFS File Sync\.
 
+**Note**  
+EFS File Sync currently doesn't support syncing from an Amazon EFS source to a NFS destination\.
+
 **Topics**
 + [Requirements for EFS File Sync](#file-sync-requirements)
 + [EFS File Sync Architecture](#file-sync-architecture)
@@ -128,7 +131,6 @@ For information about how to take a snapshot in an enterprise storage array, see
 + EMC VNX: [How to create a VNX snapshot and attach it to a server](https://community.emc.com/docs/DOC-24251)
 + EMC VMAX: [EMC TimeFinder Product Description Guide](https://www.emc.com/collateral/software/timefinder.pdf)
 + NetApp: [Snapshot management](https://library.netapp.com/ecmdocs/ECMP1635994/html/GUID-DF14D62D-99D1-4B2B-8065-884C9E914259.html)
-+ HPE 3PAR: [Snapshots and copy data management](https://h20195.www2.hpe.com/v2/GetPDF.aspx/4AA6-4486ENW.pdf)
 + HDS: [Hitachi Copy\-on\-Write Snapshot User Guide](https://support.hds.com/download/epcra/rd701311.pdf)
 
 #### Related Topics<a name="related"></a>

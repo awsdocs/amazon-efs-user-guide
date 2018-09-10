@@ -1,6 +1,6 @@
 # Troubleshooting Amazon EFS<a name="troubleshooting"></a>
 
-Following, you can find information on how to troubleshoot issues for Amazon Elastic File System \(Amazon EFS\)\. 
+You can find information about how to troubleshoot the following issues for Amazon Elastic File System \(Amazon EFS\)\. 
 
 **Topics**
 + [Troubleshooting Amazon EFS: General Issues](#troubleshooting-efs-general)
@@ -11,9 +11,10 @@ Following, you can find information on how to troubleshoot issues for Amazon Ela
 
 ## Troubleshooting Amazon EFS: General Issues<a name="troubleshooting-efs-general"></a>
 
-Following, you can find information about general troubleshooting issues related to Amazon EFS\. For information on performance, see [Amazon EFS Performance](performance.md)\.
+Use this information to troubleshoot general Amazon EFS issues\. For information about performance, see [Amazon EFS Performance](performance.md)\.
 
 In general, if you encounter issues with Amazon EFS that you have trouble resolving, confirm that you're using a recent Linux kernel\. If you are using an enterprise Linux distribution, we recommend the following:
++ Amazon Linux 2
 + Amazon Linux 2015\.09 or newer
 + RHEL 7\.3 or newer
 + RHEL 6\.9 with kernel 2\.6\.32\-696 or newer
@@ -23,10 +24,13 @@ In general, if you encounter issues with Amazon EFS that you have trouble resolv
 
 If you are using another distribution or a custom kernel, we recommend kernel version 4\.3 or newer\.
 
+**Note**  
+RHEL 6\.9 might be suboptimal for certain workloads due to [Poor Performance When Opening Many Files in Parallel](#open-close-operations-serialized)\.
+
 **Topics**
 + [Amazon EC2 Instance Hangs](#ec2-instance-hangs)
 + [Application Writing Large Amounts of Data Hangs](#application-large-data-hangs)
-+ [Open and Close Operations Are Serialized](#open-close-operations-serialized)
++ [Poor Performance When Opening Many Files in Parallel](#open-close-operations-serialized)
 + [Custom NFS Settings Causing Write Delays](#custom-nfs-settings-write-delays)
 + [Creating Backups with Oracle Recovery Manager Is Slow](#oracle-backup-slow)
 
@@ -59,17 +63,15 @@ To prevent a reboot, increase the timeout period or disable kernel panics when a
 $ sudo sysctl -w kernel.hung_task_panic=0
 ```
 
-### Open and Close Operations Are Serialized<a name="open-close-operations-serialized"></a>
+### Poor Performance When Opening Many Files in Parallel<a name="open-close-operations-serialized"></a>
 
-Open and close operations that are performed on a file system by a user on a single Amazon EC2 instance are serialized\.
+Applications that open multiple files in parallel do not experience the expected increase in performance of I/O parallelization\.
 
 **Action to Take**
 
-To resolve this issue, use NFS protocol version 4\.1 and one of the suggested Linux kernels\. By using NFSv4\.1 when mounting your file systems, you enable parallelized open and close operations on files\. We recommend using **Amazon Linux AMI 2016\.03\.0** as the AMI for the Amazon EC2 instance that you mount your file system to\. 
+This issue occurs on NFSv4 clients and on RHEL 6 clients using NFSv4\.1 because these NFS clients serialize NFS OPEN and CLOSE operations\. Use NFS protocol version 4\.1 and one of the suggested [Linux distributions](#recommend.linux.dist) that does not have this issue\.
 
-If you can't use NFSv4\.1, be aware that the Linux NFSv4\.0 client serializes open and close requests by user ID and group IDs\. This serialization happens even if multiple processes or multiple threads issue requests at the same time\. The client only sends one open or close operation to an NFS server at a time, when all of the IDs match\.
-
-In addition, you can perform any of the following actions to resolve this issue:
+If you can't use NFSv4\.1, be aware that the Linux NFSv4\.0 client serializes open and close requests by user ID and group IDs\. This serialization happens even if multiple processes or multiple threads issue requests at the same time\. The client only sends one open or close operation to an NFS server at a time, when all of the IDs match\. To work around these issues, you can perform any of the following actions:
 + You can run each process from a different user ID on the same Amazon EC2 instance\.
 + You can leave the user IDs the same across all open requests, and modify the set of group IDs instead\.
 + You can run each process from a separate Amazon EC2 instance\.

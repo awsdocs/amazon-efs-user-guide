@@ -6,9 +6,9 @@ The following table describes important changes to the *Amazon Elastic File Syst
 
 | Change | Description | Date | 
 | --- |--- |--- |
-| Additional AWS Region support added | Amazon EFS is now available to all users in the Asia Pacific \(Singapore\) AWS Region\. | July 13, 2018 | 
-| Introducing Provisioned Throughput mode | You can now provision throughput for new or existing file systems with the new Provisioned Throughput mode\. For more information, see [http://docs.aws.amazon.com/efs/latest/ug/throughput-modes.html](http://docs.aws.amazon.com/efs/latest/ug/throughput-modes.html)\. | July 12, 2018 | 
-| Additional AWS Region support added | Amazon EFS is now available to all users in the Asia Pacific \(Tokyo\) AWS Region\. | July 11, 2018 | 
+| [Additional AWS Region support added](#document-history) | Amazon EFS is now available to all users in the Asia Pacific \(Singapore\) AWS Region\. | July 13, 2018 | 
+| [Introducing Provisioned Throughput mode](#document-history) | You can now provision throughput for new or existing file systems with the new Provisioned Throughput mode\. For more information, see [http://docs.aws.amazon.com/efs/latest/ug/throughput-modes.html](http://docs.aws.amazon.com/efs/latest/ug/throughput-modes.html)\. | July 12, 2018 | 
+| [Additional AWS Region support added](#document-history) | Amazon EFS is now available to all users in the Asia Pacific \(Tokyo\) AWS Region\. | July 11, 2018 | 
 
 The following table describes important changes to the *Amazon Elastic File System User Guide* before July 2018\.
 

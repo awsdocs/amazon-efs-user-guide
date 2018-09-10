@@ -15,7 +15,7 @@ For more information about security groups, see [Amazon EC2 Security Groups](htt
 
 You can use the AWS Management Console to create security groups in your VPC\. To connect your Amazon EFS file system to your Amazon EC2 instance, you'll need to create two security groups: one for your Amazon EC2 instance and another for your Amazon EFS mount target\.
 
-1. Create two security groups in your VPC\. For instructions, see [Creating a Security Group](http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_SecurityGroups.html#CreatingSecurityGroups) in the *Amazon VPC User Guide*\.
+1. Create two security groups in your VPC\. For instructions, see [Creating a Security Group](http://docs.aws.amazon.com/vpc/latest/userguide/VPC_SecurityGroups.html#CreatingSecurityGroups) in the *Amazon VPC User Guide*\.
 
 1. In the VPC console, verify the default rules for these security groups\. Both security groups should have only an outbound rule that allows traffic to leave\.
 
@@ -24,7 +24,7 @@ You can use the AWS Management Console to create security groups in your VPC\. T
    1. Add a rule to the EC2 security group to allow inbound access, as shown following\. Optionally, you can restrict the **Source** address\.   
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/efs/latest/ug/images/gs-ec2-resources-100.png)
 
-      For instructions, see [Adding and Removing Rules](http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_SecurityGroups.html#AddRemoveRules) in the *Amazon VPC User Guide*\.
+      For instructions, see [Adding and Removing Rules](http://docs.aws.amazon.com/vpc/latest/userguide/VPC_SecurityGroups.html#AddRemoveRules) in the *Amazon VPC User Guide*\.
 
    1. Add a rule to the mount target security group to allow inbound access from the EC2 security group, as shown following \(where the EC2 security group is identified as the source\):   
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/efs/latest/ug/images/gs-ec2-resources-120.png)

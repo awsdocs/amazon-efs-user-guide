@@ -27,7 +27,7 @@ You can authorize inbound and outbound access to your EFS file system\. To do so
 
 1. Create two security groups in your VPC\.
 
-   For instructions, see the procedure "To create a security group" in [Creating a Security Group](http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_SecurityGroups.html#CreatingSecurityGroups) in the *Amazon VPC User Guide*\. 
+   For instructions, see the procedure "To create a security group" in [Creating a Security Group](http://docs.aws.amazon.com/vpc/latest/userguide/VPC_SecurityGroups.html#CreatingSecurityGroups) in the *Amazon VPC User Guide*\. 
 
 1. Open the Amazon VPC Management Console at [https://console\.aws\.amazon\.com/vpc/](https://console.aws.amazon.com/vpc/), and verify the default rules for these security groups\. Both security groups should have only an outbound rule that allows traffic to leave\. 
 
@@ -40,7 +40,7 @@ You can authorize inbound and outbound access to your EFS file system\. To do so
    You don't need to add an outbound rule, because the default outbound rule allows all traffic to leave\. If this were not the case, you'd need to add an outbound rule to open the TCP connection on the NFS port, identifying the mount target security group as the destination\.  
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/efs/latest/ug/images/gs-ec2-resources-100.png)
 
-   For instructions, see [Adding and Removing Rules](http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_SecurityGroups.html#AddRemoveRules) in the *Amazon VPC User Guide*\. 
+   For instructions, see [Adding and Removing Rules](http://docs.aws.amazon.com/vpc/latest/userguide/VPC_SecurityGroups.html#AddRemoveRules) in the *Amazon VPC User Guide*\. 
 
 1. Add a rule for the mount target security group to allow inbound access from the EC2 security group as shown following\. The EC2 security group is identified as the source\.  
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/efs/latest/ug/images/gs-ec2-resources-120.png)
