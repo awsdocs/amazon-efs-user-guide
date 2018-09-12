@@ -32,6 +32,10 @@ For Amazon EFS, you can work with VPC peering within a single AWS Region when us
 1. Choose **Save**\.
 
    The console first deletes the mount targets from the previous VPC and then creates new mount targets in the new VPC that you selected\. 
+   
+   Note : You can still mount the EFS from previous VPC on another VPC. However, Due to limitations with EFS, you can only use one of the mount target's IP to mount the EFS on another VPC. EFS is a VPC-specific service, which means only the instances running inside the same VPC CIDR are able to resolve EFS mount target's private address [Security-considerations] (https://docs.aws.amazon.com/efs/latest/ug/security-considerations.html#sg-information ). Having said that you can create [Private Hosted Zone for VPC] (https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/hosted-zone-private-creating.html) and [Resource Record Set] (https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/resource-record-sets-creating.html) using AWS Route 53 to resolve the EFS mount target IPs from another VPC.
+   
+   
 
 ## Using the CLI<a name="manage-fs-access-change-vpc-using-cli"></a>
 
