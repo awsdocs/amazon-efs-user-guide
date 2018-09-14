@@ -55,20 +55,31 @@ Following are the limits on Amazon EFS resources for each customer account in an
 ## Limits for Client EC2 Instances<a name="limits-client-specific"></a>
 
 The following limits for client EC2 instances apply, assuming a Linux NFSv4\.1 client:
-+ The maximum throughput you can drive for each Amazon EC2 instance is 250 MB/s\.
-+ Up to 128 active user accounts for each instance can have files open at the same time\. Each user account represents one local user logged in to the instance\.
-+ Up to 32,768 files open at the same time on the instance\.
+
+| Resource | Limit | 
+| --- | --- | 
+| Throughput per Amazon EC2 instance | 250 MB/s | 
+| Active user accounts per instance with files open at the same time (each user account represents one local user logged in to the instance) | 128 |
+| Files open at the same time on the instance | 32,768 |
+
 + Each unique mount on the instance can acquire up to a total of 8,192 locks across a maximum of 256 unique file/process pairs\. For example, a single process can acquire one or more locks on 256 separate files, or 8 processes can each acquire one or more locks on 32 files\.
 + Using Amazon EFS with Microsoft Windows Amazon EC2 instances is not supported\.
 
 ## Limits for Amazon EFS File Systems<a name="limits-fs-specific"></a>
 
-The following are limits specific to the Amazon EFS file systems:
-+ Maximum name length: 255 bytes\.
-+ Maximum symbolic link \(symlink\) length: 4080 bytes\.
-+ Maximum number of hard links to a file: 177\.
-+ Maximum size of a single file: 52,673,613,135,872 bytes \(47\.9 TiB\)\.
-+ Maximum directory depth: 1000 levels deep\.
+| Resource | Limit | 
+| --- | --- | 
+| Name length | 255 bytes | 
+| Symbolic link \(symlink\) length | 4080 bytes |
+| Number of hard links to a file | 177 |
+| Single file size | 52,673,613,135,872 bytes \(47\.9 TiB\) |
+| Directory depth | 1000 levels |
+
+
++ symbolic link \(symlink\) length: 4080 bytes\.
++ number of hard links to a file: 177\.
++ size of a single file: 52,673,613,135,872 bytes \(47\.9 TiB\)\.
++ directory depth: 1000 levels deep\.
 + Any one particular file can have up to 87 locks across all users of the file system\. You can mount a file system on one or more Amazon EC2 instances, but the maximum 87\-lock limit for a file applies\.
 + In General Purpose mode, there is a limit of 7000 file system operations per second\. This operations limit is calculated for all clients connected to a single file system\.
 
