@@ -131,7 +131,7 @@ We recommend that you specify a run time that occurs during your off\-peak hours
 
 1. When your pipeline is configured, choose **Activate**\.
 
-You’ve now configured and activated your Amazon EFS backup data pipeline\. For more information about AWS Data Pipeline, see the [AWS Data Pipeline Developer Guide](http://docs.aws.amazon.com/datapipeline/latest/DeveloperGuide/)\. At this stage, you can perform the backup now as a test, or you can wait until the backup is performed at the scheduled time\.
+You’ve now configured and activated your Amazon EFS backup data pipeline\. For more information about AWS Data Pipeline, see the [AWS Data Pipeline Developer Guide](https://docs.aws.amazon.com/datapipeline/latest/DeveloperGuide/)\. At this stage, you can perform the backup now as a test, or you can wait until the backup is performed at the scheduled time\.
 
 ### Step 4: Access Your Amazon EFS Backups<a name="step4-access-backup"></a>
 
@@ -180,7 +180,7 @@ Make sure that you're working in the same AWS Region as your Amazon EFS file sys
 
 1. When your pipeline is configured, choose **Activate**\.
 
-You’ve now configured and activated your Amazon EFS restoration data pipeline\. Now when you need to restore a backup to your production EFS file system, you just activate it from the AWS Data Pipeline console\. For more information, see the [http://docs.aws.amazon.com/datapipeline/latest/DeveloperGuide/](http://docs.aws.amazon.com/datapipeline/latest/DeveloperGuide/)\.
+You’ve now configured and activated your Amazon EFS restoration data pipeline\. Now when you need to restore a backup to your production EFS file system, you just activate it from the AWS Data Pipeline console\. For more information, see the [https://docs.aws.amazon.com/datapipeline/latest/DeveloperGuide/](https://docs.aws.amazon.com/datapipeline/latest/DeveloperGuide/)\.
 
 #### Step 4\.2: Restore Individual Files from Your Amazon EFS Backups<a name="step4-2-partial-restore"></a>
 
@@ -366,17 +366,17 @@ If you'd prefer to eliminate this GitHub dependency, you can choose to host the 
 
 1. **Create an AWS Identity and Access Management User** – If you already have an IAM user, go ahead and skip to the next step\. Otherwise, see [Create an IAM User](setting-up.md#setting-up-iam)\.
 
-1. **Create an Amazon S3 bucket** – If you already have a bucket that you want to host the rsync scripts in, go ahead and skip to the next step\. Otherwise, see [Create a Bucket](http://docs.aws.amazon.com/AmazonS3/latest/gsg/CreatingABucket.html) in the *Amazon Simple Storage Service Getting Started Guide*\.
+1. **Create an Amazon S3 bucket** – If you already have a bucket that you want to host the rsync scripts in, go ahead and skip to the next step\. Otherwise, see [Create a Bucket](https://docs.aws.amazon.com/AmazonS3/latest/gsg/CreatingABucket.html) in the *Amazon Simple Storage Service Getting Started Guide*\.
 
 1. **Download the rsync scripts and templates** – Download all of the rsync scripts and templates in the [EFSBackup folder](https://github.com/awslabs/data-pipeline-samples/tree/master/samples/EFSBackup) from GitHub\. Make a note of the location on your computer where you downloaded these files\.
 
-1. **Upload the rsync scripts to your S3 bucket** – For instructions on how to upload objects into your S3 bucket, see [Add an Object to a Bucket](http://docs.aws.amazon.com/AmazonS3/latest/gsg/PuttingAnObjectInABucket.html) in the *Amazon Simple Storage Service Getting Started Guide*\.
+1. **Upload the rsync scripts to your S3 bucket** – For instructions on how to upload objects into your S3 bucket, see [Add an Object to a Bucket](https://docs.aws.amazon.com/AmazonS3/latest/gsg/PuttingAnObjectInABucket.html) in the *Amazon Simple Storage Service Getting Started Guide*\.
 
-1. Change the permissions on the uploaded rsync scripts to allow **Everyone** to **Open/Download** them\. For instructions on how to change the permissions on an object in your S3 bucket, see [Editing Object Permissions](http://docs.aws.amazon.com/AmazonS3/latest/user-guide/EditingPermissionsonanObject.html) in the *Amazon Simple Storage Service Console User Guide*\.  
+1. Change the permissions on the uploaded rsync scripts to allow **Everyone** to **Open/Download** them\. For instructions on how to change the permissions on an object in your S3 bucket, see [Editing Object Permissions](https://docs.aws.amazon.com/AmazonS3/latest/user-guide/EditingPermissionsonanObject.html) in the *Amazon Simple Storage Service Console User Guide*\.  
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/efs/latest/ug/images/s3upload.png)
 
 1. **Update your templates** – Modify the `wget` statement in the `shellCmd` parameter to point to the Amazon S3 bucket where you put the startup script\. Save the updated template, and use that template when you're following the procedure in [Step 3: Create a Data Pipeline for Backup](#step3-create-pipeline)\.
 **Note**  
-We recommend that you limit access to your Amazon S3 bucket to include the IAM account that activates the AWS Data Pipeline for this backup solution\. For more information, see [Editing Bucket Permissions](http://docs.aws.amazon.com/AmazonS3/latest/user-guide/EditingBucketPermissions.html) in the *Amazon Simple Storage Service Console User Guide*\.
+We recommend that you limit access to your Amazon S3 bucket to include the IAM account that activates the AWS Data Pipeline for this backup solution\. For more information, see [Editing Bucket Permissions](https://docs.aws.amazon.com/AmazonS3/latest/user-guide/EditingBucketPermissions.html) in the *Amazon Simple Storage Service Console User Guide*\.
 
 You are now hosting the rsync scripts for this backup solution, and your backups are no longer dependent on GitHub availability\.

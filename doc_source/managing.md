@@ -27,9 +27,9 @@ File data—the contents of your files—is encrypted at rest using the CMK that
 The AWS\-managed CMK for your file system is used as the master key for the metadata in your file system, for example file names, directory names, and directory contents\. You own the CMK used to encrypt file data \(the contents of your files\) at rest\.
 
 You manage who has access to your CMKs and the contents of your encrypted file systems\. This access is controlled by both AWS Identity and Access Management \(IAM\) policies and AWS KMS\. IAM policies control a user's access to Amazon EFS API actions\. AWS KMS key policies control a user's access to the CMK you specified when the file system was created\. For more information, see the following:
-+ [IAM Users](http://docs.aws.amazon.com/IAM/latest/UserGuide/id_users.html) in the *IAM User Guide*
-+ [Using Key Policies in AWS KMS](http://docs.aws.amazon.com/kms/latest/developerguide/key-policies.html) in the *AWS Key Management Service Developer Guide*
-+ [Using Grants](http://docs.aws.amazon.com/kms/latest/developerguide/grants.html) in the *AWS Key Management Service Developer Guide*\.
++ [IAM Users](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_users.html) in the *IAM User Guide*
++ [Using Key Policies in AWS KMS](https://docs.aws.amazon.com/kms/latest/developerguide/key-policies.html) in the *AWS Key Management Service Developer Guide*
++ [Using Grants](https://docs.aws.amazon.com/kms/latest/developerguide/grants.html) in the *AWS Key Management Service Developer Guide*\.
 
 As a key administrator, you can import external keys and you can modify keys by enabling, disabling, or deleting them\. The state of the CMK that you specified \(when you created the file system with encryption at rest\) affects access to its contents\. The CMK must be in the `enabled` state for users to have access to the contents of an encrypted\-at\-rest file system\.
 
@@ -49,7 +49,7 @@ If you revoke Amazon EFS access to a grant for any existing mounted file system,
 
 To prevent access to a mounted encrypted\-at\-rest file system that has a CMK that you disabled, deleted, or revoked Amazon EFS access to, unmount the file system and delete your Amazon EFS mount targets\.
 
-You can't immediately delete an AWS KMS key, but you can instead schedule a key to be deleted\. The earliest a CMK can be deleted is seven days after the key has been scheduled for deletion\. When a key is scheduled for deletion, it behaves as if it is disabled\. You can also cancel a key's scheduled deletion\. For more information on deleting a master key in AWS KMS, see [Deleting Customer Master Keys](http://docs.aws.amazon.com/kms/latest/developerguide/deleting-keys.html) in the *AWS Key Management Service Developer Guide\.*
+You can't immediately delete an AWS KMS key, but you can instead schedule a key to be deleted\. The earliest a CMK can be deleted is seven days after the key has been scheduled for deletion\. When a key is scheduled for deletion, it behaves as if it is disabled\. You can also cancel a key's scheduled deletion\. For more information on deleting a master key in AWS KMS, see [Deleting Customer Master Keys](https://docs.aws.amazon.com/kms/latest/developerguide/deleting-keys.html) in the *AWS Key Management Service Developer Guide\.*
 
 The following procedure outlines how to disable a CMK\.
 
@@ -83,4 +83,4 @@ You can't enable AWS\-managed CMKs, which are denoted by the orange AWS icon\.
 + For more information on encrypted data and metadata at rest in Amazon EFS, see [Encrypting Data and Metadata in EFS](encryption.md)\.
 + For example key policies, see [Amazon EFS Key Policies for AWS KMS](encryption.md#EFSKMSPolicy)\.
 + For a list of AWS CloudTrail log entries associated with an encrypted file system, see [Amazon EFS Log File Entries for Encrypted\-at\-Rest File Systems](logging-using-cloudtrail.md#efs-encryption-cloudtrail)\.
-+ For more information on determining what accounts and services have access to your CMKs, see [Determining Access to an AWS KMS Customer Master Key](http://docs.aws.amazon.com/kms/latest/developerguide/determining-access.html) in the *AWS Key Management Service Developer Guide*\.
++ For more information on determining what accounts and services have access to your CMKs, see [Determining Access to an AWS KMS Customer Master Key](https://docs.aws.amazon.com/kms/latest/developerguide/determining-access.html) in the *AWS Key Management Service Developer Guide*\.

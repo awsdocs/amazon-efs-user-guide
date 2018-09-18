@@ -14,7 +14,7 @@ If you no longer need the resources you created, you should remove them\. You ca
    --profile adminuser
    ```
 
-   You can also delete EC2 resources using the console\. For instructions, see [Terminating an Instance](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/terminating-instances.html#terminating-instances-console) in the *Amazon EC2 User Guide for Linux Instances*\. 
+   You can also delete EC2 resources using the console\. For instructions, see [Terminating an Instance](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/terminating-instances.html#terminating-instances-console) in the *Amazon EC2 User Guide for Linux Instances*\. 
 
 1. Delete the mount target\.
 
@@ -40,7 +40,7 @@ If you no longer need the resources you created, you should remove them\. You ca
 
    You must delete the mount target's security group first, before deleting the EC2 instance's security group\. The mount target's security group has a rule that references the EC2 security group\. Therefore, you cannot first delete the EC2 instance's security group\.
 
-   For instructions, see [Deleting a Security Group](http://docs.aws.amazon.com/cli/latest/userguide/cli-ec2-sg.html#deleting-a-security-group) in the *Amazon EC2 User Guide for Linux Instances*\.
+   For instructions, see [Deleting a Security Group](https://docs.aws.amazon.com/cli/latest/userguide/cli-ec2-sg.html#deleting-a-security-group) in the *Amazon EC2 User Guide for Linux Instances*\.
 
 1. Delete the file system by using the `delete-file-system` CLI command\. You can get a list of your file systems by using the `describe-file-systems` CLI command\. You can get the file system ID from the response\.
 

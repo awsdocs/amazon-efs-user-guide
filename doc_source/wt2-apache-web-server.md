@@ -137,7 +137,7 @@ When everything works, you can also update the EC2 instance security group inbou
 **Note**  
 Don't add any EC2 instances\. Later, you create an Auto Scaling Group in which you launch EC2 instance and specify this load balancer\.
 
-   For instructions to create a load balancer, see [Getting Started with Elastic Load Balancing](http://docs.aws.amazon.com/elasticloadbalancing/latest/userguide/elb-getting-started.html) in the *Elastic Load Balancing User Guide*\. 
+   For instructions to create a load balancer, see [Getting Started with Elastic Load Balancing](https://docs.aws.amazon.com/elasticloadbalancing/latest/userguide/elb-getting-started.html) in the *Elastic Load Balancing User Guide*\. 
 
 1. Create an Auto Scaling group with two EC2 instances\. First, you create a launch configuration describing the instances\. Then, you create an Auto Scaling group by specifying the launch configuration\. The following steps provide configuration information that you specify to create an Auto Scaling group from the Amazon EC2 console\.
 
@@ -165,7 +165,7 @@ Don't add any EC2 instances\. Later, you create an Auto Scaling Group in which y
         + Creates efs\-mount\-point subdirectory and mounts the file system on it\.
         + Creates a test\.html page so ELB health check can find the file \(when creating a load balancer you specified this file as the ping point\)\.
 
-        For more information about user data scripts, see [Adding User Data](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-metadata.html#instancedata-add-user-data) in the *Amazon EC2 User Guide for Linux Instances*\.
+        For more information about user data scripts, see [Adding User Data](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-metadata.html#instancedata-add-user-data) in the *Amazon EC2 User Guide for Linux Instances*\.
 
         ```
         #cloud-config
@@ -198,7 +198,7 @@ Don't add any EC2 instances\. Later, you create an Auto Scaling Group in which y
 
       1. For **Health Check Type**, choose **ELB**\.
 
-   Follow the instructions to create an Auto Scaling group at [Set Up a Scaled and Load\-Balanced Application](http://docs.aws.amazon.com/autoscaling/latest/userguide/as-register-lbs-with-asg.html) in the *Amazon EC2 Auto Scaling User Guide*\. Use the information in the preceding tables where applicable\.
+   Follow the instructions to create an Auto Scaling group at [Set Up a Scaled and Load\-Balanced Application](https://docs.aws.amazon.com/autoscaling/latest/userguide/as-register-lbs-with-asg.html) in the *Amazon EC2 Auto Scaling User Guide*\. Use the information in the preceding tables where applicable\.
 
 1. Upon successful creation of the Auto Scaling group, you have two EC2 instances with `nfs-utils` and the Apache web server installed\. On each instance, verify that you have the `/var/www/html/efs-mount-point` subdirectory with your Amazon EFS file system mounted on it\. For instructions to connect to an EC2 instance, see [Step 3: Connect to Your Amazon EC2 Instance and Mount the Amazon EFS File System](gs-step-three-connect-to-ec2-instance.md)\.
 **Note**  

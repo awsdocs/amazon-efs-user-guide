@@ -12,7 +12,7 @@ In this step, you do the following:
 
 ## Step 1\.1: Create Two Security Groups<a name="wt1-create-sg"></a>
 
-In this section, you create security groups in your VPC for your EC2 instance and Amazon EFS mount target\. Later in the walkthrough, you assign these security groups to an EC2 instance and an Amazon EFS mount target\. For information about security groups, see [Security Groups for EC2\-VPC](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-network-security.html#vpc-security-groups) in the *Amazon EC2 User Guide for Linux Instances*\. 
+In this section, you create security groups in your VPC for your EC2 instance and Amazon EFS mount target\. Later in the walkthrough, you assign these security groups to an EC2 instance and an Amazon EFS mount target\. For information about security groups, see [Security Groups for EC2\-VPC](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-network-security.html#vpc-security-groups) in the *Amazon EC2 User Guide for Linux Instances*\. 
 
 **To create security groups**
 
@@ -136,8 +136,8 @@ In this step, you launch an EC2 instance\.
 1. Gather the following information that you need to provide when launching an EC2 instance:
 
    1. Key pair name\.
-      + For introductory information, see [Setting Up with Amazon EC2](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/get-set-up-for-amazon-ec2.html) in the *Amazon EC2 User Guide for Linux Instances*\.
-      + For instructions to create a \.pem file, see [Create a Key Pair](http://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/get-set-up-for-amazon-ec2.html#create-a-key-pair) in the *Amazon EC2 User Guide for Linux Instances*\.
+      + For introductory information, see [Setting Up with Amazon EC2](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/get-set-up-for-amazon-ec2.html) in the *Amazon EC2 User Guide for Linux Instances*\.
+      + For instructions to create a \.pem file, see [Create a Key Pair](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/get-set-up-for-amazon-ec2.html#create-a-key-pair) in the *Amazon EC2 User Guide for Linux Instances*\.
 
    1. The AMI ID you want to launch\. 
 

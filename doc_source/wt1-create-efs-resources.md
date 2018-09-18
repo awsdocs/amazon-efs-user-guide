@@ -99,7 +99,7 @@ In this step, you create a mount target for your file system in the Availability
 
 1. Make sure you have the following information:
    + ID of the file system \(for example, `fs-example`\) for which you are creating the mount target\. 
-   + VPC subnet ID where you launched the EC2 instance in [Step 1](http://docs.aws.amazon.com/efs/latest/ug/wt1-create-ec2-resources.html)\. 
+   + VPC subnet ID where you launched the EC2 instance in [Step 1](https://docs.aws.amazon.com/efs/latest/ug/wt1-create-ec2-resources.html)\. 
 
      For this walkthrough, you create the mount target in the same subnet in which you launched the EC2 instance, so you need the subnet ID \(for example, `subnet-example`\)\. 
    + ID of the security group you created for the mount target in the preceding step\.

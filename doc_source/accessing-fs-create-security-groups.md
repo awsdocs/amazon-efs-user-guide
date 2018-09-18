@@ -9,13 +9,13 @@ Regardless, to enable traffic between an EC2 instance and a mount target \(and t
 + The security groups you associate with a mount target must allow inbound access for the TCP protocol on the NFS port from all EC2 instances on which you want to mount the file system\.
 + Each EC2 instance that mounts the file system must have a security group that allows outbound access to the mount target on the NFS port\. 
 
-For more information about security groups, see [Amazon EC2 Security Groups](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-network-security.html) in the *Amazon EC2 User Guide for Linux Instances*\. 
+For more information about security groups, see [Amazon EC2 Security Groups](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-network-security.html) in the *Amazon EC2 User Guide for Linux Instances*\. 
 
 ## Creating Security Groups Using the AWS Management Console<a name="create-security-groups-console"></a>
 
 You can use the AWS Management Console to create security groups in your VPC\. To connect your Amazon EFS file system to your Amazon EC2 instance, you'll need to create two security groups: one for your Amazon EC2 instance and another for your Amazon EFS mount target\.
 
-1. Create two security groups in your VPC\. For instructions, see [Creating a Security Group](http://docs.aws.amazon.com/vpc/latest/userguide/VPC_SecurityGroups.html#CreatingSecurityGroups) in the *Amazon VPC User Guide*\.
+1. Create two security groups in your VPC\. For instructions, see [Creating a Security Group](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_SecurityGroups.html#CreatingSecurityGroups) in the *Amazon VPC User Guide*\.
 
 1. In the VPC console, verify the default rules for these security groups\. Both security groups should have only an outbound rule that allows traffic to leave\.
 
@@ -24,7 +24,7 @@ You can use the AWS Management Console to create security groups in your VPC\. T
    1. Add a rule to the EC2 security group to allow inbound access, as shown following\. Optionally, you can restrict the **Source** address\.   
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/efs/latest/ug/images/gs-ec2-resources-100.png)
 
-      For instructions, see [Adding and Removing Rules](http://docs.aws.amazon.com/vpc/latest/userguide/VPC_SecurityGroups.html#AddRemoveRules) in the *Amazon VPC User Guide*\.
+      For instructions, see [Adding and Removing Rules](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_SecurityGroups.html#AddRemoveRules) in the *Amazon VPC User Guide*\.
 
    1. Add a rule to the mount target security group to allow inbound access from the EC2 security group, as shown following \(where the EC2 security group is identified as the source\):   
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/efs/latest/ug/images/gs-ec2-resources-120.png)

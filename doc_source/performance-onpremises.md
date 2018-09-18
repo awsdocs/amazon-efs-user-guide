@@ -6,7 +6,7 @@ Because of the propagation delay tied to data traveling over long distances, the
 
 ## Architecting for High Availability<a name="onpremises-availability"></a>
 
-To ensure continuous availability between your on\-premises data center and your Amazon VPC, we recommend configuring two AWS Direct Connect connections\. For more information, see [Step 4: Configure Redundant Connections with AWS Direct Connect](http://docs.aws.amazon.com/directconnect/latest/UserGuide/getstarted.html#RedundantConnections) in the AWS Direct Connect User Guide\.
+To ensure continuous availability between your on\-premises data center and your Amazon VPC, we recommend configuring two AWS Direct Connect connections\. For more information, see [Step 4: Configure Redundant Connections with AWS Direct Connect](https://docs.aws.amazon.com/directconnect/latest/UserGuide/getstarted.html#RedundantConnections) in the AWS Direct Connect User Guide\.
 
 To ensure continuous availability between your application and Amazon EFS, we recommend that your application be designed to recover from potential connection interruptions\. In general, there are two scenarios for on\-premises applications connected to an Amazon EFS file system; highly available and not highly available\.
 

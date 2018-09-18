@@ -25,7 +25,7 @@ For example, the Amazon EFS API endpoint for the US West \(Oregon\) Region is th
 elasticfilesystem.us-west-2.amazonaws.com
 ```
 
-For a list of AWS Regions that Amazon EFS supports \(where you can create and manage file systems\), see [Amazon Elastic File System ](http://docs.aws.amazon.com/general/latest/gr/rande.html#elasticfilesystem-region) in the *AWS General Reference*\.
+For a list of AWS Regions that Amazon EFS supports \(where you can create and manage file systems\), see [Amazon Elastic File System ](https://docs.aws.amazon.com/general/latest/gr/rande.html#elasticfilesystem-region) in the *AWS General Reference*\.
 
 The region\-specific API endpoint defines the scope of the Amazon EFS resources that are accessible when you make an API call\. For example, when you call the `DescribeFileSystems` operation using the preceding endpoint, you get a list of file systems in the US West \(Oregon\) Region that have been created in your account\. 
 
@@ -58,4 +58,4 @@ Your application might need to retry an API request after it fails, or to proces
 
 ### Calculating the Sleep Interval<a name="efs-sleep-interval-calculation"></a>
 
-When you have to poll or retry an API request, we recommend using an exponential backoff algorithm to calculate the sleep interval between API calls\. The idea behind exponential backoff is to use progressively longer waits between retries for consecutive error responses\. For more information, and implementation examples of this algorithm, see [Error Retries and Exponential Backoff in AWS](http://docs.aws.amazon.com/general/latest/gr/api-retries.html) in the *Amazon Web Services General Reference\.*
+When you have to poll or retry an API request, we recommend using an exponential backoff algorithm to calculate the sleep interval between API calls\. The idea behind exponential backoff is to use progressively longer waits between retries for consecutive error responses\. For more information, and implementation examples of this algorithm, see [Error Retries and Exponential Backoff in AWS](https://docs.aws.amazon.com/general/latest/gr/api-retries.html) in the *Amazon Web Services General Reference\.*

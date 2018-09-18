@@ -168,7 +168,7 @@ Some maintenance tasks require that you log in to the local console when running
 
 ### Logging In to Amazon EC2 EFS File Sync Local Console<a name="sync-ec2-local-console-login"></a>
 
-You can connect to your Amazon EC2 instance by using a Secure Shell \(SSH\) client\. For detailed information, see [Connect to Your Instance](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide//AccessingInstances.html) in the *Amazon EC2 User Guide*\. To connect this way, you will need the SSH key pair you specified when you launched the instance\. For information about Amazon EC2 key pairs, see [Amazon EC2 Key Pairs](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide//ec2-key-pairs.html) in the *Amazon EC2 User Guide\.*
+You can connect to your Amazon EC2 instance by using a Secure Shell \(SSH\) client\. For detailed information, see [Connect to Your Instance](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide//AccessingInstances.html) in the *Amazon EC2 User Guide*\. To connect this way, you will need the SSH key pair you specified when you launched the instance\. For information about Amazon EC2 key pairs, see [Amazon EC2 Key Pairs](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide//ec2-key-pairs.html) in the *Amazon EC2 User Guide\.*
 
 **To log in to the EFS File Sync local console**
 

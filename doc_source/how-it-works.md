@@ -22,7 +22,7 @@ Note the following restrictions:
 + You can mount an Amazon EFS file system on instances in only one VPC at a time\.
 + Both the file system and VPC must be in the same AWS Region\.
 
-For a list of AWS regions where you can create an Amazon EFS file system, see the [Amazon Web Services General Reference](http://docs.aws.amazon.com/general/latest/gr/rande.html#elasticfilesystem_region)\. 
+For a list of AWS regions where you can create an Amazon EFS file system, see the [Amazon Web Services General Reference](https://docs.aws.amazon.com/general/latest/gr/rande.html#elasticfilesystem_region)\. 
 
 To access your Amazon EFS file system in a VPC, you create one or more *mount targets* in the VPC\. A mount target provides an IP address for an NFSv4 endpoint at which you can mount an Amazon EFS file system\. You mount your file system using its DNS name, which will resolve to the IP address of the EFS mount target in the same Availability Zone as your EC2 instance\. You can create one mount target in each Availability Zone in a region\. If there are multiple subnets in an Availability Zone in your VPC, you create a mount target in one of the subnets, and all EC2 instances in that Availability Zone share that mount target\.
 

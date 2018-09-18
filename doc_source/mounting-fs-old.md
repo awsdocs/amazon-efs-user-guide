@@ -13,13 +13,13 @@ Before you can mount a file system, you must create, configure, and launch your 
 + [Installing the NFS Client](#mounting-fs-install-nfsclient)
 + [Mounting on Amazon EC2 with a DNS Name](mounting-fs-mount-cmd-dns-name.md)
 + [Mounting with an IP Address](mounting-fs-mount-cmd-ip-addr.md)
-+ [Mounting Automatically](mount-fs-auto-mount-onreboot-old.md)
 
 ## NFS Support<a name="mounting-fs-nfs-info"></a>
 
-Amazon EFS supports the Network File System versions 4\.0 and 4\.1 \(NFSv4\) and NFSv4\.0 protocols when mounting your file systems on Amazon EC2 instances\. Although NFSv4\.0 is supported, we recommend that you use NFSv4\.1\. Mounting your Amazon EFS file system on your Amazon EC2 instance also requires an NFS client that supports your chosen NFSv4 protocol\.
+Amazon EFS supports the Network File System versions 4\.0 and 4\.1 \(NFSv4\) protocols when mounting your file systems on Amazon EC2 instances\. Although NFSv4\.0 is supported, we recommend that you use NFSv4\.1\. Mounting your Amazon EFS file system on your Amazon EC2 instance also requires an NFS client that supports your chosen NFSv4 protocol\.
 
 For optimal performance and to avoid a variety of known NFS client bugs, we recommend working with a recent Linux kernel\. If you are using an enterprise Linux distribution, we recommend the following:
++ Amazon Linux 2
 + Amazon Linux 2015\.09 or newer
 + RHEL 7\.3 or newer
 + RHEL 6\.9 with kernel 2\.6\.32\-696 or newer
@@ -28,6 +28,9 @@ For optimal performance and to avoid a variety of known NFS client bugs, we reco
 + SLES 12 Sp2 or later
 
 If you are using another distribution or a custom kernel, we recommend kernel version 4\.3 or newer\.
+
+**Note**  
+RHEL 6\.9 might be suboptimal for certain workloads due to [Poor Performance When Opening Many Files in Parallel](troubleshooting.md#open-close-operations-serialized)\.
 
 **Note**  
 Using Amazon EFS with Amazon EC2 instances based on Microsoft Windows is not supported\.
@@ -47,10 +50,10 @@ To mount your Amazon EFS file system on your Amazon EC2 instance, first you need
    + To connect to your instance from a computer running Windows, you can use either MindTerm or PuTTY\. If you plan to use PuTTY, you need to install it and use the following procedure to convert the \.pem file to a \.ppk file\. 
 
    For more information, see the following topics in the *Amazon EC2 User Guide for Linux Instances*:
-   +  [Connecting to Your Linux Instance from Windows Using PuTTY](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/putty.html) 
-   +  [Connecting to Your Linux Instance Using SSH](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AccessingInstancesLinux.html)
+   +  [Connecting to Your Linux Instance from Windows Using PuTTY](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/putty.html) 
+   +  [Connecting to Your Linux Instance Using SSH](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AccessingInstancesLinux.html)
 
-     The key file cannot be publicly viewable for SSH\. You can use the `chmod 400` *filename*`.pem` command to set these permissions\. For more information, see [Create a Key Pair](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/get-set-up-for-amazon-ec2.html#create-a-key-pair)\.
+     The key file cannot be publicly viewable for SSH\. You can use the `chmod 400` *filename*`.pem` command to set these permissions\. For more information, see [Create a Key Pair](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/get-set-up-for-amazon-ec2.html#create-a-key-pair)\.
 
 1. \(Optional\) Get updates and reboot\.
 

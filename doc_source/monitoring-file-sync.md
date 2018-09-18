@@ -1,6 +1,6 @@
 # Monitoring EFS File Sync with Amazon CloudWatch<a name="monitoring-file-sync"></a>
 
-You can monitor EFS File Sync using Amazon CloudWatch, which collects and processes raw data from Amazon EFS into readable, near real\-time metrics\. These statistics are recorded for a period of 15 months, so that you can access historical information and gain a better perspective on how EFS File Sync\. By default, EFS File Sync metric data is automatically sent to CloudWatch at 5\-minute periods\. For more information about CloudWatch, see [What Are Amazon CloudWatch, Amazon CloudWatch Events, and Amazon CloudWatch Logs?](http://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring//WhatIsCloudWatch.html) in the *Amazon CloudWatch User Guide*\.
+You can monitor EFS File Sync using Amazon CloudWatch, which collects and processes raw data from Amazon EFS into readable, near real\-time metrics\. These statistics are recorded for a period of 15 months, so that you can access historical information and gain a better perspective on how EFS File Sync\. By default, EFS File Sync metric data is automatically sent to CloudWatch at 5\-minute periods\. For more information about CloudWatch, see [What Are Amazon CloudWatch, Amazon CloudWatch Events, and Amazon CloudWatch Logs?](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring//WhatIsCloudWatch.html) in the *Amazon CloudWatch User Guide*\.
 
 The AWS/FileSync namespace includes the following metrics\.
 

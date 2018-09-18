@@ -20,11 +20,11 @@ You can mount an Amazon EFS file system on an Amazon EC2 instance using DNS name
 
   In some cases, you might delete a mount target and then create a new one in the same Availability Zone\. In such a case, the DNS name for that new mount target in that Availability Zone is the same as the DNS name for the old mount target\.
 
-For a list of AWS Regions that support Amazon EFS, see [Amazon Elastic File System ](http://docs.aws.amazon.com/general/latest/gr/rande.html#elasticfilesystem-region) in the *AWS General Reference*\.
+For a list of AWS Regions that support Amazon EFS, see [Amazon Elastic File System ](https://docs.aws.amazon.com/general/latest/gr/rande.html#elasticfilesystem-region) in the *AWS General Reference*\.
 
 To be able to use a DNS name in the `mount` command, the following must be true:
-+ The connecting EC2 instance must be inside a VPC and must be configured to use the DNS server provided by Amazon\. For information about Amazon DNS server, see [DHCP Options Sets](http://docs.aws.amazon.com/vpc/latest/userguide/VPC_DHCP_Options.html) in the *Amazon VPC User Guide*\. 
-+ The VPC of the connecting EC2 instance must have DNS hostnames enabled\. For more information, see [Viewing DNS Hostnames for Your EC2 Instance](http://docs.aws.amazon.com/vpc/latest/userguide/vpc-dns.html#vpc-dns-viewing) in the *Amazon VPC User Guide*\. 
++ The connecting EC2 instance must be inside a VPC and must be configured to use the DNS server provided by Amazon\. For information about Amazon DNS server, see [DHCP Options Sets](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_DHCP_Options.html) in the *Amazon VPC User Guide*\. 
++ The VPC of the connecting EC2 instance must have DNS hostnames enabled\. For more information, see [Viewing DNS Hostnames for Your EC2 Instance](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-dns.html#vpc-dns-viewing) in the *Amazon VPC User Guide*\. 
 
 **Note**  
 We recommend that you wait 90 seconds after creating a mount target before you mount your file system\. This wait lets the DNS records propagate fully in the AWS Region where the file system is\.

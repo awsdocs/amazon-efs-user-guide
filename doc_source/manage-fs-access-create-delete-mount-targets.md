@@ -32,7 +32,7 @@ Use the following procedure to create new mount targets, delete, or update exist
 
    1. Choose a **Security Group** from the list\. 
 
-      For more information about security groups, see [Amazon EC2 Security Groups](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-network-security.html) in the *Amazon EC2 User Guide for Linux Instances*\.
+      For more information about security groups, see [Amazon EC2 Security Groups](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-network-security.html) in the *Amazon EC2 User Guide for Linux Instances*\.
 
 1. To delete a mount target, choose the **X** next to the Availability Zone from which you want to remove a mount target\.
 

@@ -1,6 +1,6 @@
 # Mounting with an IP Address<a name="mounting-fs-mount-cmd-ip-addr"></a>
 
-As an alternative to mounting your Amazon EFS file system with the DNS name, Amazon EC2 instances can mount a file system using a mount target’s IP address\. Mounting by IP address works in environments where DNS is disabled, such as VPCs with DNS hostnames disabled, and EC2\-Classic instances mounting using ClassicLink\. For more information on ClassicLink, see [ClassicLink](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/vpc-classiclink.html) in the *Amazon EC2 User Guide for Linux Instances*\.
+As an alternative to mounting your Amazon EFS file system with the DNS name, Amazon EC2 instances can mount a file system using a mount target’s IP address\. Mounting by IP address works in environments where DNS is disabled, such as VPCs with DNS hostnames disabled, and EC2\-Classic instances mounting using ClassicLink\. For more information on ClassicLink, see [ClassicLink](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/vpc-classiclink.html) in the *Amazon EC2 User Guide for Linux Instances*\.
 
 You can also configure mounting a file system using the mount target IP address as a fallback option for applications configured to mount the file system using its DNS name by default\. When connecting to a mount target IP address, EC2 instances should mount using the mount target IP address in the same Availability Zone as the connecting instance\.
 

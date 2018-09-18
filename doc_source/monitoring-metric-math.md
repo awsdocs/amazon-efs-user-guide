@@ -1,6 +1,6 @@
 # Using Metric Math with Amazon EFS<a name="monitoring-metric-math"></a>
 
-Using metric math, you can query multiple CloudWatch metrics and use math expressions to create new time series based on these metrics\. You can visualize the resulting time series in the CloudWatch console and add them to dashboards\. For example, you can use Amazon EFS metrics to take the sample count of `DataRead` operations divided by 60\. The result is the average number of reads per second on your file system for a given 1\-minute period\. For more information on metric math, see [Use Metric Math](http://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/using-metric-math.html) in the* Amazon CloudWatch User Guide\.*
+Using metric math, you can query multiple CloudWatch metrics and use math expressions to create new time series based on these metrics\. You can visualize the resulting time series in the CloudWatch console and add them to dashboards\. For example, you can use Amazon EFS metrics to take the sample count of `DataRead` operations divided by 60\. The result is the average number of reads per second on your file system for a given 1\-minute period\. For more information on metric math, see [Use Metric Math](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/using-metric-math.html) in the* Amazon CloudWatch User Guide\.*
 
 Following, find some useful metric math expressions for Amazon EFS\.
 
@@ -117,4 +117,4 @@ Your metric math ID and expression are the following\.
 
 ## Using Metric Math Through an AWS CloudFormation Template for Amazon EFS<a name="metric-math-cloudformation-template"></a>
 
-You can also create metric math expressions through AWS CloudFormation templates\. One such template is available for you to download and customize for use from the [Amazon EFS tutorials](https://github.com/aws-samples/amazon-efs-tutorial) on GitHub\. For more information about using AWS CloudFormation templates, see [Working with AWS CloudFormation Templates](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/template-guide.html) in the *AWS CloudFormation User Guide\.*
+You can also create metric math expressions through AWS CloudFormation templates\. One such template is available for you to download and customize for use from the [Amazon EFS tutorials](https://github.com/aws-samples/amazon-efs-tutorial) on GitHub\. For more information about using AWS CloudFormation templates, see [Working with AWS CloudFormation Templates](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/template-guide.html) in the *AWS CloudFormation User Guide\.*

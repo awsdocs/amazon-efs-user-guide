@@ -21,7 +21,7 @@ You can create an CloudWatch alarm to monitor CloudTrail logs for the `CreateFil
 
 To create a CloudWatch alarm that is triggered when an unencrypted Amazon EFS file system is created, use the following procedure\. 
 
-Before you begin, you must have an existing trail created that is sending CloudTrail logs to a CloudWatch Logs log group\. For more information, see [Sending Events to CloudWatch Logs](http://docs.aws.amazon.com/awscloudtrail/latest/userguide/send-cloudtrail-events-to-cloudwatch-logs.html) in the *AWS CloudTrail User Guide*\.
+Before you begin, you must have an existing trail created that is sending CloudTrail logs to a CloudWatch Logs log group\. For more information, see [Sending Events to CloudWatch Logs](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/send-cloudtrail-events-to-cloudwatch-logs.html) in the *AWS CloudTrail User Guide*\.
 
 **To create a metric filter**
 

@@ -6,7 +6,7 @@ After you create a mount target for your file system, you may want to update sec
 
 Security groups define inbound/outbound access\. When you change security groups associated with a mount target, make sure that you authorize necessary inbound/outbound access so that your EC2 instance can communicate with the file system\. 
 
-For more information about security groups, see [Amazon EC2 Security Groups](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-network-security.html) in the *Amazon EC2 User Guide for Linux Instances*\.
+For more information about security groups, see [Amazon EC2 Security Groups](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-network-security.html) in the *Amazon EC2 User Guide for Linux Instances*\.
 
 ### Using the Console<a name="manage-fs-access-update-mount-target-config-sg-console"></a>
 

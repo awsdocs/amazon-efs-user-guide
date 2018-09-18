@@ -4,7 +4,7 @@ You can use an Amazon EFS file system in one VPC at a time\. That is, you create
 
 ## Working with VPC Peering in Amazon EFS<a name="manage-fs-access-vpc-peering"></a>
 
-A *VPC peering connection *is a networking connection between two VPCs that enables you to route traffic between them using private Internet Protocol version 4 \(IPv4\) or Internet Protocol version 6 \(IPv6\) addresses\. For more information on VPC peering, see [What is VPC Peering?](http://docs.aws.amazon.com/vpc/latest/peering/Welcome.html) in the *Amazon VPC Peering Guide\.*
+A *VPC peering connection *is a networking connection between two VPCs that enables you to route traffic between them using private Internet Protocol version 4 \(IPv4\) or Internet Protocol version 6 \(IPv6\) addresses\. For more information on VPC peering, see [What is VPC Peering?](https://docs.aws.amazon.com/vpc/latest/peering/Welcome.html) in the *Amazon VPC Peering Guide\.*
 
 For Amazon EFS, you can work with VPC peering within a single AWS Region when using C5 or M5 instances\. However, other VPC private connectivity mechanisms such as a VPN connection, interregion VPC peering, and intraregion VPC peering using other instance types are not supported\.
 
@@ -27,7 +27,7 @@ For Amazon EFS, you can work with VPC peering within a single AWS Region when us
 
    1. Choose the security groups that you want to associate\. 
 
-      For information about security groups, see [Amazon EC2 Security Groups](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-network-security.html) in the *Amazon EC2 User Guide for Linux Instances*\.
+      For information about security groups, see [Amazon EC2 Security Groups](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-network-security.html) in the *Amazon EC2 User Guide for Linux Instances*\.
 
 1. Choose **Save**\.
 
@@ -35,4 +35,4 @@ For Amazon EFS, you can work with VPC peering within a single AWS Region when us
 
 ## Using the CLI<a name="manage-fs-access-change-vpc-using-cli"></a>
 
-To use a file system in another VPC, you must first delete any mount targets you previously created in a VPC and then create new mount targets in another VPC\. For example AWS CLI commands, see [Creating or Deleting Mount Targets in a VPC](http://docs.aws.amazon.com/efs/latest/ug/manage-fs-access-create-delete-mount-targets.html#manage-fs-create-delete-mt-cli)\.
+To use a file system in another VPC, you must first delete any mount targets you previously created in a VPC and then create new mount targets in another VPC\. For example AWS CLI commands, see [Creating or Deleting Mount Targets in a VPC](https://docs.aws.amazon.com/efs/latest/ug/manage-fs-access-create-delete-mount-targets.html#manage-fs-create-delete-mt-cli)\.

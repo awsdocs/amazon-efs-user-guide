@@ -18,7 +18,7 @@ When encryption of data in transit is declared as a mount option for your Amazon
 
 **Mounting your Amazon EFS file system with the mount helper with encryption of data in transit enabled**
 
-1. Access the terminal for your instance through Secure Shell \(SSH\), and log in with the appropriate user name\. For more information on how to do this, see [Connecting to Your Linux Instance Using SSH](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AccessingInstancesLinux.html) in the Amazon EC2 User Guide for Linux Instances\.
+1. Access the terminal for your instance through Secure Shell \(SSH\), and log in with the appropriate user name\. For more information on how to do this, see [Connecting to Your Linux Instance Using SSH](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AccessingInstancesLinux.html) in the Amazon EC2 User Guide for Linux Instances\.
 
 1. Run the following command to mount your file system\.
 
@@ -95,7 +95,7 @@ You now have a new encrypted\-at\-rest file system\.
 
 In an encrypted\-at\-rest file system, data and metadata are automatically encrypted before being written to the file system\. Similarly, as data and metadata are read, they are automatically decrypted before being presented to the application\. These processes are handled transparently by Amazon EFS, so you don’t have to modify your applications\.
 
-Amazon EFS uses an industry\-standard AES\-256 encryption algorithm to encrypt EFS data and metadata at rest\. For more information, see [Cryptography Basics](http://docs.aws.amazon.com/kms/latest/developerguide/crypto-intro.html) in the *AWS Key Management Service Developer Guide*\.
+Amazon EFS uses an industry\-standard AES\-256 encryption algorithm to encrypt EFS data and metadata at rest\. For more information, see [Cryptography Basics](https://docs.aws.amazon.com/kms/latest/developerguide/crypto-intro.html) in the *AWS Key Management Service Developer Guide*\.
 
 #### How Amazon EFS Uses AWS KMS<a name="EFSKMS"></a>
 
@@ -103,7 +103,7 @@ Amazon EFS integrates with AWS Key Management Service \(AWS KMS\) for key manage
 + **Encrypting metadata at rest** – An EFS\-managed key is used to encrypt and decrypt file system metadata \(that is, file names, directory names, and directory contents\)\.
 + **Encrypting file data at rest** – You choose the CMK used to encrypt and decrypt file data \(that is, the contents of your files\)\. You can enable, disable, or revoke grants on this CMK\. This CMK can be one of the two following types:
   + **AWS\-managed CMK** – This is the default CMK, and it's free to use\.
-  + **Customer\-managed CMK** – This is the most flexible master key to use, because you can configure its key policies and grants for multiple users or services\. For more information on creating CMKs, see [Creating Keys](http://docs.aws.amazon.com/kms/latest/developerguide/create-keys.html) in the* AWS Key Management Service Developer Guide\.*
+  + **Customer\-managed CMK** – This is the most flexible master key to use, because you can configure its key policies and grants for multiple users or services\. For more information on creating CMKs, see [Creating Keys](https://docs.aws.amazon.com/kms/latest/developerguide/create-keys.html) in the* AWS Key Management Service Developer Guide\.*
 
     If you use a customer\-managed CMK as your master key for file data encryption and decryption, you can enable key rotation\. When you enable key rotation, AWS KMS automatically rotates your key once per year\. Additionally, with a customer\-managed CMK, you can choose when to disable, re\-enable, delete, or revoke access to your CMK at any time\. For more information, see [Disabling, Deleting, or Revoking Access to the CMK for a File System](managing.md#disable-efs-cmk)\.
 
@@ -111,12 +111,12 @@ Data encryption and decryption at rest are handled transparently\. However, AWS 
 
 #### Amazon EFS Key Policies for AWS KMS<a name="EFSKMSPolicy"></a>
 
-Key policies are the primary way to control access to CMKs\. For more information on key policies, see [Using Key Policies in AWS KMS](http://docs.aws.amazon.com/kms/latest/developerguide/key-policies.html) in the *AWS Key Management Service Developer Guide\. *The following list describes all the AWS KMS\-related permissions supported by Amazon EFS for encrypted at rest file systems:
+Key policies are the primary way to control access to CMKs\. For more information on key policies, see [Using Key Policies in AWS KMS](https://docs.aws.amazon.com/kms/latest/developerguide/key-policies.html) in the *AWS Key Management Service Developer Guide\. *The following list describes all the AWS KMS\-related permissions supported by Amazon EFS for encrypted at rest file systems:
 + **kms:Encrypt** – \(Optional\) Encrypts plaintext into ciphertext\. This permission is included in the default key policy\.
 + **kms:Decrypt** – \(Required\) Decrypts ciphertext\. Ciphertext is plaintext that has been previously encrypted\. This permission is included in the default key policy\.
 + **kms:ReEncrypt** – \(Optional\) Encrypts data on the server side with a new customer master key \(CMK\), without exposing the plaintext of the data on the client side\. The data is first decrypted and then re\-encrypted\. This permission is included in the default key policy\.
 + **kms:GenerateDataKeyWithoutPlaintext** – \(Required\) Returns a data encryption key encrypted under a CMK\. This permission is included in the default key policy under **kms:GenerateDataKey\***\.
-+ **kms:CreateGrant** – \(Required\) Adds a grant to a key to specify who can use the key and under what conditions\. Grants are alternate permission mechanisms to key policies\. For more information on grants, see [Using Grants](http://docs.aws.amazon.com/kms/latest/developerguide/grants.html) in the *AWS Key Management Service Developer Guide\.* This permission is included in the default key policy\.
++ **kms:CreateGrant** – \(Required\) Adds a grant to a key to specify who can use the key and under what conditions\. Grants are alternate permission mechanisms to key policies\. For more information on grants, see [Using Grants](https://docs.aws.amazon.com/kms/latest/developerguide/grants.html) in the *AWS Key Management Service Developer Guide\.* This permission is included in the default key policy\.
 + **kms:DescribeKey** – \(Required\) Provides detailed information about the specified customer master key\. This permission is included in the default key policy\.
 + **kms:ListAliases** – \(Optional\) Lists all of the key aliases in the account\. When you use the console to create an encrypted file system, this permission populates the **Select KMS master key** list\. We recommend using this permission to provide the best user experience\. This permission is included in the default key policy\.
 

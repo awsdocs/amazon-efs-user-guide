@@ -103,5 +103,4 @@ Amazon's trademarks and trade dress may not be used in
    + [Mounting File Systems Without the EFS Mount Helper](mounting-fs-old.md)
       + [Mounting on Amazon EC2 with a DNS Name](mounting-fs-mount-cmd-dns-name.md)
       + [Mounting with an IP Address](mounting-fs-mount-cmd-ip-addr.md)
-      + [Mounting Automatically](mount-fs-auto-mount-onreboot-old.md)
 + [Document History](document-history.md)

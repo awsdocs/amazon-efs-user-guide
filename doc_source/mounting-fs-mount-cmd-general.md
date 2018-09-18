@@ -27,6 +27,9 @@ When mounting your Amazon EFS file system on an Amazon EC2 instance, note the fo
 + We recommend that you mount your file system using its DNS name, which will resolve to the IP address of the Amazon EFS mount target in the same Availability Zone as your Amazon EC2 instance\. If you use a mount target in a different Availability Zone as your Amazon EC2 instance, you will incur the standard Amazon EC2 data transfer charges for data sent across Availability Zones, and you may see increased latencies for file system operations\.
 + For more mount options, and detailed explanations of the defaults, refer to the `man fstab` and `man nfs` pages\.
 
+**Note**  
+If your Amazon EC2 instance needs to start regardless of the status of your mounted Amazon EFS file system, add the `nofail` option to your file system's entry in your `etc/fstab` file\.
+
 ## Unmounting File Systems<a name="unmounting-fs"></a>
 
 Before you delete a file system, we recommend that you unmount it from every Amazon EC2 instance that it's connected to\. You can unmount a file system on your Amazon EC2 instance by running the `umount` command on the instance itself\. You can't unmount an Amazon EFS file system through the AWS CLI, the AWS Management Console, or through any of the AWS SDKs\. To unmount an Amazon EFS file system connected to an Amazon EC2 instance running Linux, use the `umount` command as follows:

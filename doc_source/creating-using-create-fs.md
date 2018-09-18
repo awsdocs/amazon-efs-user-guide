@@ -68,7 +68,7 @@ For instructions on how to create an Amazon EFS file system using the console, s
 
 When using the AWS CLI, you create these resources in order\. First, you create a file system\. Then, you can create mount targets and optional tags for the file system using corresponding AWS CLI commands\.
 
-The following examples use the `adminuser` as the `profile` parameter value\. You need to use an appropriate user profile to provide your credentials\. For information about the AWS CLI, see [Getting Set Up with the AWS Command Line Interface](http://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-set-up.html) in the *AWS Command Line Interface User Guide*\.
+The following examples use the `adminuser` as the `profile` parameter value\. You need to use an appropriate user profile to provide your credentials\. For information about the AWS CLI, see [Getting Set Up with the AWS Command Line Interface](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-set-up.html) in the *AWS Command Line Interface User Guide*\.
 + To create a file system, use the Amazon EFS `create-file-system` CLI command \(corresponding operation is [CreateFileSystem](API_CreateFileSystem.md)\), as shown following\.
 
   ```
@@ -80,7 +80,7 @@ The following examples use the `adminuser` as the `profile` parameter value\. Yo
   --profile adminuser
   ```
 
-  For example, the following `create-file-system` command creates a file system in the **us\-west\-2**  AWS Region\. The command specifies **MyFirstFS** as the creation token\. For a list of AWS regions where you can create an Amazon EFS file system, see the [Amazon Web Services General Reference](http://docs.aws.amazon.com/general/latest/gr/rande.html#elasticfilesystem_region)\.
+  For example, the following `create-file-system` command creates a file system in the **us\-west\-2**  AWS Region\. The command specifies **MyFirstFS** as the creation token\. For a list of AWS regions where you can create an Amazon EFS file system, see the [Amazon Web Services General Reference](https://docs.aws.amazon.com/general/latest/gr/rande.html#elasticfilesystem_region)\.
 
   ```
   $  aws efs create-file-system \

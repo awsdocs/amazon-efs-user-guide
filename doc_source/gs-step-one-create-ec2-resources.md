@@ -6,7 +6,7 @@ Before you can launch and connect to an Amazon EC2 instance, you need to create 
 Using Amazon EFS with Microsoft Windows Amazon EC2 instances is not supported\.
 
 **To create a key pair**
-+ Follow the steps in [Setting Up with Amazon EC2](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/get-set-up-for-amazon-ec2.html) in the *Amazon EC2 User Guide for Linux Instances* to create a key pair\. If you already have a key pair, you do not need to create a new one and you can use your existing key pair for this exercise\.
++ Follow the steps in [Setting Up with Amazon EC2](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/get-set-up-for-amazon-ec2.html) in the *Amazon EC2 User Guide for Linux Instances* to create a key pair\. If you already have a key pair, you do not need to create a new one and you can use your existing key pair for this exercise\.
 
 **To launch the EC2 instance**
 
