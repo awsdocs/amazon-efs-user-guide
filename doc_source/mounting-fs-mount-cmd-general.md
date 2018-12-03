@@ -1,7 +1,7 @@
 # Additional Mounting Considerations<a name="mounting-fs-mount-cmd-general"></a>
 
-When mounting your Amazon EFS file system on an Amazon EC2 instance, note the following additional considerations:
-+ We recommend the following default Linux mount option values: 
+When you mount your Amazon EFS file system on an Amazon EC2 instance, the following considerations apply:
++ We recommend the following default values for mount options on Linux: 
 
   ```
   rsize=1048576
@@ -13,7 +13,7 @@ When mounting your Amazon EFS file system on an Amazon EC2 instance, note the fo
   _netdev
   ```
 + If you must change the IO size parameters \(`rsize` and `wsize`\), we recommend that you use the largest size possible \(up to `1048576`\) to avoid diminished performance\.
-+ If you must change the timeout parameter \(`timeo`\), we recommend that you use a value of at least `150`, which is equivalent to 15 seconds\. The timeo parameter is in deciseconds, so 15 seconds is equal to 150 deciseconds\.
++ If you must change the timeout parameter \(`timeo`\), we recommend that you use a value of at least `150`, which is equivalent to 15 seconds\. The `timeo` parameter is in deciseconds, so 15 seconds is equal to 150 deciseconds\.
 + We recommend that you use the hard mount option\. However, if you use a soft mount, you need to set the `timeo` parameter to at least `150` deciseconds\.
 + With the `noresvport` option, the NFS client uses a new Transmission Control Protocol \(TCP\) source port when a network connection is reestablished\. Doing this helps ensure uninterrupted availability after a network recovery event\.
 + The `_netdev` option prevents the client from attempting to mount the file system until the network has been enabled\.
@@ -28,7 +28,7 @@ When mounting your Amazon EFS file system on an Amazon EC2 instance, note the fo
 + For more mount options, and detailed explanations of the defaults, refer to the `man fstab` and `man nfs` pages\.
 
 **Note**  
-If your Amazon EC2 instance needs to start regardless of the status of your mounted Amazon EFS file system, add the `nofail` option to your file system's entry in your `etc/fstab` file\.
+If your Amazon EC2 instance needs to start regardless of the status of your mounted Amazon EFS file system, add the `nofail` option to your file system's entry in your `/etc/fstab` file\.
 
 ## Unmounting File Systems<a name="unmounting-fs"></a>
 

@@ -8,13 +8,12 @@ You can perform these file system management tasks using the Amazon EFS console,
 + [Managing File System Network Accessibility](manage-fs-access.md)
 + [Managing File System Tags](manage-fs-tags.md)
 + [Metering – How Amazon EFS Reports File System and Object Sizes](metered-sizes.md)
-+ [Managing Amazon EFS File Sync](managing-file-sync.md)
 + [Deleting an Amazon EFS File System](manage-delete-fs.md)
 + [Managing Access to Encrypted File Systems](#managing-encrypt)
 
 If you are new to Amazon EFS, we recommend that you try the following exercises that provide you with first\-hand end\-to\-end experience using an Amazon EFS file system:
 + [Getting Started](getting-started.md) – This exercise provides a console\-based, end\-to\-end setup in which you create a file system, mount it on an EC2 instance, and test the setup\. The console takes care of many things for you and thus helps you quickly set up the end\-to\-end experience\.
-+ [Walkthrough 1: Create Amazon EFS File System and Mount It on an EC2 Instance Using the AWS CLI](wt1-getting-started.md) – This walkthrough is similar to the Getting Started exercise, but it uses the AWS CLI to perform most of the tasks\. Because the CLI commands closely map to the Amazon EFS API, the walkthrough can help you familiarize yourself with the Amazon EFS API\. 
++ [Walkthrough: Create an Amazon EFS File System and Mount It on an EC2 Instance Using the AWS CLI](wt1-getting-started.md) – This walkthrough is similar to the Getting Started exercise, but it uses the AWS CLI to perform most of the tasks\. Because the CLI commands closely map to the Amazon EFS API, the walkthrough can help you familiarize yourself with the Amazon EFS API\. 
 
 ## Managing Access to Encrypted File Systems<a name="managing-encrypt"></a>
 
@@ -39,7 +38,7 @@ Following, you can find how to enable, disable, or delete the CMKs associated wi
 
 #### Disabling, Deleting, or Revoking Access to the CMK for a File System<a name="disable-efs-cmk"></a>
 
-You can disable or delete your custom CMKs, or you can revoke Amazon EFS access to your CMKs\. Disabling and revoking access for Amazon EFS to your keys are reversible actions\. Exercise significant caution when deleting CMKs\. Deleting a CMK is an irreversible action\.
+You can disable or delete your customer managed CMKs, or you can revoke Amazon EFS access to your CMKs\. Disabling and revoking access for Amazon EFS to your keys are reversible actions\. Exercise significant caution when deleting CMKs\. Deleting a CMK is an irreversible action\.
 
 If you disable or delete the CMK used for your mounted file system, the following is true:
 + That CMK can't be used as the master key for new encrypted\-at\-rest file systems\.
@@ -49,35 +48,9 @@ If you revoke Amazon EFS access to a grant for any existing mounted file system,
 
 To prevent access to a mounted encrypted\-at\-rest file system that has a CMK that you disabled, deleted, or revoked Amazon EFS access to, unmount the file system and delete your Amazon EFS mount targets\.
 
-You can't immediately delete an AWS KMS key, but you can instead schedule a key to be deleted\. The earliest a CMK can be deleted is seven days after the key has been scheduled for deletion\. When a key is scheduled for deletion, it behaves as if it is disabled\. You can also cancel a key's scheduled deletion\. For more information on deleting a master key in AWS KMS, see [Deleting Customer Master Keys](https://docs.aws.amazon.com/kms/latest/developerguide/deleting-keys.html) in the *AWS Key Management Service Developer Guide\.*
+You can't immediately delete an AWS KMS CMK, but you can schedule it for deletion in 7\-30 days\. While a CMK is scheduled for deletion, you cannot use it for cryptographic operations\. You can also cancel a CMK's scheduled deletion\.
 
-The following procedure outlines how to disable a CMK\.
-
-**To disable a CMK**
-
-1. Open the **Encryption Keys** section of the IAM console at [https://console\.aws\.amazon\.com/iam/home\#encryptionKeys](https://console.aws.amazon.com/iam/home#encryptionKeys)\.
-
-1. For **Region**, choose the appropriate AWS Region\. Don't use the AWS Region selector in the navigation bar \(top right corner\)\.
-
-1. Select the check box next to the alias of each CMK that you want to disable\.
-**Note**  
-You can't disable AWS\-managed CMKs, which are denoted by the orange AWS icon\.
-
-1. To disable a CMK, choose **Key actions, Disable**\.
-
-The following procedure outlines how to enable a CMK\.
-
-**To enable a CMK**
-
-1. Open the **Encryption Keys** section of the IAM console at [https://console\.aws\.amazon\.com/iam/home\#encryptionKeys](https://console.aws.amazon.com/iam/home#encryptionKeys)\.
-
-1. For **Region**, choose the appropriate AWS Region\. Don't use the AWS Region selector in the navigation bar \(top right corner\)\.
-
-1. Select the check box next to the alias of each CMK that you want to enable\.
-**Note**  
-You can't enable AWS\-managed CMKs, which are denoted by the orange AWS icon\.
-
-1. To enable a CMK, choose **Key actions, Enable**\.
+To learn how to disable and re\-enable customer managed CMKs, see [Enabling and Disabling Keys](https://docs.aws.amazon.com/kms/latest/developerguide/enabling-keys.html) in the AWS Key Management Service Developer Guide\. To learn how to schedule deletion of customer managed CMKs, see [Deleting Customer Master Keys](https://docs.aws.amazon.com/kms/latest/developerguide/deleting-keys.html) in the AWS Key Management Service Developer Guide\.
 
 ### Related Topics<a name="related-managing-encryption"></a>
 + For more information on encrypted data and metadata at rest in Amazon EFS, see [Encrypting Data and Metadata in EFS](encryption.md)\.

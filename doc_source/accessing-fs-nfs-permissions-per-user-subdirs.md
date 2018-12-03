@@ -1,4 +1,4 @@
-# Walkthrough 3: Create Writable Per\-User Subdirectories and Configure Automatic Remounting on Reboot<a name="accessing-fs-nfs-permissions-per-user-subdirs"></a>
+# Walkthrough: Create Writable Per\-User Subdirectories and Configure Automatic Remounting on Reboot<a name="accessing-fs-nfs-permissions-per-user-subdirs"></a>
 
 After you create an Amazon EFS file system and mount it locally on your EC2 instance, it exposes an empty directory called the *file system root*\. One common use case is to create a "writable" subdirectory under this file system root for each user you create on the EC2 instance, and mount it on the user's home directory\. All files and subdirectories the user creates in their home directory are then created on the Amazon EFS file system\. 
 

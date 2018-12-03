@@ -1,4 +1,4 @@
-# Walkthrough 2: Set Up an Apache Web Server and Serve Amazon EFS Files<a name="wt2-apache-web-server"></a>
+# Walkthrough: Set Up an Apache Web Server and Serve Amazon EFS Files<a name="wt2-apache-web-server"></a>
 
 You can have EC2 instances running the Apache web server serving files stored on your Amazon EFS file system\. It can be one EC2 instance, or if your application needs, you can have multiple EC2 instances serving files from your Amazon EFS file system\. The following procedures are described\.
 + [Set up an Apache web server on an EC2 instance](#wt2-apache-web-server-one-ec2-host)\.

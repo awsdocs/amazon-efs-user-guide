@@ -9,6 +9,7 @@
 + [File System Mount Fails Immediately After File System Creation](#mount-fails-propegation)
 + [File System Mount Hangs and Then Fails with Timeout Error](#mount-hangs-fails-timeout)
 + [File System Mount Using DNS Name Fails](#mount-fails-dns-name)
++ [File System Mount Fails with "nfs not responding"](#tcp-reconnect-nfs-not-responding)
 + [Mount Target Lifecycle State Is Stuck](#mount-target-lifecycle-stuck)
 + [Mount Does Not Respond](#mount-unresponsive)
 + [Operations on Newly Mounted File System Return "bad file handle" Error](#operations-return-bad-file-handle)
@@ -137,6 +138,14 @@ To specify a DNS name in the `mount` command, you must do the following:
 + Ensure that there's an Amazon EFS mount target in the same Availability Zone as the Amazon EC2 instance\.
 + Connect your Amazon EC2 instance inside an Amazon VPC configured to use the DNS server provided by Amazon\. For more information, see [DHCP Options Sets](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_DHCP_Options.html) in the *Amazon VPC User Guide*\.
 + Ensure that the Amazon VPC of the connecting Amazon EC2 instance has DNS hostnames enabled\. For more information, see [Updating DNS Support for Your VPC](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-dns.html#vpc-dns-updating) in the *Amazon VPC User Guide*\.
+
+## File System Mount Fails with "nfs not responding"<a name="tcp-reconnect-nfs-not-responding"></a>
+
+An Amazon EFS file system mount fails on a Transmission Control Protocol \(TCP\) reconnection event with `"nfs: server_name still not responding"`\.
+
+**Action to Take**
+
+Use the `noresvport` mount option to make sure that the NFS client uses a new TCP source port when a network connection is reestablished\. Doing this helps ensure uninterrupted availability after a network recovery event\.
 
 ## Mount Target Lifecycle State Is Stuck<a name="mount-target-lifecycle-stuck"></a>
 

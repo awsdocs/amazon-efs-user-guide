@@ -7,6 +7,7 @@ Following, find some useful metric math expressions for Amazon EFS\.
 **Topics**
 + [Metric Math: Throughput in MiB/Second](#metric-math-throughput-mib)
 + [Metric Math: Percent Throughput](#metric-math-throughput-percent)
++ [Metric Math: Percentage of Permitted Throughput Utilization](#metric-math-throughput-utilization)
 + [Metric Math: Throughput IOPS](#metric-math-throughput-iops)
 + [Metric Math: Percentage of IOPS](#metric-math-iops-percent)
 + [Metric Math: Average I/O Size in KiB](#metric-math-average-io)
@@ -16,7 +17,7 @@ Following, find some useful metric math expressions for Amazon EFS\.
 
 To calculate the average throughput \(in MiB/second\) for a time period, first choose a sum statistic \(`DataReadIOBytes`, `DataWriteIOBytes`, `MetadataIOBytes`, or `TotalIOBytes`\)\. Then convert the value to MiB, and divide that by the number of seconds in the period\.
 
-Suppose that your example logic is this: \(sum of `TotalIOBytes` ÷ 1048576 \(to convert to MiB\)\) ÷ seconds in the period
+Suppose that your example logic is this: \(sum of `TotalIOBytes` ÷ 1,048,576 \(to convert to MiB\)\) ÷ seconds in the period
 
 Then your CloudWatch metric information is the following\.
 
@@ -52,6 +53,27 @@ Your metric math ID and expression are the following\.
 | ID | Expression | 
 | --- | --- | 
 | e1 | \(m2\*100\)/m1 | 
+
+## Metric Math: Percentage of Permitted Throughput Utilization<a name="metric-math-throughput-utilization"></a>
+
+To calculate the percentage of permitted throughput utilization \(`TotalIOBytes`\) for a time period, first multiply the throughput in MiB/second by 100\. Then divide the result by the sum statistic of `PermittedThroughput` converted to MiB for the same period\.
+
+Suppose that your example logic is this: \(metric math expression for throughput in MiB/second x 100 \(to convert to percentage\)\) ÷ \(sum of `PermittedThroughput` ÷ 1,048,576 \(to convert bytes to MiB\)\)
+
+Then your CloudWatch metric information is the following\.
+
+
+| ID | Usable Metric or Metrics | Statistic | Period | 
+| --- | --- | --- | --- | 
+| e1 | [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/efs/latest/ug/monitoring-metric-math.html)  |  |  | 
+| m1 | [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/efs/latest/ug/monitoring-metric-math.html)  | sum | 1 minute | 
+
+Your metric math ID and expression are the following\.
+
+
+| ID | Expression | 
+| --- | --- | 
+| e2 | \(e1\*100\)/\(m1/1048576\) | 
 
 ## Metric Math: Throughput IOPS<a name="metric-math-throughput-iops"></a>
 
@@ -98,7 +120,7 @@ Your metric math ID and expression are the following\.
 
 To calculate the average I/O size \(in KiB\) for a period, divide the respective sum statistic for the `DataReadIOBytes`, `DataWriteIOBytes`, or `MetadataIOBytes` metric by the same sample count statistic of that metric\.
 
-Suppose that your example logic is this: \(sum of `DataReadIOBytes` ÷ 1024 \(to convert to KiB\)\) ÷ sample count of  `DataReadIOBytes`
+Suppose that your example logic is this: \(sum of `DataReadIOBytes` ÷ 1,024 \(to convert to KiB\)\) ÷ sample count of  `DataReadIOBytes`
 
 Then your CloudWatch metric information is the following\.
 

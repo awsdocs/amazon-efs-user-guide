@@ -26,7 +26,7 @@ Use the `_netdev` option, used to identify network file systems, when mounting y
 Your EC2 instance is now configured to mount the EFS file system whenever it restarts\.
 
 **Note**  
-If your Amazon EC2 instance needs to start regardless of the status of your mounted Amazon EFS file system, you'll want to add the `nofail` option to your file system's entry in your `etc/fstab` file\.
+If your Amazon EC2 instance needs to start regardless of the status of your mounted Amazon EFS file system, you'll want to add the `nofail` option to your file system's entry in your `/etc/fstab` file\.
 
 The line of code you added to the /etc/fstab file does the following\.
 

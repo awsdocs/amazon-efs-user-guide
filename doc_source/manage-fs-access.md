@@ -32,5 +32,5 @@ The following sections provide information about managing network accessibility 
 
 **Topics**
 + [Creating or Deleting Mount Targets in a VPC](manage-fs-access-create-delete-mount-targets.md)
-+ [Creating Mount Targets in Another VPC](manage-fs-access-change-vpc.md)
++ [Changing the VPC for Your Mount Target](manage-fs-access-change-vpc.md)
 + [Updating the Mount Target Configuration](manage-fs-access-update-mount-target-config.md)

@@ -49,10 +49,6 @@ Amazon EFS provides a durable, high throughput file system for content managemen
 
 Amazon EFS can provide storage for organizations that have many users that need to access and share common data sets\. An administrator can use Amazon EFS to create a file system accessible to people across an organization and establish permissions for users and groups at the file or directory level\.
 
-### File System Syncing to Amazon EFS<a name="perf-file-sync"></a>
-
-Amazon EFS File Sync provides efficient, high\-performance parallel data sync that is tolerant to unreliable and high latency networks\. Using this data sync, you can easily and efficiently sync files from an existing file system into Amazon EFS\. For more information, see [Amazon EFS File Sync](get-started-file-sync.md)\. 
-
 ## Performance Modes<a name="performancemodes"></a>
 
 To support a wide variety of cloud storage workloads, Amazon EFS offers two performance modes\. You select a file system's performance mode when you create it\.

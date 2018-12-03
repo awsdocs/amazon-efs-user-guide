@@ -16,7 +16,7 @@ As an example, suppose you have one or more EC2 instances launched in your VPC\.
 
 If you are new to Amazon EFS, we recommend that you try the following exercises that provide a first\-hand, end\-to\-end experience of using an Amazon EFS file system:
 + [Getting Started](getting-started.md) – The Getting Started exercise provides a console\-based end\-to\-end setup in which you create a file system, mount it on an EC2 instance, and test the setup\. The console takes care of many things for you and helps you set up the end\-to\-end experience quickly\.
-+ [Walkthrough 1: Create Amazon EFS File System and Mount It on an EC2 Instance Using the AWS CLI](wt1-getting-started.md) – The walkthrough is similar to the Getting Started exercise, but it uses the AWS Command Line Interface \(AWS CLI\) to perform most of the tasks\. Because the AWS CLI commands closely map to the Amazon EFS API, the walkthrough can help you familiarize yourself with the Amazon EFS API operations\. 
++ [Walkthrough: Create an Amazon EFS File System and Mount It on an EC2 Instance Using the AWS CLI](wt1-getting-started.md) – The walkthrough is similar to the Getting Started exercise, but it uses the AWS Command Line Interface \(AWS CLI\) to perform most of the tasks\. Because the AWS CLI commands closely map to the Amazon EFS API, the walkthrough can help you familiarize yourself with the Amazon EFS API operations\. 
 
 For more information about creating and accessing a file system, see the following topics\.
 

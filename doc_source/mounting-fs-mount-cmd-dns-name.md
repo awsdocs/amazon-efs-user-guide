@@ -24,7 +24,8 @@ For a list of AWS Regions that support Amazon EFS, see [Amazon Elastic File Syst
 
 To be able to use a DNS name in the `mount` command, the following must be true:
 + The connecting EC2 instance must be inside a VPC and must be configured to use the DNS server provided by Amazon\. For information about Amazon DNS server, see [DHCP Options Sets](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_DHCP_Options.html) in the *Amazon VPC User Guide*\. 
-+ The VPC of the connecting EC2 instance must have DNS hostnames enabled\. For more information, see [Viewing DNS Hostnames for Your EC2 Instance](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-dns.html#vpc-dns-viewing) in the *Amazon VPC User Guide*\. 
++ The VPC of the connecting EC2 instance must have both **DNS Resolution** and **DNS Hostnames** enabled\. For more information, see [Viewing DNS Hostnames for Your EC2 Instance](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-dns.html#vpc-dns-viewing) in the *Amazon VPC User Guide*\. 
++ The connecting EC2 instance must be inside the same VPC as the EFS file system\. For more information on accessing and mounting a file system from another location or from a different VPC, see [Walkthrough: Create and Mount a File System On\-Premises with AWS Direct Connect and VPN](efs-onpremises.md) and [Walkthrough: Mount a File System from a Different VPC ](efs-different-vpc.md)\.
 
 **Note**  
 We recommend that you wait 90 seconds after creating a mount target before you mount your file system\. This wait lets the DNS records propagate fully in the AWS Region where the file system is\.

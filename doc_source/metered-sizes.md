@@ -43,8 +43,8 @@ The metered sizes of a particular file system define the usage for which the own
 **Note**  
 The computed metered size doesn't represent a consistent snapshot of the file system at any particular time during that hour\. Instead, it represents the sizes of the objects that existed in the file system at varying times within each hour, or possibly the hour before it\. These sizes are summed to determine the file system's metered size for the hour\. The metered size of a file system is thus eventually consistent with the metered sizes of the objects stored when there are no writes to the file system\.
 
-This metered size for an Amazon EFS file system can be seen in the following ways:
-+ **DescribeFileSystems API** – Used in SDKs, HTTP, and the AWS CLI\.
+You can see this metered size for an Amazon EFS file system in the following ways:
++ **DescribeFileSystems API operation** – Used in SDKs, HTTP, and the AWS CLI\.
 + **File Systems table** – For each file system listed in the AWS Management Console\.
 + **DF command** – In Linux, the `df` command can be run at the terminal prompt of an EC2 instance\. Use the `df` command and not the `du` command\. Don't use the `du` command on the root of the file system for storage metering purposes\. The results don't provide full data\.
 

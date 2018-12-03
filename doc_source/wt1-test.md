@@ -132,7 +132,7 @@ Now you mount the file system on your EC2 instance\.
 
 You now have successfully created and mounted an Amazon EFS file system on your EC2 instance in your VPC\.
 
-The file system you mounted will not persist across reboots\. To automatically remount the directory you can use the `fstab` file\. For more information, see [Automatic Remounting on Reboot](accessing-fs-nfs-permissions-per-user-subdirs.md#accessing-fs-nfs-permissions-per-user-subdirs-auto-mount-on-reboot)\. If you are using an Auto Scaling group to launch EC2 instances, you can also set scripts in a launch configuration\. For an example, see [Walkthrough 2: Set Up an Apache Web Server and Serve Amazon EFS Files](wt2-apache-web-server.md)\.
+The file system you mounted will not persist across reboots\. To automatically remount the directory you can use the `fstab` file\. For more information, see [Automatic Remounting on Reboot](accessing-fs-nfs-permissions-per-user-subdirs.md#accessing-fs-nfs-permissions-per-user-subdirs-auto-mount-on-reboot)\. If you are using an Auto Scaling group to launch EC2 instances, you can also set scripts in a launch configuration\. For an example, see [Walkthrough: Set Up an Apache Web Server and Serve Amazon EFS Files](wt2-apache-web-server.md)\.
 
 ## Next Step<a name="step3-next-step"></a>
 

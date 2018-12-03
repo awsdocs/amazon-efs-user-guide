@@ -4,7 +4,7 @@ You can create a CloudWatch alarm that sends an Amazon SNS message when the alar
 
 Alarms invoke actions for sustained state changes only\. CloudWatch alarms don't invoke actions simply because they are in a particular state; the state must have changed and been maintained for a specified number of periods\. 
 
-One important use of CloudWatch alarms for Amazon EFS is to enforce encryption at rest for your file system\. You can enable encryption at rest for an Amazon EFS file system when it's created\. To enforce data encryption\-at\-rest policies for Amazon EFS file systems, you can use Amazon CloudWatch and AWS CloudTrail to detect the creation of a file system and verify that encryption at rest is enabled\. For more information, see [Walkthrough 6: Enforcing Encryption on an Amazon EFS File System at Rest](efs-enforce-encryption.md)\.
+One important use of CloudWatch alarms for Amazon EFS is to enforce encryption at rest for your file system\. You can enable encryption at rest for an Amazon EFS file system when it's created\. To enforce data encryption\-at\-rest policies for Amazon EFS file systems, you can use Amazon CloudWatch and AWS CloudTrail to detect the creation of a file system and verify that encryption at rest is enabled\. For more information, see [Walkthrough: Enforcing Encryption on an Amazon EFS File System at Rest](efs-enforce-encryption.md)\.
 
 **Note**  
 Currently, you can't enforce encryption in transit\.

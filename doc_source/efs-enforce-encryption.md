@@ -1,4 +1,4 @@
-# Walkthrough 6: Enforcing Encryption on an Amazon EFS File System at Rest<a name="efs-enforce-encryption"></a>
+# Walkthrough: Enforcing Encryption on an Amazon EFS File System at Rest<a name="efs-enforce-encryption"></a>
 
 Following, you can find details about how to enforce encryption at rest using Amazon CloudWatch and AWS CloudTrail\. This walkthrough is based upon the AWS whitepaper [Encrypt Data at Rest with Amazon EFS Encrypted File Systems](https://d1.awsstatic.com/whitepapers/Security/amazon-efs-encrypted-filesystems.pdf)\. 
 

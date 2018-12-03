@@ -69,7 +69,7 @@ Applications that open multiple files in parallel do not experience the expected
 
 **Action to Take**
 
-This issue occurs on NFSv4 clients and on RHEL 6 clients using NFSv4\.1 because these NFS clients serialize NFS OPEN and CLOSE operations\. Use NFS protocol version 4\.1 and one of the suggested [Linux distributions](#recommend.linux.dist) that does not have this issue\.
+This issue occurs on Network File System version 4 \(NFSv4\) clients and on RHEL 6 clients using NFSv4\.1 because these NFS clients serialize NFS OPEN and CLOSE operations\. Use NFS protocol version 4\.1 and one of the suggested [Linux distributions](#recommend.linux.dist) that does not have this issue\.
 
 If you can't use NFSv4\.1, be aware that the Linux NFSv4\.0 client serializes open and close requests by user ID and group IDs\. This serialization happens even if multiple processes or multiple threads issue requests at the same time\. The client only sends one open or close operation to an NFS server at a time, when all of the IDs match\. To work around these issues, you can perform any of the following actions:
 + You can run each process from a different user ID on the same Amazon EC2 instance\.
@@ -109,7 +109,7 @@ Amazon EFS doesn't support Oracle Direct NFS\.
 
 ## Troubleshooting File Operation Errors<a name="troubleshooting-efs-fileop-errors"></a>
 
-When you access Amazon EFS file systems, certain limits on the files in the file system apply\. Exceeding these limits causes file operation errors\. For more information on client and file\-based limits in Amazon EFS, see [Limits for Client EC2 Instances ](limits.md#limits-client-specific)\. Following, you can find some common file operation errors and the limits associated with each error\.
+When you access Amazon EFS file systems, certain limits on the files in the file system apply\. Exceeding these limits causes file operation errors\. For more information on client and file\-based limits in Amazon EFS, see [Limits for NFS Clients](limits.md#limits-client-specific)\. Following, you can find some common file operation errors and the limits associated with each error\.
 
 ### Command Fails with “Disk quota exceeded” Error<a name="diskquotaerror"></a>
 
@@ -155,13 +155,6 @@ This error occurs when a file is too large\. A single file can be up to 52,673,6
 
 **Action to Take**  
 If you encounter this issue, you can resolve it by reducing the size of a file to meet the supported limit\.
-
-### Command Fails with "Try again" Error<a name="toomanyuserserror"></a>
-
-This error occurs when too many users or applications try to access a single file\. When an application or user accesses a file, a lock is placed on the file\. Any one particular file can have up to 87 locks among all users and applications of the file system\. You can mount a file system on one or more Amazon EC2 instances, but the 87\-lock limit for a file still applies\.
-
-**Action to Take**  
-If you encounter this issue, you can resolve it by reducing the number of applications or users accessing the file until that number meets the number of allowed locks or lower\.
 
 ## Troubleshooting AMI and Kernel Issues<a name="troubleshooting-efs-ami-kernel"></a>
 

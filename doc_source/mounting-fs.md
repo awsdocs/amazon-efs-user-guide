@@ -12,6 +12,7 @@ Before you can mount a file system, you must create, configure, and launch your 
 + [Installing the amazon\-efs\-utils Package](#mounting-fs-install-amazon-efs-utils)
 + [Mounting with the EFS Mount Helper](#mounting-fs-mount-helper)
 + [Mounting Your Amazon EFS File System Automatically](mount-fs-auto-mount-onreboot.md)
++ [Mounting from Another Account or VPC](manage-fs-access-vpc-peering.md)
 + [Additional Mounting Considerations](mounting-fs-mount-cmd-general.md)
 
 ## Troubleshooting AMI and Kernel Versions<a name="ami-kernel-versions-troubleshooting"></a>
@@ -28,7 +29,7 @@ You can mount an Amazon EFS file system on a number of clients using the Amazon 
 
 **Topics**
 + [Mounting on Amazon EC2 with the EFS Mount Helper](#mounting-fs-mount-helper-ec2)
-+ [Mounting on Your On\-Premises Linux Client with the EFS Mount Helper over AWS Direct Connect](#mounting-fs-mount-helper-direct)
++ [Mounting on Your On\-Premises Linux Client with the EFS Mount Helper over AWS Direct Connect and VPN](#mounting-fs-mount-helper-direct)
 
 ### Mounting on Amazon EC2 with the EFS Mount Helper<a name="mounting-fs-mount-helper-ec2"></a>
 
@@ -72,8 +73,8 @@ To use the `mount` command, the following must be true:
 **Note**  
 We recommend that you wait 90 seconds after creating a mount target before you mount your file system\. This wait lets the DNS records propagate fully in the AWS Region where the file system is\.
 
-### Mounting on Your On\-Premises Linux Client with the EFS Mount Helper over AWS Direct Connect<a name="mounting-fs-mount-helper-direct"></a>
+### Mounting on Your On\-Premises Linux Client with the EFS Mount Helper over AWS Direct Connect and VPN<a name="mounting-fs-mount-helper-direct"></a>
 
-You can mount your Amazon EFS file systems on your on\-premises data center servers when connected to your Amazon VPC with AWS Direct Connect\. Mounting your Amazon EFS file systems with amazon\-efs\-utils also makes mounting simpler with the mount helper and allows you to enable encryption of data in transit\. 
+You can mount your Amazon EFS file systems on your on\-premises data center servers when connected to your Amazon VPC with AWS Direct Connect or VPN\. Mounting your Amazon EFS file systems with amazon\-efs\-utils also makes mounting simpler with the mount helper and allows you to enable encryption of data in transit\. 
 
-To see how to use amazon\-efs\-utils with AWS Direct Connect to mount Amazon EFS file systems onto on\-premises Linux clients, see [Walkthrough 5: Create and Mount a File System On\-Premises with AWS Direct Connect](efs-onpremises.md)\.
+To see how to use amazon\-efs\-utils with AWS Direct Connect and VPN to mount Amazon EFS file systems onto on\-premises Linux clients, see [Walkthrough: Create and Mount a File System On\-Premises with AWS Direct Connect and VPN](efs-onpremises.md)\.

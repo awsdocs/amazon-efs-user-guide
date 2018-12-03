@@ -39,7 +39,7 @@ In the following sections, you can find out how to install amazon\-efs\-utils on
 The amazon\-efs\-utils package is available for installation in Amazon Linux and the Amazon Machine Images \(AMIs\) for Amazon Linux 2\.
 
 **Note**  
-If you're using AWS Direct Connect, you can find installation instructions in [Walkthrough 5: Create and Mount a File System On\-Premises with AWS Direct Connect](efs-onpremises.md)\.
+If you're using AWS Direct Connect, you can find installation instructions in [Walkthrough: Create and Mount a File System On\-Premises with AWS Direct Connect and VPN](efs-onpremises.md)\.
 
 **To install the amazon\-efs\-utils package**
 
@@ -224,7 +224,7 @@ You can enable logging for the stunnel process logs\. However, enabling the stun
 
 ### Using amazon\-efs\-utils with AWS Direct Connect<a name="amazon-efs-utils-direct"></a>
 
-You can mount your Amazon EFS file systems on your on\-premises data center servers when connected to your Amazon VPC with AWS Direct Connect\. Using amazon\-efs\-utils also makes mounting simpler with the mount helper and allows you to enable encryption of data in transit\. To see how to use amazon\-efs\-utils with AWS Direct Connect to mount Amazon EFS file systems onto on\-premises Linux clients, see [Walkthrough 5: Create and Mount a File System On\-Premises with AWS Direct Connect](efs-onpremises.md)\.
+You can mount your Amazon EFS file systems on your on\-premises data center servers when connected to your Amazon VPC with AWS Direct Connect\. Using amazon\-efs\-utils also makes mounting simpler with the mount helper and allows you to enable encryption of data in transit\. To see how to use amazon\-efs\-utils with AWS Direct Connect to mount Amazon EFS file systems onto on\-premises Linux clients, see [Walkthrough: Create and Mount a File System On\-Premises with AWS Direct Connect and VPN](efs-onpremises.md)\.
 
 ### Related Topics<a name="amazon-efs-utils-related"></a>
 

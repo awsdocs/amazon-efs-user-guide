@@ -35,7 +35,7 @@ The initial permissions mode allows:
 + `read-execute` permissions to others
 
 Note that only the root user can modify this directory\. The root user can also grant other users permissions to write to this directory\. For example:
-+ Create writable per\-user subdirectories\. For step\-by\-step instructions, see [Walkthrough 3: Create Writable Per\-User Subdirectories and Configure Automatic Remounting on Reboot](accessing-fs-nfs-permissions-per-user-subdirs.md)\.
++ Create writable per\-user subdirectories\. For step\-by\-step instructions, see [Walkthrough: Create Writable Per\-User Subdirectories and Configure Automatic Remounting on Reboot](accessing-fs-nfs-permissions-per-user-subdirs.md)\.
 + Allow users to write to the Amazon EFS file system root\. A user with root privileges can grant other users access to the file system\. 
   + To change the Amazon EFS file system ownership to a non\-*root* user and group, use the following:
 

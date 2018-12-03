@@ -1,4 +1,4 @@
-# Walkthrough 4: Backup Solutions for Amazon EFS File Systems<a name="efs-backup"></a>
+# Walkthrough: Backup Solutions for Amazon EFS File Systems<a name="efs-backup"></a>
 
 If you need to be able to recover from unintended changes or deletions in your Amazon EFS file systems, we recommend that you use the [EFS\-to\-EFS Backup Solution](https://aws.amazon.com/answers/infrastructure-management/efs-backup/)\.
 

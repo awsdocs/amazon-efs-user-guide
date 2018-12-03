@@ -1,6 +1,6 @@
 # Authentication and Access Control for Amazon EFS<a name="auth-and-access-control"></a>
 
-Access to Amazon EFS or Amazon EFS File Sync requires credentials that AWS can use to authenticate your requests\. Those credentials must have permissions to access AWS resources, such an Amazon EFS file system or an Amazon Elastic Compute Cloud \(Amazon EC2\) instance\. The following sections provide details on how you can use [AWS Identity and Access Management \(IAM\)](https://docs.aws.amazon.com/IAM/latest/UserGuide/introduction.html) and Amazon EFS to help secure your resources by controlling who can access them\. 
+Access to Amazon EFS requires credentials that AWS can use to authenticate your requests\. Those credentials must have permissions to access AWS resources, such an Amazon EFS file system or an Amazon Elastic Compute Cloud \(Amazon EC2\) instance\. The following sections provide details on how you can use [AWS Identity and Access Management \(IAM\)](https://docs.aws.amazon.com/IAM/latest/UserGuide/introduction.html) and Amazon EFS to help secure your resources by controlling who can access them\. 
 + [Authentication](#authentication)
 + [Access Control](#access-control)
 

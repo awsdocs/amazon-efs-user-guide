@@ -1,14 +1,16 @@
-# Creating Mount Targets in Another VPC<a name="manage-fs-access-change-vpc"></a>
+# Changing the VPC for Your Mount Target<a name="manage-fs-access-change-vpc"></a>
 
-You can use an Amazon EFS file system in one VPC at a time\. That is, you create mount targets in a VPC for your file system, and use those mount targets to provide access to the file system from EC2 instances in that VPC\. To access the file system from EC2 instances in another VPC, you must first delete the mount targets from the current VPC and then create new mount targets in another VPC\.
+You can use an Amazon EFS file system in one Amazon VPC at a time\. That is, you create mount targets in a VPC for your file system, and use those mount targets to provide access to the file system\.
 
-## Working with VPC Peering in Amazon EFS<a name="manage-fs-access-vpc-peering"></a>
+You can mount the Amazon EFS file system from these targets: 
++ Amazon EC2 instances in the same VPC
++ EC2 instances in a VPC connected by VPC peering
++ On\-premises servers by using AWS Direct Connect
++ On\-premises servers over an AWS virtual private network \(VPN\) by using Amazon VPC 
 
-A *VPC peering connection *is a networking connection between two VPCs that enables you to route traffic between them using private Internet Protocol version 4 \(IPv4\) or Internet Protocol version 6 \(IPv6\) addresses\. For more information on VPC peering, see [What is VPC Peering?](https://docs.aws.amazon.com/vpc/latest/peering/Welcome.html) in the *Amazon VPC Peering Guide\.*
+A *VPC peering connection* is a networking connection between two VPCs that enables you to route traffic between them using private Internet Protocol version 4 \(IPv4\) or Internet Protocol version 6 \(IPv6\) addresses\. For more information on how Amazon EFS works with VPC peering, see [Mounting from Another Account or VPC](manage-fs-access-vpc-peering.md)\.
 
-You can mount Amazon EFS file systems over VPC connections by using VPC peering within a single AWS Region when using the Amazon EC2 instance types T3, C5, C5d, I3\.metal, M5, M5d, R5, R5d, and z1d\. However, other VPC private connectivity mechanisms such as inter\-region VPC peering and VPC peering within an AWS Region using other instance types are not supported\.
-
-Domain Name System \(DNS\) name resolution for EFS mount points in peered VPCs is not supported\. Use the IP address of the mount points in the corresponding Availability Zone to mount EFS file systems\. Alternatively, you can use Amazon Route 53 as your DNS service, and create a [Private Hosted Zone](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/hosted-zones-private.html) and [Resource Record Set](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/rrsets-working-with.html) to resolve the EFS mount target IP addresses from another VPC\.
+To access the file system from EC2 instances in another VPC, you must first delete the current mount targets and then create new mount targets\. 
 
 ## Using the Console<a name="manage-fs-access-change-vpc-using-console"></a>
 
@@ -27,7 +29,7 @@ Domain Name System \(DNS\) name resolution for EFS mount points in peered VPCs i
 
    1. Amazon EFS automatically selects an available IP address, or you can provide another IP address explicitly\.
 
-   1. Choose the security groups that you want to associate\. 
+   1. Choose the security groups that you want to associate\. For inter\-region VPC peering, the security groups you choose need to have a rule that allows inbound traffic over NFS \(port 2049\) from your other VPC or VPCs\.
 
       For information about security groups, see [Amazon EC2 Security Groups](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-network-security.html) in the *Amazon EC2 User Guide for Linux Instances*\.
 

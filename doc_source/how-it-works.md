@@ -5,7 +5,7 @@ Following, you can find a description about how Amazon EFS works, its implementa
 **Topics**
 + [Overview](#how-it-works-conceptual)
 + [How Amazon EFS Works with Amazon EC2](#how-it-works-ec2)
-+ [How Amazon EFS Works with AWS Direct Connect](#how-it-works-direct-connect)
++ [How Amazon EFS Works with AWS Direct Connect and AWS Managed VPN](#how-it-works-direct-connect)
 + [Implementation Summary](#how-it-works-implementation)
 + [Authentication and Access Control](#auth-access-intro)
 + [Data Consistency in Amazon EFS](#consistency)
@@ -18,9 +18,8 @@ For a list of Amazon EC2 Linux Amazon Machine Images \(AMIs\) that support this 
 
 You can access your Amazon EFS file system concurrently from Amazon EC2 instances in your Amazon VPC, so applications that scale beyond a single connection can access a file system\. Amazon EC2 instances running in multiple Availability Zones within the same region can access the file system, so that many users can access and share a common data source\.
 
-Note the following restrictions:
-+ You can mount an Amazon EFS file system on instances in only one VPC at a time\.
-+ Both the file system and VPC must be in the same AWS Region\.
+**Note**  
+You can mount an Amazon EFS file system on instances in only one VPC at a time\.
 
 For a list of AWS regions where you can create an Amazon EFS file system, see the [Amazon Web Services General Reference](https://docs.aws.amazon.com/general/latest/gr/rande.html#elasticfilesystem_region)\. 
 
@@ -50,14 +49,13 @@ In this illustration, the VPC has three Availability Zones, and each has one mou
 
 For detailed steps, see [Getting Started with Amazon Elastic File System](getting-started.md)\.
 
-## How Amazon EFS Works with AWS Direct Connect<a name="how-it-works-direct-connect"></a>
+## How Amazon EFS Works with AWS Direct Connect and AWS Managed VPN<a name="how-it-works-direct-connect"></a>
 
 By using an Amazon EFS file system mounted on an on\-premises server, you can migrate on\-premises data into the AWS Cloud hosted in an Amazon EFS file system\. You can also take advantage of bursting, meaning that you can move data from your on\-premises servers into Amazon EFS, analyze it on a fleet of Amazon EC2 instances in your Amazon VPC, and then store the results permanently in your file system or move the results back to your on\-premises server\.
 
-Keep the following considerations in mind when using Amazon EFS with AWS Direct Connect:
+Keep the following considerations in mind when using Amazon EFS with an on\-premises server:
 + Your on\-premises server must have a Linux based operating system\. We recommend Linux kernel version 4\.0 or later\.
 + For the sake of simplicity, we recommend mounting an Amazon EFS file system on an on\-premises server using a mount target IP address instead of a DNS name\.
-+ AWS VPN is not supported for accessing an Amazon EFS file system from an on\-premises server\.
 
 There is no additional cost for on\-premises access to your Amazon EFS file systems\. Note that you'll be charged for the AWS Direct Connect connection to your Amazon VPC\. For more information, see [AWS Direct Connect Pricing](https://aws.amazon.com/directconnect/pricing/)\.
 
@@ -75,7 +73,7 @@ To create a setup like this, you do the following:
 
 1. Mount the Amazon EFS file system on your on\-premises server\.
 
-For detailed steps, see [Walkthrough 5: Create and Mount a File System On\-Premises with AWS Direct Connect](efs-onpremises.md)\.
+For detailed steps, see [Walkthrough: Create and Mount a File System On\-Premises with AWS Direct Connect and VPN](efs-onpremises.md)\.
 
 ## Implementation Summary<a name="how-it-works-implementation"></a>
 
@@ -101,7 +99,7 @@ You can think of mount targets and tags as *subresources* that don't exist witho
 
 Amazon EFS provides API operations for you to create and manage these resources\. In addition to the create and delete operations for each resource, Amazon EFS also supports a describe operation that enables you to retrieve resource information\. You have the following options for creating and managing these resources:
 + Use the Amazon EFS console – For an example, see [Getting Started](getting-started.md)\.
-+ Use the Amazon EFS command line interface \(CLI\) – For an example, see [Walkthrough 1: Create Amazon EFS File System and Mount It on an EC2 Instance Using the AWS CLI](wt1-getting-started.md)\.
++ Use the Amazon EFS command line interface \(CLI\) – For an example, see [Walkthrough: Create an Amazon EFS File System and Mount It on an EC2 Instance Using the AWS CLI](wt1-getting-started.md)\.
 + You can also manage these resources programmatically as follows:
   + Use the AWS SDKs – The AWS SDKs simplify your programming tasks by wrapping the underlying Amazon EFS API\. The SDK clients also authenticate your requests by using access keys that you provide\. For more information, see [Sample Code and Libraries](https://aws.amazon.com/code)\.
   + Call the Amazon EFS API directly from your application – If you cannot use the SDKs for some reason, you can make the Amazon EFS API calls directly from your application\. However, you need to write the necessary code to authenticate your requests if you use this option\. For more information about the Amazon EFS API, see [Amazon EFS API](api-reference.md)\.

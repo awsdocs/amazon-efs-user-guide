@@ -102,4 +102,4 @@ $ aws efs describe-mount-targets \
 --profile adminuser
 ```
 
-For an example, see [Walkthrough 1: Create Amazon EFS File System and Mount It on an EC2 Instance Using the AWS CLI](wt1-getting-started.md)\.
+For an example, see [Walkthrough: Create an Amazon EFS File System and Mount It on an EC2 Instance Using the AWS CLI](wt1-getting-started.md)\.
