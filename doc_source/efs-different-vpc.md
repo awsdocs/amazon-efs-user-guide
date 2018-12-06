@@ -1,6 +1,6 @@
 # Walkthrough: Mount a File System from a Different VPC<a name="efs-different-vpc"></a>
 
-In this walkthrough, you set up an Amazon EC2 instance to mount an Amazon EFS file system that is in a different VPC using an Amazon VPC peering connection\.
+In this walkthrough, you set up an Amazon EC2 instance to mount an Amazon EFS file system that is in a different virtual private cloud \(VPC\)\. You do so using either an AWS transit gateway or an Amazon VPC peering connection\.
 
 **Note**  
 Using Amazon EFS with Microsoft Windows–based clients isn't supported\.
@@ -15,7 +15,9 @@ Using Amazon EFS with Microsoft Windows–based clients isn't supported\.
 ## Before You Begin<a name="wt6-prepare"></a>
 
 In this walkthrough, we assume that you already have the following:
-+ A VPC peering connection between the VPC where the EFS file system resides and the VPC in which the EC2 instance resides\. For more information, see [Creating and Accepting a VPC Peering Connection](https://docs.aws.amazon.com/vpc/latest/peering/create-vpc-peering-connection.html) in the *Amazon VPC Peering Guide*\.
++ One of the following:
+  + A VPC peering connection between the VPC where the EFS file system resides and the VPC where the EC2 instance resides\. For more information, see [Creating and Accepting a VPC Peering Connection](https://docs.aws.amazon.com/vpc/latest/peering/create-vpc-peering-connection.html) in the *Amazon VPC Peering Guide*\.
+  + A transit gateway connecting the VPC where the EFS file system resides and the VPC where the EC2 instance resides\. For more information, see [Getting Started with Transit Gateways](https://docs.aws.amazon.com/vpc/latest/tgw/tgw-getting-started.html) in the *Amazon VPC Transit Gateways Guide*\.
 + An EC2 instance\.
 + An EFS file system in a different VPC than this EC2 instance\.
 
@@ -29,7 +31,7 @@ In this step, you set up your Amazon EC2 instance so that it can mount an EFS fi
 
 **To allow inbound traffic to the NFS port**
 **Note**  
-If you require data to be encrypted in transit, use the Amazon EFS mount helper, `amazon-efs-utils`, instead of the NFS client\. For information on installing amazon\-efs\-utils, see the section *Optional: Encrypting Data in Transit*\.
+If you require data to be encrypted in transit, use the Amazon EFS mount helper, `amazon-efs-utils`, instead of the NFS client\. For information on installing amazon\-efs\-utils, see the section [](#wt6-step3-get-efs-utils)\.
 
 1. Sign in to the AWS Management Console and open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
 
@@ -71,7 +73,7 @@ You don't need to add an outbound rule, because the default outbound rule allows
 + Mount your file system using one of the mount target IP addresses that your EC2 instance can access over the VPC peering connection\. If your EC2 instance and your EFS file system are in the same AWS Region, use the mount target IP address that is in your Availability Zone\. For more information, see [Creating or Deleting Mount Targets in a VPC](manage-fs-access-create-delete-mount-targets.md)\. You can find the mount target IP address from the console, API, or CLI of the EFS file system owner\.
 
   ```
-  sudo mount -t nfs4 -o nfsvers=4.1,rsize=1048576,wsize=1048576,hard,timeo=600,retrans=2 mount-target-IP:/ efs
+  sudo mount -t nfs4 -o nfsvers=4.1,rsize=1048576,wsize=1048576,hard,timeo=600,retrans=2,noresvport mount-target-IP:/ efs
   ```
 
 Now that you've mounted your Amazon EFS file system, you can test it with the following procedure\.

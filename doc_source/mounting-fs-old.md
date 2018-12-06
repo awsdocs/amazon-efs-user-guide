@@ -11,6 +11,7 @@ Before you can mount a file system, you must create, configure, and launch your 
 **Topics**
 + [NFS Support](#mounting-fs-nfs-info)
 + [Installing the NFS Client](#mounting-fs-install-nfsclient)
++ [Recommended NFS Mount Options](mounting-fs-nfs-mount-settings.md)
 + [Mounting on Amazon EC2 with a DNS Name](mounting-fs-mount-cmd-dns-name.md)
 + [Mounting with an IP Address](mounting-fs-mount-cmd-ip-addr.md)
 

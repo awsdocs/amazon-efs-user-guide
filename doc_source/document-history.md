@@ -1,13 +1,14 @@
 # Document History<a name="document-history"></a>
 + **API version**: 2015\-02\-01
-+ **Latest documentation update**: November 26, 2018
++ **Latest documentation update**: December 6, 2018
 
 The following table describes important changes to the *Amazon Elastic File System User Guide* after July 2018\. For notifications about documentation updates, you can subscribe to the RSS feed\.
 
 | Change | Description | Date | 
 | --- |--- |--- |
-| [EFS File Sync is now part of the new AWS DataSync service\. ](#document-history) | AWS DataSync is a managed data transfer service that simplifies synchronizing large amounts of data between on\-premises storage systems and AWS storage services\. For more information, see LINK\_to\_AWSDataSync\_docs\. | November 26, 2018 | 
-| [VPN and Inter\-region VPC Peering connection support added](#document-history) | Amazon EFS are now accessible over VPN connections and inter\-region VPC peering connections\. For more information, see [Mounting from Another Account or VPC](https://docs.aws.amazon.com/efs/latest/ug/manage-fs-access-vpc-peering.html) and [How Amazon EFS Works with Direct Connect and VPNs](https://docs.aws.amazon.com/efs/latest/ug/how-it-works.html#how-it-works-direct-connect)\. | October 23, 2018 | 
+| [Transit Gateway connection support to on\-premises storage systems added\.](#document-history) | Amazon EFS file systems are now accessible using Transit Gateway connections to on\-premises storage systems\. For more information, see [Mounting from Another Account or VPC](https://docs.aws.amazon.com/efs/latest/ug/manage-fs-access-vpc-peering.html) and [Walkthrough: Mount a File System from a Different VPC](https://docs.aws.amazon.com/efs/latest/ug/efs-different-vpc.html)\. | December 6, 2018 | 
+| [EFS File Sync is now part of the new AWS DataSync service\. ](#document-history) | AWS DataSync is a managed data transfer service that simplifies synchronizing large amounts of data between on\-premises storage systems and AWS storage services\. For more information, see [Transfer Files from On\-Premises File Systems to Amazon EFS Using AWS DataSync](https://docs.aws.amazon.com/efs/latest/ug/gs-step-four-sync-files.html)\. | November 26, 2018 | 
+| [VPN and Inter\-region VPC Peering connection support added](#document-history) | Amazon EFS file systems are now accessible over VPN connections and inter\-region VPC peering connections\. For more information, see [Mounting from Another Account or VPC](https://docs.aws.amazon.com/efs/latest/ug/manage-fs-access-vpc-peering.html) and [How Amazon EFS Works with Direct Connect and VPNs](https://docs.aws.amazon.com/efs/latest/ug/how-it-works.html#how-it-works-direct-connect)\. | October 23, 2018 | 
 | [Additional AWS Region support added](#document-history) | Amazon EFS is now available to all users in the Asia Pacific \(Singapore\) AWS Region\. | July 13, 2018 | 
 | [Introducing Provisioned Throughput mode](#document-history) | You can now provision throughput for new or existing file systems with the new Provisioned Throughput mode\. For more information, see [Throughput Modes](https://docs.aws.amazon.com/efs/latest/ug/throughput-modes.html)\. | July 12, 2018 | 
 | [Additional AWS Region support added](#document-history) | Amazon EFS is now available to all users in the Asia Pacific \(Tokyo\) AWS Region\. | July 11, 2018 | 

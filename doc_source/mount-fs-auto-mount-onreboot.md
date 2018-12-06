@@ -26,7 +26,7 @@ Use the `_netdev` option, used to identify network file systems, when mounting y
 Your EC2 instance is now configured to mount the EFS file system whenever it restarts\.
 
 **Note**  
-If your Amazon EC2 instance needs to start regardless of the status of your mounted Amazon EFS file system, you'll want to add the `nofail` option to your file system's entry in your `/etc/fstab` file\.
+If your Amazon EC2 instance needs to start regardless of the status of your mounted Amazon EFS file system, add the `nofail` option to your file system's entry in your `/etc/fstab` file\.
 
 The line of code you added to the /etc/fstab file does the following\.
 
@@ -44,7 +44,7 @@ The line of code you added to the /etc/fstab file does the following\.
 
 You can configure an Amazon EC2 instance to mount your Amazon EFS file system automatically when it is first launched with a script that works with `cloud-init`\. You add the script during the **Launch Instance** wizard of the EC2 management console\. 
 
-The script installs the NFS client and writes an entry in the `/etc/fstab` file that will identify the mount target DNS name as well as the subdirectory in your EC2 instance on which to mount the EFS file system\. The script ensures the file gets mounted when the EC2 instance is launched and after each system reboot\.
+The script installs the NFS client and writes an entry in the `/etc/fstab` file to identify the mount target DNS name as well as the subdirectory in your EC2 instance on which to mount the EFS file system\. The script makes sure that the file gets mounted when the EC2 instance is launched and after each system reboot\.
 
 For more information about the customized version of `cloud-init` used by Amazon Linux, see [https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AmazonLinuxAMIBasics.html#CloudInit](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AmazonLinuxAMIBasics.html#CloudInit) in the *Amazon EC2 User Guide for Linux Instances*\.
 

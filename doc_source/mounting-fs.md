@@ -1,4 +1,4 @@
-# Mounting File Systems<a name="mounting-fs"></a>
+# Mounting EFS File Systems<a name="mounting-fs"></a>
 
 In the following section, you can learn how to mount your Amazon EFS file system on a Linux instance using the Amazon EFS mount helper\. In addition, you can find how to use the file `fstab` to automatically remount your file system after any system restarts\.
 
@@ -12,7 +12,7 @@ Before you can mount a file system, you must create, configure, and launch your 
 + [Installing the amazon\-efs\-utils Package](#mounting-fs-install-amazon-efs-utils)
 + [Mounting with the EFS Mount Helper](#mounting-fs-mount-helper)
 + [Mounting Your Amazon EFS File System Automatically](mount-fs-auto-mount-onreboot.md)
-+ [Mounting from Another Account or VPC](manage-fs-access-vpc-peering.md)
++ [Mounting EFS File Systems from Another Account or VPC](manage-fs-access-vpc-peering.md)
 + [Additional Mounting Considerations](mounting-fs-mount-cmd-general.md)
 
 ## Troubleshooting AMI and Kernel Versions<a name="ami-kernel-versions-troubleshooting"></a>
@@ -35,7 +35,7 @@ You can mount an Amazon EFS file system on a number of clients using the Amazon 
 
 You can mount an Amazon EFS file system on an Amazon EC2 instance using the Amazon EFS mount helper\. For more information on the mount helper, see [EFS Mount Helper](using-amazon-efs-utils.md#efs-mount-helper)\. To use the mount helper, you need the following:
 + **An Amazon EFS file system ID** – After you create an Amazon EFS file system, you can get that file system's ID from the console or programmatically through the Amazon EFS API\. This ID is in this format: `fs-12345678`\.
-+ **An Amazon EFS mount target** – You create mount targets in your VPC\. If you create your file system in the console, you create your mount targets at the same time\. For more information, see [Creating a Mount Target Using the Amazon EFS console](accessing-fs.md#create-mount-target-console)\.
++ **An Amazon EFS mount target** – You create mount targets in your virtual private cloud \(VPC\)\. If you create your file system in the console, you create your mount targets at the same time\. For more information, see [Creating a Mount Target Using the Amazon EFS console](accessing-fs.md#create-mount-target-console)\.
 + **An Amazon EC2 instance running a supported distribution of Linux** – The supported Linux distributions for mounting your file system with the mount helper are Amazon Linux 2, Amazon Linux 2017\.09 and newer, Red Hat Enterprise Linux \(and derivatives such as CentOS\) version 7 and newer, and Ubuntu 16\.04 LTS and newer\.
 + **The Amazon EFS mount helper installed** – The mount helper is a tool in amazon\-efs\-utils\. For information on how to install amazon\-efs\-utils, see [Installing the amazon\-efs\-utils Package on Amazon Linux](using-amazon-efs-utils.md#installing-amazon-efs-utils)\.
 
@@ -65,9 +65,10 @@ Mounting with the mount helper automatically uses the following mount options th
 `hard`
 `timeo=600`
 `retrans=2`
+`noresvport`
 
 To use the `mount` command, the following must be true:
-+ The connecting EC2 instance must be in a VPC and must be configured to use the DNS server provided by Amazon\. For information about the Amazon DNS server, see [DHCP Options Sets](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_DHCP_Options.html) in the *Amazon VPC User Guide*\. 
++ The connecting EC2 instance must be in a virtual private cloud \(VPC\) based on the Amazon VPC service\. It also must be configured to use the DNS server provided by Amazon\. For information about the Amazon DNS server, see [DHCP Options Sets](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_DHCP_Options.html) in the *Amazon VPC User Guide*\. 
 + The VPC of the connecting EC2 instance must have DNS hostnames enabled\. For more information, see [Viewing DNS Hostnames for Your EC2 Instance](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-dns.html#vpc-dns-viewing) in the *Amazon VPC User Guide*\. 
 
 **Note**  

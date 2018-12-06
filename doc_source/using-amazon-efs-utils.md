@@ -187,7 +187,7 @@ If you are unable to install the required dependencies, you can optionally disab
 
 1. Save the changes to the file and close it\.
 
-For more information on using encryption of data in transit, see [Mounting File Systems](mounting-fs.md)\.
+For more information on using encryption of data in transit, see [Mounting EFS File Systems](mounting-fs.md)\.
 
 ## EFS Mount Helper<a name="efs-mount-helper"></a>
 
@@ -206,7 +206,7 @@ Using TLS requires certificates, and these certificates are signed by a trusted 
 
 ### Using the EFS Mount Helper<a name="using-efs-mount-helper"></a>
 
-The mount helper helps you mount your EFS file systems on your Linux EC2 instances\. For more information, see [Mounting File Systems](mounting-fs.md)\. 
+The mount helper helps you mount your EFS file systems on your Linux EC2 instances\. For more information, see [Mounting EFS File Systems](mounting-fs.md)\. 
 
 ### Getting Support Logs<a name="mount-helper-logs"></a>
 
@@ -230,4 +230,4 @@ You can mount your Amazon EFS file systems on your on\-premises data center serv
 
 For more information on the Amazon EFS mount helper, see these related topics:
 + [Encrypting Data and Metadata in EFS](encryption.md)
-+ [Mounting File Systems](mounting-fs.md)
++ [Mounting EFS File Systems](mounting-fs.md)

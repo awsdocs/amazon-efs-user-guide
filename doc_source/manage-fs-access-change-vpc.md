@@ -8,7 +8,7 @@ You can mount the Amazon EFS file system from these targets:
 + On\-premises servers by using AWS Direct Connect
 + On\-premises servers over an AWS virtual private network \(VPN\) by using Amazon VPC 
 
-A *VPC peering connection* is a networking connection between two VPCs that enables you to route traffic between them using private Internet Protocol version 4 \(IPv4\) or Internet Protocol version 6 \(IPv6\) addresses\. For more information on how Amazon EFS works with VPC peering, see [Mounting from Another Account or VPC](manage-fs-access-vpc-peering.md)\.
+A *VPC peering connection* is a networking connection between two VPCs that enables you to route traffic between them using private Internet Protocol version 4 \(IPv4\) or Internet Protocol version 6 \(IPv6\) addresses\. For more information on how Amazon EFS works with VPC peering, see [Mounting EFS File Systems from Another Account or VPC](manage-fs-access-vpc-peering.md)\.
 
 To access the file system from EC2 instances in another VPC, you must first delete the current mount targets and then create new mount targets\. 
 
