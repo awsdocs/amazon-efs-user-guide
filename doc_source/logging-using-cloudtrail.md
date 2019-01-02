@@ -126,6 +126,7 @@ If you're using an encrypted\-at\-rest file system, the calls that Amazon EFS ma
 | EU \(Frankfurt\) | 992038834663 | 
 | EU \(Ireland\) | 805538244694 | 
 | Asia Pacific \(Sydney\) | 288718191711 | 
+| AWS GovCloud \(US\-West\) | 174619389399 | 
 
 ### Amazon EFS Encryption Context for Encryption at Rest<a name="EFSKMSContext"></a>
 

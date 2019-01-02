@@ -54,13 +54,11 @@ Follow the steps to set up an Apache web server on one EC2 instance to serve fil
          $ sudo mkdir /var/www/html/efs-mount-point
          ```
 
-      1. Mount your Amazon EFS file system\. You need to update the following command by providing your file system ID and AWS region \(if you followed the Getting Started exercise to create a file system, the getting started assumes us\-west\-2 AWS Region\)\.
+      1. Mount your Amazon EFS file system\. You need to update the following mount command using the EFS mount helper utility by providing your file system ID\.
 
          ```
-         $ sudo mount -t nfs -o nfsvers=4.1,rsize=1048576,wsize=1048576,hard,timeo=600,retrans=2,noresvport file-system-id.efs.aws-region.amazonaws.com:/ /var/www/html/efs-mount-point
+         $ sudo mount -t efs fs-12345678:/ /var/www/html/efs-mount-point 
          ```
-
-         Here you dynamically construct DNS name of the mount target from the EC2 instance you are on\. For more information, see [Mounting on Amazon EC2 with a DNS Name](mounting-fs-mount-cmd-dns-name.md)\.
 
 1. Test the setup\.
 
@@ -119,7 +117,7 @@ For this walkthrough, you don't use the EC2 instance that you created in the Get
 
       In the **Basic Configuration** section, select your VPC where you also create the EC2 instances on which you mount the file system\.
 
-      In the **Select Subnets** section, you can select all of the available subnets or select \. For details, see the `cloud-config` script in the next section\.
+      In the **Select Subnets** section, select all of the available subnets \. For details, see the `cloud-config` script in the next section\.
 
    1. Assign security groups
 

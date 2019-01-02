@@ -141,11 +141,11 @@ After installing the Amazon EFS mount helper, you can upgrade your system's vers
 
 1. `sudo yum install -y gcc openssl-devel tcp_wrappers-devel`
 
-1. `sudo curl -o stunnel-5.49.tar.gz https://www.stunnel.org/downloads/stunnel-5.49.tar.gz`
+1. `sudo curl -o stunnel-5.50.tar.gz https://www.stunnel.org/downloads/stunnel-5.50.tar.gz`
 
-1. `sudo tar xvfz stunnel-5.49.tar.gz`
+1. `sudo tar xvfz stunnel-5.50.tar.gz`
 
-1. `cd stunnel-5.49/`
+1. `cd stunnel-5.50/`
 
 1. `sudo ./configure`
 
@@ -222,7 +222,7 @@ You can change the configuration of your logs in `/etc/amazon/efs/amazon-efs-uti
 **Important**  
 You can enable logging for the stunnel process logs\. However, enabling the stunnel logs can use up a nontrivial amount of space on your file system\.
 
-### Using amazon\-efs\-utils with AWS Direct Connect<a name="amazon-efs-utils-direct"></a>
+### Using amazon\-efs\-utils with AWS Direct Connect and VPN<a name="amazon-efs-utils-direct"></a>
 
 You can mount your Amazon EFS file systems on your on\-premises data center servers when connected to your Amazon VPC with AWS Direct Connect\. Using amazon\-efs\-utils also makes mounting simpler with the mount helper and allows you to enable encryption of data in transit\. To see how to use amazon\-efs\-utils with AWS Direct Connect to mount Amazon EFS file systems onto on\-premises Linux clients, see [Walkthrough: Create and Mount a File System On\-Premises with AWS Direct Connect and VPN](efs-onpremises.md)\.
 
