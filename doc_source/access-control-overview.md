@@ -118,4 +118,4 @@ When you grant permissions, you can use the IAM policy language to specify the c
 To express conditions, you use predefined condition keys\. There are no condition keys specific to Amazon Elastic File System\. However, there are AWS\-wide condition keys that you can use as appropriate\. For a complete list of AWS\-wide keys, see [Available Keys for Conditions](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_elements.html#AvailableKeys) in the *IAM User Guide*\. 
 
 **Note**  
-Do not use the `aws:SourceIp` AWS\-wide condition for the `CreateMountTarget`, `DeleteMountTarget`, or `ModifyMountTargetSecurityGroup` actions\. Amazon EFS provisions mount targets by using its own IP address, not the IP address of the originating request\.
+Do not use the `aws:SourceIp` AWS\-wide condition for the `CreateMountTarget`, `DeleteMountTarget`, `DescribeMountTargetSecurityGroups`, or `ModifyMountTargetSecurityGroup` actions\. Amazon EFS provisions mount targets by using its own IP address, not the IP address of the originating request\.
