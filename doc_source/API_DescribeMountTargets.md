@@ -92,7 +92,7 @@ HTTP Status Code: 404
 
 ## Example<a name="API_DescribeMountTargets_Examples"></a>
 
-### Retrieve descriptions mount targets created for a file system<a name="API_DescribeMountTargets_Example_1"></a>
+### Retrieve Descriptions of Mount Targets Created for a File System<a name="API_DescribeMountTargets_Example_1"></a>
 
 The following request retrieves descriptions of mount targets created for the specified file system\. 
 
@@ -135,6 +135,7 @@ For more information about using this API in one of the language\-specific AWS S
 +  [AWS SDK for \.NET](https://docs.aws.amazon.com/goto/DotNetSDKV3/elasticfilesystem-2015-02-01/DescribeMountTargets) 
 +  [AWS SDK for C\+\+](https://docs.aws.amazon.com/goto/SdkForCpp/elasticfilesystem-2015-02-01/DescribeMountTargets) 
 +  [AWS SDK for Go](https://docs.aws.amazon.com/goto/SdkForGoV1/elasticfilesystem-2015-02-01/DescribeMountTargets) 
++  [AWS SDK for Go \- Pilot](https://docs.aws.amazon.com/goto/SdkForGoPilot/elasticfilesystem-2015-02-01/DescribeMountTargets) 
 +  [AWS SDK for Java](https://docs.aws.amazon.com/goto/SdkForJava/elasticfilesystem-2015-02-01/DescribeMountTargets) 
 +  [AWS SDK for JavaScript](https://docs.aws.amazon.com/goto/AWSJavaScriptSDK/elasticfilesystem-2015-02-01/DescribeMountTargets) 
 +  [AWS SDK for PHP V3](https://docs.aws.amazon.com/goto/SdkForPHPV3/elasticfilesystem-2015-02-01/DescribeMountTargets) 

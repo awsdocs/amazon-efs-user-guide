@@ -29,4 +29,4 @@ You can use the root credentials of your AWS account to sign in to the console a
 
 ## Related Topics<a name="gs-related-topics"></a>
 
-This guide also provides a walkthrough to perform a similar Getting Started exercise using AWS Command Line Interface \(AWS CLI\) commands to make the Amazon EFS API calls\. For more information, see [Walkthrough: Create an Amazon EFS File System and Mount It on an EC2 Instance Using the AWS CLI](wt1-getting-started.md)\.
+This guide also provides a walkthrough to perform a similar Getting Started exercise using AWS Command Line Interface \(AWS CLI\) commands to make the Amazon EFS API calls\. For more information, see [Walkthrough: Create an Amazon EFS File System and Mount It on an Amazon EC2 Instance Using the AWS CLI](wt1-getting-started.md)\.

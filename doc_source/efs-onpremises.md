@@ -13,7 +13,7 @@ Using Amazon EFS with Microsoft Windows–based clients isn't supported\.
 + [Step 4: Clean Up Resources and Protect Your AWS Account](#wt5-step4-cleanup)
 + [Optional: Encrypting Data in Transit](#wt5-step2-get-efs-utils)
 
-In this walkthrough, we assume that you already have an AWS Direct Connect or VPN connection\. If you don't have one, you can begin the connection process now and come back to this walkthrough when your connection is established\. For more information on AWS Direct Connect, see [AWS Direct Connect Product Details](https://aws.amazon.com/directconnect/details/)\. For more information on setting up a VPN connection, see [VPN Connections](https://docs.aws.amazon.com/vpc/latest/userguide/vpn-connections.html) in the *Amazon VPC User Guide*\.
+In this walkthrough, we assume that you already have an AWS Direct Connect or VPN connection\. If you don't have one, you can begin the connection process now and come back to this walkthrough when your connection is established\. For more information on AWS Direct Connect, see the [AWS Direct Connect User Guide](https://docs.aws.amazon.com/directconnect/latest/UserGuide/)\. For more information on setting up a VPN connection, see [VPN Connections](https://docs.aws.amazon.com/vpc/latest/userguide/vpn-connections.html) in the *Amazon VPC User Guide*\.
 
 When you have an AWS Direct Connect or VPN connection, you create an Amazon EFS file system and a mount target in your Amazon VPC\. After that, you download and install the amazon\-efs\-utils tools\. Then, you test the file system from your on\-premises client\. Finally, the clean\-up step at the end of the walkthrough provides information for you to remove these resources\.
 

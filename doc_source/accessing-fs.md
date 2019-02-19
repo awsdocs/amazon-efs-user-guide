@@ -11,7 +11,7 @@ The mount target security group acts as a virtual firewall that controls the tra
 + How to mount the file system on your Amazon EC2 instance\.
 + NFS\-level permissions considerations\. 
 
-  Initially, only the root user on the Amazon EC2 instance has read\-write\-execute permissions on the file system\. This topic discusses NFS\-level permissions and provides examples that show you how to grant permissions in common scenarios\. For more information, see [Network File System \(NFS\)–Level Users, Groups, and Permissions](accessing-fs-nfs-permissions.md)\.
+  Initially, only the root user on the Amazon EC2 instance has read\-write\-execute permissions on the file system\. This topic discusses NFS\-level permissions and provides examples that show you how to grant permissions in common scenarios\. For more information, see [Working with Users, Groups, and Permissions at the Network File System \(NFS\) Level ](accessing-fs-nfs-permissions.md)\.
 
 You can create mount targets for a file system using the console, using AWS Command Line Interface, or programmatically using the AWS SDKs\. When using the console, you can create mount targets when you first create a file system or after the file system is created\.
 
@@ -102,4 +102,4 @@ $ aws efs describe-mount-targets \
 --profile adminuser
 ```
 
-For an example, see [Walkthrough: Create an Amazon EFS File System and Mount It on an EC2 Instance Using the AWS CLI](wt1-getting-started.md)\.
+For an example, see [Walkthrough: Create an Amazon EFS File System and Mount It on an Amazon EC2 Instance Using the AWS CLI](wt1-getting-started.md)\.

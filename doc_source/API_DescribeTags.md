@@ -1,6 +1,6 @@
 # DescribeTags<a name="API_DescribeTags"></a>
 
-Returns the tags associated with a file system\. The order of tags returned in the response of one `DescribeTags` call and the order of tags returned across the responses of a multi\-call iteration \(when using pagination\) is unspecified\. 
+Returns the tags associated with a file system\. The order of tags returned in the response of one `DescribeTags` call and the order of tags returned across the responses of a multiple\-call iteration \(when using pagination\) is unspecified\. 
 
  This operation requires permissions for the `elasticfilesystem:DescribeTags` action\. 
 
@@ -15,13 +15,13 @@ GET /2015-02-01/tags/FileSystemId/?Marker=Marker&MaxItems=MaxItems HTTP/1.1
 The request requires the following URI parameters\.
 
  ** [FileSystemId](#API_DescribeTags_RequestSyntax) **   <a name="efs-DescribeTags-request-FileSystemId"></a>
-ID of the file system whose tag set you want to retrieve\.
+The ID of the file system whose tag set you want to retrieve\.
 
  ** [Marker](#API_DescribeTags_RequestSyntax) **   <a name="efs-DescribeTags-request-Marker"></a>
-\(Optional\) Opaque pagination token returned from a previous `DescribeTags` operation \(String\)\. If present, it specifies to continue the list from where the previous call left off\.
+\(Optional\) An opaque pagination token returned from a previous `DescribeTags` operation \(String\)\. If present, it specifies to continue the list from where the previous call left off\.
 
  ** [MaxItems](#API_DescribeTags_RequestSyntax) **   <a name="efs-DescribeTags-request-MaxItems"></a>
-\(Optional\) Maximum number of file system tags to return in the response\. Currently, this number is automatically set to 10\.  
+\(Optional\) The maximum number of file system tags to return in the response\. Currently, this number is automatically set to 10\.  
 Valid Range: Minimum value of 1\.
 
 ## Request Body<a name="API_DescribeTags_RequestBody"></a>
@@ -80,7 +80,7 @@ HTTP Status Code: 500
 
 ## Example<a name="API_DescribeTags_Examples"></a>
 
-### Retrieve tags associated with a file system<a name="API_DescribeTags_Example_1"></a>
+### Retrieve Tags Associated with a File System<a name="API_DescribeTags_Example_1"></a>
 
  The following request retrieves tags \(key\-value pairs\) associated with the specified file system\. 
 
@@ -126,6 +126,7 @@ For more information about using this API in one of the language\-specific AWS S
 +  [AWS SDK for \.NET](https://docs.aws.amazon.com/goto/DotNetSDKV3/elasticfilesystem-2015-02-01/DescribeTags) 
 +  [AWS SDK for C\+\+](https://docs.aws.amazon.com/goto/SdkForCpp/elasticfilesystem-2015-02-01/DescribeTags) 
 +  [AWS SDK for Go](https://docs.aws.amazon.com/goto/SdkForGoV1/elasticfilesystem-2015-02-01/DescribeTags) 
++  [AWS SDK for Go \- Pilot](https://docs.aws.amazon.com/goto/SdkForGoPilot/elasticfilesystem-2015-02-01/DescribeTags) 
 +  [AWS SDK for Java](https://docs.aws.amazon.com/goto/SdkForJava/elasticfilesystem-2015-02-01/DescribeTags) 
 +  [AWS SDK for JavaScript](https://docs.aws.amazon.com/goto/AWSJavaScriptSDK/elasticfilesystem-2015-02-01/DescribeTags) 
 +  [AWS SDK for PHP V3](https://docs.aws.amazon.com/goto/SdkForPHPV3/elasticfilesystem-2015-02-01/DescribeTags) 

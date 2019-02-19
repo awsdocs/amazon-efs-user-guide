@@ -60,8 +60,16 @@ Content-type: application/json
          "[ProvisionedThroughputInMibps](API_FileSystemDescription.md#efs-Type-FileSystemDescription-ProvisionedThroughputInMibps)": number,
          "[SizeInBytes](API_FileSystemDescription.md#efs-Type-FileSystemDescription-SizeInBytes)": { 
             "[Timestamp](API_FileSystemSize.md#efs-Type-FileSystemSize-Timestamp)": number,
-            "[Value](API_FileSystemSize.md#efs-Type-FileSystemSize-Value)": number
+            "[Value](API_FileSystemSize.md#efs-Type-FileSystemSize-Value)": number,
+            "[ValueInIA](API_FileSystemSize.md#efs-Type-FileSystemSize-ValueInIA)": number,
+            "[ValueInStandard](API_FileSystemSize.md#efs-Type-FileSystemSize-ValueInStandard)": number
          },
+         "[Tags](API_FileSystemDescription.md#efs-Type-FileSystemDescription-Tags)": [ 
+            { 
+               "[Key](API_Tag.md#efs-Type-Tag-Key)": "string",
+               "[Value](API_Tag.md#efs-Type-Tag-Value)": "string"
+            }
+         ],
          "[ThroughputMode](API_FileSystemDescription.md#efs-Type-FileSystemDescription-ThroughputMode)": "string"
       }
    ],
@@ -77,7 +85,7 @@ If the action is successful, the service sends back an HTTP 200 response\.
 The following data is returned in JSON format by the service\.
 
  ** [FileSystems](#API_DescribeFileSystems_ResponseSyntax) **   <a name="efs-DescribeFileSystems-response-FileSystems"></a>
-Array of file system descriptions\.  
+An array of file system descriptions\.  
 Type: Array of [FileSystemDescription](API_FileSystemDescription.md) objects
 
  ** [Marker](#API_DescribeFileSystems_ResponseSyntax) **   <a name="efs-DescribeFileSystems-response-Marker"></a>
@@ -104,7 +112,7 @@ HTTP Status Code: 500
 
 ## Example<a name="API_DescribeFileSystems_Examples"></a>
 
-### Retrieve list of ten file systems<a name="API_DescribeFileSystems_Example_1"></a>
+### Retrieve a List of 10 File Systems<a name="API_DescribeFileSystems_Example_1"></a>
 
  The following example sends a GET request to the `file-systems` endpoint \(`elasticfilesystem.us-west-2.amazonaws.com/2015-02-01/file-systems`\)\. The request specifies a `MaxItems` query parameter to limit the number of file system descriptions to 10\.
 
@@ -136,8 +144,10 @@ Content-Length: 499
          "Name":"my first file system",
          "NumberOfMountTargets":1,
          "SizeInBytes":{
-            "Value":29313417216,
-            "Timestamp":"1403301078"
+            "Timestamp": 1403301078,
+            "Value": 29313417216,
+            "ValueInIA": 675432,
+            "ValueInStandard": 29312741784
          }
       }
    ]
@@ -151,6 +161,7 @@ For more information about using this API in one of the language\-specific AWS S
 +  [AWS SDK for \.NET](https://docs.aws.amazon.com/goto/DotNetSDKV3/elasticfilesystem-2015-02-01/DescribeFileSystems) 
 +  [AWS SDK for C\+\+](https://docs.aws.amazon.com/goto/SdkForCpp/elasticfilesystem-2015-02-01/DescribeFileSystems) 
 +  [AWS SDK for Go](https://docs.aws.amazon.com/goto/SdkForGoV1/elasticfilesystem-2015-02-01/DescribeFileSystems) 
++  [AWS SDK for Go \- Pilot](https://docs.aws.amazon.com/goto/SdkForGoPilot/elasticfilesystem-2015-02-01/DescribeFileSystems) 
 +  [AWS SDK for Java](https://docs.aws.amazon.com/goto/SdkForJava/elasticfilesystem-2015-02-01/DescribeFileSystems) 
 +  [AWS SDK for JavaScript](https://docs.aws.amazon.com/goto/AWSJavaScriptSDK/elasticfilesystem-2015-02-01/DescribeFileSystems) 
 +  [AWS SDK for PHP V3](https://docs.aws.amazon.com/goto/SdkForPHPV3/elasticfilesystem-2015-02-01/DescribeFileSystems) 

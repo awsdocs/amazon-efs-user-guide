@@ -57,8 +57,16 @@ Content-type: application/json
    "[ProvisionedThroughputInMibps](#efs-UpdateFileSystem-response-ProvisionedThroughputInMibps)": number,
    "[SizeInBytes](#efs-UpdateFileSystem-response-SizeInBytes)": { 
       "[Timestamp](API_FileSystemSize.md#efs-Type-FileSystemSize-Timestamp)": number,
-      "[Value](API_FileSystemSize.md#efs-Type-FileSystemSize-Value)": number
+      "[Value](API_FileSystemSize.md#efs-Type-FileSystemSize-Value)": number,
+      "[ValueInIA](API_FileSystemSize.md#efs-Type-FileSystemSize-ValueInIA)": number,
+      "[ValueInStandard](API_FileSystemSize.md#efs-Type-FileSystemSize-ValueInStandard)": number
    },
+   "[Tags](#efs-UpdateFileSystem-response-Tags)": [ 
+      { 
+         "[Key](API_Tag.md#efs-Type-Tag-Key)": "string",
+         "[Value](API_Tag.md#efs-Type-Tag-Value)": "string"
+      }
+   ],
    "[ThroughputMode](#efs-UpdateFileSystem-response-ThroughputMode)": "string"
 }
 ```
@@ -70,11 +78,11 @@ If the action is successful, the service sends back an HTTP 202 response\.
 The following data is returned in JSON format by the service\.
 
  ** [CreationTime](#API_UpdateFileSystem_ResponseSyntax) **   <a name="efs-UpdateFileSystem-response-CreationTime"></a>
-Time that the file system was created, in seconds \(since 1970\-01\-01T00:00:00Z\)\.  
+The time that the file system was created, in seconds \(since 1970\-01\-01T00:00:00Z\)\.  
 Type: Timestamp
 
  ** [CreationToken](#API_UpdateFileSystem_ResponseSyntax) **   <a name="efs-UpdateFileSystem-response-CreationToken"></a>
-Opaque string specified in the request\.  
+The opaque string specified in the request\.  
 Type: String  
 Length Constraints: Minimum length of 1\. Maximum length of 64\.
 
@@ -83,7 +91,7 @@ A Boolean value that, if true, indicates that the file system is encrypted\.
 Type: Boolean
 
  ** [FileSystemId](#API_UpdateFileSystem_ResponseSyntax) **   <a name="efs-UpdateFileSystem-response-FileSystemId"></a>
-ID of the file system, assigned by Amazon EFS\.  
+The ID of the file system, assigned by Amazon EFS\.  
 Type: String
 
  ** [KmsKeyId](#API_UpdateFileSystem_ResponseSyntax) **   <a name="efs-UpdateFileSystem-response-KmsKeyId"></a>
@@ -92,26 +100,26 @@ Type: String
 Length Constraints: Minimum length of 1\. Maximum length of 2048\.
 
  ** [LifeCycleState](#API_UpdateFileSystem_ResponseSyntax) **   <a name="efs-UpdateFileSystem-response-LifeCycleState"></a>
-Lifecycle phase of the file system\.  
+The lifecycle phase of the file system\.  
 Type: String  
 Valid Values:` creating | available | updating | deleting | deleted` 
 
  ** [Name](#API_UpdateFileSystem_ResponseSyntax) **   <a name="efs-UpdateFileSystem-response-Name"></a>
-You can add tags to a file system, including a `Name` tag\. For more information, see [CreateTags](API_CreateTags.md)\. If the file system has a `Name` tag, Amazon EFS returns the value in this field\.   
+You can add tags to a file system, including a `Name` tag\. For more information, see [CreateFileSystem](API_CreateFileSystem.md)\. If the file system has a `Name` tag, Amazon EFS returns the value in this field\.   
 Type: String  
 Length Constraints: Maximum length of 256\.
 
  ** [NumberOfMountTargets](#API_UpdateFileSystem_ResponseSyntax) **   <a name="efs-UpdateFileSystem-response-NumberOfMountTargets"></a>
-Current number of mount targets that the file system has\. For more information, see [CreateMountTarget](API_CreateMountTarget.md)\.  
+The current number of mount targets that the file system has\. For more information, see [CreateMountTarget](API_CreateMountTarget.md)\.  
 Type: Integer  
 Valid Range: Minimum value of 0\.
 
  ** [OwnerId](#API_UpdateFileSystem_ResponseSyntax) **   <a name="efs-UpdateFileSystem-response-OwnerId"></a>
-AWS account that created the file system\. If the file system was created by an IAM user, the parent account to which the user belongs is the owner\.  
+The AWS account that created the file system\. If the file system was created by an IAM user, the parent account to which the user belongs is the owner\.  
 Type: String
 
  ** [PerformanceMode](#API_UpdateFileSystem_ResponseSyntax) **   <a name="efs-UpdateFileSystem-response-PerformanceMode"></a>
-The `PerformanceMode` of the file system\.  
+The performance mode of the file system\.  
 Type: String  
 Valid Values:` generalPurpose | maxIO` 
 
@@ -121,8 +129,12 @@ Type: Double
 Valid Range: Minimum value of 0\.0\.
 
  ** [SizeInBytes](#API_UpdateFileSystem_ResponseSyntax) **   <a name="efs-UpdateFileSystem-response-SizeInBytes"></a>
-Latest known metered size \(in bytes\) of data stored in the file system, in its `Value` field, and the time at which that size was determined in its `Timestamp` field\. The `Timestamp` value is the integer number of seconds since 1970\-01\-01T00:00:00Z\. The `SizeInBytes` value doesn't represent the size of a consistent snapshot of the file system, but it is eventually consistent when there are no writes to the file system\. That is, `SizeInBytes` represents actual size only if the file system is not modified for a period longer than a couple of hours\. Otherwise, the value is not the exact size that the file system was at any point in time\.   
+The latest known metered size \(in bytes\) of data stored in the file system, in its `Value` field, and the time at which that size was determined in its `Timestamp` field\. The `Timestamp` value is the integer number of seconds since 1970\-01\-01T00:00:00Z\. The `SizeInBytes` value doesn't represent the size of a consistent snapshot of the file system, but it is eventually consistent when there are no writes to the file system\. That is, `SizeInBytes` represents actual size only if the file system is not modified for a period longer than a couple of hours\. Otherwise, the value is not the exact size that the file system was at any point in time\.   
 Type: [FileSystemSize](API_FileSystemSize.md) object
+
+ ** [Tags](#API_UpdateFileSystem_ResponseSyntax) **   <a name="efs-UpdateFileSystem-response-Tags"></a>
+The tags associated with the file system, presented as an array of `Tag` objects\.  
+Type: Array of [Tag](API_Tag.md) objects
 
  ** [ThroughputMode](#API_UpdateFileSystem_ResponseSyntax) **   <a name="efs-UpdateFileSystem-response-ThroughputMode"></a>
 The throughput mode for a file system\. There are two throughput modes to choose from for your file system: bursting and provisioned\. You can decrease your file system's throughput in Provisioned Throughput mode or change between the throughput modes as long as it’s been more than 24 hours since the last decrease or throughput mode change\.  
@@ -166,6 +178,7 @@ For more information about using this API in one of the language\-specific AWS S
 +  [AWS SDK for \.NET](https://docs.aws.amazon.com/goto/DotNetSDKV3/elasticfilesystem-2015-02-01/UpdateFileSystem) 
 +  [AWS SDK for C\+\+](https://docs.aws.amazon.com/goto/SdkForCpp/elasticfilesystem-2015-02-01/UpdateFileSystem) 
 +  [AWS SDK for Go](https://docs.aws.amazon.com/goto/SdkForGoV1/elasticfilesystem-2015-02-01/UpdateFileSystem) 
++  [AWS SDK for Go \- Pilot](https://docs.aws.amazon.com/goto/SdkForGoPilot/elasticfilesystem-2015-02-01/UpdateFileSystem) 
 +  [AWS SDK for Java](https://docs.aws.amazon.com/goto/SdkForJava/elasticfilesystem-2015-02-01/UpdateFileSystem) 
 +  [AWS SDK for JavaScript](https://docs.aws.amazon.com/goto/AWSJavaScriptSDK/elasticfilesystem-2015-02-01/UpdateFileSystem) 
 +  [AWS SDK for PHP V3](https://docs.aws.amazon.com/goto/SdkForPHPV3/elasticfilesystem-2015-02-01/UpdateFileSystem) 

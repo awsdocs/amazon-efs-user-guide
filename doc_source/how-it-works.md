@@ -27,7 +27,7 @@ To access your Amazon EFS file system in a VPC, you create one or more *mount ta
 
 Mount targets themselves are designed to be highly available\. When designing your application for high availability and the ability to failover to other Availability Zones, keep in mind that the IP addresses and DNS for your mount targets in each Availability Zone are static\.
 
-After mounting the file system via the mount target, you use it like any other POSIX\-compliant file system\. For information about NFS\-level permissions and related considerations, see [Network File System \(NFS\)–Level Users, Groups, and Permissions](accessing-fs-nfs-permissions.md)\. 
+After mounting the file system via the mount target, you use it like any other POSIX\-compliant file system\. For information about NFS\-level permissions and related considerations, see [Working with Users, Groups, and Permissions at the Network File System \(NFS\) Level ](accessing-fs-nfs-permissions.md)\. 
 
 You can mount your Amazon EFS file systems on your on\-premises datacenter servers when connected to your Amazon VPC with AWS Direct Connect\. You can mount your EFS file systems on on\-premises servers to migrate data sets to EFS, enable cloud bursting scenarios, or backup your on\-premises data to EFS\. 
 
@@ -99,7 +99,7 @@ You can think of mount targets and tags as *subresources* that don't exist witho
 
 Amazon EFS provides API operations for you to create and manage these resources\. In addition to the create and delete operations for each resource, Amazon EFS also supports a describe operation that enables you to retrieve resource information\. You have the following options for creating and managing these resources:
 + Use the Amazon EFS console – For an example, see [Getting Started](getting-started.md)\.
-+ Use the Amazon EFS command line interface \(CLI\) – For an example, see [Walkthrough: Create an Amazon EFS File System and Mount It on an EC2 Instance Using the AWS CLI](wt1-getting-started.md)\.
++ Use the Amazon EFS command line interface \(CLI\) – For an example, see [Walkthrough: Create an Amazon EFS File System and Mount It on an Amazon EC2 Instance Using the AWS CLI](wt1-getting-started.md)\.
 + You can also manage these resources programmatically as follows:
   + Use the AWS SDKs – The AWS SDKs simplify your programming tasks by wrapping the underlying Amazon EFS API\. The SDK clients also authenticate your requests by using access keys that you provide\. For more information, see [Sample Code and Libraries](https://aws.amazon.com/code)\.
   + Call the Amazon EFS API directly from your application – If you cannot use the SDKs for some reason, you can make the Amazon EFS API calls directly from your application\. However, you need to write the necessary code to authenticate your requests if you use this option\. For more information about the Amazon EFS API, see [Amazon EFS API](api-reference.md)\.

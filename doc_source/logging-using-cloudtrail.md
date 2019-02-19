@@ -122,10 +122,11 @@ If you're using an encrypted\-at\-rest file system, the calls that Amazon EFS ma
 | US West \(Oregon\) | 736298361104 | 
 | Asia Pacific \(Seoul\) | 518632624599 | 
 | Asia Pacific \(Singapore\) | 448676862907 | 
+| Asia Pacific \(Sydney\) | 288718191711 | 
 | Asia Pacific \(Tokyo\) | 620757817088 | 
 | EU \(Frankfurt\) | 992038834663 | 
 | EU \(Ireland\) | 805538244694 | 
-| Asia Pacific \(Sydney\) | 288718191711 | 
+| EU \(London\) | 838331228873 | 
 | AWS GovCloud \(US\-West\) | 174619389399 | 
 
 ### Amazon EFS Encryption Context for Encryption at Rest<a name="EFSKMSContext"></a>

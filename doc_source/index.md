@@ -1,7 +1,7 @@
 # Amazon Elastic File System User Guide
 
 -----
-*****Copyright &copy; 2018 Amazon Web Services, Inc. and/or its affiliates. All rights reserved.*****
+*****Copyright &copy; 2019 Amazon Web Services, Inc. and/or its affiliates. All rights reserved.*****
 
 -----
 Amazon's trademarks and trade dress may not be used in 
@@ -27,8 +27,10 @@ Amazon's trademarks and trade dress may not be used in
    + [Creating an Amazon Elastic File System](creating-using-create-fs.md)
    + [Creating Mount Targets](accessing-fs.md)
    + [Creating Security Groups](accessing-fs-create-security-groups.md)
-+ [Using File Systems](using-fs.md)
-   + [Network File System (NFS)–Level Users, Groups, and Permissions](accessing-fs-nfs-permissions.md)
++ [Using File Systems in Amazon EFS](using-fs.md)
+   + [Working with Users, Groups, and Permissions at the Network File System (NFS) Level](accessing-fs-nfs-permissions.md)
+   + [Backing Up Amazon EFS](efs-backup-solutions.md)
+      + [Using AWS Backup with Amazon EFS](awsbackup.md)
 + [Using the amazon-efs-utils Tools](using-amazon-efs-utils.md)
 + [Managing Amazon EFS File Systems](managing.md)
    + [Managing File System Network Accessibility](manage-fs-access.md)
@@ -36,7 +38,9 @@ Amazon's trademarks and trade dress may not be used in
       + [Changing the VPC for Your Mount Target](manage-fs-access-change-vpc.md)
       + [Updating the Mount Target Configuration](manage-fs-access-update-mount-target-config.md)
    + [Managing File System Tags](manage-fs-tags.md)
-   + [Metering – How Amazon EFS Reports File System and Object Sizes](metered-sizes.md)
+   + [EFS Storage Classes](storage-classes.md)
+   + [EFS Lifecycle Management](lifecycle-management-efs.md)
+   + [Metering: How Amazon EFS Reports File System and Object Sizes](metered-sizes.md)
    + [Deleting an Amazon EFS File System](manage-delete-fs.md)
 + [Mounting EFS File Systems](mounting-fs.md)
    + [Mounting Your Amazon EFS File System Automatically](mount-fs-auto-mount-onreboot.md)
@@ -60,14 +64,13 @@ Amazon's trademarks and trade dress may not be used in
    + [Troubleshooting Mount Issues](troubleshooting-efs-mounting.md)
    + [Troubleshooting Encryption](troubleshooting-efs-encryption.md)
 + [Amazon Elastic File System Walkthroughs](walkthroughs.md)
-   + [Walkthrough: Create an Amazon EFS File System and Mount It on an EC2 Instance Using the AWS CLI](wt1-getting-started.md)
+   + [Walkthrough: Create an Amazon EFS File System and Mount It on an Amazon EC2 Instance Using the AWS CLI](wt1-getting-started.md)
       + [Step 1: Create Amazon EC2 Resources](wt1-create-ec2-resources.md)
       + [Step 2: Create Amazon EFS Resources](wt1-create-efs-resources.md)
       + [Step 3: Mount the Amazon EFS File System on the EC2 Instance and Test](wt1-test.md)
       + [Step 4: Clean Up](wt1-clean-up.md)
    + [Walkthrough: Set Up an Apache Web Server and Serve Amazon EFS Files](wt2-apache-web-server.md)
    + [Walkthrough: Create Writable Per-User Subdirectories and Configure Automatic Remounting on Reboot](accessing-fs-nfs-permissions-per-user-subdirs.md)
-   + [Walkthrough: Backup Solutions for Amazon EFS File Systems](efs-backup.md)
    + [Walkthrough: Create and Mount a File System On-Premises with AWS Direct Connect and VPN](efs-onpremises.md)
    + [Walkthrough: Mount a File System from a Different VPC](efs-different-vpc.md)
    + [Walkthrough: Enforcing Encryption on an Amazon EFS File System at Rest](efs-enforce-encryption.md)
@@ -84,14 +87,17 @@ Amazon's trademarks and trade dress may not be used in
       + [DeleteMountTarget](API_DeleteMountTarget.md)
       + [DeleteTags](API_DeleteTags.md)
       + [DescribeFileSystems](API_DescribeFileSystems.md)
+      + [DescribeLifecycleConfiguration](API_DescribeLifecycleConfiguration.md)
       + [DescribeMountTargets](API_DescribeMountTargets.md)
       + [DescribeMountTargetSecurityGroups](API_DescribeMountTargetSecurityGroups.md)
       + [DescribeTags](API_DescribeTags.md)
       + [ModifyMountTargetSecurityGroups](API_ModifyMountTargetSecurityGroups.md)
+      + [PutLifecycleConfiguration](API_PutLifecycleConfiguration.md)
       + [UpdateFileSystem](API_UpdateFileSystem.md)
    + [Data Types](API_Types.md)
       + [FileSystemDescription](API_FileSystemDescription.md)
       + [FileSystemSize](API_FileSystemSize.md)
+      + [LifecyclePolicy](API_LifecyclePolicy.md)
       + [MountTargetDescription](API_MountTargetDescription.md)
       + [Tag](API_Tag.md)
 + [Additional Information for Amazon EFS](appendices.md)

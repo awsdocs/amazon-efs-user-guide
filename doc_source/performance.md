@@ -1,6 +1,6 @@
 # Amazon EFS Performance<a name="performance"></a>
 
-This chapter provides an overview of Amazon EFS performance, discusses the available performance modes and throughput modes, and outlines some useful performance tips\.
+Following, you can find an overview of Amazon EFS performance, with a discussion of the available performance and throughput modes and some useful performance tips\.
 
 ## Performance Overview<a name="performance-overview"></a>
 
@@ -80,18 +80,18 @@ If the `PercentIOLimit` percentage returned was at or near 100 percent for a sig
 
 ## Throughput Modes<a name="throughput-modes"></a>
 
-There are two throughput modes to choose from for your file system, Bursting Throughput and Provisioned Throughput\. With *Bursting Throughput* mode, throughput on Amazon EFS scales as your file system grows\. With *Provisioned Throughput *mode, you can instantly provision the throughput of your file system \(in MiB/s\) independent of the amount of data stored\.
+There are two throughput modes to choose from for your file system, Bursting Throughput and Provisioned Throughput\. With *Bursting Throughput* mode, throughput on Amazon EFS scales as the size of your file system in the standard storage class grows\. For more information about EFS storage classes, see [EFS Storage Classes](storage-classes.md)\. With *Provisioned Throughput *mode, you can instantly provision the throughput of your file system \(in MiB/s\) independent of the amount of data stored\.
 
 **Note**  
 You can decrease your file system throughput in Provisioned Throughput mode as long as it’s been more than 24 hours since the last decrease\. Additionally, you can change between Provisioned Throughput mode and the default Bursting Throughput mode as long as it’s been more than 24 hours since the last throughput mode change\.
 
 ### Throughput Scaling with Bursting Mode<a name="bursting"></a>
 
-With Bursting Throughput mode, throughput on Amazon EFS scales as a file system grows\. File\-based workloads are typically spiky, driving high levels of throughput for short periods of time, and low levels of throughput the rest of the time\. To accommodate this, Amazon EFS is designed to burst to high throughput levels for periods of time\.
+With Bursting Throughput mode, throughput on Amazon EFS scales as a file system stored in the standard storage class grows\. File\-based workloads are typically spiky, driving high levels of throughput for short periods of time, and low levels of throughput the rest of the time\. To accommodate this, Amazon EFS is designed to burst to high throughput levels for periods of time\.
 
-All file systems, regardless of size, can burst to 100 MiB/s of throughput\. Those over 1 TiB large can burst to 100 MiB/s per TiB of data stored in the file system\. For example, a 10\-TiB file system can burst to 1,000 MiB/s of throughput \(`10 TiB x 100 MiB/s/TiB`\)\. The portion of time a file system can burst is determined by its size\. The bursting model is designed so that typical file system workloads can burst virtually any time they need to\.
+All file systems, regardless of size, can burst to 100 MiB/s of throughput\. Those over 1 TiB in the standard storage class can burst to 100 MiB/s per TiB of data stored in the file system\. For example, a 10\-TiB file system can burst to 1,000 MiB/s of throughput \(`10 TiB x 100 MiB/s/TiB`\)\. The portion of time a file system can burst is determined by its size\. The bursting model is designed so that typical file system workloads can burst virtually any time they need to\.
 
-Amazon EFS uses a credit system to determine when file systems can burst\. Each file system earns credits over time at a baseline rate that is determined by the size of the file system, and uses credits whenever it reads or writes data\. The baseline rate is 50 MiB/s per TiB of storage \(equivalently, 50 KiB/s per GiB of storage\)\.
+Amazon EFS uses a credit system to determine when file systems can burst\. Each file system earns credits over time at a baseline rate that is determined by the size of the file system that is stored in the standard storage class\. A file system uses credits whenever it reads or writes data\. The baseline rate is 50 MiB/s per TiB of storage \(equivalently, 50 KiB/s per GiB of storage\)\.
 
 Accumulated burst credits give the file system the ability to drive throughput above its baseline rate\. A file system can drive throughput continuously at its baseline rate, and whenever it's inactive or driving throughput below its baseline rate, the file system accumulates burst credits\.
 
@@ -173,5 +173,5 @@ As previously mentioned, new file systems have an initial burst credit balance o
 ## Related Topics<a name="perf-related"></a>
 + [On\-Premises Performance Considerations](performance-onpremises.md)
 + [Amazon EFS Performance Tips](performance-tips.md)
-+ [Metering – How Amazon EFS Reports File System and Object Sizes](metered-sizes.md)
++ [Metering: How Amazon EFS Reports File System and Object Sizes](metered-sizes.md)
 + [Troubleshooting Amazon EFS](troubleshooting.md)

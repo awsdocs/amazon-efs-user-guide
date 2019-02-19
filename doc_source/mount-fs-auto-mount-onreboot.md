@@ -42,9 +42,9 @@ The line of code you added to the /etc/fstab file does the following\.
 
 ## Configuring an EFS File System to Mount Automatically at EC2 Instance Launch<a name="mount-fs-auto-mount-on-creation"></a>
 
-You can configure an Amazon EC2 instance to mount your Amazon EFS file system automatically when it is first launched with a script that works with `cloud-init`\. You add the script during the **Launch Instance** wizard of the EC2 management console\. 
+You can configure an Amazon EC2 instance to mount your Amazon EFS file system automatically when it is first launched with a script that works with `cloud-init`\. You add the script during the **Launch Instance** wizard of the EC2 management console\.
 
-The script installs the NFS client and writes an entry in the `/etc/fstab` file to identify the mount target DNS name as well as the subdirectory in your EC2 instance on which to mount the EFS file system\. The script makes sure that the file gets mounted when the EC2 instance is launched and after each system reboot\.
+The script installs the NFS client and writes an entry in the `/etc/fstab` file to identify the mount target DNS name as well as the subdirectory in your EC2 instance on which to mount the EFS file system\. The script makes sure that the file gets mounted when the EC2 instance is launched and after each system reboot\. The script also enables encryption of data in transit using the `tls` option\.
 
 For more information about the customized version of `cloud-init` used by Amazon Linux, see [https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AmazonLinuxAMIBasics.html#CloudInit](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AmazonLinuxAMIBasics.html#CloudInit) in the *Amazon EC2 User Guide for Linux Instances*\.
 
@@ -77,7 +77,7 @@ Before you can you perform this procedure, make sure that you've already created
 **Warning**  
 Use the `_netdev` option, used to identify network file systems, when mounting your file system automatically\. If `_netdev` is missing, your EC2 instance might stop responding\. This result is because network file systems need to be initialized after the compute instance starts its networking\. For more information, see [Automatic Mounting Fails and the Instance Is Unresponsive](troubleshooting-efs-mounting.md#automount-fails)\.
 
-     If you are specifying a custom path to your mount point, as in the example, you may want to use `mkdir -p`, because the `-p` option creates intermediate parent directories as needed\. The `- chown` line of the preceding example changes the ownership of the directory at the mount point from the root user to the default Linux system user account for Amazon Linux, `ec2-user`\. You can specify any user with this command, or leave it out of the script to keep ownership of that directory with the root user\.
+     If you are specifying a custom path to your mount point, as in the example, you may want to use `mkdir -p`, because the `-p` option creates intermediate parent directories as needed\.
 
      For more information about user data scripts, see [Adding User Data](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-metadata.html#instancedata-add-user-data) in the *Amazon EC2 User Guide for Linux Instances*\. 
 

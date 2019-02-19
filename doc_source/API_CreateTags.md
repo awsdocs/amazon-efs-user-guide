@@ -25,14 +25,14 @@ Content-type: application/json
 The request requires the following URI parameters\.
 
  ** [FileSystemId](#API_CreateTags_RequestSyntax) **   <a name="efs-CreateTags-request-FileSystemId"></a>
-ID of the file system whose tags you want to modify \(String\)\. This operation modifies the tags only, not the file system\.
+The ID of the file system whose tags you want to modify \(String\)\. This operation modifies the tags only, not the file system\.
 
 ## Request Body<a name="API_CreateTags_RequestBody"></a>
 
 The request accepts the following data in JSON format\.
 
  ** [Tags](#API_CreateTags_RequestSyntax) **   <a name="efs-CreateTags-request-Tags"></a>
-Array of `Tag` objects to add\. Each `Tag` object is a key\-value pair\.   
+An array of `Tag` objects to add\. Each `Tag` object is a key\-value pair\.   
 Type: Array of [Tag](API_Tag.md) objects  
 Required: Yes
 
@@ -62,7 +62,7 @@ HTTP Status Code: 500
 
 ## Example<a name="API_CreateTags_Examples"></a>
 
-### Create tags on a file system<a name="API_CreateTags_Example_1"></a>
+### Create Tags on a File System<a name="API_CreateTags_Example_1"></a>
 
 The following request creates three tags \(`"key1"`, `"key2"`, and `"key3"`\) on the specified file system\.
 
@@ -108,6 +108,7 @@ For more information about using this API in one of the language\-specific AWS S
 +  [AWS SDK for \.NET](https://docs.aws.amazon.com/goto/DotNetSDKV3/elasticfilesystem-2015-02-01/CreateTags) 
 +  [AWS SDK for C\+\+](https://docs.aws.amazon.com/goto/SdkForCpp/elasticfilesystem-2015-02-01/CreateTags) 
 +  [AWS SDK for Go](https://docs.aws.amazon.com/goto/SdkForGoV1/elasticfilesystem-2015-02-01/CreateTags) 
++  [AWS SDK for Go \- Pilot](https://docs.aws.amazon.com/goto/SdkForGoPilot/elasticfilesystem-2015-02-01/CreateTags) 
 +  [AWS SDK for Java](https://docs.aws.amazon.com/goto/SdkForJava/elasticfilesystem-2015-02-01/CreateTags) 
 +  [AWS SDK for JavaScript](https://docs.aws.amazon.com/goto/AWSJavaScriptSDK/elasticfilesystem-2015-02-01/CreateTags) 
 +  [AWS SDK for PHP V3](https://docs.aws.amazon.com/goto/SdkForPHPV3/elasticfilesystem-2015-02-01/CreateTags) 

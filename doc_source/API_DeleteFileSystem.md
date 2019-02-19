@@ -20,7 +20,7 @@ DELETE /2015-02-01/file-systems/FileSystemId HTTP/1.1
 The request requires the following URI parameters\.
 
  ** [FileSystemId](#API_DeleteFileSystem_RequestSyntax) **   <a name="efs-DeleteFileSystem-request-FileSystemId"></a>
-ID of the file system you want to delete\.
+The ID of the file system you want to delete\.
 
 ## Request Body<a name="API_DeleteFileSystem_RequestBody"></a>
 
@@ -56,7 +56,7 @@ HTTP Status Code: 500
 
 ## Example<a name="API_DeleteFileSystem_Examples"></a>
 
-### Delete a file system<a name="API_DeleteFileSystem_Example_1"></a>
+### Delete a File System<a name="API_DeleteFileSystem_Example_1"></a>
 
  The following example sends a DELETE request to the `file-systems` endpoint \(`elasticfilesystem.us-west-2.amazonaws.com/2015-02-01/file-systems/fs-47a2c22e`\) to delete a file system whose ID is `fs-47a2c22e`\. 
 
@@ -84,6 +84,7 @@ For more information about using this API in one of the language\-specific AWS S
 +  [AWS SDK for \.NET](https://docs.aws.amazon.com/goto/DotNetSDKV3/elasticfilesystem-2015-02-01/DeleteFileSystem) 
 +  [AWS SDK for C\+\+](https://docs.aws.amazon.com/goto/SdkForCpp/elasticfilesystem-2015-02-01/DeleteFileSystem) 
 +  [AWS SDK for Go](https://docs.aws.amazon.com/goto/SdkForGoV1/elasticfilesystem-2015-02-01/DeleteFileSystem) 
++  [AWS SDK for Go \- Pilot](https://docs.aws.amazon.com/goto/SdkForGoPilot/elasticfilesystem-2015-02-01/DeleteFileSystem) 
 +  [AWS SDK for Java](https://docs.aws.amazon.com/goto/SdkForJava/elasticfilesystem-2015-02-01/DeleteFileSystem) 
 +  [AWS SDK for JavaScript](https://docs.aws.amazon.com/goto/AWSJavaScriptSDK/elasticfilesystem-2015-02-01/DeleteFileSystem) 
 +  [AWS SDK for PHP V3](https://docs.aws.amazon.com/goto/SdkForPHPV3/elasticfilesystem-2015-02-01/DeleteFileSystem) 

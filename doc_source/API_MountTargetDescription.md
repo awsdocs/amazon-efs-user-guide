@@ -5,7 +5,7 @@ Provides a description of a mount target\.
 ## Contents<a name="API_MountTargetDescription_Contents"></a>
 
  **FileSystemId**   <a name="efs-Type-MountTargetDescription-FileSystemId"></a>
-ID of the file system for which the mount target is intended\.  
+The ID of the file system for which the mount target is intended\.  
 Type: String  
 Required: Yes
 
@@ -26,7 +26,7 @@ Type: String
 Required: Yes
 
  **NetworkInterfaceId**   <a name="efs-Type-MountTargetDescription-NetworkInterfaceId"></a>
-ID of the network interface that Amazon EFS created when it created the mount target\.  
+The ID of the network interface that Amazon EFS created when it created the mount target\.  
 Type: String  
 Required: No
 
@@ -36,7 +36,7 @@ Type: String
 Required: No
 
  **SubnetId**   <a name="efs-Type-MountTargetDescription-SubnetId"></a>
-ID of the mount target's subnet\.  
+The ID of the mount target's subnet\.  
 Type: String  
 Required: Yes
 
@@ -45,5 +45,6 @@ Required: Yes
 For more information about using this API in one of the language\-specific AWS SDKs, see the following:
 +  [AWS SDK for C\+\+](https://docs.aws.amazon.com/goto/SdkForCpp/elasticfilesystem-2015-02-01/MountTargetDescription) 
 +  [AWS SDK for Go](https://docs.aws.amazon.com/goto/SdkForGoV1/elasticfilesystem-2015-02-01/MountTargetDescription) 
++  [AWS SDK for Go \- Pilot](https://docs.aws.amazon.com/goto/SdkForGoPilot/elasticfilesystem-2015-02-01/MountTargetDescription) 
 +  [AWS SDK for Java](https://docs.aws.amazon.com/goto/SdkForJava/elasticfilesystem-2015-02-01/MountTargetDescription) 
 +  [AWS SDK for Ruby V2](https://docs.aws.amazon.com/goto/SdkForRubyV2/elasticfilesystem-2015-02-01/MountTargetDescription) 

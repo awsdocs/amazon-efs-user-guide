@@ -24,7 +24,7 @@ DELETE /2015-02-01/mount-targets/MountTargetId HTTP/1.1
 The request requires the following URI parameters\.
 
  ** [MountTargetId](#API_DeleteMountTarget_RequestSyntax) **   <a name="efs-DeleteMountTarget-request-MountTargetId"></a>
-ID of the mount target to delete \(String\)\.
+The ID of the mount target to delete \(String\)\.
 
 ## Request Body<a name="API_DeleteMountTarget_RequestBody"></a>
 
@@ -87,6 +87,7 @@ For more information about using this API in one of the language\-specific AWS S
 +  [AWS SDK for \.NET](https://docs.aws.amazon.com/goto/DotNetSDKV3/elasticfilesystem-2015-02-01/DeleteMountTarget) 
 +  [AWS SDK for C\+\+](https://docs.aws.amazon.com/goto/SdkForCpp/elasticfilesystem-2015-02-01/DeleteMountTarget) 
 +  [AWS SDK for Go](https://docs.aws.amazon.com/goto/SdkForGoV1/elasticfilesystem-2015-02-01/DeleteMountTarget) 
++  [AWS SDK for Go \- Pilot](https://docs.aws.amazon.com/goto/SdkForGoPilot/elasticfilesystem-2015-02-01/DeleteMountTarget) 
 +  [AWS SDK for Java](https://docs.aws.amazon.com/goto/SdkForJava/elasticfilesystem-2015-02-01/DeleteMountTarget) 
 +  [AWS SDK for JavaScript](https://docs.aws.amazon.com/goto/AWSJavaScriptSDK/elasticfilesystem-2015-02-01/DeleteMountTarget) 
 +  [AWS SDK for PHP V3](https://docs.aws.amazon.com/goto/SdkForPHPV3/elasticfilesystem-2015-02-01/DeleteMountTarget) 

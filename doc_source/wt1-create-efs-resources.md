@@ -13,85 +13,44 @@ In this step, you do the following:
 In this step, you create an Amazon EFS file system\. Write down the `FileSystemId` to use later when you create mount targets for the file system in the next step\.
 
 **To create a file system**
++ Create a file system with the optional `Name` tag\.
 
-1. Create a file system and add the optional `Name` tag\.
+  1. At the command prompt, run the following AWS CLI `create-file-system` command\. 
 
-   1. At the command prompt, run the following AWS CLI `create-file-system` command\. 
+     ```
+     $  aws efs create-file-system \
+     --creation-token FileSystemForWalkthrough1 \
+     --tags Key=Name,Value=SomeExampleNameValue \
+     --region us-west-2 \
+     --profile adminuser
+     ```
 
-      ```
-      $  aws efs create-file-system \
-      --creation-token FileSystemForWalkthrough1 \
-      --region us-west-2 \
-      --profile adminuser
-      ```
+     You get this response:
 
-   1. Verify the file system creation by calling the `describe-file-systems` CLI command\.
+     ```
+     {
+         "OwnerId": "account-id,
+         "CreationToken": "FileSystemForWalkthrough1",
+         "FileSystemId": "fs-c657c8bf",
+         "CreationTime": 1548950706.0,
+         "LifeCycleState": "creating",
+         "NumberOfMountTargets": 0,
+         "SizeInBytes": {
+             "Value": 0
+         },
+         "PerformanceMode": "generalPurpose",
+         "Encrypted": false,
+         "ThroughputMode": "bursting",
+         "Tags": [
+             {
+                 "Key": "Name",
+                 "Value": "SomeExampleNameValue"
+             }
+         ]
+     }
+     ```
 
-      ```
-      $  aws efs describe-file-systems \
-      --region us-west-2 \
-      --profile adminuser
-      ```
-
-      Here's an example response:
-
-      ```
-      {
-          "FileSystems": [
-              {
-                  "SizeInBytes": {
-                      "Timestamp": 1418062014.0,
-                      "Value": 1024
-                  },
-                  "CreationToken": "FileSystemForWalkthrough1",
-                  "CreationTime": 1418062014.0,
-                  "FileSystemId": "fs-cda54064",
-                  "PerformanceMode" : "generalPurpose",
-                  "NumberOfMountTargets": 0,
-                  "LifeCycleState": "available",
-                  "OwnerId": "account-id"
-              }
-          ]
-      }
-      ```
-
-   1. Note the `FileSystemId` value\. You need this value when you create a mount target for this file system in the next step\.
-
-1. \(Optional\) Add a tag to the file system you created using the `create-tag` CLI command\. 
-
-   You don't need to create a tag for your file system to complete this walkthrough\. But you are exploring the Amazon EFS API, so let's test the Amazon EFS API for creating and managing tags\. For more information, see [CreateTags](API_CreateTags.md)\.
-
-   1. Add a tag\.
-
-      ```
-      $ aws efs create-tags \
-      --file-system-id File-System-ID \
-      --tags Key=Name,Value=SomeExampleNameValue \
-      --region us-west-2 \
-      --profile adminuser
-      ```
-
-   1. Retrieve a list of tags added to the file system by using the `describe-tags` CLI command\.
-
-      ```
-      $ aws efs describe-tags \
-      --file-system-id File-System-ID \
-      --region us-west-2 \
-      --profile adminuser
-      ```
-
-      Amazon EFS returns tags list in the response body\.
-
-      ```
-      {
-          "Tags": [
-              {
-                  "Value": "SomeExampleNameValue",
-                  "Key": "Name"
-              }
-          ]
-      }
-      ```
+  1. Note the `FileSystemId` value\. You need this value when you create a mount target for this file system in the next step\.
 
 ## Step 2\.2: Create a Mount Target<a name="wt1-create-mount-target"></a>
 

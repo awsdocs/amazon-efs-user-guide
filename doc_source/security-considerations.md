@@ -67,7 +67,7 @@ For more information, see [Creating Mount Targets](accessing-fs.md)\.
 
 ## Read, Write, and Execute Permissions for EFS Files and Directories<a name="user-and-group-permissions"></a>
 
-Files and directories in an EFS file system support standard Unix\-style read, write, and execute permissions based on the user and group ID asserted by the mounting NFSv4\.1 client\.  For more information, see [Network File System \(NFS\)–Level Users, Groups, and Permissions](accessing-fs-nfs-permissions.md)\.
+Files and directories in an EFS file system support standard Unix\-style read, write, and execute permissions based on the user and group ID asserted by the mounting NFSv4\.1 client\.  For more information, see [Working with Users, Groups, and Permissions at the Network File System \(NFS\) Level ](accessing-fs-nfs-permissions.md)\.
 
 **Note**  
 This layer of access control depends on trusting the NFSv4\.1 client in its assertion of the user and group ID\. There is no authentication of the identity of the NFSv4\.1 client when establishing a mount connection\. Thus, any NFSv4\.1 client that can make a network connection to the NFS port of a file system's mount target IP address can read and write the file system as the root user ID\. 

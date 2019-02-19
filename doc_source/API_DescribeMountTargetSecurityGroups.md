@@ -17,7 +17,7 @@ GET /2015-02-01/mount-targets/MountTargetId/security-groups HTTP/1.1
 The request requires the following URI parameters\.
 
  ** [MountTargetId](#API_DescribeMountTargetSecurityGroups_RequestSyntax) **   <a name="efs-DescribeMountTargetSecurityGroups-request-MountTargetId"></a>
-ID of the mount target whose security groups you want to retrieve\.
+The ID of the mount target whose security groups you want to retrieve\.
 
 ## Request Body<a name="API_DescribeMountTargetSecurityGroups_RequestBody"></a>
 
@@ -41,7 +41,7 @@ If the action is successful, the service sends back an HTTP 200 response\.
 The following data is returned in JSON format by the service\.
 
  ** [SecurityGroups](#API_DescribeMountTargetSecurityGroups_ResponseSyntax) **   <a name="efs-DescribeMountTargetSecurityGroups-response-SecurityGroups"></a>
-Array of security groups\.  
+An array of security groups\.  
 Type: Array of strings  
 Array Members: Maximum number of 5 items\.
 
@@ -65,7 +65,7 @@ HTTP Status Code: 404
 
 ## Example<a name="API_DescribeMountTargetSecurityGroups_Examples"></a>
 
-### Retrieve security groups in effect for a file system<a name="API_DescribeMountTargetSecurityGroups_Example_1"></a>
+### Retrieve Security Groups in Effect for a File System<a name="API_DescribeMountTargetSecurityGroups_Example_1"></a>
 
  The following example retrieves the security groups that are in effect for the network interface associated with a mount target\. 
 
@@ -99,6 +99,7 @@ For more information about using this API in one of the language\-specific AWS S
 +  [AWS SDK for \.NET](https://docs.aws.amazon.com/goto/DotNetSDKV3/elasticfilesystem-2015-02-01/DescribeMountTargetSecurityGroups) 
 +  [AWS SDK for C\+\+](https://docs.aws.amazon.com/goto/SdkForCpp/elasticfilesystem-2015-02-01/DescribeMountTargetSecurityGroups) 
 +  [AWS SDK for Go](https://docs.aws.amazon.com/goto/SdkForGoV1/elasticfilesystem-2015-02-01/DescribeMountTargetSecurityGroups) 
++  [AWS SDK for Go \- Pilot](https://docs.aws.amazon.com/goto/SdkForGoPilot/elasticfilesystem-2015-02-01/DescribeMountTargetSecurityGroups) 
 +  [AWS SDK for Java](https://docs.aws.amazon.com/goto/SdkForJava/elasticfilesystem-2015-02-01/DescribeMountTargetSecurityGroups) 
 +  [AWS SDK for JavaScript](https://docs.aws.amazon.com/goto/AWSJavaScriptSDK/elasticfilesystem-2015-02-01/DescribeMountTargetSecurityGroups) 
 +  [AWS SDK for PHP V3](https://docs.aws.amazon.com/goto/SdkForPHPV3/elasticfilesystem-2015-02-01/DescribeMountTargetSecurityGroups) 

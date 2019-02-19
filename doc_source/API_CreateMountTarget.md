@@ -30,7 +30,7 @@ If the request satisfies the requirements, Amazon EFS does the following:
 **Note**  
 The `CreateMountTarget` call returns only after creating the network interface, but while the mount target state is still `creating`, you can check the mount target creation status by calling the [DescribeMountTargets](API_DescribeMountTargets.md) operation, which among other things returns the mount target state\.
 
-We recommend you create a mount target in each of the Availability Zones\. There are cost considerations for using a file system in an Availability Zone through a mount target created in another Availability Zone\. For more information, see [Amazon EFS](http://aws.amazon.com/efs/)\. In addition, by always using a mount target local to the instance's Availability Zone, you eliminate a partial failure scenario\. If the Availability Zone in which your mount target is created goes down, then you won't be able to access your file system through that mount target\. 
+We recommend that you create a mount target in each of the Availability Zones\. There are cost considerations for using a file system in an Availability Zone through a mount target created in another Availability Zone\. For more information, see [Amazon EFS](http://aws.amazon.com/efs/)\. In addition, by always using a mount target local to the instance's Availability Zone, you eliminate a partial failure scenario\. If the Availability Zone in which your mount target is created goes down, then you can't access your file system through that mount target\. 
 
 This operation requires permissions for the following action on the file system:
 +  `elasticfilesystem:CreateMountTarget` 
@@ -63,7 +63,7 @@ The request does not use any URI parameters\.
 The request accepts the following data in JSON format\.
 
  ** [FileSystemId](#API_CreateMountTarget_RequestSyntax) **   <a name="efs-CreateMountTarget-request-FileSystemId"></a>
-ID of the file system for which to create the mount target\.  
+The ID of the file system for which to create the mount target\.  
 Type: String  
 Required: Yes
 
@@ -79,7 +79,7 @@ Array Members: Maximum number of 5 items\.
 Required: No
 
  ** [SubnetId](#API_CreateMountTarget_RequestSyntax) **   <a name="efs-CreateMountTarget-request-SubnetId"></a>
-ID of the subnet to add the mount target in\.  
+The ID of the subnet to add the mount target in\.  
 Type: String  
 Required: Yes
 
@@ -107,7 +107,7 @@ If the action is successful, the service sends back an HTTP 200 response\.
 The following data is returned in JSON format by the service\.
 
  ** [FileSystemId](#API_CreateMountTarget_ResponseSyntax) **   <a name="efs-CreateMountTarget-response-FileSystemId"></a>
-ID of the file system for which the mount target is intended\.  
+The ID of the file system for which the mount target is intended\.  
 Type: String
 
  ** [IpAddress](#API_CreateMountTarget_ResponseSyntax) **   <a name="efs-CreateMountTarget-response-IpAddress"></a>
@@ -124,7 +124,7 @@ System\-assigned mount target ID\.
 Type: String
 
  ** [NetworkInterfaceId](#API_CreateMountTarget_ResponseSyntax) **   <a name="efs-CreateMountTarget-response-NetworkInterfaceId"></a>
-ID of the network interface that Amazon EFS created when it created the mount target\.  
+The ID of the network interface that Amazon EFS created when it created the mount target\.  
 Type: String
 
  ** [OwnerId](#API_CreateMountTarget_ResponseSyntax) **   <a name="efs-CreateMountTarget-response-OwnerId"></a>
@@ -132,7 +132,7 @@ AWS account ID that owns the resource\.
 Type: String
 
  ** [SubnetId](#API_CreateMountTarget_ResponseSyntax) **   <a name="efs-CreateMountTarget-response-SubnetId"></a>
-ID of the mount target's subnet\.  
+The ID of the mount target's subnet\.  
 Type: String
 
 ## Errors<a name="API_CreateMountTarget_Errors"></a>
@@ -187,7 +187,7 @@ HTTP Status Code: 400
 
 ## Examples<a name="API_CreateMountTarget_Examples"></a>
 
-### Example 1: Add a mount target to a file system<a name="API_CreateMountTarget_Example_1"></a>
+### Add a Mount Target to a File System<a name="API_CreateMountTarget_Example_1"></a>
 
  The following request creates a mount target for a file system\. The request specifies values for only the required `FileSystemId` and `SubnetId` parameters\. The request does not provide the optional `IpAddress` and `SecurityGroups` parameters\. For `IpAddress`, the operation uses one of the available IP addresses in the specified subnet\. And, the operation uses the default security group associated with the VPC for the `SecurityGroups`\.
 
@@ -223,7 +223,7 @@ Content-Length: 252
 }
 ```
 
-### Example 2: Add a mount target to a file system<a name="API_CreateMountTarget_Example_2"></a>
+### Add a Mount Target to a File System<a name="API_CreateMountTarget_Example_2"></a>
 
  The following request specifies all the request parameters to create a mount target\.
 
@@ -273,6 +273,7 @@ For more information about using this API in one of the language\-specific AWS S
 +  [AWS SDK for \.NET](https://docs.aws.amazon.com/goto/DotNetSDKV3/elasticfilesystem-2015-02-01/CreateMountTarget) 
 +  [AWS SDK for C\+\+](https://docs.aws.amazon.com/goto/SdkForCpp/elasticfilesystem-2015-02-01/CreateMountTarget) 
 +  [AWS SDK for Go](https://docs.aws.amazon.com/goto/SdkForGoV1/elasticfilesystem-2015-02-01/CreateMountTarget) 
++  [AWS SDK for Go \- Pilot](https://docs.aws.amazon.com/goto/SdkForGoPilot/elasticfilesystem-2015-02-01/CreateMountTarget) 
 +  [AWS SDK for Java](https://docs.aws.amazon.com/goto/SdkForJava/elasticfilesystem-2015-02-01/CreateMountTarget) 
 +  [AWS SDK for JavaScript](https://docs.aws.amazon.com/goto/AWSJavaScriptSDK/elasticfilesystem-2015-02-01/CreateMountTarget) 
 +  [AWS SDK for PHP V3](https://docs.aws.amazon.com/goto/SdkForPHPV3/elasticfilesystem-2015-02-01/CreateMountTarget) 

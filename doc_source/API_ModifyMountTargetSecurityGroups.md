@@ -24,14 +24,14 @@ Content-type: application/json
 The request requires the following URI parameters\.
 
  ** [MountTargetId](#API_ModifyMountTargetSecurityGroups_RequestSyntax) **   <a name="efs-ModifyMountTargetSecurityGroups-request-MountTargetId"></a>
-ID of the mount target whose security groups you want to modify\.
+The ID of the mount target whose security groups you want to modify\.
 
 ## Request Body<a name="API_ModifyMountTargetSecurityGroups_RequestBody"></a>
 
 The request accepts the following data in JSON format\.
 
  ** [SecurityGroups](#API_ModifyMountTargetSecurityGroups_RequestSyntax) **   <a name="efs-ModifyMountTargetSecurityGroups-request-SecurityGroups"></a>
-Array of up to five VPC security group IDs\.  
+An array of up to five VPC security group IDs\.  
 Type: Array of strings  
 Array Members: Maximum number of 5 items\.  
 Required: No
@@ -109,6 +109,7 @@ For more information about using this API in one of the language\-specific AWS S
 +  [AWS SDK for \.NET](https://docs.aws.amazon.com/goto/DotNetSDKV3/elasticfilesystem-2015-02-01/ModifyMountTargetSecurityGroups) 
 +  [AWS SDK for C\+\+](https://docs.aws.amazon.com/goto/SdkForCpp/elasticfilesystem-2015-02-01/ModifyMountTargetSecurityGroups) 
 +  [AWS SDK for Go](https://docs.aws.amazon.com/goto/SdkForGoV1/elasticfilesystem-2015-02-01/ModifyMountTargetSecurityGroups) 
++  [AWS SDK for Go \- Pilot](https://docs.aws.amazon.com/goto/SdkForGoPilot/elasticfilesystem-2015-02-01/ModifyMountTargetSecurityGroups) 
 +  [AWS SDK for Java](https://docs.aws.amazon.com/goto/SdkForJava/elasticfilesystem-2015-02-01/ModifyMountTargetSecurityGroups) 
 +  [AWS SDK for JavaScript](https://docs.aws.amazon.com/goto/AWSJavaScriptSDK/elasticfilesystem-2015-02-01/ModifyMountTargetSecurityGroups) 
 +  [AWS SDK for PHP V3](https://docs.aws.amazon.com/goto/SdkForPHPV3/elasticfilesystem-2015-02-01/ModifyMountTargetSecurityGroups) 
