@@ -46,7 +46,7 @@ Backups that don't complete during the specified window are flagged with an inco
 
 ### EFS Storage Classes<a name="backups-storage-classes"></a>
 
-You can use AWS Backup to back up all data in an EFS file system, regardless of which storage class the data is in\. When restoring a recovery point, all files are restored to the standard storage class\. If you restore the recovery point to a file system with lifecycle management enabled, EFS lifecycle management moves files that have not been accessed in the 30 days since restoring your recovery point to the infrequent access storage class\. 
+You can use AWS Backup to back up all data in an EFS file system, regardless of which storage class the data is in\. When restoring a recovery point, all files are restored to the standard storage class\. If you restore the recovery point to a file system with lifecycle management enabled, EFS lifecycle management moves files that have not been accessed in the 30 days since restoring your recovery point to the Infrequent Access storage class\. For more information on storage classes, see [EFS Storage Classes](storage-classes.md)\.
 
 ### On\-Demand Backups<a name="ondemand-backup"></a>
 
