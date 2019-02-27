@@ -161,7 +161,7 @@ Throughput limits remain the same, regardless of the throughput mode you choose\
 
 If your file system is in the Provisioned Throughput mode, you can increase the Provisioned Throughput of your file system as often as you want\. You can decrease your file system throughput in Provisioned Throughput mode as long as it’s been more than 24 hours since the last decrease\. Additionally, you can change between Provisioned Throughput mode and the default Bursting Throughput mode as long as it’s been more than 24 hours since the last throughput mode change\.
 
-If your file system's metered size provides a higher baseline rate than the amount of throughput you provisioned, your file system follows the default Amazon EFS Bursting Throughput model\. You don't incur charges for Provisioned Throughput below your file system's entitlement in Bursting Throughput mode\. For more information, see [Throughput Scaling with Bursting Mode](#bursting)\. 
+The maximum amount of throughput a file system is allowed. For file systems in the Provisioned Throughput mode, this value is the same as the provisioned throughput\. For file systems in the Bursting Throughput mode, this value is a function of the file system size and BurstCreditBalance\. You don't incur charges for Provisioned Throughput below your file system's entitlement in Bursting Throughput mode\. For more information, see [Throughput Scaling with Bursting Mode](#bursting)\. 
 
 ### Using the Right Throughput Mode<a name="using-throughputmode"></a>
 
