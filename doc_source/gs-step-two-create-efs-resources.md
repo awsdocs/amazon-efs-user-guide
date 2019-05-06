@@ -15,8 +15,14 @@ In this step, you create your Amazon EFS file system\.
 
 1. Choose **Next Step**\.
 
-1. Name your file system, keep **General Purpose** and **Bursting** selected as your default performance and throughput modes, and then choose **Next Step**\.
+1. Name your file system, and add any other tags to help describe and manage your ﬁle system\.
 
-1. Choose **Create File System**\.
+1. Keep **General Purpose** and **Bursting** selected as your default performance and throughput modes\.
 
-1. Choose your file system from the list and make a note of the **File system ID** value\. You'll need this value for the next step\.
+1. \(Optional\) Select **Enable encryption of data at rest** to encrypt all the data on your file system\. You can only set this when you create a file system\. For more information on encrypting data, see [Encrypting Data and Metadata in EFS](encryption.md)
+
+1. \(Optional\) Select **Enable Lifecycle Management** so that your file system uses the lower\-cost Infrequent Access storage class\. For more information, see [EFS Storage Classes](storage-classes.md)\. Choose **Next Step**\.
+
+1. Review the file system configuration, and then choose **Create File System**\.
+
+1. Choose your file system from the list and note the **File system ID** value\. You need this value for the next step\.

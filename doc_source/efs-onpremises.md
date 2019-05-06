@@ -255,7 +255,7 @@ After the package is installed, configure amazon\-efs\-utils for use in your AWS
 
 **To configure amazon\-efs\-utils for use in your AWS Region**
 
-1. Using your text editor of choice, open `/etc/amazon/efs/amazon-efs-utils.conf` for editing\.
+1. Using your text editor of choice, open `/etc/amazon/efs/efs-utils.conf` for editing\.
 
 1. Find the line `“dns_name_format = {fs_id}.efs.{region}.amazonaws.com”`\.
 

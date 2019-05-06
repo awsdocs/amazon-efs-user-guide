@@ -18,7 +18,7 @@ In this section, you create security groups in your VPC for your EC2 instance an
 
 1. Create two security groups using the `create-security-group` CLI command\.
 
-   1. Create a security group \(`efs-walkthrough1-ec2-sg`\) for your EC2 instance\. You will need to provide your VPC ID\.
+   1. Create a security group \(`efs-walkthrough1-ec2-sg`\) for your EC2 instance, and provide your VPC ID\.
 
       ```
       $ aws ec2 create-security-group \
@@ -29,7 +29,7 @@ In this section, you create security groups in your VPC for your EC2 instance an
       --profile adminuser
       ```
 
-      Write down the security group ID\. The following is an example response:
+      Write down the security group ID\. The following is an example response\.
 
       ```
       {
@@ -37,7 +37,7 @@ In this section, you create security groups in your VPC for your EC2 instance an
       }
       ```
 
-      You can find the VPC ID using the following command:
+      You can find the VPC ID using the following command\.
 
       ```
       $ aws  ec2 describe-vpcs    
@@ -54,7 +54,7 @@ In this section, you create security groups in your VPC for your EC2 instance an
       --profile adminuser
       ```
 
-      Write down the security group ID\. The following is an example response:
+      Write down the security group ID\. The following is an example response\.
 
       ```
       {
@@ -75,7 +75,7 @@ In this section, you create security groups in your VPC for your EC2 instance an
 
    In the next section, you authorize additional access that enable the following: 
    + Enable you to connect to your EC2 instance\. 
-   + Enable traffic between an EC2 instance and an Amazon EFS mount target \(to which you will associate these security groups later in this walkthrough\)\.
+   + Enable traffic between an EC2 instance and an Amazon EFS mount target \(with which you associate these security groups later in this walkthrough\)\.
 
 ## Step 1\.2: Add Rules to the Security Groups to Authorize Inbound/Outbound Access<a name="wt1-update-sg"></a>
 
@@ -139,11 +139,11 @@ In this step, you launch an EC2 instance\.
       + For introductory information, see [Setting Up with Amazon EC2](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/get-set-up-for-amazon-ec2.html) in the *Amazon EC2 User Guide for Linux Instances*\.
       + For instructions to create a \.pem file, see [Create a Key Pair](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/get-set-up-for-amazon-ec2.html#create-a-key-pair) in the *Amazon EC2 User Guide for Linux Instances*\.
 
-   1. The AMI ID you want to launch\. 
+   1. The ID of the Amazon Machine Image \(AMI\) you want to launch\. 
 
-      The AWS CLI command you will use to launch an EC2 instance requires an AMI ID \(that you want to deploy\) as a parameter\. The exercise uses the Amazon Linux HVM AMI\.
+      The AWS CLI command you use to launch an EC2 instance requires an AMI ID \(that you want to deploy\) as a parameter\. The exercise uses the Amazon Linux HVM AMI\.
 **Note**  
-You can use most general purpose Linux\-based AMIs\. If you use another Linux API, keep in mind that you will use yum to install NFS client on the instance and you might need to add software packages as you need them\.
+You can use most general purpose Linux\-based AMIs\. If you use another Linux API, keep in mind to use yum to install NFS client on the instance\. Also, you might need to add software packages as you need them\.
 
       For the Amazon Linux HVM AMI, you can find the latest IDs at [Amazon Linux AMI](https://aws.amazon.com/amazon-linux-ami/)\. You choose the ID value from the Amazon Linux AMI IDs table as follows:
       + Choose the **US West Oregon** region\. This walkthrough assumes you are creating all resources in the US West \(Oregon\) Region \(us\-west\-2\)\.

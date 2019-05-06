@@ -60,7 +60,7 @@ You can connect to your EC2 instance from Windows or from a computer running Lin
       $ sudo yum -y install nfs-utils
       ```
 **Note**  
-If you choose the **Amazon Linux AMI 2016\.03\.0** Amazon Linux AMI when launching your Amazon EC2 instance, you won't need to install `nfs-utils` because it is already included in the AMI by default\.
+If you choose the **Amazon Linux AMI 2016\.03\.0** Amazon Linux AMI when launching your Amazon EC2 instance, you don't need to install `nfs-utils` because it is already included in the AMI by default\.
 
 ## Step 3\.3: Mount File System on Your EC2 Instance and Test<a name="wt1-mount-fs-and-test"></a>
 
@@ -132,7 +132,7 @@ Now you mount the file system on your EC2 instance\.
 
 You now have successfully created and mounted an Amazon EFS file system on your EC2 instance in your VPC\.
 
-The file system you mounted will not persist across reboots\. To automatically remount the directory you can use the `fstab` file\. For more information, see [Automatic Remounting on Reboot](accessing-fs-nfs-permissions-per-user-subdirs.md#accessing-fs-nfs-permissions-per-user-subdirs-auto-mount-on-reboot)\. If you are using an Auto Scaling group to launch EC2 instances, you can also set scripts in a launch configuration\. For an example, see [Walkthrough: Set Up an Apache Web Server and Serve Amazon EFS Files](wt2-apache-web-server.md)\.
+The file system you mounted doesn't persist across reboots\. To automatically remount the directory you can use the `fstab` file\. For more information, see [Automatic Remounting on Reboot](accessing-fs-nfs-permissions-per-user-subdirs.md#accessing-fs-nfs-permissions-per-user-subdirs-auto-mount-on-reboot)\. If you are using an Auto Scaling group to launch EC2 instances, you can also set scripts in a launch configuration\. For an example, see [Walkthrough: Set Up an Apache Web Server and Serve Amazon EFS Files](wt2-apache-web-server.md)\.
 
 ## Next Step<a name="step3-next-step"></a>
 

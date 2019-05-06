@@ -31,10 +31,12 @@ Amazon EFS is designed to be highly available\. You can access and modify your A
 
 ### Performance<a name="efs-performance"></a>
 
-In general, you can expect the following backup and restore rates with AWS Backup:
+In general, you can expect the following backup rates with AWS Backup:
 + 100 MB/s for file systems composed of mostly large files
 + 500 files/s for file systems composed of mostly small files
 + The maximum duration for a backup or a restore operation in AWS Backup is seven days\.
+
+Restore operations generally take longer than the corresponding backup\.
 
 Using AWS Backup doesn't consume accumulated burst credits, and it doesn't count against the General Purpose mode limit of 7,000 file system operations per second\. 
 

@@ -124,6 +124,7 @@ If you're using an encrypted\-at\-rest file system, the calls that Amazon EFS ma
 | Asia Pacific \(Singapore\) | 448676862907 | 
 | Asia Pacific \(Sydney\) | 288718191711 | 
 | Asia Pacific \(Tokyo\) | 620757817088 | 
+| Canada \(Central\) | 838331228873 | 
 | EU \(Frankfurt\) | 992038834663 | 
 | EU \(Ireland\) | 805538244694 | 
 | EU \(London\) | 838331228873 | 

@@ -48,7 +48,7 @@ Amazon EFS API requests are throttled for each AWS account on a per\-region basi
 
 If an API request exceeds the API request rate for its category, the request returns the `ThrottlingException` error code\. To prevent this error, ensure that your application doesn't retry API requests at a high rate\. You can do this by using care when polling and by using exponential backoff retries\.
 
-### Polling<a name="efs-poling"></a>
+### Polling<a name="efs-polling"></a>
 
 Your application might need to call an API operation repeatedly to check for an update in status\. Before you start polling, give the request time to potentially complete\. When you begin polling, use an appropriate sleep interval between successive requests\. For best results, use an increasing sleep interval\.
 

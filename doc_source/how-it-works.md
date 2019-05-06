@@ -6,9 +6,11 @@ Following, you can find a description about how Amazon EFS works, its implementa
 + [Overview](#how-it-works-conceptual)
 + [How Amazon EFS Works with Amazon EC2](#how-it-works-ec2)
 + [How Amazon EFS Works with AWS Direct Connect and AWS Managed VPN](#how-it-works-direct-connect)
++ [How Amazon EFS Works with AWS Backup](#how-it-works-backups)
 + [Implementation Summary](#how-it-works-implementation)
 + [Authentication and Access Control](#auth-access-intro)
 + [Data Consistency in Amazon EFS](#consistency)
++ [Storage Classes and Lifecycle Management](#how-it-works-storage-classes)
 
 ## Overview<a name="how-it-works-conceptual"></a>
 
@@ -23,13 +25,13 @@ You can mount an Amazon EFS file system on instances in only one VPC at a time\.
 
 For a list of AWS regions where you can create an Amazon EFS file system, see the [Amazon Web Services General Reference](https://docs.aws.amazon.com/general/latest/gr/rande.html#elasticfilesystem_region)\. 
 
-To access your Amazon EFS file system in a VPC, you create one or more *mount targets* in the VPC\. A mount target provides an IP address for an NFSv4 endpoint at which you can mount an Amazon EFS file system\. You mount your file system using its DNS name, which will resolve to the IP address of the EFS mount target in the same Availability Zone as your EC2 instance\. You can create one mount target in each Availability Zone in a region\. If there are multiple subnets in an Availability Zone in your VPC, you create a mount target in one of the subnets, and all EC2 instances in that Availability Zone share that mount target\.
+To access your Amazon EFS file system in a VPC, you create one or more *mount targets* in the VPC\. A mount target provides an IP address for an NFSv4 endpoint at which you can mount an Amazon EFS file system\. You mount your file system using its Domain Name Service \(DNS\) name, which resolves to the IP address of the EFS mount target in the same Availability Zone as your EC2 instance\. You can create one mount target in each Availability Zone in an AWS Region\. If there are multiple subnets in an Availability Zone in your VPC, you create a mount target in one of the subnets\. Then all EC2 instances in that Availability Zone share that mount target\.
 
-Mount targets themselves are designed to be highly available\. When designing your application for high availability and the ability to failover to other Availability Zones, keep in mind that the IP addresses and DNS for your mount targets in each Availability Zone are static\.
+Mount targets themselves are designed to be highly available\. As you design for high availability and failovers to other Availability Zones \(AZs\), keep in mind that the IP addresses and DNS for your mount targets in each AZ are static\.
 
-After mounting the file system via the mount target, you use it like any other POSIX\-compliant file system\. For information about NFS\-level permissions and related considerations, see [Working with Users, Groups, and Permissions at the Network File System \(NFS\) Level ](accessing-fs-nfs-permissions.md)\. 
+After mounting the file system by using the mount target, you use it like any other POSIX\-compliant file system\. For information about NFS\-level permissions and related considerations, see [Working with Users, Groups, and Permissions at the Network File System \(NFS\) Level ](accessing-fs-nfs-permissions.md)\. 
 
-You can mount your Amazon EFS file systems on your on\-premises datacenter servers when connected to your Amazon VPC with AWS Direct Connect\. You can mount your EFS file systems on on\-premises servers to migrate data sets to EFS, enable cloud bursting scenarios, or backup your on\-premises data to EFS\. 
+You can mount your Amazon EFS file systems on your on\-premises data center servers when connected to your Amazon VPC with AWS Direct Connect\. You can mount your EFS file systems on on\-premises servers to migrate data sets to EFS, enable cloud bursting scenarios, or backup your on\-premises data to EFS\. 
 
 Amazon EFS file systems can be mounted on Amazon EC2 instances, or on\-premises through an AWS Direct Connect connection\.
 
@@ -39,7 +41,7 @@ The following illustration shows an example VPC accessing an Amazon EFS file sys
 
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/efs/latest/ug/images/overview-flow.png)
 
-In this illustration, the VPC has three Availability Zones, and each has one mount target created in it\. We recommend that you access the file system from a mount target within the same Availability Zone\. Note that one of the Availability Zones has two subnets\. However, a mount target is created in only one of the subnets\. Creating this setup works as follows:
+In this illustration, the VPC has three Availability Zones, and each has one mount target created in it\. We recommend that you access the file system from a mount target within the same Availability Zone\. One of the Availability Zones has two subnets\. However, a mount target is created in only one of the subnets\. Creating this setup works as follows:
 
 1. Create your Amazon EC2 resources and launch your Amazon EC2 instance\. For more information on Amazon EC2, see [Amazon EC2 \- Virtual Server Hosting](https://aws.amazon.com//ec2/)\.
 
@@ -51,29 +53,33 @@ For detailed steps, see [Getting Started with Amazon Elastic File System](gettin
 
 ## How Amazon EFS Works with AWS Direct Connect and AWS Managed VPN<a name="how-it-works-direct-connect"></a>
 
-By using an Amazon EFS file system mounted on an on\-premises server, you can migrate on\-premises data into the AWS Cloud hosted in an Amazon EFS file system\. You can also take advantage of bursting, meaning that you can move data from your on\-premises servers into Amazon EFS, analyze it on a fleet of Amazon EC2 instances in your Amazon VPC, and then store the results permanently in your file system or move the results back to your on\-premises server\.
+By using an Amazon EFS file system mounted on an on\-premises server, you can migrate on\-premises data into the AWS Cloud hosted in an Amazon EFS file system\. You can also take advantage of bursting\. In other words, you can move data from your on\-premises servers into Amazon EFS and analyze it on a fleet of Amazon EC2 instances in your Amazon VPC\. You can then store the results permanently in your file system or move the results back to your on\-premises server\.
 
 Keep the following considerations in mind when using Amazon EFS with an on\-premises server:
-+ Your on\-premises server must have a Linux based operating system\. We recommend Linux kernel version 4\.0 or later\.
++ Your on\-premises server must have a Linux\-based operating system\. We recommend Linux kernel version 4\.0 or later\.
 + For the sake of simplicity, we recommend mounting an Amazon EFS file system on an on\-premises server using a mount target IP address instead of a DNS name\.
 
-There is no additional cost for on\-premises access to your Amazon EFS file systems\. Note that you'll be charged for the AWS Direct Connect connection to your Amazon VPC\. For more information, see [AWS Direct Connect Pricing](https://aws.amazon.com/directconnect/pricing/)\.
+There is no additional cost for on\-premises access to your Amazon EFS file systems\. You are charged for the AWS Direct Connect connection to your Amazon VPC\. For more information, see [AWS Direct Connect Pricing](https://aws.amazon.com/directconnect/pricing/)\.
 
 The following illustration shows an example of how to access an Amazon EFS file system from on\-premises \(the on\-premises servers have the file systems mounted\)\.
 
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/efs/latest/ug/images/onprem-overview-flow.png)
 
-You can use any one of the mount targets in your VPC as long as the subnet of the mount target is reachable by using the AWS Direct Connect connection between your on\-premises server and your Amazon VPC\. To access Amazon EFS from a on\-premises server, you need to add a rule to your mount target security group to allow inbound traffic to the NFS port \(2049\) from your on\-premises server\.
+You can use any mount target in your VPC if you can reach that mount target's subnet by using an AWS Direct Connect connection between your on\-premises server and VPC\. To access Amazon EFS from an on\-premises server, add a rule to your mount target security group to allow inbound traffic to the NFS port \(2049\) from your on\-premises server\.
 
 To create a setup like this, you do the following:
 
-1. Establish an AWS Direct Connect connection between your on\-premises data center and your Amazon VPC\. For more information on AWS Direct Connect, see [AWS Direct Connect](https://aws.amazon.com//directconnect/)\.
+1. Establish an AWS Direct Connect connection between your on\-premises data center and your Amazon VPC\. For more information on AWS Direct Connect, see [AWS Direct Connect](https://aws.amazon.com//directconnect)\.
 
 1. Create your Amazon EFS file system\.
 
 1. Mount the Amazon EFS file system on your on\-premises server\.
 
 For detailed steps, see [Walkthrough: Create and Mount a File System On\-Premises with AWS Direct Connect and VPN](efs-onpremises.md)\.
+
+## How Amazon EFS Works with AWS Backup<a name="how-it-works-backups"></a>
+
+For a comprehensive backup implementation for your file systems, you can use Amazon EFS with AWS Backup\. AWS Backup is a fully managed backup service that makes it easy to centralize and automate data backup across AWS services in the cloud and on\-premises\. Using AWS Backup, you can centrally configure backup policies and monitor backup activity for your AWS resources\. Amazon EFS always prioritizes file system operations over backup operations\. To learn more about backing up EFS file systems using AWS Backup, see [Using AWS Backup with Amazon EFS](awsbackup.md)\.
 
 ## Implementation Summary<a name="how-it-works-implementation"></a>
 
@@ -93,7 +99,7 @@ Amazon EFS also supports other resources to configure the primary resource\. The
   ```
 
   For more information, see [Creating Mount Targets](accessing-fs.md)\. First, you need to install the NFS client on your EC2 instance\. The [Getting Started](getting-started.md) exercise provides step\-by\-step instructions\.
-+ **Tags** – To help organize your file systems, you can assign your own metadata to each of the file systems you create\. Each tag is a key\-value pair\.
++ **Tags** – To help organize and manage your file systems, you can assign your own metadata to each of the file systems you create\. Each tag is a key\-value pair\. You can assign tags when you create a file system, and anytime after you've created the file system\. See [Step 2: Create Your Amazon EFS File System](gs-step-two-create-efs-resources.md), [Step 2\.1: Create Amazon EFS File System](wt1-create-efs-resources.md#wt1-create-file-system) and [Managing File System Tags](manage-fs-tags.md) to learn more\.
 
 You can think of mount targets and tags as *subresources* that don't exist without being associated with a file system\.
 
@@ -112,8 +118,14 @@ You must have valid credentials to make Amazon EFS API requests, such as create 
 
 Amazon EFS provides the open\-after\-close consistency semantics that applications expect from NFS\.
 
- In Amazon EFS, write operations will be durably stored across Availability Zones when:
+ In Amazon EFS, write operations are durably stored across Availability Zones in these situations:
 + An application performs a synchronous write operation \(for example, using the `open` Linux command with the `O_DIRECT` flag, or the `fsync` Linux command\)\.
 + An application closes a file\.
 
-Amazon EFS provides stronger consistency guarantees than open\-after\-close semantics depending on the access pattern\. Applications that perform synchronous data access and perform non\-appending writes will have read\-after\-write consistency for data access\.
+Depending on the access pattern, Amazon EFS can provide stronger consistency guarantees than open\-after\-close semantics\. Applications that perform synchronous data access and perform nonappending writes have read\-after\-write consistency for data access\.
+
+## Storage Classes and Lifecycle Management<a name="how-it-works-storage-classes"></a>
+
+Amazon EFS offers a Standard storage class and an Infrequent Access storage class for file systems created after February 13, 2019\. The Standard storage class is used to store frequently accessed files\. The EFS Infrequent Access \(EFS IA\) storage class is designed for files accessed less frequently\. 
+
+You can start using EFS IA by creating a new file system and enabling Lifecycle Management\. With Lifecycle Management enabled, EFS automatically moves files not accessed for 30 days from the Standard storage class to the EFS IA storage class\. The EFS IA storage class reduces storage costs for files that are not accessed every day\. At the same time, it maintains the high availability, high durability, elasticity, and POSIX file system access that EFS provides\. File systems created after February 13, 2019, can transparently serve data from both storage classes\. For more information about EFS storage classes, see [EFS Storage Classes](storage-classes.md)\.

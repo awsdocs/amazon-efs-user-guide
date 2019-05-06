@@ -79,9 +79,9 @@ Valid Values:` generalPurpose | maxIO`
 Required: No
 
  ** [ProvisionedThroughputInMibps](#API_CreateFileSystem_RequestSyntax) **   <a name="efs-CreateFileSystem-request-ProvisionedThroughputInMibps"></a>
-The throughput, measured in MiB/s, that you want to provision for a file system that you're creating\. The limit on throughput is 1024 MiB/s\. You can get these limits increased by contacting AWS Support\. For more information, see [Amazon EFS Limits That You Can Increase](https://docs.aws.amazon.com/efs/latest/ug/limits.html#soft-limits) in the *Amazon EFS User Guide\.*   
+The throughput, measured in MiB/s, that you want to provision for a file system that you're creating\. Valid values are 1\-1024\. Required if `ThroughputMode` is set to `provisioned`\. The upper limit for throughput is 1024 MiB/s\. You can get this limit increased by contacting AWS Support\. For more information, see [Amazon EFS Limits That You Can Increase](https://docs.aws.amazon.com/efs/latest/ug/limits.html#soft-limits) in the *Amazon EFS User Guide\.*   
 Type: Double  
-Valid Range: Minimum value of 0\.0\.  
+Valid Range: Minimum value of 1\.0\.  
 Required: No
 
  ** [Tags](#API_CreateFileSystem_RequestSyntax) **   <a name="efs-CreateFileSystem-request-Tags"></a>
@@ -90,7 +90,7 @@ Type: Array of [Tag](API_Tag.md) objects
 Required: No
 
  ** [ThroughputMode](#API_CreateFileSystem_RequestSyntax) **   <a name="efs-CreateFileSystem-request-ThroughputMode"></a>
-The throughput mode for the file system to be created\. There are two throughput modes to choose from for your file system: bursting and provisioned\. You can decrease your file system's throughput in Provisioned Throughput mode or change between the throughput modes as long as it’s been more than 24 hours since the last decrease or throughput mode change\.  
+The throughput mode for the file system to be created\. There are two throughput modes to choose from for your file system: `bursting` and `provisioned`\. If you set `ThroughputMode` to `provisioned`, you must also set a value for `ProvisionedThroughPutInMibps`\. You can decrease your file system's throughput in Provisioned Throughput mode or change between the throughput modes as long as it’s been more than 24 hours since the last decrease or throughput mode change\. For more, see [Specifying Throughput with Provisioned Mode](https://docs.aws.amazon.com/efs/latest/ug/performance.html#provisioned-throughput) in the *Amazon EFS User Guide\.*   
 Type: String  
 Valid Values:` bursting | provisioned`   
 Required: No
@@ -182,9 +182,9 @@ Type: String
 Valid Values:` generalPurpose | maxIO` 
 
  ** [ProvisionedThroughputInMibps](#API_CreateFileSystem_ResponseSyntax) **   <a name="efs-CreateFileSystem-response-ProvisionedThroughputInMibps"></a>
-The throughput, measured in MiB/s, that you want to provision for a file system\. The limit on throughput is 1024 MiB/s\. You can get these limits increased by contacting AWS Support\. For more information, see [Amazon EFS Limits That You Can Increase](https://docs.aws.amazon.com/efs/latest/ug/limits.html#soft-limits) in the *Amazon EFS User Guide\.*   
+The throughput, measured in MiB/s, that you want to provision for a file system\. Valid values are 1\-1024\. Required if `ThroughputMode` is set to `provisioned`\. The limit on throughput is 1024 MiB/s\. You can get these limits increased by contacting AWS Support\. For more information, see [Amazon EFS Limits That You Can Increase](https://docs.aws.amazon.com/efs/latest/ug/limits.html#soft-limits) in the *Amazon EFS User Guide\.*   
 Type: Double  
-Valid Range: Minimum value of 0\.0\.
+Valid Range: Minimum value of 1\.0\.
 
  ** [SizeInBytes](#API_CreateFileSystem_ResponseSyntax) **   <a name="efs-CreateFileSystem-response-SizeInBytes"></a>
 The latest known metered size \(in bytes\) of data stored in the file system, in its `Value` field, and the time at which that size was determined in its `Timestamp` field\. The `Timestamp` value is the integer number of seconds since 1970\-01\-01T00:00:00Z\. The `SizeInBytes` value doesn't represent the size of a consistent snapshot of the file system, but it is eventually consistent when there are no writes to the file system\. That is, `SizeInBytes` represents actual size only if the file system is not modified for a period longer than a couple of hours\. Otherwise, the value is not the exact size that the file system was at any point in time\.   
@@ -195,7 +195,7 @@ The tags associated with the file system, presented as an array of `Tag` objects
 Type: Array of [Tag](API_Tag.md) objects
 
  ** [ThroughputMode](#API_CreateFileSystem_ResponseSyntax) **   <a name="efs-CreateFileSystem-response-ThroughputMode"></a>
-The throughput mode for a file system\. There are two throughput modes to choose from for your file system: bursting and provisioned\. You can decrease your file system's throughput in Provisioned Throughput mode or change between the throughput modes as long as it’s been more than 24 hours since the last decrease or throughput mode change\.  
+The throughput mode for a file system\. There are two throughput modes to choose from for your file system: `bursting` and `provisioned`\. If you set `ThroughputMode` to `provisioned`, you must also set a value for `ProvisionedThroughPutInMibps`\. You can decrease your file system's throughput in Provisioned Throughput mode or change between the throughput modes as long as it’s been more than 24 hours since the last decrease or throughput mode change\.   
 Type: String  
 Valid Values:` bursting | provisioned` 
 
@@ -246,8 +246,8 @@ Content-Length: 42
   "PerformanceMode" : "generalPurpose",
   "Tags":[
       {
-         "key": "Name",
-         "value": "Test Group1"
+         "Key": "Name",
+         "Value": "Test Group1"
       }
    ]
 }
@@ -277,8 +277,8 @@ Content-Length: 319
    },
    "Tags":[
       {
-        "key": "Name",
-        "value": "Test Group1"
+        "Key": "Name",
+        "Value": "Test Group1"
       }
    ]
 }

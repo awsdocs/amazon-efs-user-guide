@@ -85,7 +85,7 @@ The following examples use the `adminuser` as the `profile` parameter value\. Yo
   --performance-mode generalPurpose \
   --throughput-mode bursting \
   --region aws-region \
-  --tags Key=key,Value=value Key=key1,Value=value2 \
+  --tags Key=key,Value=value Key=key1,Value=value1 \
   --profile adminuser
   ```
 
@@ -97,7 +97,7 @@ The following examples use the `adminuser` as the `profile` parameter value\. Yo
   --performance-mode generalPurpose \
   --throughput-mode bursting \
   --region us-west-2 \
-  --tags Key=Name,Value=Test File System Key=developer,Value=rhoward \
+  --tags Key=Name,Value="Test File System" Key=developer,Value=rhoward \
   --profile adminuser
   ```
 
@@ -105,19 +105,20 @@ The following examples use the `adminuser` as the `profile` parameter value\. Yo
 
   ```
   {
+      "OwnerID": "123456789abcd",
+      "CreationToken": "MyFirstFS",
+      "FileSystemId": "fs-c7a0456e",
+      "CreationTime": 1422823614.0,
+      "LifeCycleState": "creating",
+      "Name": "Test File System",
+      "NumberOfMountTargets": 0,
       "SizeInBytes": {
           "Value": 6144,
-          "ValueInIA": 0
+          "ValueInIA": 0,
           "ValueInStandard": 6144
       },
-      "CreationToken": "MyFirstFS",
-      "CreationTime": 1422823614.0,
-      "FileSystemId": "fs-c7a0456e",
       "PerformanceMode": "generalPurpose",
       "ThroughputMode": "bursting",
-      "NumberOfMountTargets": 0,
-      "LifeCycleState": "available",
-      "OwnerId": "231243201240"
       "Tags": [ 
         { 
            "Key": "Name",
@@ -140,42 +141,3 @@ The following examples use the `adminuser` as the `profile` parameter value\. Yo
   ```
 
   Amazon EFS returns a list of the file systems in your AWS account created in the specified region\.
-+ To create tags, use the Amazon EFS `create-tags` CLI command \(the corresponding API operation is [CreateTags](API_CreateTags.md)\)\. The following example command adds the `Dept` tag to the file system\.
-
-  ```
-  $  aws efs create-tags \
-  --file-system-id File-System-ID \
-  --tags Key=Dept,Value=Bus. Intel \
-  --region aws-region \
-  --profile adminuser
-  ```
-
-  You can retrieve a list of tags created for a file system using the `describe-tags` CLI command \(the corresponding API operation is [DescribeTags](API_DescribeTags.md)\), as shown following\.
-
-  ```
-  $  aws efs describe-tags \
-  --file-system-id File-System-ID \
-  --region aws-region \
-  --profile adminuser
-  ```
-
-  Amazon EFS returns these descriptions as JSON\. The following is an example of tags returned by the `DescribeTags` operation\. It shows a file system as having three tags\.
-
-  ```
-  {
-      "Tags": [
-         {
-            "Key": "Name",
-            "Value": "Test File System"            
-         },
-         {
-            "Key": "developer",
-            "Value": "rhoward"
-         },
-         {
-            "Key": "Dept",
-            "Value": "Bus. Intel"
-         }
-      ]
-  }
-  ```

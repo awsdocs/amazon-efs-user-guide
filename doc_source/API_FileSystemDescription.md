@@ -61,9 +61,9 @@ Valid Values:` generalPurpose | maxIO`
 Required: Yes
 
  **ProvisionedThroughputInMibps**   <a name="efs-Type-FileSystemDescription-ProvisionedThroughputInMibps"></a>
-The throughput, measured in MiB/s, that you want to provision for a file system\. The limit on throughput is 1024 MiB/s\. You can get these limits increased by contacting AWS Support\. For more information, see [Amazon EFS Limits That You Can Increase](https://docs.aws.amazon.com/efs/latest/ug/limits.html#soft-limits) in the *Amazon EFS User Guide\.*   
+The throughput, measured in MiB/s, that you want to provision for a file system\. Valid values are 1\-1024\. Required if `ThroughputMode` is set to `provisioned`\. The limit on throughput is 1024 MiB/s\. You can get these limits increased by contacting AWS Support\. For more information, see [Amazon EFS Limits That You Can Increase](https://docs.aws.amazon.com/efs/latest/ug/limits.html#soft-limits) in the *Amazon EFS User Guide\.*   
 Type: Double  
-Valid Range: Minimum value of 0\.0\.  
+Valid Range: Minimum value of 1\.0\.  
 Required: No
 
  **SizeInBytes**   <a name="efs-Type-FileSystemDescription-SizeInBytes"></a>
@@ -77,7 +77,7 @@ Type: Array of [Tag](API_Tag.md) objects
 Required: Yes
 
  **ThroughputMode**   <a name="efs-Type-FileSystemDescription-ThroughputMode"></a>
-The throughput mode for a file system\. There are two throughput modes to choose from for your file system: bursting and provisioned\. You can decrease your file system's throughput in Provisioned Throughput mode or change between the throughput modes as long as it’s been more than 24 hours since the last decrease or throughput mode change\.  
+The throughput mode for a file system\. There are two throughput modes to choose from for your file system: `bursting` and `provisioned`\. If you set `ThroughputMode` to `provisioned`, you must also set a value for `ProvisionedThroughPutInMibps`\. You can decrease your file system's throughput in Provisioned Throughput mode or change between the throughput modes as long as it’s been more than 24 hours since the last decrease or throughput mode change\.   
 Type: String  
 Valid Values:` bursting | provisioned`   
 Required: No

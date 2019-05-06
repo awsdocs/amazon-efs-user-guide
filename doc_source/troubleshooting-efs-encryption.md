@@ -30,7 +30,7 @@ If your connection to your Amazon EFS file system with encryption of data in tra
 
 1. Check your support logs\. For more information, see [Getting Support Logs](using-amazon-efs-utils.md#mount-helper-logs)\.
 
-1. Optionally, you can enable your stunnel logs and check the information in those as well\. You can change the configuration of your logs in `/etc/amazon/efs/amazon-efs-utils.conf` to enable the stunnel logs\. However, doing so requires unmounting and then remounting the file system with the mount helper for the changes to take effect\.
+1. Optionally, you can enable your stunnel logs and check the information in those as well\. You can change the configuration of your logs in `/etc/amazon/efs/efs-utils.conf` to enable the stunnel logs\. However, doing so requires unmounting and then remounting the file system with the mount helper for the changes to take effect\.
 **Important**  
 Enabling the stunnel logs can use up a nontrivial amount of space on your file system\.
 

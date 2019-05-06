@@ -21,7 +21,7 @@ The request requires the following URI parameters\.
 \(Optional\) Opaque pagination token returned from a previous `DescribeMountTargets` operation \(String\)\. If present, it specifies to continue the list from where the previous returning call left off\.
 
  ** [MaxItems](#API_DescribeMountTargets_RequestSyntax) **   <a name="efs-DescribeMountTargets-request-MaxItems"></a>
-\(Optional\) Maximum number of mount targets to return in the response\. Currently, this number is automatically set to 10\.  
+\(Optional\) Maximum number of mount targets to return in the response\. Currently, this number is automatically set to 10, and other values are ignored\. The response is paginated at 10 per page if you have more than 10 mount targets\.  
 Valid Range: Minimum value of 1\.
 
  ** [MountTargetId](#API_DescribeMountTargets_RequestSyntax) **   <a name="efs-DescribeMountTargets-request-MountTargetId"></a>

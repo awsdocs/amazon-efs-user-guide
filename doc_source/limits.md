@@ -24,7 +24,7 @@ You can work with the following throughput limits by using the throughput mode t
 
 | Resource | Default Limit | 
 | --- | --- | 
-| Total bursting throughput for all connected clients |  US East \(Ohio\) Region – 3 GB/s US East \(N\. Virginia\) Region – 3 GB/s US West \(N\. California\) Region – 1 GB/s US West \(Oregon\) Region – 3 GB/s Asia Pacific \(Seoul\) – 1 GB/s Asia Pacific \(Singapore\) – 1 GB/s Asia Pacific \(Tokyo\) – 1 GB/s EU \(Frankfurt\) Region – 1 GB/s EU \(Ireland\) Region – 3 GB/s EU \(London\) Region – 1 GB/s Asia Pacific \(Sydney\) Region – 3 GB/s  | 
+| Total bursting throughput for all connected clients |  US East \(Ohio\) Region – 3 GB/s US East \(N\. Virginia\) Region – 3 GB/s US West \(N\. California\) Region – 1 GB/s US West \(Oregon\) Region – 3 GB/s Asia Pacific \(Seoul\) – 1 GB/s Asia Pacific \(Singapore\) – 1 GB/s Asia Pacific \(Tokyo\) – 1 GB/s Canada \(Central\) – 1 GB/s EU \(Frankfurt\) Region – 1 GB/s EU \(Ireland\) Region – 3 GB/s EU \(London\) Region – 1 GB/s Asia Pacific \(Sydney\) Region – 3 GB/s  | 
 | Total provisioned throughput for all connected clients |  All AWS Regions – 1 GB/s  | 
 
 You can take the following steps to request an increase for these limits\. These increases are not granted immediately, so it might take a couple of days for your increase to become effective\.

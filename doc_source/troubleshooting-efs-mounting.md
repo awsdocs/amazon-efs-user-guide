@@ -13,7 +13,7 @@
 + [Mount Target Lifecycle State Is Stuck](#mount-target-lifecycle-stuck)
 + [Mount Does Not Respond](#mount-unresponsive)
 + [Operations on Newly Mounted File System Return "bad file handle" Error](#operations-return-bad-file-handle)
-+ [Unmounting a File System Fails](#troubhleshooting-unmounting)
++ [Unmounting a File System Fails](#troubleshooting-unmounting)
 
 ## File System Mount on Windows Instance Fails<a name="mount-windows-instance-fails"></a>
 
@@ -180,7 +180,7 @@ This error can happen if an Amazon EC2 instance was connected to one file system
 **Action to Take**  
 You can resolve this error by unmounting the file system, and then remounting the file system on the Amazon EC2 instance\. For more information about unmounting your Amazon EFS file system, see [Unmounting File Systems](mounting-fs-mount-cmd-general.md#unmounting-fs)\.
 
-## Unmounting a File System Fails<a name="troubhleshooting-unmounting"></a>
+## Unmounting a File System Fails<a name="troubleshooting-unmounting"></a>
 
 If your file system is busy, you can't unmount it\.
 

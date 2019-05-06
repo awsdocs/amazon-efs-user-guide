@@ -1,11 +1,12 @@
 # Document History<a name="document-history"></a>
 + **API version**: 2015\-02\-01
-+ **Latest documentation update**: February 19, 2019
++ **Latest documentation update**: May 1, 2019
 
 The following table describes important changes to the *Amazon Elastic File System User Guide* after July 2018\. For notifications about documentation updates, you can subscribe to the RSS feed\.
 
 | Change | Description | Date | 
 | --- |--- |--- |
+| [Additional AWS Region support added](#document-history) | Amazon EFS is now available to all users in the Canada \(Central\) AWS Region\. | May 1, 2019 | 
 | [API Update: Tags are now part of the CreateFileSystem action payload\.](#document-history) | You can now include Tags when using the AWS API and CLI CreateFileSystem action to create an Amazon EFS file system\. For more information, see [CreateFileSystem](https://docs.aws.amazon.com/efs/latest/ug/API_CreateFileSystem.html) and [Creating a File System Using the AWS CLI](https://docs.aws.amazon.com/efs/latest/ug/creating-using-create-fs.html#creating-using-fs-part1-cli)\. | February 19, 2019 | 
 | [New features: EFS Infrequent Access storage class and EFS lifecycle management](#document-history) | Amazon EFS Infrequent Access is a cost\-optimized storage class for infrequently accessed files\. EFS lifecycle management automatically transitions files from Standard to Infrequent Access storage\. For more information, see [EFS Storage Classes](https://docs.aws.amazon.com/efs/latest/ug/storage-classes.html)\. | February 13, 2019 | 
 | [Additional AWS Region support added](#document-history) | Amazon EFS is now available to all users in the EU \(London\) AWS Region\. | January 23, 2019 | 
@@ -28,7 +29,6 @@ The following table describes important changes to the *Amazon Elastic File Syst
 | Added the amazon\-efs\-utils set of open\-source tools, and added encryption in transit | The amazon\-efs\-utils tools are a set of open\-source executable files that simplifies aspects of using Amazon EFS, like mounting\. There's no additional cost to use amazon\-efs\-utils, and you can download these tools from GitHub\. For more information, see [Using the amazon\-efs\-utils Tools](using-amazon-efs-utils.md)\. Also in this release, Amazon EFS now supports encryption in transit through Transport Layer Security \(TLS\) tunneling\. For more information, see [Encrypting Data and Metadata in EFS](encryption.md)\. | April 4, 2018 | 
 | Updated file system limits per AWS Region | Amazon EFS has increased the limit on the number of file systems for all accounts in all AWS Regions\. For more information, see [Resource Limits](limits.md#limits-efs-resources-per-account-per-region)\. | March 15, 2018 | 
 | Additional AWS Region support added | Amazon EFS is now available to all users in the US West \(N\. California\) AWS Region\. | March 14, 2018 | 
-| Amazon EFS File Sync \(EFS File Sync\) | Amazon EFS now supports copying files from your on\-premises data center or from the cloud to Amazon EFS by using EFS File Sync\. EFS File Sync copies file systems accessed using Network File System \(NFS\) version 3 or NFS version 4 to Amazon EFS file systems\.  | November 22, 2017 | 
 | Data encryption at rest | Amazon EFS now supports data encryption at rest\. For more information, see [Encrypting Data and Metadata in EFS](encryption.md)\. | August 14, 2017 | 
 | Additional region support added | Amazon EFS is now available to all users in the EU \(Frankfurt\) region\. | July 20, 2017 | 
 | File system names using Domain Name System \(DNS\) | Amazon EFS now supports DNS names for file systems\. A file system's DNS name automatically resolves to a mount target’s IP address in the Availability Zone for the connecting Amazon EC2 instance\. For more information, see [Mounting on Amazon EC2 with a DNS Name](mounting-fs-mount-cmd-dns-name.md)\. | December 20, 2016 | 

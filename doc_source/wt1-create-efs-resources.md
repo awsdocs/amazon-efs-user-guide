@@ -2,11 +2,13 @@
 
 In this step, you do the following:
 + Create an Amazon EFS file system\. 
++ Enable lifecycle management\.
 + Create a mount target in the Availability Zone where you have your EC2 instance launched\.
 
 **Topics**
 + [Step 2\.1: Create Amazon EFS File System](#wt1-create-file-system)
-+ [Step 2\.2: Create a Mount Target](#wt1-create-mount-target)
++ [Step 2\.2: Enable Lifecycle Management](#wt1-lifecycle-management)
++ [Step 2\.3: Create a Mount Target](#wt1-create-mount-target)
 
 ## Step 2\.1: Create Amazon EFS File System<a name="wt1-create-file-system"></a>
 
@@ -25,18 +27,20 @@ In this step, you create an Amazon EFS file system\. Write down the `FileSystemI
      --profile adminuser
      ```
 
-     You get this response:
+     You get the following response\.
 
      ```
      {
-         "OwnerId": "account-id,
+         "OwnerId": "123456789abcd",
          "CreationToken": "FileSystemForWalkthrough1",
          "FileSystemId": "fs-c657c8bf",
          "CreationTime": 1548950706.0,
          "LifeCycleState": "creating",
          "NumberOfMountTargets": 0,
          "SizeInBytes": {
-             "Value": 0
+             "Value": 0,
+             "ValueInIA": 0,
+             "ValueInStandard": 0
          },
          "PerformanceMode": "generalPurpose",
          "Encrypted": false,
@@ -50,9 +54,36 @@ In this step, you create an Amazon EFS file system\. Write down the `FileSystemI
      }
      ```
 
-  1. Note the `FileSystemId` value\. You need this value when you create a mount target for this file system in the next step\.
+  1. Note the `FileSystemId` value\. You need this value when you create a mount target for this file system in [Step 2\.3: Create a Mount Target](#wt1-create-mount-target)\.
 
-## Step 2\.2: Create a Mount Target<a name="wt1-create-mount-target"></a>
+## Step 2\.2: Enable Lifecycle Management<a name="wt1-lifecycle-management"></a>
+
+In this step, you enable lifecycle management on your ﬁle system in order to use the Infrequent Access storage class\. To learn more, see [EFS Lifecycle Management](lifecycle-management-efs.md) and [EFS Storage Classes](storage-classes.md)\.
+
+**To enable lifecycle management**
++ At the command prompt, run the following AWS CLI `put-lifecycle-configuration` command\.
+
+  ```
+  $  aws efs put-lifecycle-configuration \
+  --file-system-id fs-c657c8bf \
+  --lifecycle-policies TransitionToIA=AFTER_30_DAYS \
+  --region us-west-2 \
+  --profile adminuser
+  ```
+
+  You get the following response\.
+
+  ```
+  {
+    "LifecyclePolicies": [
+      {
+          "TransitionToIA": "AFTER_30_DAYS"
+      }
+    ]
+  }
+  ```
+
+## Step 2\.3: Create a Mount Target<a name="wt1-create-mount-target"></a>
 
 In this step, you create a mount target for your file system in the Availability Zone where you have your EC2 instance launched\. 
 
@@ -74,7 +105,7 @@ In this step, you create a mount target for your file system in the Availability
    --profile adminuser
    ```
 
-   You get this response:
+   You get the following response\.
 
    ```
    {

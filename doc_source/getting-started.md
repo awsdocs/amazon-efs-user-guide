@@ -6,7 +6,7 @@
 + [Step 1: Create Your EC2 Resources and Launch Your EC2 Instance](gs-step-one-create-ec2-resources.md)
 + [Step 2: Create Your Amazon EFS File System](gs-step-two-create-efs-resources.md)
 + [Step 3: Connect to Your Amazon EC2 Instance and Mount the Amazon EFS File System](gs-step-three-connect-to-ec2-instance.md)
-+ [Step 4: Transfer Files from On\-Premises File Systems to Amazon EFS Using AWS DataSync](gs-step-four-sync-files.md)
++ [Step 4: Transfer Files to Amazon EFS Using AWS DataSync](gs-step-four-sync-files.md)
 + [Step 5: Clean Up Resources and Protect Your AWS Account](gs-step-four-cleanup.md)
 
 This Getting Started exercise shows you how to quickly create an Amazon Elastic File System \(Amazon EFS\) file system, mount it on an Amazon Elastic Compute Cloud \(Amazon EC2\) instance in your VPC, and test the end\-to\-end setup\.

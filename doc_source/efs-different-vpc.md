@@ -31,7 +31,7 @@ In this step, you set up your Amazon EC2 instance so that it can mount an EFS fi
 
 **To allow inbound traffic to the NFS port**
 **Note**  
-If you require data to be encrypted in transit, use the Amazon EFS mount helper, `amazon-efs-utils`, instead of the NFS client\. For information on installing amazon\-efs\-utils, see the section [](#wt6-step3-get-efs-utils)\.
+If you require data to be encrypted in transit, use the Amazon EFS mount helper, `amazon-efs-utils`, instead of the NFS client\. For information on installing amazon\-efs\-utils, see the section [Optional: Encrypting Data in Transit](#wt6-step3-get-efs-utils)\.
 
 1. Sign in to the AWS Management Console and open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
 
@@ -213,7 +213,7 @@ After the package is installed, configure amazon\-efs\-utils for use in your AWS
 
 **To configure amazon\-efs\-utils for use in your AWS Region**
 
-1. Using your text editor of choice, open `/etc/amazon/efs/amazon-efs-utils.conf` for editing\.
+1. Using your text editor of choice, open `/etc/amazon/efs/efs-utils.conf` for editing\.
 
 1. Find the line `“dns_name_format = {fs_id}.efs.{region}.amazonaws.com”`\.
 

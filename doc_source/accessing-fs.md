@@ -52,7 +52,7 @@ You can access a file system on an Amazon EC2 instance in one Availability Zone 
            
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/efs/latest/ug/images/gs-efs-resources-110.png)![\[Image NOT FOUND\]](http://docs.aws.amazon.com/efs/latest/ug/)![\[Image NOT FOUND\]](http://docs.aws.amazon.com/efs/latest/ug/)
 
-1. On the **Step 2: Configure optional settings** page, specify a value for the **Name** tag \(**MyExampleFileSystem**\) and choose your performance mode\.
+1. On the **Step 2: Configure optional settings** page, specify a value for the **Name** tag \(**MyExampleFileSystem**\)\. Also, add any additional tags that help describe and manage your file system, and choose your performance mode\.
 
    The console prepopulates the **Name** tag because Amazon EFS uses its value as the file system display name\.   
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/efs/latest/ug/images/gs-efs-resources-120.png)
