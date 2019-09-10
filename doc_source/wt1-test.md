@@ -58,6 +58,7 @@ You can connect to your EC2 instance from Windows or from a computer running Lin
 
       ```
       $ sudo yum -y install nfs-utils
+      $ sudo apt-get -y install nfs-common #For ubuntu machine    
       ```
 **Note**  
 If you choose the **Amazon Linux AMI 2016\.03\.0** Amazon Linux AMI when launching your Amazon EC2 instance, you don't need to install `nfs-utils` because it is already included in the AMI by default\.
