@@ -1,4 +1,4 @@
-# Transfering Data into Amazon EFS<a name="transfer-data-to-efs"></a>
+# Transferring Data into Amazon EFS<a name="transfer-data-to-efs"></a>
 
 We recommend using AWS DataSync to transfer data into Amazon EFS\. DataSync is a data transfer service that simplifies, automates, and accelerates moving and replicating data between on\-premises storage systems and AWS storage services over the internet or AWS Direct Connect\. DataSync can transfer your file system data and metadata, such as ownership, time stamps, and access permissions\.
 

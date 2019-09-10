@@ -10,7 +10,7 @@ The console lists existing tags associated with a file system\. You can add new 
 
 1. Open the Amazon Elastic File System console at [https://console\.aws\.amazon\.com/efs/](https://console.aws.amazon.com/efs/)\.
 
-1. Choose the file system\.
+1. Choose the file system that you want to manage tags for\.
 
 1. Choose **Action** and then choose **Manage Tags**\.
 
@@ -18,7 +18,7 @@ The console lists existing tags associated with a file system\. You can add new 
 
 1. Choose **Save**\.
 
-## Using the AWS CLI<a name="manage-tags-cli"></a>
+## Using the CLI<a name="manage-tags-cli"></a>
 
 The CLI commands for managing tags, and the equivalent Amazon EFS API actions, are listed in the following table\.
 
@@ -43,7 +43,7 @@ The CLI commands for managing tags, and the equivalent Amazon EFS API actions, a
   If the command is successful, the AWS CLI doesn't provide a response\.
 
 **To retrieve all tags associated with a file system**
-+ Retrieve a list of tags associated with a file system using the `describe-tags` CLI command \(the corresponding API operation is [DescribeTags](API_DescribeTags.md)\), as shown following\.
++ Retrieve a list of tags associated with a file system by using the `describe-tags` CLI command \(the corresponding API operation is [DescribeTags](API_DescribeTags.md)\), as shown following\.
 
   ```
   $  aws efs describe-tags \

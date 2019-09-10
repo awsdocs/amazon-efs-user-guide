@@ -99,7 +99,7 @@ The following request retrieves descriptions of mount targets created for the sp
 #### Sample Request<a name="API_DescribeMountTargets_Example_1_Request"></a>
 
 ```
-GET /2015-02-01/mount-targets?FileSystemId=fs-47a2c22e HTTP/1.1
+GET /2015-02-01/mount-targets?FileSystemId=fs-01234567 HTTP/1.1
 Host: elasticfilesystem.us-west-2.amazonaws.com
 x-amz-date: 20140622T191252Z
 Authorization: <...>
@@ -109,7 +109,7 @@ Authorization: <...>
 
 ```
 HTTP/1.1 200 OK
-x-amzn-RequestId: ab5f2427-3ab3-4002-868e-30a77a88f739
+x-amzn-RequestId: 01234567-89ab-cdef-0123-456789abcdef
 Content-Type: application/json
 Content-Length: 357
 
@@ -117,9 +117,9 @@ Content-Length: 357
    "MountTargets":[
       {
          "OwnerId":"251839141158",
-         "MountTargetId":"fsmt-9a13661e",
-         "FileSystemId":"fs-47a2c22e",
-         "SubnetId":"subnet-fd04ff94",
+         "MountTargetId":"fsmt-01234567",
+         "FileSystemId":"fs-01234567",
+         "SubnetId":"subnet-01234567",
          "LifeCycleState":"added",
          "IpAddress":"10.0.2.42",
          "NetworkInterfaceId":"eni-1bcb7772"

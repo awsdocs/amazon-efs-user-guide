@@ -65,7 +65,7 @@ HTTP Status Code: 500
 #### Sample Request<a name="API_DeleteTags_Example_1_Request"></a>
 
 ```
-POST /2015-02-01/delete-tags/fs-e2a6438b HTTP/1.1
+POST /2015-02-01/delete-tags/fs-01234567 HTTP/1.1
 Host: elasticfilesystem.us-west-2.amazonaws.com
 x-amz-date: 20140620T215123Z
 Authorization: <...>
@@ -83,7 +83,7 @@ Content-Length: 223
 
 ```
 HTTP/1.1 204 No Content
-x-amzn-RequestId: ec08ae47-3409-49f3-9e90-64a5f981bb2b
+x-amzn-RequestId: 01234567-89ab-cdef-0123-456789abcdef
 ```
 
 ## See Also<a name="API_DeleteTags_SeeAlso"></a>

@@ -89,7 +89,7 @@ The following examples use the `adminuser` as the `profile` parameter value\. Yo
   --profile adminuser
   ```
 
-  For example, the following `create-file-system` command creates a file system in the **us\-west\-2**  AWS Region\. The command specifies **MyFirstFS** as the creation token\. For a list of AWS regions where you can create an Amazon EFS file system, see the [Amazon Web Services General Reference](https://docs.aws.amazon.com/general/latest/gr/rande.html#elasticfilesystem_region)\.
+  For example, the following `create-file-system` command creates a file system in the **us\-west\-2**  AWS Region\. The command specifies **MyFirstFS** as the creation token\. For a list of AWS Regions where you can create an Amazon EFS file system, see the [Amazon Web Services General Reference](https://docs.aws.amazon.com/general/latest/gr/rande.html#elasticfilesystem_region)\.
 
   ```
   $  aws efs create-file-system \

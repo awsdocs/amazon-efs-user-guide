@@ -1,6 +1,6 @@
 # Step 5: Clean Up Resources and Protect Your AWS Account<a name="gs-step-four-cleanup"></a>
 
-This guide includes walkthroughs that you can use to further explore Amazon EFS\. Before you perform this clean\-up step, you can use the resources you've created and connected to in this Getting Started exercise in those walkthroughs\. For more information, see [Walkthroughs](walkthroughs.md)\. After you have finished the walkthroughs or if you don't want to explore the walkthroughs, you should follow these steps to clean up your resources and protect your AWS account\.
+This guide includes walkthroughs that you can use to further explore Amazon EFS\. Before you perform this clean\-up step, you can use the resources you've created and connected to in this Getting Started exercise in those walkthroughs\. For more information, see [Walkthroughs](walkthroughs.md)\. After you finish the walkthroughs, or if you don't want to explore the walkthroughs, take the following steps to clean up your resources and protect your AWS account\.
 
 **To clean up resources and protect your AWS account**
 

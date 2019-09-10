@@ -7,6 +7,8 @@ You should always unmount a file system before you delete it\.
 
 ## Using the Console<a name="manage-delete-fs-console"></a>
 
+**To delete a file system**
+
 1. Open the Amazon Elastic File System console at [https://console\.aws\.amazon\.com/efs/](https://console.aws.amazon.com/efs/)\.
 
 1. Select the file system that you want to delete\.

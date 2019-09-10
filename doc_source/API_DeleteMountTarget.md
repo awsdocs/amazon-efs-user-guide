@@ -77,7 +77,7 @@ Authorization: <...>
 
 ```
 HTTP/1.1 204 No Content
-x-amzn-RequestId: 76787670-2797-48ee-a34f-fce2ce122fef
+x-amzn-RequestId: 01234567-89ab-cdef-0123-456789abcdef
 ```
 
 ## See Also<a name="API_DeleteMountTarget_SeeAlso"></a>

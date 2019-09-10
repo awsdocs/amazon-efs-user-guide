@@ -87,7 +87,7 @@ HTTP Status Code: 500
 #### Sample Request<a name="API_DescribeTags_Example_1_Request"></a>
 
 ```
-GET /2015-02-01/tags/fs-e2a6438b/ HTTP/1.1
+GET /2015-02-01/tags/fs-01234567/ HTTP/1.1
 Host: elasticfilesystem.us-west-2.amazonaws.com
 x-amz-date: 20140620T215404Z
 Authorization: <...>
@@ -97,7 +97,7 @@ Authorization: <...>
 
 ```
 HTTP/1.1 200 OK
-x-amzn-RequestId: f264e454-7859-4f15-8169-1c0d5b0b04f5
+x-amzn-RequestId: 01234567-89ab-cdef-0123-456789abcdef
 Content-Type: application/json
 Content-Length: 288
 

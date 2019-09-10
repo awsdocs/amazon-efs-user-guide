@@ -201,23 +201,23 @@ Authorization: <...>
 Content-Type: application/json
 Content-Length: 160
 
-{"SubnetId": "subnet-748c5d03", "FileSystemId": "fs-e2a6438b"}
+{"SubnetId": "subnet-748c5d03", "FileSystemId": "fs-01234567"}
 ```
 
 #### Sample Response<a name="API_CreateMountTarget_Example_1_Response"></a>
 
 ```
 HTTP/1.1 200 OK
-x-amzn-RequestId: c3616af3-33fa-40ad-ae0d-d3895a2c3a1f
+x-amzn-RequestId: 01234567-89ab-cdef-0123-456789abcdef
 Content-Type: application/json
 Content-Length: 252
 
 {
     "MountTargetId": "fsmt-55a4413c",
-    "NetworkInterfaceId": "eni-d95852af",
-    "FileSystemId": "fs-e2a6438b",
+    "NetworkInterfaceId": "eni-01234567",
+    "FileSystemId": "fs-01234567",
     "LifeCycleState": "available",
-    "SubnetId": "subnet-748c5d03",
+    "SubnetId": "subnet-01234567",
     "OwnerId": "231243201240",
     "IpAddress": "172.31.22.183"
 }
@@ -238,11 +238,11 @@ Content-Type: application/json
 Content-Length: 160
 
 {
-   "FileSystemId":"fs-47a2c22e",
-   "SubnetId":"subnet-fd04ff94",
+   "FileSystemId":"fs-01234567",
+   "SubnetId":"subnet-01234567",
    "IpAddress":"10.0.2.42",
    "SecurityGroups":[
-      "sg-1a2b3c4d"
+      "sg-01234567"
    ]
 }
 ```
@@ -251,14 +251,14 @@ Content-Length: 160
 
 ```
 HTTP/1.1 200 OK
-x-amzn-RequestId: c3616af3-33fa-40ad-ae0d-d3895a2c3a1f
+x-amzn-RequestId: 01234567-89ab-cdef-0123-456789abcdef
 Content-Type: application/json
 Content-Length: 252
 
 {
    "OwnerId":"251839141158",
    "MountTargetId":"fsmt-9a13661e",
-   "FileSystemId":"fs-47a2c22e",
+   "FileSystemId":"fs-01234567",
    "SubnetId":"subnet-fd04ff94",
    "LifeCycleState":"available",
    "IpAddress":"10.0.2.42",

@@ -18,16 +18,16 @@ Amazon EFS provides file storage in the AWS Cloud\. With Amazon EFS, you can cre
 
 For a list of Amazon EC2 Linux Amazon Machine Images \(AMIs\) that support this protocol, see [NFS Support](mounting-fs-old.md#mounting-fs-nfs-info)\. We recommend using a current generation Linux NFSv4\.1 client, such as those found in Amazon Linux and Ubuntu AMIs\. For some AMIs, you'll need to install an NFS client to mount your file system on your Amazon EC2 instance\. For instructions, see [Installing the NFS Client](mounting-fs-old.md#mounting-fs-install-nfsclient)\.
 
-You can access your Amazon EFS file system concurrently from Amazon EC2 instances in your Amazon VPC, so applications that scale beyond a single connection can access a file system\. Amazon EC2 instances running in multiple Availability Zones within the same region can access the file system, so that many users can access and share a common data source\.
+You can access your Amazon EFS file system concurrently from Amazon EC2 instances in your Amazon VPC, so applications that scale beyond a single connection can access a file system\. Amazon EC2 instances running in multiple Availability Zones within the same AWS Region can access the file system, so that many users can access and share a common data source\.
 
 **Note**  
 You can mount an Amazon EFS file system on instances in only one VPC at a time\.
 
-For a list of AWS regions where you can create an Amazon EFS file system, see the [Amazon Web Services General Reference](https://docs.aws.amazon.com/general/latest/gr/rande.html#elasticfilesystem_region)\. 
+For a list of AWS Regions where you can create an Amazon EFS file system, see the [Amazon Web Services General Reference](https://docs.aws.amazon.com/general/latest/gr/rande.html#elasticfilesystem_region)\. 
 
 To access your Amazon EFS file system in a VPC, you create one or more *mount targets* in the VPC\. A mount target provides an IP address for an NFSv4 endpoint at which you can mount an Amazon EFS file system\. You mount your file system using its Domain Name Service \(DNS\) name, which resolves to the IP address of the EFS mount target in the same Availability Zone as your EC2 instance\. You can create one mount target in each Availability Zone in an AWS Region\. If there are multiple subnets in an Availability Zone in your VPC, you create a mount target in one of the subnets\. Then all EC2 instances in that Availability Zone share that mount target\.
 
-Mount targets themselves are designed to be highly available\. As you design for high availability and failovers to other Availability Zones \(AZs\), keep in mind that the IP addresses and DNS for your mount targets in each AZ are static\.
+Mount targets themselves are designed to be highly available\. As you design for high availability and failover to other Availability Zones \(AZs\), keep in mind that the IP addresses and DNS for your mount targets in each AZ are static\.
 
 After mounting the file system by using the mount target, you use it like any other POSIX\-compliant file system\. For information about NFS\-level permissions and related considerations, see [Working with Users, Groups, and Permissions at the Network File System \(NFS\) Level ](accessing-fs-nfs-permissions.md)\. 
 
@@ -116,16 +116,20 @@ You must have valid credentials to make Amazon EFS API requests, such as create 
 
 ## Data Consistency in Amazon EFS<a name="consistency"></a>
 
-Amazon EFS provides the open\-after\-close consistency semantics that applications expect from NFS\.
+Amazon EFS provides the close\-to\-open consistency semantics that applications expect from NFS\.
 
  In Amazon EFS, write operations are durably stored across Availability Zones in these situations:
 + An application performs a synchronous write operation \(for example, using the `open` Linux command with the `O_DIRECT` flag, or the `fsync` Linux command\)\.
 + An application closes a file\.
 
-Depending on the access pattern, Amazon EFS can provide stronger consistency guarantees than open\-after\-close semantics\. Applications that perform synchronous data access and perform nonappending writes have read\-after\-write consistency for data access\.
+Depending on the access pattern, Amazon EFS can provide stronger consistency guarantees than close\-to\-open semantics\. Applications that perform synchronous data access and perform nonappending writes have read\-after\-write consistency for data access\.
 
 ## Storage Classes and Lifecycle Management<a name="how-it-works-storage-classes"></a>
 
-Amazon EFS offers a Standard storage class and an Infrequent Access storage class for file systems created after February 13, 2019\. The Standard storage class is used to store frequently accessed files\. The EFS Infrequent Access \(EFS IA\) storage class is designed for files accessed less frequently\. 
+With Amazon EFS, you can use two storage classes for your file systems:
++  **Infrequent Access** – The Infrequent Access \(IA\) storage class is a lower\-cost storage class that's designed for storing long\-lived, infrequently accessed files cost\-effectively\. 
++  **Standard** – The Standard storage class is used to store frequently accessed files\. 
 
-You can start using EFS IA by creating a new file system and enabling Lifecycle Management\. With Lifecycle Management enabled, EFS automatically moves files not accessed for 30 days from the Standard storage class to the EFS IA storage class\. The EFS IA storage class reduces storage costs for files that are not accessed every day\. At the same time, it maintains the high availability, high durability, elasticity, and POSIX file system access that EFS provides\. File systems created after February 13, 2019, can transparently serve data from both storage classes\. For more information about EFS storage classes, see [EFS Storage Classes](storage-classes.md)\.
+The EFS IA storage class reduces storage costs for files that aren't accessed every day\. It does this without sacrificing the high availability, high durability, elasticity, and POSIX file system access that EFS provides\. We recommend EFS IA storage if you need your full dataset to be readily accessible and want to automatically save on storage costs for files that are less frequently accessed\. Examples include keeping files accessible to satisfy audit requirements, perform historical analysis, or perform backup and recovery\. To learn more about EFS storage classes, see [EFS Storage Classes](storage-classes.md)\. 
+
+Amazon EFS lifecycle management automatically manages cost\-effective file storage for your file systems\. When enabled, lifecycle management migrates files that haven't been accessed for a set period of time to the Infrequent Access \(IA\) storage class\. You define that period of time by using a *lifecycle policy\. * To learn more about lifecycle management, see [EFS Lifecycle Management](lifecycle-management-efs.md)\. 

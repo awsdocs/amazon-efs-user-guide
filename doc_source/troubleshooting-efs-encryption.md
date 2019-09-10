@@ -8,10 +8,10 @@
 
 ## Mounting with Encryption of Data in Transit Fails<a name="mounting-tls-fails"></a>
 
-By default, when using the Amazon EFS mount helper with TLS, it enforces use of the Online Certificate Status Protocol \(OCSP\) and certificate hostname checking\. If your system doesn't support either of these features \(for example, when using Red Hat Enterprise Linux or CentOS\), mounting an EFS file system using TLS fails\.
+By default, when you use the Amazon EFS mount helper with Transport Layer Security \(TLS\), it enforces hostname checking\. Some systems don't support this feature, such as when you use Red Hat Enterprise Linux or CentOS\. In these cases, mounting an EFS file system using TLS fails\.
 
 **Action to Take**  
- We recommend upgrading the version of stunnel on your client to support these features\. For more information, see [Upgrading Stunnel](using-amazon-efs-utils.md#upgrading-stunnel)\.
+ We recommend that you upgrade the version of stunnel on your client to support hostname checking\. For more information, see [Upgrading Stunnel](using-amazon-efs-utils.md#upgrading-stunnel)\.
 
 ## Mounting with Encryption of Data in Transit is Interrupted<a name="mounting-tls-interrupt"></a>
 
@@ -28,7 +28,7 @@ If your connection to your Amazon EFS file system with encryption of data in tra
    ps aux | grep [a]mazon-efs-mount-watchdog
    ```
 
-1. Check your support logs\. For more information, see [Getting Support Logs](using-amazon-efs-utils.md#mount-helper-logs)\.
+1. Check your support logs\. For more information, see [Getting Support Logs](efs-mount-helper.md#mount-helper-logs)\.
 
 1. Optionally, you can enable your stunnel logs and check the information in those as well\. You can change the configuration of your logs in `/etc/amazon/efs/efs-utils.conf` to enable the stunnel logs\. However, doing so requires unmounting and then remounting the file system with the mount helper for the changes to take effect\.
 **Important**  

@@ -1,6 +1,6 @@
 # Mounting EFS File Systems<a name="mounting-fs"></a>
 
-In the following section, you can learn how to mount your Amazon EFS file system on a Linux instance using the Amazon EFS mount helper\. In addition, you can find how to use the file `fstab` to automatically remount your file system after any system restarts\.
+In the following section, you can learn how to mount your Amazon EFS file system on a Linux instance using the Amazon EFS mount helper\. In addition, you can find how to use the file `fstab` to automatically remount your file system after any system restarts\. To learn more about the Amazon EFS mount helper, see [EFS Mount Helper](efs-mount-helper.md)\.
 
 Before the Amazon EFS mount helper was available, we recommended mounting your Amazon EFS file systems using the standard Linux NFS client\. For more information on those changes, see [Mounting File Systems Without the EFS Mount Helper](mounting-fs-old.md)\.
 
@@ -33,8 +33,8 @@ You can mount an Amazon EFS file system on a number of clients using the Amazon 
 
 ### Mounting on Amazon EC2 with the EFS Mount Helper<a name="mounting-fs-mount-helper-ec2"></a>
 
-You can mount an Amazon EFS file system on an Amazon EC2 instance using the Amazon EFS mount helper\. For more information on the mount helper, see [EFS Mount Helper](using-amazon-efs-utils.md#efs-mount-helper)\. To use the mount helper, you need the following:
-+ **An Amazon EFS file system ID** – After you create an Amazon EFS file system, you can get that file system's ID from the console or programmatically through the Amazon EFS API\. This ID is in this format: `fs-12345678`\.
+You can mount an Amazon EFS file system on an Amazon EC2 instance using the Amazon EFS mount helper\. For more information on the mount helper, see [EFS Mount Helper](efs-mount-helper.md)\. To use the mount helper, you need the following:
++ **The file system ID of the EFS file system that you want to mount ** – After you create an Amazon EFS file system, you can get that file system's ID from the console or programmatically through the Amazon EFS API\. The ID is in this format: `fs-12345678`\.
 + **An Amazon EFS mount target** – You create mount targets in your virtual private cloud \(VPC\)\. If you create your file system in the console, you create your mount targets at the same time\. For more information, see [Creating a Mount Target Using the Amazon EFS console](accessing-fs.md#create-mount-target-console)\.
 + **An Amazon EC2 instance running a supported distribution of Linux** – The supported Linux distributions for mounting your file system with the mount helper are Amazon Linux 2, Amazon Linux 2017\.09 and newer, Red Hat Enterprise Linux \(and derivatives such as CentOS\) version 7 and newer, and Ubuntu 16\.04 LTS and newer\.
 + **The Amazon EFS mount helper installed** – The mount helper is a tool in amazon\-efs\-utils\. For information on how to install amazon\-efs\-utils, see [Installing the amazon\-efs\-utils Package on Amazon Linux](using-amazon-efs-utils.md#installing-amazon-efs-utils)\.

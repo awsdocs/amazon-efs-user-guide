@@ -43,7 +43,7 @@ If you're not using the mount helper, you can still enable encryption of data in
 Because encryption of data in transit is configured on a per\-connection basis, each configured mount has a dedicated stunnel process running on the instance\. By default, the stunnel process used by the mount helper listens on local ports 20049 and 20449, and it connects to Amazon EFS on port 2049\.
 
 **Note**  
-By default, when using the Amazon EFS mount helper with TLS, it enforces the use of the Online Certificate Status Protocol \(OCSP\) and certificate hostname checking\. The Amazon EFS mount helper uses the stunnel program for its TLS functionality\. Note that some versions of Linux don't include a version of stunnel that supports these TLS features by default\. When using one of those Linux versions, mounting an Amazon EFS file system using TLS fails\.  
+By default, when using the Amazon EFS mount helper with TLS, it enforces certificate hostname checking\. The Amazon EFS mount helper uses the stunnel program for its TLS functionality\. Note that some versions of Linux don't include a version of stunnel that supports these TLS features by default\. When using one of those Linux versions, mounting an Amazon EFS file system using TLS fails\.  
 After you've installed the amazon\-efs\-utils package, to upgrade your system's version of stunnel, see [Upgrading Stunnel](using-amazon-efs-utils.md#upgrading-stunnel)\.  
 For issues with encryption, see [Troubleshooting Encryption](troubleshooting-efs-encryption.md)\.
 
@@ -100,9 +100,9 @@ Amazon EFS uses an industry\-standard AES\-256 encryption algorithm to encrypt E
 #### How Amazon EFS Uses AWS KMS<a name="EFSKMS"></a>
 
 Amazon EFS integrates with AWS Key Management Service \(AWS KMS\) for key management\. Amazon EFS uses customer master keys \(CMKs\) to encrypt your file system in the following way:
-+ **Encrypting metadata at rest** – An EFS\-managed key is used to encrypt and decrypt file system metadata \(that is, file names, directory names, and directory contents\)\.
++ **Encrypting metadata at rest** – Amazon EFS uses a single customer master key \(either the AWS managed CMK for Amazon EFS or a custom CMK\) to encrypt and decrypt file system metadata \(that is, file names, directory names, and directory contents\)\.
 + **Encrypting file data at rest** – You choose the CMK used to encrypt and decrypt file data \(that is, the contents of your files\)\. You can enable, disable, or revoke grants on this CMK\. This CMK can be one of the two following types:
-  + **AWS\-managed CMK** – This is the default CMK, and it's free to use\.
+  + **AWS managed CMK for Amazon EFS** – This is the default CMK\. You're not charged to create and store a CMK, but there are usage charges\. To learn more, see [AWS Key Management Service pricing](https://aws.amazon.com/kms/pricing/)\.
   + **Customer\-managed CMK** – This is the most flexible master key to use, because you can configure its key policies and grants for multiple users or services\. For more information on creating CMKs, see [Creating Keys](https://docs.aws.amazon.com/kms/latest/developerguide/create-keys.html) in the* AWS Key Management Service Developer Guide\.*
 
     If you use a customer\-managed CMK as your master key for file data encryption and decryption, you can enable key rotation\. When you enable key rotation, AWS KMS automatically rotates your key once per year\. Additionally, with a customer\-managed CMK, you can choose when to disable, re\-enable, delete, or revoke access to your CMK at any time\. For more information, see [Disabling, Deleting, or Revoking Access to the CMK for a File System](managing.md#disable-efs-cmk)\.

@@ -19,7 +19,7 @@ For more information on the amazon\-efs\-utils package, including installation i
 1. Make a directory for the mount point with the following command\.
 
    ```
-   $ sudo mkdir efs
+   $ sudo mkdir /mnt/efs
    ```
 
 1. Mount the Amazon EFS file system to the directory that you created\. Use the following command and replace `file-system-id` with your **File System ID** value\.
@@ -33,7 +33,7 @@ We recommend that you wait 90 seconds after creating a mount target before you m
 1. Change directories to the new directory that you created with the following command\.
 
    ```
-   $ cd efs
+   $ cd /mnt/efs
    ```
 
 1. Make a subdirectory and change the ownership of that subdirectory to your EC2 instance user\. Then navigate to that new directory with the following commands\.
@@ -61,3 +61,6 @@ As a result, the following file is created\.
 ```
 -rw-rw-r-- 1 ec2-user ec2-user 0 Aug 15 15:32 test-file.txt
 ```
+
+**Note**  
+You can configure the EFS file system to mount on your EC2 instance automatically\. For more information, see [Configuring an EFS File System to Mount Automatically at EC2 Instance Launch](mount-fs-auto-mount-onreboot.md#mount-fs-auto-mount-on-creation)\.

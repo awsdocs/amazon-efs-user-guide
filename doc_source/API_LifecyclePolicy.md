@@ -5,10 +5,9 @@ Describes a policy used by EFS lifecycle management to transition files to the I
 ## Contents<a name="API_LifecyclePolicy_Contents"></a>
 
  **TransitionToIA**   <a name="efs-Type-LifecyclePolicy-TransitionToIA"></a>
-A value that indicates how long it takes to transition files to the IA storage class\. Currently, the only valid value is `AFTER_30_DAYS`\.  
- `AFTER_30_DAYS` indicates files that have not been read from or written to for 30 days are transitioned from the Standard storage class to the IA storage class\. Metadata operations such as listing the contents of a directory don't count as a file access event\.  
+ A value that describes the period of time that a file is not accessed, after which it transitions to the IA storage class\. Metadata operations such as listing the contents of a directory don't count as file access events\.  
 Type: String  
-Valid Values:` AFTER_30_DAYS`   
+Valid Values:` AFTER_14_DAYS | AFTER_30_DAYS | AFTER_60_DAYS | AFTER_90_DAYS`   
 Required: No
 
 ## See Also<a name="API_LifecyclePolicy_SeeAlso"></a>

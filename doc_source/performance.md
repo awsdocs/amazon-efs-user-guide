@@ -64,7 +64,7 @@ We recommend the General Purpose performance mode for the majority of your Amazo
 
 ### Max I/O Performance Mode<a name="maxio"></a>
 
-File systems in the Max I/O mode can scale to higher levels of aggregate throughput and operations per second with a tradeoff of slightly higher latencies for file operations\. Highly parallelized applications and workloads, such as big data analysis, media processing, and genomics analysis, can benefit from this mode\.
+ File systems in the Max I/O mode can scale to higher levels of aggregate throughput and operations per second\. This scaling is done with a tradeoff of slightly higher latencies for file operations\. Highly parallelized applications and workloads, such as big data analysis, media processing, and genomics analysis, can benefit from this mode\. 
 
 ### Using the Right Performance Mode<a name="using-perfmode"></a>
 
@@ -76,7 +76,13 @@ Our recommendation for determining which performance mode to use is as follows:
 
 1. Monitor the [PercentIOLimit](monitoring-cloudwatch.md#efs-metrics) Amazon CloudWatch metric for Amazon EFS during the performance test\. For more information about accessing this and other metrics, see [Amazon CloudWatch Metrics](monitoring_overview.md)\.
 
-If the `PercentIOLimit` percentage returned was at or near 100 percent for a significant amount of time during the test, your application should use the Max I/O performance mode\. Otherwise, it should use the default General Purpose mode\.
+If the `PercentIOLimit` percentage returned was at or near 100 percent for a significant amount of time during the test, your application should use the Max I/O performance mode\. Otherwise, it should use the default General Purpose mode\. 
+
+To move to a different performance mode, migrate the data to a different file system that was created in the other performance mode\. You can use DataSync to transfer files between two EFS file systems\. To learn more, see [Transferring Data into Amazon EFS](transfer-data-to-efs.md)\.
+
+Some latency\-sensitive workloads require the higher I/O levels provided by Max I/O performance mode and the lower latency provided by General Purpose performance mode\. For this type of workload, we recommend creating multiple General Purpose performance mode file systems\. In this case, we recommend then spreading the application workload across all these file systems, as long as the workload and applications can support it\. 
+
+By taking this approach, you can create a logical file system and shard data across multiple EFS file systems\. Each file system is mounted as a subdirectory, and your application can access these subdirectories in parallel\. This approach allows latency\-sensitive workloads to scale to higher levels of file system operations per second, aggregated across multiple file systems\. At the same time, these workloads can take advantage of the lower latencies offered by General Purpose performance mode file systems\. 
 
 ## Throughput Modes<a name="throughput-modes"></a>
 
@@ -159,13 +165,23 @@ Additional charges are associated with using Provisioned Throughput mode\. Using
 
 Throughput limits remain the same, regardless of the throughput mode you choose\. For more information on these limits, see [Amazon EFS Limits That You Can Increase](limits.md#soft-limits)\.
 
-If your file system is in the Provisioned Throughput mode, you can increase the Provisioned Throughput of your file system as often as you want\. You can decrease your file system throughput in Provisioned Throughput mode as long as it’s been more than 24 hours since the last decrease\. Additionally, you can change between Provisioned Throughput mode and the default Bursting Throughput mode as long as it’s been more than 24 hours since the last throughput mode change\.
+If your file system is in the Provisioned Throughput mode, you can increase the Provisioned Throughput of your file system as often as you want\. You can decrease your file system throughput in Provisioned Throughput mode as long as it’s been more than 24 hours since the last decrease\. Additionally, you can change between Provisioned Throughput mode and the default Bursting Throughput mode as long as it’s been more than 24 hours since the last throughput mode change\. File systems in Provisioned Throughput mode still earn burst credits\. They earn the higher of the two rates, either the Provisioned Throughput rate or the baseline Bursting Throughput rate of 50 MiB/s per TiB of storage\.
 
 If your file system's metered size provides a higher baseline rate than the amount of throughput you provisioned, your file system follows the default Amazon EFS Bursting Throughput model\. You don't incur charges for Provisioned Throughput below your file system's entitlement in Bursting Throughput mode\. For more information, see [Throughput Scaling with Bursting Mode](#bursting)\. 
 
 ### Using the Right Throughput Mode<a name="using-throughputmode"></a>
 
-By default, we recommend that you to run your application in the Bursting Throughput mode\. If you experience performance issues, check the `BurstCreditBalance` CloudWatch metric\. If the value of the `BurstCreditBalance` metric is either zero or steadily decreasing, Provisioned Throughput is right for your application\.
+By default, we recommend that you run your application in the Bursting Throughput mode\. If you experience performance issues, check the `BurstCreditBalance` CloudWatch metric\. If the value of the `BurstCreditBalance` metric is either zero or steadily decreasing, Provisioned Throughput is right for your application\. 
+
+In some cases, your file system might run in Provisioned Throughput mode with no performance issues\. However, at the same time, your `BurstCreditBalance` continuously increases for long periods of normal operations\. In such a case, consider decreasing the amount of provisioned throughput to reduce costs\. 
+
+If you're planning on migrating large amounts of data into your file system, consider switching to Provisioned Throughput mode\. In this case, you can provision a higher throughput beyond your allotted burst capability to accelerate loading data\. Following the migration, consider lowering the amount of provisioned throughput or switch to Bursting Throughput mode for normal operations\. 
+
+Compare the average throughput to which you're driving the file system to the `PermittedThroughput` metric\. If the calculated average throughput that you're driving the file system to is less than permitted, consider changing throughput to lower costs\. 
+
+In some cases, your calculated average throughput during normal operations might be at or below the ratio of baseline throughput to storage capacity ratio for Bursting Throughput mode\. That ratio is 50 MiB/s per TiB of data stored\. In such cases, consider switching to Bursting Throughput mode\. In other cases, the calculated average throughput during normal operations might be above this ratio\. In these cases, consider lowering the provisioned throughput to a point between your current provisioned throughput and the calculated average throughput during normal operations\. 
+
+You can change the throughput mode of your file system using the AWS Management Console, the AWS CLI, or the EFS API\. With the CLI, use the `update-file-system` action\. With the EFS API, use the [UpdateFileSystem](API_UpdateFileSystem.md) operation\. 
 
 **Note**  
 As previously mentioned, new file systems have an initial burst credit balance of 2\.1 TB\. With this starting balance, you can burst at 100 MB/s for 6\.12 hours without spending any credits that you're earning from your storage\. This starting formula is calculated as `2.1 x 1024 x (1024/100/3600)` to get 6\.116 hours, rounded up to 6\.12\. 

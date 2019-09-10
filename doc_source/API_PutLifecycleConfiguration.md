@@ -4,12 +4,9 @@ Enables lifecycle management by creating a new `LifecycleConfiguration` object\.
 
 Each Amazon EFS file system supports one lifecycle configuration, which applies to all files in the file system\. If a `LifecycleConfiguration` object already exists for the specified file system, a `PutLifecycleConfiguration` call modifies the existing configuration\. A `PutLifecycleConfiguration` call with an empty `LifecyclePolicies` array in the request body deletes any existing `LifecycleConfiguration` and disables lifecycle management\.
 
-**Note**  
-You can enable lifecycle management only for EFS file systems created after the release of EFS infrequent access\.
-
 In the request, specify the following: 
-+ The ID for the file system for which you are creating a lifecycle management configuration\.
-+ A `LifecyclePolicies` array of `LifecyclePolicy` objects that define when files are moved to the IA storage class\. The array can contain only one `"TransitionToIA": "AFTER_30_DAYS"` `LifecyclePolicy` item\.
++ The ID for the file system for which you are enabling, disabling, or modifying lifecycle management\.
++ A `LifecyclePolicies` array of `LifecyclePolicy` objects that define when files are moved to the IA storage class\. The array can contain only one `LifecyclePolicy` item\.
 
 This operation requires permissions for the `elasticfilesystem:PutLifecycleConfiguration` operation\.
 
@@ -93,12 +90,12 @@ HTTP Status Code: 500
 
 ### Create a Lifecycle Configuration<a name="API_PutLifecycleConfiguration_Example_1"></a>
 
-The following example sends a PUT request to the lifecycle\-configuration endpoint \(`elasticfilesystem.us-west-2.amazonaws.com/2015-02-01/file-systems/FileSystemId/lifecycle-configuration`\)\. The request creates a `LifecyclePolicy` object\. This object tells EFS lifecycle management to move all files in the file system that haven't been accessed in the last 30 days to the IA storage class\. This is the only lifecycle policy that is currently supported\.
+The following example creates a `LifecyclePolicy` object using the PutLifecycleConfiguration operation\. This object tells EFS lifecycle management to move all files in the file system that haven't been accessed in the last 14 days to the IA storage class\. This is the only lifecycle policy that is currently supported\. To learn more, see [EFS Lifecycle Management](https://docs.aws.amazon.com/efs/latest/ug/lifecycle-management-efs.html)\.
 
 #### Sample Request<a name="API_PutLifecycleConfiguration_Example_1_Request"></a>
 
 ```
-PUT /2015-02-01/file-systems/fs-e2a6438b/lifecycle-configuration HTTP/1.1
+PUT /2015-02-01/file-systems/fs-01234567/lifecycle-configuration HTTP/1.1
 Host: elasticfilesystem.us-west-2.amazonaws.com
 x-amz-date: 20181122T232908Z
 Authorization: <...>
@@ -108,7 +105,7 @@ Content-Length: 86
 {
    "LifecyclePolicies": [
       {
-         "TransitionToIA": "AFTER_30_DAYS"
+         "TransitionToIA": "AFTER_14_DAYS"
       }
    ]
 }
@@ -118,14 +115,14 @@ Content-Length: 86
 
 ```
 HTTP/1.1 200 OK
-x-amzn-RequestId: 7560489e-8bc7-4a56-a09a-757ce6f4832a
+x-amzn-RequestId: 01234567-89ab-cdef-0123-456789abcdef
 Content-type: application/json
 Content-Length: 86
 
 {
    "LifecyclePolicies": [
       {
-         "TransitionToIA": "AFTER_30_DAYS"
+         "TransitionToIA": "AFTER_14_DAYS"
       }
    ]
 }
@@ -133,12 +130,12 @@ Content-Length: 86
 
 ### Disable Lifecycle Management<a name="API_PutLifecycleConfiguration_Example_2"></a>
 
-The following example sends a PUT request that deletes any existing `LifecycleConfiguration` and disables lifecycle management for the specified file system\.
+The following example disables lifecycle management for the specified file system\.
 
 #### Sample Request<a name="API_PutLifecycleConfiguration_Example_2_Request"></a>
 
 ```
-PUT /2015-02-01/file-systems/fs-e2a6438b/lifecycle-configuration HTTP/1.1
+PUT /2015-02-01/file-systems/fs-01234567/lifecycle-configuration HTTP/1.1
 Host: elasticfilesystem.us-west-2.amazonaws.com
 x-amz-date: 20181122T232908Z
 Authorization: <...>
@@ -154,7 +151,7 @@ Content-Length: 86
 
 ```
 HTTP/1.1 200 OK
-x-amzn-RequestId: 7560489e-8bc7-4a56-a09a-757ce6f4832a
+x-amzn-RequestId: 01234567-89ab-cdef-0123-456789abcdef
 Content-type: application/json
 Content-Length: 86
 

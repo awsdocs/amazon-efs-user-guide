@@ -1,6 +1,6 @@
 # Mounting Your Amazon EFS File System Automatically<a name="mount-fs-auto-mount-onreboot"></a>
 
-You can use `fstab` to automatically mount your Amazon EFS file system using the mount helper whenever the Amazon EC2 instance it is mounted on reboots\. For more information on the mount helper, see [EFS Mount Helper](using-amazon-efs-utils.md#efs-mount-helper)\. You can set up automatic mounting in two ways\. You can update the `/etc/fstab` file in your EC2 instance after you connect to the instance for the first time, or you can configure automatic mounting of your EFS file system when you create your EC2 instance\.
+You can use `fstab` to automatically mount your Amazon EFS file system using the mount helper whenever the Amazon EC2 instance it is mounted on reboots\. For more information on the mount helper, see [EFS Mount Helper](efs-mount-helper.md)\. You can set up automatic mounting in two ways\. You can update the `/etc/fstab` file in your EC2 instance after you connect to the instance for the first time, or you can configure automatic mounting of your EFS file system when you create your EC2 instance\.
 
 ## Updating an Existing EC2 Instance to Mount Automatically<a name="mount-fs-auto-mount-update-fstab"></a>
 

@@ -1,8 +1,21 @@
 # Backing Up Amazon EFS File Systems Using AWS Data Pipeline<a name="alternative-efs-backup"></a>
 
-If you need to be able to recover from unintended changes or deletions in your Amazon EFS file systems, we recommend that you use the [EFS\-to\-EFS Backup Solution](https://aws.amazon.com/answers/infrastructure-management/efs-backup/)\. This solution is suitable for all Amazon EFS file systems in all AWS Regions\. It includes an AWS CloudFormation template that launches, configures, and runs the AWS services required to deploy this solution\. This solution follows AWS best practices for security and availability\.
+**Note**  
+Using the AWS Data Pipeline to back up your EFS file systems is a legacy solution\.
 
-You can also back up EFS file systems by using AWS Data Pipeline\. In this backup solution, you create a data pipeline by using the AWS Data Pipeline service\. This pipeline copies data from your Amazon EFS file system \(called the *production file system*\) to another Amazon EFS file system \(called the *backup file system*\)\. 
+## Recommended EFS Backup Solutions<a name="recommended-backup-solutions"></a>
+
+There are two recommended solutions available for backing up your EFS file systems\.
++ AWS Backup service
++ The EFS\-to\-EFS backup solution
+
+AWS Backup is a simple and cost\-effective way to back up your Amazon EFS file systems\. AWS Backup is a unified backup service designed to simplify the creation, migration, restoration, and deletion of backups, while providing improved reporting and auditing\. For more information, see [Using AWS Backup with Amazon EFS](awsbackup.md)\.
+
+The EFS\-to\-EFS backup solution is suitable for all Amazon EFS file systems in all AWS Regions\. It includes an AWS CloudFormation template that launches, configures, and runs the AWS services required to deploy this solution\. This solution follows AWS best practices for security and availability\. For more information, see [EFS\-to\-EFS Backup Solution](https://aws.amazon.com/answers/infrastructure-management/efs-backup/) in AWS Answers\.
+
+## Legacy EFS Backup Solution Using AWS Data Pipeline<a name="legacy-solution"></a>
+
+Using AWS Data Pipeline to backup EFS file system is a legacy backup solution\. In this backup solution, you create a data pipeline by using the AWS Data Pipeline service\. This pipeline copies data from your Amazon EFS file system \(called the *production file system*\) to another Amazon EFS file system \(called the *backup file system*\)\. 
 
 This solution consists of AWS Data Pipeline templates that implement the following:
 + Automated EFS backups based on a schedule that you define \(for example, hourly, daily, weekly, or monthly\)\.
@@ -16,6 +29,8 @@ After you set up the backup solution, this walkthrough shows you how to access y
 This solution requires using AWS Data Pipeline in the same AWS Region as your file system\. Because AWS Data Pipeline is not supported in US East \(Ohio\), this solution doesn't work in that AWS Region\. We recommend that if you want to back up your file system using this solution, you use your file system in one of the other supported AWS Regions\.
 
 **Topics**
++ [Recommended EFS Backup Solutions](#recommended-backup-solutions)
++ [Legacy EFS Backup Solution Using AWS Data Pipeline](#legacy-solution)
 + [Performance for Amazon EFS Backups Using AWS Data Pipeline](#backup-performance)
 + [Considerations for Amazon EFS Backup by Using AWS Data Pipeline](#backup-considerations)
 + [Assumptions for Amazon EFS Backup with AWS Data Pipeline](#backup-assumptions)

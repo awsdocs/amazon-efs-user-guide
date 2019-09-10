@@ -27,7 +27,7 @@ Make sure you have the following information as you follow the steps in this sec
   The EC2 instance on which you mount the file system by using the mount target can resolve the file system's DNS name to the mount target's IP address\.
 
 **Note**  
-Amazon EFS doesn't require that your Amazon EC2 instance have either a public IP address or public DNS name\. The requirements listed preceding are just for this walkthrough example to ensure that you'll be able to connect by using SSH into the instance from outside the VPC\.
+Amazon EFS doesn't require that your Amazon EC2 instance have either a public IP address or public DNS name\. The requirements listed preceding are just for this walkthrough example to ensure that you can connect by using SSH into the instance from outside the VPC\.
 
 ## Step 3\.2: Install the NFS Client on Your EC2 Instance<a name="wt1-connect-install-nfs-client"></a>
 
@@ -36,7 +36,7 @@ You can connect to your EC2 instance from Windows or from a computer running Lin
 **To install an NFS client**
 
 1. Connect to your EC2 instance:
-   + To connect to your instance from a computer running Mac OS or Linux, you specify the \.pem file to your ssh command with the `-i` option and the path to your private key\.
+   + To connect to your instance from a computer running Mac OS or Linux, specify the \.pem file for your SSH command with the `-i` option and the path to your private key\.
    + To connect to your instance from a computer running Windows, you can use either MindTerm or PuTTY\. If you plan to use PuTTY, you need to install it and use the following procedure to convert the \.pem file to a \.ppk file\. 
 
    For more information, see the following topics in the *Amazon EC2 User Guide for Linux Instances*:
@@ -58,7 +58,6 @@ You can connect to your EC2 instance from Windows or from a computer running Lin
 
       ```
       $ sudo yum -y install nfs-utils
-      $ sudo apt-get -y install nfs-common #For ubuntu machine    
       ```
 **Note**  
 If you choose the **Amazon Linux AMI 2016\.03\.0** Amazon Linux AMI when launching your Amazon EC2 instance, you don't need to install `nfs-utils` because it is already included in the AMI by default\.
@@ -133,7 +132,7 @@ Now you mount the file system on your EC2 instance\.
 
 You now have successfully created and mounted an Amazon EFS file system on your EC2 instance in your VPC\.
 
-The file system you mounted doesn't persist across reboots\. To automatically remount the directory you can use the `fstab` file\. For more information, see [Automatic Remounting on Reboot](accessing-fs-nfs-permissions-per-user-subdirs.md#accessing-fs-nfs-permissions-per-user-subdirs-auto-mount-on-reboot)\. If you are using an Auto Scaling group to launch EC2 instances, you can also set scripts in a launch configuration\. For an example, see [Walkthrough: Set Up an Apache Web Server and Serve Amazon EFS Files](wt2-apache-web-server.md)\.
+The file system you mounted doesn't persist across reboots\. To automatically remount the directory, you can use the `fstab` file\. For more information, see [Automatic Remounting on Reboot](accessing-fs-nfs-permissions-per-user-subdirs.md#accessing-fs-nfs-permissions-per-user-subdirs-auto-mount-on-reboot)\. If you are using an Auto Scaling group to launch EC2 instances, you can also set scripts in a launch configuration\. For an example, see [Walkthrough: Set Up an Apache Web Server and Serve Amazon EFS Files](wt2-apache-web-server.md)\.
 
 ## Next Step<a name="step3-next-step"></a>
 

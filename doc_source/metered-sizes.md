@@ -7,7 +7,7 @@ In the following section, find how Amazon EFS reports file system sizes and size
 Objects that you can view in an Amazon EFS system include regular files, directories, symbolic links, and special files \(FIFOs and sockets\)\. Each of these objects is metered for 2 kibibytes \(KiB\) of metadata \(for its inode\) and one or more increments of 4 KiB of data\. The following list explains the metered data size for different types of file system objects:
 + **Regular files** – The metered data size of a regular file is the logical size of the file rounded to the next 4\-KiB increment, except that it might be less for sparse files\.
 
-  A *sparse file* is a file to which data is not written to all positions of the file before its logical size is reached\. For a sparse file, if the actual storage used is less than the logical size rounded to the next 4\-KiB increment, Amazon EFS reports actual storage used as the metered data size\.
+  A *sparse file* is a file to which data is not written to all positions of the file before its logical size is reached\. For a sparse file, in some cases the actual storage used is less than the logical size rounded to the next 4\-KiB increment\. In these cases, Amazon EFS reports actual storage used as the metered data size\.
 + **Directories** – The metered data size of a directory is the actual storage used for the directory entries and the data structure that holds them, rounded to the next 4\-KiB increment\. The metered data size doesn't include the actual storage used by the file data\.
 + **Symbolic links and special files** – The metered data size for these objects is always 4 KiB\.
 
@@ -34,7 +34,7 @@ $ /usr/bin/stat --format="%b*%B" . | bc
 
 ## Metering an Amazon EFS File System<a name="metered-sizes-fs"></a>
 
-The metered size of an Amazon EFS file system includes the sum of the sizes of all current objects in the standard and IA storage classes\. The size of each object is calculated from a representative sampling that represents the size of the object during the metered hour, for example the hour from 8:00 AM to 9:00 AM\.
+The metered size of an Amazon EFS file system includes the sum of the sizes of all current objects in the standard and IA storage classes\. The size of each object is calculated from a representative sampling that represents the size of the object during the metered hour\. An example is the hour from 8 AM to 9 AM\.
 
 For example, an empty file contributes 6 KiB \(2 KiB metadata \+ 4 KiB data\) to the metered size of its file system\. Upon creation, a file system has a single empty root directory and therefore has a metered size of 6 KiB\.
 

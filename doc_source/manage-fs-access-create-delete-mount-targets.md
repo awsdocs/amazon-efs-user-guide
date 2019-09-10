@@ -13,9 +13,11 @@ You can delete mount targets\. A mount target deletion forcibly breaks any mount
 
 ## Using the Console<a name="manage-fs-create-delete-mt-console"></a>
 
-Use the following procedure to create new mount targets, delete, or update existing mount targets using the AWS Management Console\.
+Use the following procedure to create new mount targets or delete or update existing mount targets using the AWS Management Console\.
 
-1. In the Amazon EFS console, select the file system, choose **Actions**, and then choose **Manage File System Access**\. 
+**To create new mount targets or update or delete existing ones \(console\)**
+
+1. In the Amazon EFS console, choose the file system, and for **Actions** choose **Manage File System Access**\. 
 
    The console displays the **Manage File System Access** page with a list of file system mount targets you have created in the selected VPC\. The console shows a list of Availability Zones and mount target information, if there is a mount target in that Availability Zone\.
 

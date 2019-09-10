@@ -129,7 +129,7 @@ Authorization: <...>
 
 ```
 HTTP/1.1 200 OK
-x-amzn-RequestId: ab5f2427-3ab3-4002-868e-30a77a88f739
+x-amzn-RequestId: 01234567-89ab-cdef-0123-456789abcdef
 Content-Type: application/json
 Content-Length: 499
 {
@@ -137,7 +137,7 @@ Content-Length: 499
       {
          "OwnerId":"251839141158",
          "CreationToken":"MyFileSystem1",
-         "FileSystemId":"fs-47a2c22e",
+         "FileSystemId":"fs-01234567",
          "PerformanceMode" : "generalPurpose",
          "CreationTime":"1403301078",
          "LifeCycleState":"created",

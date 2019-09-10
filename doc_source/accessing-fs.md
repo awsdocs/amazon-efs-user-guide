@@ -32,7 +32,7 @@ The console shows the preceding page only if you don't already have any Amazon E
 
    1. Select a Amazon VPC from the **VPC** list\. 
 **Warning**  
-If the Amazon VPC you want is not listed, verify the region in the global navigation in the Amazon EFS console\.
+If the Amazon VPC you want is not listed, verify the AWS Region in the global navigation in the Amazon EFS console\.
 
    1. In the **Create Mount Targets** section, select all of the Availability Zones listed\.
 

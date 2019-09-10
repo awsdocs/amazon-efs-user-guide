@@ -69,7 +69,7 @@ The following request creates three tags \(`"key1"`, `"key2"`, and `"key3"`\) on
 #### Sample Request<a name="API_CreateTags_Example_1_Request"></a>
 
 ```
-POST /2015-02-01/create-tags/fs-e2a6438b HTTP/1.1 
+POST /2015-02-01/create-tags/fs-01234567 HTTP/1.1 
 Host: elasticfilesystem.us-west-2.amazonaws.com
 x-amz-date: 20140620T221118Z
 Authorization: <...>
@@ -98,7 +98,7 @@ Content-Length: 160
 
 ```
 HTTP/1.1 204 no content
-x-amzn-RequestId: c3616af3-33fa-40ad-ae0d-d3895a2c3a1f
+x-amzn-RequestId: 01234567-89ab-cdef-0123-456789abcdef
 ```
 
 ## See Also<a name="API_CreateTags_SeeAlso"></a>

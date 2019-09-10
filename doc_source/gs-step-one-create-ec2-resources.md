@@ -24,7 +24,7 @@ Using Amazon EFS with Microsoft Windows Amazon EC2 instances is not supported\.
 
    1. Choose **Next: Add Storage**\.
 
-1. Choose **Next: Tag Instance**\.
+1. Choose **Next: Add Tags**\.
 
 1. Name your instance and choose **Next: Configure Security Group**\.
 
@@ -34,8 +34,6 @@ Using Amazon EFS with Microsoft Windows Amazon EC2 instances is not supported\.
    + **Port Range:** 22
    + **Source:** Anywhere 0\.0\.0\.0/0  
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/efs/latest/ug/images/gs-review-security-group-600w.png)
-**Note**  
-You can configure the EFS file system to mount on your EC2 instance automatically\. For more information, see [Configuring an EFS File System to Mount Automatically at EC2 Instance Launch](mount-fs-auto-mount-onreboot.md#mount-fs-auto-mount-on-creation)\.
 
 1. Choose **Review and Launch**\.
 
@@ -56,7 +54,7 @@ You can configure the EFS file system to mount on your EC2 instance automaticall
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/efs/latest/ug/images/gs-assign-security-group-600w.png)
 **Note**  
 In this step, you assign your VPC's default security group to the Amazon EC2 instance\. Doing this ensures that the instance is a member of the security group that the Amazon EFS file system mount target authorizes for connection in [Step 2: Create Your Amazon EFS File System](gs-step-two-create-efs-resources.md)\.  
-By using your VPC's default security group, with its default inbound and outbound rules, you are potentially opening up this instance and this file system to potential threats from within your VPC\. Make sure that you follow [Step 5: Clean Up Resources and Protect Your AWS Account](gs-step-four-cleanup.md) at the end of this Getting Started exercise to remove resources exposed to your VPC's default security group for this example\. For more information, see [Security Groups for Amazon EC2 Instances and Mount Targets](security-considerations.md#network-access)\.
+By using your VPC's default security group, with default inbound and outbound rules, you might open this instance and file system to potential threats from within your VPC\. Make sure that you follow [Step 5: Clean Up Resources and Protect Your AWS Account](gs-step-four-cleanup.md) at the end of this Getting Started exercise to remove resources exposed to your VPC's default security group for this example\. For more information, see [Security Groups for Amazon EC2 Instances and Mount Targets](security-considerations.md#network-access)\.
 
 1. Choose your instance from the list\.
 

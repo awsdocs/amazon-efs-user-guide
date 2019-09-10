@@ -58,12 +58,12 @@ HTTP Status Code: 500
 
 ### Delete a File System<a name="API_DeleteFileSystem_Example_1"></a>
 
- The following example sends a DELETE request to the `file-systems` endpoint \(`elasticfilesystem.us-west-2.amazonaws.com/2015-02-01/file-systems/fs-47a2c22e`\) to delete a file system whose ID is `fs-47a2c22e`\. 
+ The following example sends a DELETE request to the `file-systems` endpoint \(`elasticfilesystem.us-west-2.amazonaws.com/2015-02-01/file-systems/fs-01234567`\) to delete a file system whose ID is `fs-01234567`\. 
 
 #### Sample Request<a name="API_DeleteFileSystem_Example_1_Request"></a>
 
 ```
-DELETE /2015-02-01/file-systems/fs-47a2c22e HTTP/1.1
+DELETE /2015-02-01/file-systems/fs-01234567 HTTP/1.1
 Host: elasticfilesystem.us-west-2.amazonaws.com
 x-amz-date: 20140622T233021Z
 Authorization: <...>

@@ -82,7 +82,7 @@ Authorization: <...>
 
 ```
 HTTP/1.1 200 OK
-x-amzn-RequestId: 088fb0b4-0c1d-4af7-9de1-933207fbdb46
+x-amzn-RequestId: 01234567-89ab-cdef-0123-456789abcdef
 Content-Length: 57
 
 {

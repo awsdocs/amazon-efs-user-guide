@@ -27,7 +27,7 @@ AWS Backup performs incremental backups of EFS file systems\. During the initial
 
 ### Backup Consistency<a name="backup-consistency"></a>
 
-Amazon EFS is designed to be highly available\. You can access and modify your Amazon EFS file systems while your backup is occurring in AWS Backup\. However, inconsistencies, such as duplicated, skewed, or excluded data, can occur if you make modifications to your file system while the backup is occurring\. These modifications include write, rename, move, or delete operations\. To ensure consistent backups, we recommend that you pause applications or processes that are modifying the file system for the duration of the backup process, or schedule your backups to occur during periods when the file system is not being modified\.
+Amazon EFS is designed to be highly available\. You can access and modify your Amazon EFS file systems while your backup is occurring in AWS Backup\. However, inconsistencies, such as duplicated, skewed, or excluded data, can occur if you make modifications to your file system while the backup is occurring\. These modifications include write, rename, move, or delete operations\. To ensure consistent backups, we recommend that you pause applications or processes that are modifying the file system for the duration of the backup process\. Or, schedule your backups to occur during periods when the file system is not being modified\.
 
 ### Performance<a name="efs-performance"></a>
 
@@ -48,7 +48,9 @@ Backups that don't complete during the specified window are flagged with an inco
 
 ### EFS Storage Classes<a name="backups-storage-classes"></a>
 
-You can use AWS Backup to back up all data in an EFS file system, regardless of which storage class the data is in\. When restoring a recovery point, all files are restored to the standard storage class\. If you restore the recovery point to a file system with lifecycle management enabled, EFS lifecycle management moves files that have not been accessed in the 30 days since restoring your recovery point to the Infrequent Access storage class\. For more information on storage classes, see [EFS Storage Classes](storage-classes.md)\.
+You can use AWS Backup to back up all data in an EFS file system, whatever storage class the data is in\. You don't incur data access charges when backing up an EFS file system that has lifecycle management enabled and has data in the Infrequent Access \(IA\) storage class\. 
+
+When you restore a recovery point, generally all files are restored to the standard storage class\. However, if you restore a recovery point to a file system with lifecycle management enabled, the process is different\. In this case, EFS lifecycle management moves all files that meet the configured lifecycle age\-out policy since restoring your recovery point to the IA storage class\. For more information on storage classes, see [EFS Storage Classes](storage-classes.md) and [EFS Lifecycle Management](lifecycle-management-efs.md)\.
 
 ### On\-Demand Backups<a name="ondemand-backup"></a>
 

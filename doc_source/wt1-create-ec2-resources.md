@@ -8,7 +8,7 @@ In this step, you do the following:
 **Topics**
 + [Step 1\.1: Create Two Security Groups](#wt1-create-sg)
 + [Step 1\.2: Add Rules to the Security Groups to Authorize Inbound/Outbound Access](#wt1-update-sg)
-+ [Step 1\.3: Launch an EC2 instance](#wt1-create-ec2-instance)
++ [Step 1\.3: Launch an EC2 Instance](#wt1-create-ec2-instance)
 
 ## Step 1\.1: Create Two Security Groups<a name="wt1-create-sg"></a>
 
@@ -16,7 +16,7 @@ In this section, you create security groups in your VPC for your EC2 instance an
 
 **To create security groups**
 
-1. Create two security groups using the `create-security-group` CLI command\.
+1. Create two security groups using the `create-security-group` CLI command:
 
    1. Create a security group \(`efs-walkthrough1-ec2-sg`\) for your EC2 instance, and provide your VPC ID\.
 
@@ -73,7 +73,7 @@ In this section, you create security groups in your VPC for your EC2 instance an
 
    Both should have only one outbound rule that allows all traffic to leave\.
 
-   In the next section, you authorize additional access that enable the following: 
+   In the next section, you authorize additional access that enables the following: 
    + Enable you to connect to your EC2 instance\. 
    + Enable traffic between an EC2 instance and an Amazon EFS mount target \(with which you associate these security groups later in this walkthrough\)\.
 
@@ -83,7 +83,7 @@ In this step, you add rules to the security groups to authorize inbound/outbound
 
 **To add rules**
 
-1. Authorize incoming SSH connections to the security group for your EC2 instance \(`efs-walkthrough1-ec2-sg`\) so you can connect to your EC2 instance using SSH from any host\.
+1. Authorize incoming Secure Shell \(SSH\) connections to the security group for your EC2 instance \(`efs-walkthrough1-ec2-sg`\) so you can connect to your EC2 instance using SSH from any host\.
 
    ```
    $ aws ec2 authorize-security-group-ingress \
@@ -127,44 +127,39 @@ In this step, you add rules to the security groups to authorize inbound/outbound
    --region us-west-2
    ```
 
-## Step 1\.3: Launch an EC2 instance<a name="wt1-create-ec2-instance"></a>
+## Step 1\.3: Launch an EC2 Instance<a name="wt1-create-ec2-instance"></a>
 
 In this step, you launch an EC2 instance\. 
 
 **To launch an EC2 instance**
 
 1. Gather the following information that you need to provide when launching an EC2 instance:
+   + Key pair name:
+     + For introductory information, see [Setting Up with Amazon EC2](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/get-set-up-for-amazon-ec2.html) in the *Amazon EC2 User Guide for Linux Instances*\.
+     + For instructions to create a \.pem file, see [Create a Key Pair](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/get-set-up-for-amazon-ec2.html#create-a-key-pair) in the *Amazon EC2 User Guide for Linux Instances*\.
+   + The ID of the Amazon Machine Image \(AMI\) you want to launch\. 
 
-   1. Key pair name\.
-      + For introductory information, see [Setting Up with Amazon EC2](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/get-set-up-for-amazon-ec2.html) in the *Amazon EC2 User Guide for Linux Instances*\.
-      + For instructions to create a \.pem file, see [Create a Key Pair](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/get-set-up-for-amazon-ec2.html#create-a-key-pair) in the *Amazon EC2 User Guide for Linux Instances*\.
-
-   1. The ID of the Amazon Machine Image \(AMI\) you want to launch\. 
-
-      The AWS CLI command you use to launch an EC2 instance requires an AMI ID \(that you want to deploy\) as a parameter\. The exercise uses the Amazon Linux HVM AMI\.
+     The AWS CLI command that you use to launch an EC2 instance requires the ID of the AMI that you want to deploy as a parameter\. The exercise uses the Amazon Linux HVM AMI\.
 **Note**  
-You can use most general purpose Linux\-based AMIs\. If you use another Linux API, keep in mind to use yum to install NFS client on the instance\. Also, you might need to add software packages as you need them\.
+You can use most general purpose Linux\-based AMIs\. If you use another Linux AMI, make sure that you use your distribution's package manager to install the NFS client on the instance\. Also, you might need to add software packages as you need them\.
 
-      For the Amazon Linux HVM AMI, you can find the latest IDs at [Amazon Linux AMI](https://aws.amazon.com/amazon-linux-ami/)\. You choose the ID value from the Amazon Linux AMI IDs table as follows:
-      + Choose the **US West Oregon** region\. This walkthrough assumes you are creating all resources in the US West \(Oregon\) Region \(us\-west\-2\)\.
-      + Choose the **EBS\-backed HVM 64\-bit** type \(because in the CLI command you specify the `t2.micro` instance type, which does not support instance store\)\.
+     For the Amazon Linux HVM AMI, you can find the latest IDs at [Amazon Linux AMI](https://aws.amazon.com/amazon-linux-ami/)\. You choose the ID value from the Amazon Linux AMI IDs table as follows:
+     + Choose the **US West Oregon** region\. This walkthrough assumes you are creating all resources in the US West \(Oregon\) Region \(us\-west\-2\)\.
+     + Choose the **EBS\-backed HVM 64\-bit** type \(because in the CLI command you specify the `t2.micro` instance type, which does not support instance store\)\.
+   + ID of the security group you created for an EC2 instance\. 
+   + AWS Region\. This walkthrough uses the us\-west\-2 region\.
+   + Your VPC subnet ID where you want to launch the instance\. You can get list of subnets using the `describe-subnets` command\. 
 
-   1. ID of the security group you created for an EC2 instance\. 
+     ```
+     $ aws ec2 describe-subnets \
+     --region us-west-2 \
+     --filters "Name=vpc-id,Values=vpc-id" \
+     --profile adminuser
+     ```
 
-   1. AWS Region\. This walkthrough uses the us\-west\-2 region\.
-
-   1. Your VPC subnet ID where you want to launch the instance\. You can get list of subnets using the `describe-subnets` command\. 
-
-      ```
-      $ aws ec2 describe-subnets \
-      --region us-west-2 \
-      --filters "Name=vpc-id,Values=vpc-id" \
-      --profile adminuser
-      ```
-
-      After you choose subnet ID, write down the following values from the `describe-subnets` result:
-      + **subnet ID** – You need this value when you create a mount target\. In this exercise, you create a mount target in the same subnet where you launch an EC2 instance\. 
-      + **Availability Zone of the subnet** – You need this to construct your mount target DNS name, which you use to mount a file system on the EC2 instance\. 
+     After you choose the subnet ID, write down the following values from the `describe-subnets` result:
+     + **Subnet ID** – You need this value when you create a mount target\. In this exercise, you create a mount target in the same subnet where you launch an EC2 instance\. 
+     + **Availability Zone of the subnet** – You need this value to construct your mount target DNS name, which you use to mount a file system on the EC2 instance\. 
 
 1. Run the following AWS CLI `run-instances` command to launch an EC2 instance\.
 
@@ -200,7 +195,7 @@ You can use most general purpose Linux\-based AMIs\. If you use another Linux AP
 
    If you don't find the public DNS name, check the configuration of the VPC in which you launched the EC2 instance\. For more information, see [Before You Begin](wt1-getting-started.md#wt1-prepare)\.
 
-1. You can assign a name to the EC2 instance you created by adding a tag with the key Name and value set to the name you want to assign to the instance\. Run the following AWS CLI `create-tags` command\. 
+1. \(Optional\) Assign a name to the EC2 instance that you created\. To do so, add a tag with the key name and value set to the name that you want to assign to the instance\. You do this by running the following AWS CLI `create-tags` command\. 
 
    ```
    $  aws ec2 create-tags \

@@ -6,6 +6,8 @@ You can mount an Amazon EFS file system on an Amazon EC2 instance using DNS name
   ```
   file-system-id.efs.aws-region.amazonaws.com
   ```
+**Note**  
+ DNS resolution requires that the Amazon EFS file system has a mount target in the same Availabilty Zone as the client instance\. 
 
   Using the file system DNS name, you can mount a file system on your Amazon EC2 instance with the following command\.
 

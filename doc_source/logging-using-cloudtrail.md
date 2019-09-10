@@ -10,7 +10,7 @@ To learn more about CloudTrail, see the [AWS CloudTrail User Guide](https://docs
 
 CloudTrail is enabled on your AWS account when you create the account\. When activity occurs in Amazon EFS, that activity is recorded in a CloudTrail event along with other AWS service events in **Event history**\. You can view, search, and download recent events in your AWS account\. For more information, see [Viewing Events with CloudTrail Event History](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/view-cloudtrail-events.html)\. 
 
-For an ongoing record of events in your AWS account, including events for Amazon EFS, create a trail\. A trail enables CloudTrail to deliver log files to an Amazon S3 bucket\. By default, when you create a trail in the console, the trail applies to all AWS Regions\. The trail logs events from all regions in the AWS partition and delivers the log files to the Amazon S3 bucket that you specify\. Additionally, you can configure other AWS services to further analyze and act upon the event data collected in CloudTrail logs\. For more information, see the following topics in the *AWS CloudTrail User Guide:* 
+For an ongoing record of events in your AWS account, including events for Amazon EFS, create a trail\. A trail enables CloudTrail to deliver log files to an Amazon S3 bucket\. By default, when you create a trail in the console, the trail applies to all AWS Regions\. The trail logs events from all AWS Regions in the AWS partition and delivers the log files to the Amazon S3 bucket that you specify\. Additionally, you can configure other AWS services to further analyze and act upon the event data collected in CloudTrail logs\. For more information, see the following topics in the *AWS CloudTrail User Guide:* 
 + [Overview for Creating a Trail](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-create-and-update-a-trail.html)
 + [CloudTrail Supported Services and Integrations](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-aws-service-specific-topics.html#cloudtrail-aws-service-specific-topics-integrations)
 + [Configuring Amazon SNS Notifications for CloudTrail](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/getting_notifications_top_level.html)
@@ -120,6 +120,7 @@ If you're using an encrypted\-at\-rest file system, the calls that Amazon EFS ma
 | US East \(N\. Virginia\) | 055650462987 | 
 | US West \(N\. California\) | 208867197265 | 
 | US West \(Oregon\) | 736298361104 | 
+| Asia Pacific \(Mumbai\) | 063610658798 | 
 | Asia Pacific \(Seoul\) | 518632624599 | 
 | Asia Pacific \(Singapore\) | 448676862907 | 
 | Asia Pacific \(Sydney\) | 288718191711 | 
@@ -128,6 +129,7 @@ If you're using an encrypted\-at\-rest file system, the calls that Amazon EFS ma
 | EU \(Frankfurt\) | 992038834663 | 
 | EU \(Ireland\) | 805538244694 | 
 | EU \(London\) | 838331228873 | 
+| EU \(Paris\) | 063566772258 | 
 | AWS GovCloud \(US\-West\) | 174619389399 | 
 
 ### Amazon EFS Encryption Context for Encryption at Rest<a name="EFSKMSContext"></a>

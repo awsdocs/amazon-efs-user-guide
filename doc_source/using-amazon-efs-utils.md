@@ -7,7 +7,7 @@ Following, you can find a description of amazon\-efs\-utils, an open\-source col
 + [Installing the amazon\-efs\-utils Package on Amazon Linux](#installing-amazon-efs-utils)
 + [Installing the amazon\-efs\-utils Package on Other Linux Distributions](#installing-other-distro)
 + [Upgrading Stunnel](#upgrading-stunnel)
-+ [EFS Mount Helper](#efs-mount-helper)
++ [EFS Mount Helper](efs-mount-helper.md)
 
 ## Overview<a name="overview-amazon-efs-utils"></a>
 
@@ -22,7 +22,7 @@ The following dependencies exist for amazon\-efs\-utils and are installed when y
 + OpenSSL 1\.0\.2 or newer
 
 **Note**  
-By default, when using the Amazon EFS mount helper with Transport Layer Security \(TLS\), the mount helper enforces the use of the Online Certificate Status Protocol \(OCSP\) and certificate hostname checking\. The Amazon EFS mount helper uses the stunnel program for its TLS functionality\. Some versions of Linux don't include a version of stunnel that supports these TLS features by default\. When using one of those Linux versions, mounting an Amazon EFS file system using TLS fails\.  
+By default, when using the Amazon EFS mount helper with Transport Layer Security \(TLS\), the mount helper enforces certificate hostname checking\. The Amazon EFS mount helper uses the stunnel program for its TLS functionality\. Some versions of Linux don't include a version of stunnel that supports these TLS features by default\. When using one of those Linux versions, mounting an Amazon EFS file system using TLS fails\.  
 When you've installed the amazon\-efs\-utils package, to upgrade your system's version of stunnel, see [Upgrading Stunnel](#upgrading-stunnel)\.  
 For issues with encryption, see [Troubleshooting Encryption](troubleshooting-efs-encryption.md)\.
 
@@ -131,33 +131,65 @@ After you clone the package, you can build and install amazon\-efs\-utils using 
 
 ## Upgrading Stunnel<a name="upgrading-stunnel"></a>
 
-Using encryption of data in transit with the Amazon EFS mount helper requires OpenSSL version 1\.0\.2 or newer, and a version of stunnel that supports both OSCP and certificate hostname checking\. The Amazon EFS mount helper uses the stunnel program for its TLS functionality\. Note that some versions of Linux don't include a version of stunnel that supports these TLS features by default\. When using one of those Linux versions, mounting an Amazon EFS file system using TLS fails\.
+Using encryption of data in transit with the Amazon EFS mount helper requires OpenSSL version 1\.0\.2 or newer, and a version of stunnel that supports both OCSP and certificate hostname checking\. The Amazon EFS mount helper uses the stunnel program for its TLS functionality\. Note that some versions of Linux don't include a version of stunnel that supports these TLS features by default\. When using one of those Linux versions, mounting an Amazon EFS file system using TLS fails\.
 
 After installing the Amazon EFS mount helper, you can upgrade your system's version of stunnel with the following instructions\.
 
 **To upgrade stunnel**
 
-1. Open a terminal on your Linux client, and run the following commands in order\.
+1.  In a web browser, go to the stunnel downloads page [https://stunnel\.org/downloads\.html](https://www.stunnel.org/downloads.html)\. 
 
-1. `sudo yum install -y gcc openssl-devel tcp_wrappers-devel`
+1.  Locate the latest stunnel version that is available in tar\.gz format\. Note the name of the file as you will need it in the following steps\. 
 
-1. `sudo curl -o stunnel-5.50.tar.gz https://www.stunnel.org/downloads/stunnel-5.50.tar.gz`
+1. Open a terminal on your Linux client, and run the following commands in the order presented\.
 
-1. `sudo tar xvfz stunnel-5.50.tar.gz`
+1. 
 
-1. `cd stunnel-5.50/`
+   ```
+   $ sudo yum install -y gcc openssl-devel tcp_wrappers-devel
+   ```
 
-1. `sudo ./configure`
+1. Replace *latest\-stunnel\-version* with the name of the file you noted previously in Step 2\.
 
-1. `sudo make`
+   ```
+   $ sudo curl -o latest-stunnel-version.tar.gz https://www.stunnel.org/downloads.html/latest-stunnel-version.tar.gz
+   ```
+
+1. 
+
+   ```
+   $ sudo tar xvfz latest-stunnel-version.tar.gz
+   ```
+
+1. 
+
+   ```
+   $ cd latest-stunnel-version/
+   ```
+
+1. 
+
+   ```
+   $ sudo ./configure
+   ```
+
+1. 
+
+   ```
+   $ sudo make
+   ```
 
 1. The current amazon\-efs\-utils package is installed in `bin/stunnel`\. So that the new version can be installed, remove that directory with the following command\.
 
    ```
-   sudo rm /bin/stunnel
+   $ sudo rm /bin/stunnel
    ```
 
-1. `sudo make install` 
+1. 
+
+   ```
+   $ sudo make install
+   ```
 
 1. 
 **Note**  
@@ -173,61 +205,45 @@ The default CentOS shell is csh, which has different syntax than the bash shell\
    fi
    ```
 
-1. `sudo ln -s /usr/local/bin/stunnel /bin/stunnel`
+1. 
+
+   ```
+   $ sudo ln -s /usr/local/bin/stunnel /bin/stunnel
+   ```
 
 After you've installed a version of stunnel with the required features, you can mount your file system using TLS with the recommended settings\.
 
-If you are unable to install the required dependencies, you can optionally disable OCSP and certificate hostname checking inside the Amazon EFS mount helper configuration\. We do not recommend that you disable these features in production environments\. To disable OCSP and certificate host name checking, do the following:
+### Disabling Certificate Hostname Checking<a name="disable-cert-hn-checking"></a>
+
+If you are unable to install the required dependencies, you can optionally disable certificate hostname checking inside the Amazon EFS mount helper configuration\. We do not recommend that you disable this feature in production environments\. To disable certificate host name checking, do the following:
 
 1. Using your text editor of choice, open the `/etc/amazon/efs/efs-utils.conf` file\.
 
 1. Set the `stunnel_check_cert_hostname` value to false\.
 
-1. Set the `stunnel_check_cert_validity` value to false\.
-
 1. Save the changes to the file and close it\.
 
 For more information on using encryption of data in transit, see [Mounting EFS File Systems](mounting-fs.md)\.
 
-## EFS Mount Helper<a name="efs-mount-helper"></a>
+### Enabling Online Certificate Status Protocol<a name="tls-ocsp"></a>
 
-The Amazon EFS mount helper simplifies mounting your file systems\. It includes the Amazon EFS recommended mount options by default\. Additionally, the mount helper has built\-in logging for troubleshooting purposes\. If you encounter an issue with your Amazon EFS file system, you can share these logs with AWS Support\. 
+ In order to maximize file system availability in the event that the CA is not reachable from your VPC, the Online Certificate Status Protocol \(OCSP\) is not enabled by default when you choose to encrypt data in transit\. Amazon EFS uses an [Amazon certificate authority](https://www.amazontrust.com) \(CA\) to issue and sign its TLS certificates, and the CA instructs the client to use OCSP to check for revoked certificates\. The OCSP endpoint must be accessible over the Internet from your Virtual Private Cloud in order to check a certificate's status\. Within the service, EFS continuously monitors certificate status, and issues new certificates to replace any revoked certificates it detects\. 
 
-### How It Works<a name="efs-mount-helper-how"></a>
+ In order to provide the strongest security possible, you can enable OCSP so that your Linux clients can check for revoked certificates\. OCSP protects against malicious use of revoked certificates, which is unlikely to within your VPC\. In the event that an EFS TLS certificate is revoked, Amazon will publish a security bulletin and release a new version of EFS mount helper that rejects the revoked certificate\. 
 
-The mount helper defines a new network file system type, called `efs`, which is fully compatible with the standard `mount` command in Linux\. The mount helper also supports mounting an Amazon EFS file system at instance boot time automatically by using entries in the `/etc/fstab` configuration file\.
+**To enable OCSP on your Linux client for all future TLS connections to EFS**
 
-**Warning**  
-Use the `_netdev` option, used to identify network file systems, when mounting your file system automatically\. If `_netdev` is missing, your EC2 instance might stop responding\. This result is because network file systems need to be initialized after the compute instance starts its networking\. For more information, see [Automatic Mounting Fails and the Instance Is Unresponsive](troubleshooting-efs-mounting.md#automount-fails)\.
+1. Open a terminal on your Linux client\.
 
-When encryption of data in transit is declared as a mount option for your Amazon EFS file system, the mount helper initializes a client stunnel process, and a supervisor process called `amazon-efs-mount-watchdog`\. Stunnel is a multipurpose network relay that is open\-source\. The client stunnel process listens on a local port for inbound traffic, and the mount helper redirects NFS client traffic to this local port\. The mount helper uses TLS version 1\.2 to communicate with your file system\.
+1.  Using your text editor of choice, open the `/etc/amazon/efs/efs-utils.conf` file\. 
 
-Using TLS requires certificates, and these certificates are signed by a trusted Amazon Certificate Authority\. For more information on how encryption works, see [Encrypting Data and Metadata in EFS](encryption.md)\.
+1.  Set the `stunnel_check_cert_validity` value to true\. 
 
-### Using the EFS Mount Helper<a name="using-efs-mount-helper"></a>
+1.  Save the changes to the file and close it\. 
 
-The mount helper helps you mount your EFS file systems on your Linux EC2 instances\. For more information, see [Mounting EFS File Systems](mounting-fs.md)\. 
+**To enable OCSP as part of the `mount` command**
++  Use the following mount command to enable OCSP when mounting the file system\. 
 
-### Getting Support Logs<a name="mount-helper-logs"></a>
-
-The mount helper has built\-in logging for your Amazon EFS file system\. You can share these logs with AWS Support for troubleshooting purposes\. 
-
-You can find the logs stored in `/var/log/amazon/efs` for systems with the mount helper installed\. These logs are for the mount helper, the stunnel process itself, and for the `amazon-efs-mount-watchdog` process that monitors the stunnel process\.
-
-**Note**  
-The watchdog process ensures that each mount's stunnel process is running, and stops the stunnel when the Amazon EFS file system is unmounted\. If for some reason a stunnel process is terminated unexpectedly, the watchdog process restarts it\.
-
-You can change the configuration of your logs in `/etc/amazon/efs/efs-utils.conf`\. However, doing so requires unmounting and then remounting the file system with the mount helper for the changes to take effect\. Log capacity for the mount helper and watchdog logs is limited to 20 MiB\. Logs for the stunnel process are disabled by default\.
-
-**Important**  
-You can enable logging for the stunnel process logs\. However, enabling the stunnel logs can use up a nontrivial amount of space on your file system\.
-
-### Using amazon\-efs\-utils with AWS Direct Connect and VPN<a name="amazon-efs-utils-direct"></a>
-
-You can mount your Amazon EFS file systems on your on\-premises data center servers when connected to your Amazon VPC with AWS Direct Connect\. Using amazon\-efs\-utils also makes mounting simpler with the mount helper and allows you to enable encryption of data in transit\. To see how to use amazon\-efs\-utils with AWS Direct Connect to mount Amazon EFS file systems onto on\-premises Linux clients, see [Walkthrough: Create and Mount a File System On\-Premises with AWS Direct Connect and VPN](efs-onpremises.md)\.
-
-### Related Topics<a name="amazon-efs-utils-related"></a>
-
-For more information on the Amazon EFS mount helper, see these related topics:
-+ [Encrypting Data and Metadata in EFS](encryption.md)
-+ [Mounting EFS File Systems](mounting-fs.md)
+  ```
+         $ sudo mount -t efs -o tls,ocsp fs-12345678:/ /mnt/efs
+  ```

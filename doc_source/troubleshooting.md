@@ -33,7 +33,6 @@ RHEL 6\.9 might be suboptimal for certain workloads due to [Poor Performance Whe
 + [Poor Performance When Opening Many Files in Parallel](#open-close-operations-serialized)
 + [Custom NFS Settings Causing Write Delays](#custom-nfs-settings-write-delays)
 + [Creating Backups with Oracle Recovery Manager Is Slow](#oracle-backup-slow)
-+ [File System Doesn't Support Lifecycle Management](#troubleshooting-efs-lifecycle-management)
 
 ### Amazon EC2 Instance Hangs<a name="ec2-instance-hangs"></a>
 
@@ -107,14 +106,6 @@ If you encounter this issue, disable Oracle Direct NFS, as described in [Enablin
 
 **Note**  
 Amazon EFS doesn't support Oracle Direct NFS\.
-
-### File System Doesn't Support Lifecycle Management<a name="troubleshooting-efs-lifecycle-management"></a>
-
-You can't enable lifecycle management on an existing EFS file system\. File systems created before November 28, 2018, don't support EFS lifecycle management\.
-
-**Action to Take**
-
-If you encounter this issue, create a new file system and enable lifecycle management\. Then copy the data from the old file system to the new file system\.
 
 ## Troubleshooting File Operation Errors<a name="troubleshooting-efs-fileop-errors"></a>
 

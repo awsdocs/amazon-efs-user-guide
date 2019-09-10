@@ -69,7 +69,7 @@ The following request retrieves the `LifecycleConfiguration` object for the spec
 #### Sample Request<a name="API_DescribeLifecycleConfiguration_Example_1_Request"></a>
 
 ```
-GET /2015-02-01/file-systems/fs-e2a6438b/lifecycle-configuration HTTP/1.1
+GET /2015-02-01/file-systems/fs-01234567/lifecycle-configuration HTTP/1.1
 Host: elasticfilesystem.us-west-2.amazonaws.com
 x-amz-date: 20181120T221118Z
 Authorization: <...>
@@ -79,13 +79,13 @@ Authorization: <...>
 
 ```
 HTTP/1.1 200 OK
-        x-amzn-RequestId: c3616af3-33fa-40ad-ae0d-d3895a2c3a1f
+        x-amzn-RequestId: 01234567-89ab-cdef-0123-456789abcdef
         Content-Type: application/json
         Content-Length: 86
 {
   "LifecyclePolicies": [
     {
-        "TransitionToIA": "AFTER_30_DAYS"
+        "TransitionToIA": "AFTER_14_DAYS"
     }
   ]
 }

@@ -9,7 +9,7 @@ In this walkthrough, you create the following AWS resources in your account:
 + Amazon EC2 resources:
   + Two security groups \(for your EC2 instance and Amazon EFS file system\)\.
 
-    You add rules to these security groups to authorize appropriate inbound/outbound access to allow your EC2 instance to connect to the file system via the mount target using a standard NFSv4\.1 TCP port\.
+    You add rules to these security groups to authorize appropriate inbound/outbound access\. Doing this allows your EC2 instance to connect to the file system through the mount target by using a standard NFSv4\.1 TCP port\.
   + An Amazon EC2 instance in your VPC\. 
 + Amazon EFS resources:
   + A file system\.
@@ -30,7 +30,7 @@ The walkthrough creates all these resources in the US West \(Oregon\) Region \(`
   + The VPC route table includes a rule to send all Internet\-bound traffic to the Internet gateway\.
 + You need to set up the AWS CLI and add the adminuser profile\.
 
-## Setting Up AWS CLI<a name="wt1-setup-awscli"></a>
+## Setting Up the AWS CLI<a name="wt1-setup-awscli"></a>
 
 Use the following instructions to set up the AWS CLI and user profile\. 
 

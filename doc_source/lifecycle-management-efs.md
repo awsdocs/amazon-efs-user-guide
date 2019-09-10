@@ -1,19 +1,35 @@
 # EFS Lifecycle Management<a name="lifecycle-management-efs"></a>
 
-EFS Lifecycle Management automatically manages cost\-effective file storage\.
+Amazon EFS lifecycle management automatically manages cost\-effective file storage for your file systems\. When enabled, lifecycle management migrates files that have not been accessed for a set period of time to the Infrequent Access \(IA\) storage class\. You define that period of time by using a *lifecycle policy\. *
 
-When enabled, lifecycle management automatically migrates files that have not been accessed for 30 days to the EFS IA storage class\. Once lifecycle management moves a file into the IA storage class, it remains there indefinitely\. In EFS, lifecycle management uses an internal timer to track when a file was last accessed\. It doesn't use the publicly viewable POSIX file system attributes\. Whenever a file in Standard storage is written to or read from, the lifecycle management timer is reset\. Metadata operations such as listing the contents of a directory don't count as file access\. During the process of transitioning a file's content to IA storage, the file is stored in the Standard storage class and billed at the Standard storage rate\.
+After lifecycle management moves a file into the IA storage class, the file remains there indefinitely\. Amazon EFS lifecycle management uses an internal timer to track when a file was last accessed\. It doesn't use the POSIX file system attributes that are publicly viewable\. Whenever a file in Standard storage is written to or read from, the lifecycle management timer is reset\. 
 
-File metadata, such as file names, ownership information, and file system directory structure, is always stored in Standard storage to ensure consistent metadata performance\. All writes to files in IA storage are first written to Standard storage, then transitioned to IA storage\. Files smaller than 128 KB are not eligible for lifecycle management and are always stored in the standard class\.
+Metadata operations, such as listing the contents of a directory, don't count as file access\. During the process of transitioning a file's content to IA storage, the file is stored in the Standard storage class and billed at the Standard storage rate\. 
 
-Lifecycle management applies to all files in the file system\. For file systems created after February 13, 2019, you can enable or disable lifecycle management at any time\.
+Lifecycle management applies to all files in the file system\.
 
-**Important**  
-If you want to use lifecycle management with existing file systems created before February 13, 2019, create a new EFS file system and enable lifecycle management\. Then copy the data from the older file system into the new file system\.
+## Using a Lifecycle Policy<a name="lifecycle-policy"></a>
 
-Operations to transition files for lifecycle management have lower priority than EFS file system workloads, and the time required to transition files to the IA storage class varies\. There are data access charges when data is read from IA storage, and when file content is transitioned to IA storage\. 
+You define when EFS transitions files to the IA storage class by setting a lifecycle policy\. A file system has one lifecycle policy that applies to the entire file system\. If a file is not accessed for the period of time defined by the lifecycle policy that you choose, Amazon EFS transitions the file to the IA storage class\. You can specify one of four lifecycle policies for your Amazon EFS file system, as follows: 
++  `AFTER_14_DAYS` 
++  `AFTER_30_DAYS` 
++  `AFTER_60_DAYS` 
++  `AFTER_90_DAYS` 
 
-The AWS bill displays the capacity for each storage class and the metered access against the IA storage class\. For more information on IA storage class pricing, see [Amazon EFS Pricing](https://aws.amazon.com/efs/pricing)\.
+To learn more about enabling lifecycle management on your Amazon EFS file system and setting a lifecycle policy, see [Enabling Lifecycle Management](enable-lifecycle-management.md)\. 
+
+## File System Operations for Lifecycle Management<a name="metadata"></a>
+
+File system operations for lifecycle management, which transition files to IA storage, have a lower priority than operations for EFS file system workloads\. The time required to transition files to the IA storage class varies depending on the file size and file system workload\. 
+
+File metadata, including file names, ownership information, and file system directory structure, is always stored in Standard storage to ensure consistent metadata performance\. All write operations to files in IA storage are first written to Standard storage, then transitioned to IA storage\. Files smaller than 128 KB aren't eligible for lifecycle management and are always stored in the Standard class\. 
+
+## Pricing and Billing<a name="billing"></a>
+
+You are billed for the amount of data in each storage class\. You are also billed for data access when files in IA storage are read and when files are transitioned to IA storage from Standard storage\. The AWS bill displays the capacity for each storage class and the metered access against the IA storage class\. To learn more, see [Amazon EFS Pricing](https://aws.amazon.com/efs/pricing)\.
+
+**Note**  
+You don't incur data access charges when using AWS Backup to back up lifecycle management\-enabled EFS file systems\. To learn more about AWS Backup and EFS lifecycle management, see [EFS Storage Classes](awsbackup.md#backups-storage-classes)
 
 You can view how much data is stored in each storage class of your file system using the AWS CLI or EFS API\. View data storage details by calling the `describe-file-systems` CLI command\.
 
@@ -48,111 +64,3 @@ In the response, `ValueInIA` displays the last metered size in IA storage\. `Val
 ```
 
 For additional ways to view and measure disk usage, see [Metering Amazon EFS File System Objects](metered-sizes.md#metered-sizes-fs-objects)\.
-
-## Enabling Lifecycle Management<a name="enable-lifecycle-management"></a>
-
-You can enable lifecycle management anytime on an EFS file system by using the EFS console, CLI, or API\. Following, find procedures for enabling and disabling EFS Lifecycle Management on EFS file systems created on or after February 13, 2019\.
-
-### Enable Lifecycle Management \(Console\)<a name="enable-lifecycle-console"></a>
-
-You can use the AWS Management Console to enable lifecycle management as follows\.
-
-**Note**  
-The Amazon EFS console displays the Lifecycle Management option only for file systems created on or after February 13, 2019\.
-
-**To enable lifecycle management \(console\)**
-
-1. Open the Amazon EFS Management Console at [https://console\.aws\.amazon\.com/efs/](https://console.aws.amazon.com/efs/)\.
-
-1. Choose **File Systems**\.
-
-1. Choose the file system on which to enable lifecycle management\.
-
-1. Locate **Lifecycle policy** in **Other details**\. Choose edit to change the setting\.  
-![\[Image NOT FOUND\]](http://docs.aws.amazon.com/efs/latest/ug/images/enable_disable_lifecycle_mgt_existing.png)
-
-1. Choose the check box for **Enable Lifecycle Management**\.  
-![\[Image NOT FOUND\]](http://docs.aws.amazon.com/efs/latest/ug/images/lifecycle_change.png)
-
-1. Choose **Save** to save the setting\.
-
-### Enable Lifecycle Management \(AWS CLI\)<a name="enable-lifecycle-cli"></a>
-
-You can use the AWS CLI to enable lifecycle management as follows\.  
-
-**To enable lifecycle management \(AWS CLI\)**
-+ Run the `put-lifecycle-configuration` command\.
-
-  ```
-  $  aws efs put-lifecycle-configuration \
-  --file-system-id File-System-ID \
-  --lifecycle-policies TransitionToIA=AFTER_30_DAYS \
-  --region us-west-2 \
-  --profile adminuser
-  ```
-
-  You get the following response\.
-
-  ```
-  {
-    "LifecyclePolicies": [
-      {
-          "TransitionToIA": "AFTER_30_DAYS"
-      }
-    ]
-  }
-  ```
-
-  If the file system is not eligible to use lifecycle management because it was created before February 13, 2019, you get the following response\.
-
-  ```
-  File systems created before February 13, 2019 do not support lifecycle management. 
-  Apply a lifecycle configuration to a file system created after February 13, 2019.
-  ```
-
-  To enable lifecycle management in this case, create a new EFS file system and enable lifecycle management for that file system\.
-
-## Disabling EFS Lifecycle Management<a name="disable-lifecycle-mgnt"></a>
-
-You can disable lifecycle management at any time using the EFS Management Console, the CLI, or the EFS API\. When you disable lifecycle management, your files are no longer moved into the IA storage class\. Any files currently in IA storage remain there\. You can move files from IA to Standard storage by copying them to another location on your file system\. 
-
-### Disable Lifecycle Management \(Console\)<a name="disable-lifecycle-console"></a>
-
-You can disable EFS lifecycle management using the EFS Management Console as follows\.
-
-**To disable lifecycle management \(console\)**
-
-1. Open the Amazon EFS Management Console at [https://console\.aws\.amazon\.com/efs/](https://console.aws.amazon.com/efs/)\.
-
-1. Choose **File Systems**\.
-
-1. Choose the file system on which to disable lifecycle management\.
-
-1. Locate **Lifecycle policy** in **Other details**\. Choose edit to change the setting\.
-
-1. Clear the check box for **Enable Lifecycle Management**\.
-
-1. Choose **Save** to save the setting\.
-
-### Disable Lifecycle Management \(AWS CLI\)<a name="disable-lifecycle-cli"></a>
-
-You can disable EFS lifecycle management using the AWS CLI as follows\.
-
-**To disable lifecycle management \(AWS CLI\)**
-+ Run the `put-lifecycle-configuration` command\.  
-
-  ```
-  $  aws efs put-lifecycle-configuration \
-  --file-system-id File-System-ID \
-  --lifecycle-policies \
-  --region us-west-2 \
-  --profile adminuser
-  ```
-
-  You get the following response\.
-
-  ```
-  {
-      "LifecyclePolicies": []
-  }
-  ```

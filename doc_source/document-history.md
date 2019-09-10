@@ -1,11 +1,16 @@
 # Document History<a name="document-history"></a>
 + **API version**: 2015\-02\-01
-+ **Latest documentation update**: May 1, 2019
++ **Latest documentation update**: September 10, 2019
 
 The following table describes important changes to the *Amazon Elastic File System User Guide* after July 2018\. For notifications about documentation updates, you can subscribe to the RSS feed\.
 
 | Change | Description | Date | 
 | --- |--- |--- |
+| [Support for Service Quotas added](#document-history) | You can now view all Amazon EFS limits in the Service Quotas console\. For more information, see [Amazon EFS Limits](https://docs.aws.amazon.com/efs/latest/ug/limits.html)\.  | September 10, 2019 | 
+| [New lifecycle management policies added](#document-history) | When using Lifecycle Management, you can now choose from one of four lifecycle policies to define when files are transitioned into the cost\-effective Infrequent Access storage class\. For more information, see [EFS Lifecycle Management](https://docs.aws.amazon.com/efs/latest/ug/lifecycle-management-efs.html)\.  | July 9, 2019 | 
+| [EFS Lifecycle Management now available on all EFS file systems\.](#document-history) | The EFS Lifecycle Management feature is now available on all EFS file systems\. A previous restriction based on when a file system was created is now removed\. For more information, see [EFS Lifecycle Management](https://docs.aws.amazon.com/efs/latest/ug/lifecycle-management-efs.html)\.  | July 9, 2019 | 
+| [Additional AWS Region support added](#document-history) | Amazon EFS is now available to all users in the EU \(Paris\) AWS Region\. | June 12, 2019 | 
+| [Additional AWS Region support added](#document-history) | Amazon EFS is now available to all users in the Asia Pacific \(Mumbai\) AWS Region\. | June 5, 2019 | 
 | [Additional AWS Region support added](#document-history) | Amazon EFS is now available to all users in the Canada \(Central\) AWS Region\. | May 1, 2019 | 
 | [API Update: Tags are now part of the CreateFileSystem action payload\.](#document-history) | You can now include Tags when using the AWS API and CLI CreateFileSystem action to create an Amazon EFS file system\. For more information, see [CreateFileSystem](https://docs.aws.amazon.com/efs/latest/ug/API_CreateFileSystem.html) and [Creating a File System Using the AWS CLI](https://docs.aws.amazon.com/efs/latest/ug/creating-using-create-fs.html#creating-using-fs-part1-cli)\. | February 19, 2019 | 
 | [New features: EFS Infrequent Access storage class and EFS lifecycle management](#document-history) | Amazon EFS Infrequent Access is a cost\-optimized storage class for infrequently accessed files\. EFS lifecycle management automatically transitions files from Standard to Infrequent Access storage\. For more information, see [EFS Storage Classes](https://docs.aws.amazon.com/efs/latest/ug/storage-classes.html)\. | February 13, 2019 | 
@@ -33,7 +38,7 @@ The following table describes important changes to the *Amazon Elastic File Syst
 | Additional region support added | Amazon EFS is now available to all users in the EU \(Frankfurt\) region\. | July 20, 2017 | 
 | File system names using Domain Name System \(DNS\) | Amazon EFS now supports DNS names for file systems\. A file system's DNS name automatically resolves to a mount target’s IP address in the Availability Zone for the connecting Amazon EC2 instance\. For more information, see [Mounting on Amazon EC2 with a DNS Name](mounting-fs-mount-cmd-dns-name.md)\. | December 20, 2016 | 
 | Increased tag support for file systems | Amazon EFS now supports 50 tags per file system\. For more information on tags in Amazon EFS, see [Managing File System Tags](manage-fs-tags.md)\. | August 29, 2016 | 
-|  General availability  |  Amazon EFS is now generally available to all users in the US East \(N\. Virginia\), US West \(Oregon\), and EU \(Ireland\) regions\.  |  June 28, 2016  | 
-|  File system limit increase  |  The number of Amazon EFS file systems that can be created per account per region increased from 5 to 10\.  |  August 21, 2015  | 
+|  General availability  |  Amazon EFS is now generally available to all users in the US East \(N\. Virginia\), US West \(Oregon\), and EU \(Ireland\) Regions\.  |  June 28, 2016  | 
+|  File system limit increase  |  The number of Amazon EFS file systems that can be created per account for each AWS Region increased from 5 to 10\.  |  August 21, 2015  | 
 |  Updated Getting Started exercise  |  The Getting Started exercise has been updated to simplify the getting started process\.  |  August 17, 2015  | 
 |  New guide  |  This is the first release of the *Amazon Elastic File System User Guide*\.  |  May 26, 2015  | 

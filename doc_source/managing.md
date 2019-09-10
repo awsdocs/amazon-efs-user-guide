@@ -32,7 +32,7 @@ You manage who has access to your CMKs and the contents of your encrypted file s
 + [Using Key Policies in AWS KMS](https://docs.aws.amazon.com/kms/latest/developerguide/key-policies.html) in the *AWS Key Management Service Developer Guide*
 + [Using Grants](https://docs.aws.amazon.com/kms/latest/developerguide/grants.html) in the *AWS Key Management Service Developer Guide*\.
 
-As a key administrator, you can import external keys and you can modify keys by enabling, disabling, or deleting them\. The state of the CMK that you specified \(when you created the file system with encryption at rest\) affects access to its contents\. The CMK must be in the `enabled` state for users to have access to the contents of an encrypted\-at\-rest file system\.
+As a key administrator, you can import external keys\. You can also modify keys by enabling them, disabling them, or deleting them\. The state of the CMK that you specified \(when you created the file system with encryption at rest\) affects access to its contents\. The CMK must be in the `enabled` state for users to have access to the contents of an encrypted\-at\-rest file system\.
 
 ### Performing Administrative Actions on Amazon EFS Customer Master Keys<a name="use-kms-key"></a>
 
@@ -40,7 +40,7 @@ Following, you can find how to enable, disable, or delete the CMKs associated wi
 
 #### Disabling, Deleting, or Revoking Access to the CMK for a File System<a name="disable-efs-cmk"></a>
 
-You can disable or delete your customer managed CMKs, or you can revoke Amazon EFS access to your CMKs\. Disabling and revoking access for Amazon EFS to your keys are reversible actions\. Exercise significant caution when deleting CMKs\. Deleting a CMK is an irreversible action\.
+You can disable or delete your customer\-managed CMKs, or you can revoke Amazon EFS access to your CMKs\. Disabling and revoking access for Amazon EFS to your keys are reversible actions\. Exercise significant caution when deleting CMKs\. Deleting a CMK is an irreversible action\.
 
 If you disable or delete the CMK used for your mounted file system, the following is true:
 + That CMK can't be used as the master key for new encrypted\-at\-rest file systems\.
@@ -48,11 +48,11 @@ If you disable or delete the CMK used for your mounted file system, the followin
 
 If you revoke Amazon EFS access to a grant for any existing mounted file system, the behavior is the same as if you disabled or deleted the associated CMK\. In other words, the encrypted\-at\-rest file system continues to function, but stops working after a period of time\.
 
-To prevent access to a mounted encrypted\-at\-rest file system that has a CMK that you disabled, deleted, or revoked Amazon EFS access to, unmount the file system and delete your Amazon EFS mount targets\.
+You can prevent access to a mounted encrypted\-at\-rest file system that has a CMK that you disabled, deleted, or revoked Amazon EFS access to\. To do this, unmount the file system and delete your Amazon EFS mount targets\.
 
-You can't immediately delete an AWS KMS CMK, but you can schedule it for deletion in 7\-30 days\. While a CMK is scheduled for deletion, you cannot use it for cryptographic operations\. You can also cancel a CMK's scheduled deletion\.
+You can't immediately delete an AWS KMS CMK, but you can schedule it for deletion in 7\-30 days\. While a CMK is scheduled for deletion, you can't use it for cryptographic operations\. You can also cancel a CMK's scheduled deletion\.
 
-To learn how to disable and re\-enable customer managed CMKs, see [Enabling and Disabling Keys](https://docs.aws.amazon.com/kms/latest/developerguide/enabling-keys.html) in the AWS Key Management Service Developer Guide\. To learn how to schedule deletion of customer managed CMKs, see [Deleting Customer Master Keys](https://docs.aws.amazon.com/kms/latest/developerguide/deleting-keys.html) in the AWS Key Management Service Developer Guide\.
+To learn how to disable and re\-enable customer\-managed CMKs, see [Enabling and Disabling Keys](https://docs.aws.amazon.com/kms/latest/developerguide/enabling-keys.html) in the AWS Key Management Service Developer Guide\. To learn how to schedule deletion of customer\-managed CMKs, see [Deleting Customer Master Keys](https://docs.aws.amazon.com/kms/latest/developerguide/deleting-keys.html) in the AWS Key Management Service Developer Guide\.
 
 ### Related Topics<a name="related-managing-encryption"></a>
 + For more information on encrypted data and metadata at rest in Amazon EFS, see [Encrypting Data and Metadata in EFS](encryption.md)\.

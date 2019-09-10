@@ -257,7 +257,7 @@ Content-Length: 42
 
 ```
 HTTP/1.1 201 Created
-x-amzn-RequestId: 7560489e-8bc7-4a56-a09a-757ce6f4832a
+x-amzn-RequestId: 01234567-89ab-cdef-0123-456789abcdef
 Content-Type: application/json
 Content-Length: 319
 
@@ -265,7 +265,7 @@ Content-Length: 319
    "ownerId":"251839141158",
    "creationToken":"myFileSystem1",
    "PerformanceMode" : "generalPurpose",
-   "fileSystemId":"fs-47a2c22e",
+   "fileSystemId":"fs-01234567",
    "CreationTime":"1403301078",
    "LifeCycleState":"creating",
    "numberOfMountTargets":0,
