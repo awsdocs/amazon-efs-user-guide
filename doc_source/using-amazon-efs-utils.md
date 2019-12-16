@@ -229,7 +229,7 @@ For more information on using encryption of data in transit, see [Mounting EFS F
 
  In order to maximize file system availability in the event that the CA is not reachable from your VPC, the Online Certificate Status Protocol \(OCSP\) is not enabled by default when you choose to encrypt data in transit\. Amazon EFS uses an [Amazon certificate authority](https://www.amazontrust.com) \(CA\) to issue and sign its TLS certificates, and the CA instructs the client to use OCSP to check for revoked certificates\. The OCSP endpoint must be accessible over the Internet from your Virtual Private Cloud in order to check a certificate's status\. Within the service, EFS continuously monitors certificate status, and issues new certificates to replace any revoked certificates it detects\. 
 
- In order to provide the strongest security possible, you can enable OCSP so that your Linux clients can check for revoked certificates\. OCSP protects against malicious use of revoked certificates, which is unlikely to within your VPC\. In the event that an EFS TLS certificate is revoked, Amazon will publish a security bulletin and release a new version of EFS mount helper that rejects the revoked certificate\. 
+ In order to provide the strongest security possible, you can enable OCSP so that your Linux clients can check for revoked certificates\. OCSP protects against malicious use of revoked certificates, which is unlikely to occur within your VPC\. In the event that an EFS TLS certificate is revoked, Amazon will publish a security bulletin and release a new version of EFS mount helper that rejects the revoked certificate\. 
 
 **To enable OCSP on your Linux client for all future TLS connections to EFS**
 
