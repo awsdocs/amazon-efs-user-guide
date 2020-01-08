@@ -152,7 +152,7 @@ After installing the Amazon EFS mount helper, you can upgrade your system's vers
 1. Replace *latest\-stunnel\-version* with the name of the file you noted previously in Step 2\.
 
    ```
-   $ sudo curl -o latest-stunnel-version.tar.gz https://www.stunnel.org/downloads.html/latest-stunnel-version.tar.gz
+   $ sudo curl -o latest-stunnel-version.tar.gz https://www.stunnel.org/downloads/latest-stunnel-version.tar.gz
    ```
 
 1. 
