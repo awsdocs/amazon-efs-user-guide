@@ -75,6 +75,8 @@ You don't need to add an outbound rule, because the default outbound rule allows
   ```
   sudo mount -t nfs4 -o nfsvers=4.1,rsize=1048576,wsize=1048576,hard,timeo=600,retrans=2,noresvport mount-target-IP:/ efs
   ```
+  **NOTE**
+  If mounting fails and there is a time out, your may need to check your routing tables on both VPCs to make sure each VPC can route to the EFS/EC2 instance
 
 Now that you've mounted your Amazon EFS file system, you can test it with the following procedure\.
 
