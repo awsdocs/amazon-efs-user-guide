@@ -82,7 +82,7 @@ To move to a different performance mode, migrate the data to a different file sy
 
 Some latency\-sensitive workloads require the higher I/O levels provided by Max I/O performance mode and the lower latency provided by General Purpose performance mode\. For this type of workload, we recommend creating multiple General Purpose performance mode file systems\. In this case, we recommend then spreading the application workload across all these file systems, as long as the workload and applications can support it\. 
 
-By taking this approach, you can create a logical file system and shard data across multiple EFS file systems\. Each file system is mounted as a subdirectory, and your application can access these subdirectories in parallel\. This approach allows latency\-sensitive workloads to scale to higher levels of file system operations per second, aggregated across multiple file systems\. At the same time, these workloads can take advantage of the lower latencies offered by General Purpose performance mode file systems\. 
+By taking this approach, you can create a logical file system and share data across multiple EFS file systems\. Each file system is mounted as a subdirectory, and your application can access these subdirectories in parallel\. This approach allows latency\-sensitive workloads to scale to higher levels of file system operations per second, aggregated across multiple file systems\. At the same time, these workloads can take advantage of the lower latencies offered by General Purpose performance mode file systems\. 
 
 ## Throughput Modes<a name="throughput-modes"></a>
 
