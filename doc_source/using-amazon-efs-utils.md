@@ -143,8 +143,6 @@ After installing the Amazon EFS mount helper, you can upgrade your system's vers
 
 1. Open a terminal on your Linux client, and run the following commands in the order presented\.
 
-1. 
-
    ```
    $ sudo yum install -y gcc openssl-devel tcp_wrappers-devel
    ```
@@ -153,29 +151,9 @@ After installing the Amazon EFS mount helper, you can upgrade your system's vers
 
    ```
    $ sudo curl -o latest-stunnel-version.tar.gz https://www.stunnel.org/downloads.html/latest-stunnel-version.tar.gz
-   ```
-
-1. 
-
-   ```
    $ sudo tar xvfz latest-stunnel-version.tar.gz
-   ```
-
-1. 
-
-   ```
    $ cd latest-stunnel-version/
-   ```
-
-1. 
-
-   ```
    $ sudo ./configure
-   ```
-
-1. 
-
-   ```
    $ sudo make
    ```
 
@@ -185,27 +163,23 @@ After installing the Amazon EFS mount helper, you can upgrade your system's vers
    $ sudo rm /bin/stunnel
    ```
 
-1. 
+1. Install the new version\.
 
    ```
    $ sudo make install
    ```
 
-1. 
-**Note**  
-The default CentOS shell is csh, which has different syntax than the bash shell\. The following code first invokes bash, then runs\.
+1. **Note**  
+   The default CentOS shell is csh, which has different syntax than the bash shell\. The following code first invokes bash, then runs\.
 
    ```
-   bash
+   % bash
+   $ if [[ -f /bin/stunnel ]]; then
+   > sudo mv /bin/stunnel /root
+   > fi
    ```
 
-   ```
-   if [[ -f /bin/stunnel ]]; then
-   sudo mv /bin/stunnel /root
-   fi
-   ```
-
-1. 
+1. Link the new version\.
 
    ```
    $ sudo ln -s /usr/local/bin/stunnel /bin/stunnel
