@@ -11,7 +11,7 @@ Use the `_netdev` option, used to identify network file systems, when mounting y
 
 When encryption of data in transit is declared as a mount option for your Amazon EFS file system, the mount helper initializes a client stunnel process, and a supervisor process called `amazon-efs-mount-watchdog`\. Stunnel is a multipurpose network relay that is open\-source\. The client stunnel process listens on a local port for inbound traffic, and the mount helper redirects NFS client traffic to this local port\. The mount helper uses TLS version 1\.2 to communicate with your file system\.
 
-Using TLS requires certificates, and these certificates are signed by a trusted Amazon Certificate Authority\. For more information on how encryption works, see [Encrypting Data and Metadata in EFS](encryption.md)\.
+Using TLS requires certificates, and these certificates are signed by a trusted Amazon Certificate Authority\. For more information on how encryption works, see [Data Encryption in EFS](encryption.md)\.
 
 ## Using the EFS Mount Helper<a name="using-efs-mount-helper"></a>
 
@@ -38,5 +38,5 @@ You can mount your Amazon EFS file systems on your on\-premises data center serv
 ## Related Topics<a name="amazon-efs-utils-related"></a>
 
 For more information on the Amazon EFS mount helper, see these related topics:
-+ [Encrypting Data and Metadata in EFS](encryption.md)
++ [Data Encryption in EFS](encryption.md)
 + [Mounting EFS File Systems](mounting-fs.md)

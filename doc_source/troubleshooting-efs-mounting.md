@@ -2,6 +2,7 @@
 
 **Topics**
 + [File System Mount on Windows Instance Fails](#mount-windows-instance-fails)
++ [Access Denied by Server](#mount-fail-access-denied-by-server)
 + [Automatic Mounting Fails and the Instance Is Unresponsive](#automount-fails)
 + [Mounting Multiple Amazon EFS File Systems in /etc/fstab Fails](#automount-fix-multiple-fs)
 + [Mount Command Fails with "wrong fs type" Error Message](#mount-error-wrong-fs)
@@ -21,6 +22,19 @@ A file system mount on an Amazon EC2 instance on Microsoft Windows fails\.
 
 **Action to Take**  
 Don't use Amazon EFS with Windows EC2 instances, which isn't supported\.
+
+## Access Denied by Server<a name="mount-fail-access-denied-by-server"></a>
+
+A file system mount fails with the following message:
+
+```
+/efs mount.nfs4: access denied by server while mounting 127.0.0.1:/
+```
+
+This issue can occur if your NFS client does not have permission to mount the file system\. 
+
+**Action to Take**  
+ If you are attempting to mount the file system using IAM, make sure you are using the `-o iam` option in your mount command\. This tells the EFS mount helper to pass your credentials to the EFS mount target\. If you still don't have access, check your file system policy and your identity policy to ensure there are no DENY clauses that apply to your connection, and that there is at least one ALLOW clause that applies to the connection\. 
 
 ## Automatic Mounting Fails and the Instance Is Unresponsive<a name="automount-fails"></a>
 
@@ -114,7 +128,11 @@ $Â 
 
 **Action to Take**
 
-This error can occur because either the Amazon EC2 instance or the mount target security groups are not configured properly\. For more information, see [Creating Security Groups](accessing-fs-create-security-groups.md)\.
+This error can occur because either the Amazon EC2 instance or the mount target security groups are not configured properly\. Make sure that the mount target security group has an inbound rule that allows NFS access from the EC2 security group\.
+
+![\[Image NOT FOUND\]](http://docs.aws.amazon.com/efs/latest/ug/images/mnt-tgt-sg-inbound-rules.png)
+
+For more information, see [Creating Security Groups](accessing-fs-create-security-groups.md)\.
 
 Verify that the mount target IP address that you specified is valid\. If you specify the wrong IP address and there is nothing else at that IP address to reject the mount, you might experience this issue\.
 
@@ -136,6 +154,7 @@ Check your VPC configuration\. If you are using a custom VPC, make sure that DNS
 
 To specify a DNS name in the `mount` command, you must do the following:
 + Ensure that there's an Amazon EFS mount target in the same Availability Zone as the Amazon EC2 instance\.
++ Ensure that there's a mount target in the same VPC as the Amazon EC2 instance\. Otherwise, you can't use DNS name resolution for EFS mount targets that are in another VPC\. For more information, see [Mounting EFS File Systems from Another Account or VPC](manage-fs-access-vpc-peering.md)\.
 + Connect your Amazon EC2 instance inside an Amazon VPC configured to use the DNS server provided by Amazon\. For more information, see [DHCP Options Sets](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_DHCP_Options.html) in the *Amazon VPC User Guide*\.
 + Ensure that the Amazon VPC of the connecting Amazon EC2 instance has DNS hostnames enabled\. For more information, see [Updating DNS Support for Your VPC](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-dns.html#vpc-dns-updating) in the *Amazon VPC User Guide*\.
 

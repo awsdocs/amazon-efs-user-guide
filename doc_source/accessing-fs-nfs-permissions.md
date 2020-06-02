@@ -1,15 +1,17 @@
 # Working with Users, Groups, and Permissions at the Network File System \(NFS\) Level<a name="accessing-fs-nfs-permissions"></a>
 
 **Topics**
++ [File and Directory Permissions](user-and-group-permissions.md)
 + [Example Amazon EFS File System Use Cases and Permissions](#accessing-fs-nfs-permissions-ex-scenarios)
 + [User and Group ID Permissions for Files and Directories Within a File System](#accessing-fs-nfs-permissions-uid-gid)
 + [No Root Squashing](#accessing-fs-nfs-permissions-root-user)
 + [Permissions Caching](#accessing-fs-nfs-permissions-caching)
 + [Changing File System Object Ownership](#accessing-fs-nfs-permissions-chown-restricted)
++ [EFS Access Points](#accessing-fs-nfs-permissions-access-points)
 
-After creating a file system, by default, only the root user \(UID 0\) has read\-write\-execute permissions\. For other users to modify the file system, the root user must explicitly grant them access\.
+After creating a file system, by default only the root user \(UID 0\) has read, write, and execute permissions\. For other users to modify the file system, the root user must explicitly grant them access\. You can use access points to automate the creation of directories that a nonroot user can write from\. For more information, see [Working with Amazon EFS Access Points](efs-access-points.md)\.
 
-Amazon EFS file system objects have a Unix\-style mode associated with them\. This mode value defines the permissions for performing actions on that object, and users familiar with Unix\-style systems can easily understand how Amazon EFS behaves with respect to these permissions\.
+Amazon EFS file system objects have a Unix\-style mode associated with them\. This mode value defines the permissions for performing actions on that object\. Users familiar with Unix\-style systems can easily understand how Amazon EFS behaves with respect to these permissions\.
 
 Additionally, on Unix\-style systems, users and groups are mapped to numeric identifiers, which Amazon EFS uses to represent file ownership\. For Amazon EFS, file system objects \(that is, files, directories, and so on\) are owned by a single owner and a single group\. Amazon EFS uses the mapped numeric IDs to check permissions when a user attempts to access a file system object\. 
 
@@ -52,7 +54,7 @@ Only the root user can modify this directory\. The root user can also grant othe
 
 ## User and Group ID Permissions for Files and Directories Within a File System<a name="accessing-fs-nfs-permissions-uid-gid"></a>
 
-Files and directories in an Amazon EFS file system support standard Unix\-style read, write, and execute permissions based on the user ID and group ID asserted by the mounting NFSv4\.1 client\. When users attempt to access files and directories, Amazon EFS checks their user IDs and group IDs to verify that each user has permission to access the objects\. Amazon EFS also uses these IDs to indicate the owner and group owner for new files and directories that the user creates\. Amazon EFS doesn't examine user or group names—it only uses the numeric identifiers\.
+Files and directories in an Amazon EFS file system support standard Unix\-style read, write, and execute permissions based on the user ID and group IDs\. When an NFS client mounts an EFS file system without using an access point, the user ID and group ID provided by the client is trusted\. You can use EFS access points to override user ID and group IDs used by the NFS client\. When users attempt to access files and directories, Amazon EFS checks their user IDs and group IDs to verify that each user has permission to access the objects\. Amazon EFS also uses these IDs to indicate the owner and group owner for new files and directories that the user creates\. Amazon EFS doesn't examine user or group names—it only uses the numeric identifiers\.
 
 **Note**  
 When you create a user on an EC2 instance, you can assign any numeric user ID \(UID\) and group ID \(GID\) to the user\. The numeric user IDs are set in the `/etc/passwd` file on Linux systems\. The numeric group IDs are in the `/etc/group` file\. These files define the mappings between names and IDs\. Outside of the EC2 instance, Amazon EFS doesn't perform any authentication of these IDs, including the root ID of 0\.
@@ -81,9 +83,7 @@ $  sudo service rpcidmapd stop
 
 ## No Root Squashing<a name="accessing-fs-nfs-permissions-root-user"></a>
 
-When root squashing is enabled, the root user is converted to a user with limited permissions on the NFS server\.
-
-Amazon EFS behaves like a Linux NFS server with `no_root_squash`\. If a user or group ID is 0, Amazon EFS treats that user as the `root` user, and bypasses permissions checks \(allowing access and modification to all file system objects\)\.
+By default, root squashing is disabled on EFS file systems\. Amazon EFS behaves like a Linux NFS server with `no_root_squash`\. If a user or group ID is 0, Amazon EFS treats that user as the `root` user, and bypasses permissions checks \(allowing access and modification to all file system objects\)\. Root squashing can be enabled on a client connection when the AWS Identity and Access Management \(AWS IAM\) identity or resource policy does not allow access to the `ClientRootAccess` action\. When root squashing is enabled, the root user is converted to a user with limited permissions on the NFS server\.
 
 ## Permissions Caching<a name="accessing-fs-nfs-permissions-caching"></a>
 
@@ -92,3 +92,7 @@ Amazon EFS caches file permissions for a small time period\. As a result, there 
 ## Changing File System Object Ownership<a name="accessing-fs-nfs-permissions-chown-restricted"></a>
 
 Amazon EFS enforces the POSIX `chown_restricted` attribute\. This means only the root user can change the owner of a file system object\. The root or the owner user can change the owner group of a file system object\. However, unless the user is root, the group can only be changed to one that the owner user is a member of\. 
+
+## EFS Access Points<a name="accessing-fs-nfs-permissions-access-points"></a>
+
+An *access point *applies an operating system user, group, and file system path to any file system request made using the access point\. The access point's operating system user and group override any identity information provided by the NFS client\. The file system path is exposed to the client as the access point's root directory\. This approach ensures that each application always uses the correct operating system identity and the correct directory when accessing shared file\-based datasets\. Applications using the access point can only access data in its own directory and below\. For more information about access points, see [Working with Amazon EFS Access Points](efs-access-points.md)\. 

@@ -4,7 +4,7 @@ Following, you can find an overview of Amazon EFS performance, with a discussion
 
 ## Performance Overview<a name="performance-overview"></a>
 
-Amazon EFS file systems are distributed across an unconstrained number of storage servers, enabling file systems to grow elastically to petabyte scale and allowing massively parallel access from Amazon EC2 instances to your data\. The distributed design of Amazon EFS avoids the bottlenecks and constraints inherent to traditional file servers\.
+Amazon EFS file systems are distributed across an unconstrained number of storage servers\. This distributed data storage design enables file systems to grow elastically to petabyte scale and enables massively parallel access from Amazon EC2 instances to your data\. The distributed design of Amazon EFS avoids the bottlenecks and constraints inherent to traditional file servers\.
 
 This distributed data storage design means that multithreaded applications and applications that concurrently access data from multiple Amazon EC2 instances can drive substantial levels of aggregate throughput and IOPS\. Big data and analytics workloads, media processing workflows, content management, and web serving are examples of these applications\.
 
@@ -47,13 +47,13 @@ Amazon EFS provides a durable, high throughput file system for content managemen
 
 ### Home Directories<a name="perf-directories"></a>
 
-Amazon EFS can provide storage for organizations that have many users that need to access and share common data sets\. An administrator can use Amazon EFS to create a file system accessible to people across an organization and establish permissions for users and groups at the file or directory level\.
+Amazon EFS can provide storage for organizations that have many users that need to access and share common datasets\. An administrator can use Amazon EFS to create a file system accessible to people across an organization and establish permissions for users and groups at the file or directory level\.
 
 ## Performance Modes<a name="performancemodes"></a>
 
 To support a wide variety of cloud storage workloads, Amazon EFS offers two performance modes\. You select a file system's performance mode when you create it\.
 
-The two performance modes have no additional costs, so your Amazon EFS file system is billed and metered the same, regardless of your performance mode\. For information about file system limits, see [Limits for Amazon EFS File Systems](limits.md#limits-fs-specific)\.
+The two performance modes have no additional costs, so your Amazon EFS file system is billed and metered the same, regardless of your performance mode\. For information about file system limits, see [Quotas for Amazon EFS File Systems](limits.md#limits-fs-specific)\.
 
 **Note**  
 An Amazon EFS file system's performance mode can't be changed after the file system has been created\.
@@ -64,7 +64,7 @@ We recommend the General Purpose performance mode for the majority of your Amazo
 
 ### Max I/O Performance Mode<a name="maxio"></a>
 
- File systems in the Max I/O mode can scale to higher levels of aggregate throughput and operations per second\. This scaling is done with a tradeoff of slightly higher latencies for file operations\. Highly parallelized applications and workloads, such as big data analysis, media processing, and genomics analysis, can benefit from this mode\. 
+ File systems in the Max I/O mode can scale to higher levels of aggregate throughput and operations per second\. This scaling is done with a tradeoff of slightly higher latencies for file metadata operations\. Highly parallelized applications and workloads, such as big data analysis, media processing, and genomics analysis, can benefit from this mode\. 
 
 ### Using the Right Performance Mode<a name="using-perfmode"></a>
 
@@ -95,9 +95,9 @@ You can decrease your file system throughput in Provisioned Throughput mode as l
 
 With Bursting Throughput mode, throughput on Amazon EFS scales as a file system stored in the standard storage class grows\. File\-based workloads are typically spiky, driving high levels of throughput for short periods of time, and low levels of throughput the rest of the time\. To accommodate this, Amazon EFS is designed to burst to high throughput levels for periods of time\.
 
-All file systems, regardless of size, can burst to 100 MiB/s of throughput\. Those over 1 TiB in the standard storage class can burst to 100 MiB/s per TiB of data stored in the file system\. For example, a 10\-TiB file system can burst to 1,000 MiB/s of throughput \(`10 TiB x 100 MiB/s/TiB`\)\. The portion of time a file system can burst is determined by its size\. The bursting model is designed so that typical file system workloads can burst virtually any time they need to\.
+All file systems, regardless of size, can burst to 100 MiB/s of throughput\. Those over 1 TiB in the standard storage class can burst to 100 MiB/s per TiB of data stored in the file system\. For example, a 10\-TiB file system can burst to 1,000 MiB/s of throughput \(`10 TiB x 100 MiB/s/TiB`\)\. The portion of time a file system can burst is determined by its size\. The bursting model is designed so that typical file system workloads can burst virtually any time they need to\. For file systems using Bursting Throughput mode, the allowed throughput is determined based on the amount of the data stored in the Standard storage class only\. For more information about EFS storage classes, see [EFS Storage Classes](storage-classes.md)\. 
 
-Amazon EFS uses a credit system to determine when file systems can burst\. Each file system earns credits over time at a baseline rate that is determined by the size of the file system that is stored in the standard storage class\. A file system uses credits whenever it reads or writes data\. The baseline rate is 50 MiB/s per TiB of storage \(equivalently, 50 KiB/s per GiB of storage\)\.
+Amazon EFS uses a credit system to determine when file systems can burst\. Each file system earns credits over time at a baseline rate that is determined by the size of the file system that is stored in the standard storage class\. A file system uses credits whenever it reads or writes data\. The baseline rate is 50 MiB/s per TiB of storage \(equivalently, 50 KiB/s per GiB of storage\)\. 
 
 Accumulated burst credits give the file system the ability to drive throughput above its baseline rate\. A file system can drive throughput continuously at its baseline rate, and whenever it's inactive or driving throughput below its baseline rate, the file system accumulates burst credits\.
 
@@ -139,7 +139,7 @@ The following table provides more detailed examples of bursting behavior for fil
 | 4096 | 200\.0 | 400 | 720  | 50\.0% | 
 
 **Note**  
-As previously mentioned, new file systems have an initial burst credit balance of 2\.1 TB\. With this starting balance, you can burst at 100 MB/s for 6\.12 hours without spending any credits that you're earning from your storage\. This starting formula is calculated as `2.1 x 1024 x (1024/100/3600)` to get 6\.116 hours, rounded up to 6\.12\. 
+As previously mentioned, new file systems have an initial burst credit balance of 2\.1 TiB\. With this starting balance, you can burst at 100 MB/s for 6\.12 hours without spending any credits that you're earning from your storage\. This starting formula is calculated as `2.1 x 1024 x (1024/100/3600)` to get 6\.116 hours, rounded up to 6\.12\. 
 
 #### Managing Burst Credits<a name="managecredits"></a>
 
@@ -147,9 +147,9 @@ When a file system has a positive burst credit balance, it can burst\. You can s
 
 The bursting capability \(both in terms of length of time and burst rate\) of a file system is directly related to its size\. Larger file systems can burst at larger rates for longer periods of time\. In some cases, your application might need to burst more \(that is, you might find that your file system is running out of burst credits\. In these cases, you should increase the size of your file system, or switch to Provisioned Throughput mode\.
 
-Use your historical throughput patterns to calculate the file system size you need to sustain your desired level of activity\. The following steps outline how to do this:
+Use your historical throughput patterns to calculate the file system size you need to sustain the level of activity that you want\. The following steps outline how to do this\.
 
-**To calculate the file system size you need to sustain your desired level of activity**
+**To calculate the file system size that you need to sustain the level activity that you want**
 
 1. Identify your throughput needs by looking at your historical usage\. From the [Amazon CloudWatch console](https://console.aws.amazon.com/cloudwatch), check the `sum` statistic of the `TotalIOBytes` metric with daily aggregation, for the past 14 days\. Identify the day with the largest value for `TotalIOBytes`\.
 
@@ -161,11 +161,11 @@ Use your historical throughput patterns to calculate the file system size you ne
 
 Provisioned Throughput mode is available for applications with high throughput to storage \(MiB/s per TiB\) ratios, or with requirements greater than those allowed by the Bursting Throughput mode\. For example, say you're using Amazon EFS for development tools, web serving, or content management applications where the amount of data in your file system is low relative to throughput demands\. Your file system can now get the high levels of throughput your applications require without having to pad your file system\.
 
-Additional charges are associated with using Provisioned Throughput mode\. Using Provisioned Throughput mode, you are billed for the storage that you use and throughput that you provision independently\. For more information, see [https://aws\.amazon\.com/efs/pricing](https://aws.amazon.com/efs/pricing/)\.
+Additional charges are associated with using Provisioned Throughput mode\. Using Provisioned Throughput mode, you're billed for the storage that you use and for the throughput that you provision above what you're provided\. The amount of throughput that you are provided is based on the amount of data stored in the Standard storage class\. For more information about EFS storage classes, see [EFS Storage Classes](storage-classes.md)\. For more information on pricing, see [Amazon EFS Pricing](https://aws.amazon.com/efs/pricing/)\. 
 
-Throughput limits remain the same, regardless of the throughput mode you choose\. For more information on these limits, see [Amazon EFS Limits That You Can Increase](limits.md#soft-limits)\.
+Throughput limits remain the same, regardless of the throughput mode you choose\. For more information on these limits, see [Amazon EFS Quotas That You Can Increase](limits.md#soft-limits)\.
 
-If your file system is in the Provisioned Throughput mode, you can increase the Provisioned Throughput of your file system as often as you want\. You can decrease your file system throughput in Provisioned Throughput mode as long as it’s been more than 24 hours since the last decrease\. Additionally, you can change between Provisioned Throughput mode and the default Bursting Throughput mode as long as it’s been more than 24 hours since the last throughput mode change\. File systems in Provisioned Throughput mode still earn burst credits\. They earn the higher of the two rates, either the Provisioned Throughput rate or the baseline Bursting Throughput rate of 50 MiB/s per TiB of storage\.
+If your file system is in the Provisioned Throughput mode, you can increase the Provisioned Throughput of your file system as often as you want\. You can decrease your file system throughput in Provisioned Throughput mode as long as it's been more than 24 hours since the last decrease\. Additionally, you can change between Provisioned Throughput mode and the default Bursting Throughput mode as long as it’s been more than 24 hours since the last throughput mode change\.
 
 If your file system's metered size provides a higher baseline rate than the amount of throughput you provisioned, your file system follows the default Amazon EFS Bursting Throughput model\. You don't incur charges for Provisioned Throughput below your file system's entitlement in Bursting Throughput mode\. For more information, see [Throughput Scaling with Bursting Mode](#bursting)\. 
 

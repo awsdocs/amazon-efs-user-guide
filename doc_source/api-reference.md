@@ -7,7 +7,7 @@ The Amazon EFS API is an RPC model\. In this model, there is a fixed set of oper
 The specific Amazon EFS operation to which a given request maps is determined by a combination of the request's method \(GET, PUT, POST, or DELETE\) and which of the various patterns its Request\-URI matches\. If the operation is PUT or POST, Amazon EFS extracts call arguments from the Request\-URI path segment, query parameters, and the JSON object in the request body\.
 
 **Note**  
-Although operation names, such as `CreateFileSystem`, don't appear on the wire, these names are meaningful in AWS Identity and Access Management \(IAM\) policies\. For more information, see [Authentication and Access Control for Amazon EFS](auth-and-access-control.md)\.   
+Although operation names, such as `CreateFileSystem`, don't appear on the wire, these names are meaningful in AWS Identity and Access Management \(IAM\) policies\. For more information, see [Identity and Access Management for Amazon EFS](auth-and-access-control.md)\.   
 The operation name is also used to name commands in command\-line tools and elements of the AWS SDK APIs\. For example, there is a AWS CLI command named `create-file-system` that maps to the `CreateFileSystem` operation\.   
 The operation name also appears in AWS CloudTrail logs for Amazon EFS API calls\.
 
@@ -38,7 +38,7 @@ The documentation describes API version 2015\-02\-01\.
 ## Related Topics<a name="api-reference-related-topics"></a>
 
 The following sections provide descriptions of the API operations, how to create a signature for request authentication, and how to grant permissions for these API operations using the IAM policies\.
-+ [Authentication and Access Control for Amazon EFS](auth-and-access-control.md)
++ [Identity and Access Management for Amazon EFS](auth-and-access-control.md)
 + [Actions](API_Operations.md)
 + [Data Types](API_Types.md)
 

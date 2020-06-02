@@ -31,14 +31,14 @@ For optimal performance and to avoid a variety of known NFS client bugs, we reco
 If you are using another distribution or a custom kernel, we recommend kernel version 4\.3 or newer\.
 
 **Note**  
-RHEL 6\.9 might be suboptimal for certain workloads due to [Poor Performance When Opening Many Files in Parallel](troubleshooting.md#open-close-operations-serialized)\.
+RHEL 6\.9 might be suboptimal for certain workloads due to [Poor Performance When Opening Many Files in Parallel](troubleshooting-efs-general.md#open-close-operations-serialized)\.
 
 **Note**  
 Using Amazon EFS with Amazon EC2 instances based on Microsoft Windows is not supported\.
 
 ### Troubleshooting AMI and Kernel Versions<a name="ami-kernel-versions-troubleshooting"></a>
 
-To troubleshoot issues related to certain AMI or kernel versions when using Amazon EFS from an EC2 instance, see [Troubleshooting AMI and Kernel Issues](troubleshooting.md#troubleshooting-efs-ami-kernel)\.
+To troubleshoot issues related to certain AMI or kernel versions when using Amazon EFS from an EC2 instance, see [Troubleshooting AMI and Kernel Issues](troubleshooting-efs-ami-kernel.md)\.
 
 ## Installing the NFS Client<a name="mounting-fs-install-nfsclient"></a>
 
@@ -47,7 +47,7 @@ To mount your Amazon EFS file system on your Amazon EC2 instance, first you need
 **To connect your EC2 instance and install the NFS client**
 
 1. Connect to your EC2 instance\. Note the following about connecting to the instance:
-   + To connect to your instance from a computer running Mac OS or Linux, specify the \.pem file to your Secure Shell \(SSH\) client with the `-i` option and the path to your private key\.
+   + To connect to your instance from a computer running macOS or Linux, specify the \.pem file to your Secure Shell \(SSH\) client with the `-i` option and the path to your private key\.
    + To connect to your instance from a computer running Windows, you can use either MindTerm or PuTTY\. If you plan to use PuTTY, you need to install it and use the following procedure to convert the \.pem file to a \.ppk file\. 
 
    For more information, see the following topics in the *Amazon EC2 User Guide for Linux Instances*:
@@ -59,7 +59,7 @@ To mount your Amazon EFS file system on your Amazon EC2 instance, first you need
 1. \(Optional\) Get updates and reboot\.
 
    ```
-   $  sudo yum -y update  
+   $ sudo yum -y update  
    $  sudo reboot
    ```
 
@@ -77,6 +77,27 @@ To mount your Amazon EFS file system on your Amazon EC2 instance, first you need
 
    ```
    $ sudo apt-get -y install nfs-common
+   ```
+
+1. Start the NFS service using the following command\.
+
+   ```
+   $ sudo service nfs start
+   ```
+
+1. Verify that the NFS service started, as follows\.
+
+   ```
+   $ sudo service nfs status
+   Redirecting to /bin/systemctl status nfs.service
+   ● nfs-server.service - NFS server and services
+      Loaded: loaded (/usr/lib/systemd/system/nfs-server.service; disabled; vendor preset: disabled)
+      Active: active (exited) since Wed 2019-10-30 16:13:44 UTC; 5s ago
+     Process: 29446 ExecStart=/usr/sbin/rpc.nfsd $RPCNFSDARGS (code=exited, status=0/SUCCESS)
+     Process: 29441 ExecStartPre=/bin/sh -c /bin/kill -HUP `cat /run/gssproxy.pid` (code=exited, status=0/SUCCESS)
+     Process: 29439 ExecStartPre=/usr/sbin/exportfs -r (code=exited, status=0/SUCCESS)
+    Main PID: 29446 (code=exited, status=0/SUCCESS)
+      CGroup: /system.slice/nfs-server.service
    ```
 
 If you use a custom kernel \(that is, if you build a custom AMI\), you need to include at a minimum the NFSv4\.1 client kernel module and the right NFS4 userspace mount helper\.

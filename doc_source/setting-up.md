@@ -76,7 +76,7 @@ https://your_aws_account_id.signin.aws.amazon.com/console/
 
 Enter the IAM user name and password that you just created\. When you're signed in, the navigation bar displays ***your\_user\_name*****@*****your\_aws\_account\_id***\.
 
-If you don't want the URL for your sign\-in page to contain your AWS account ID, you can create an account alias\. From the IAM dashboard, click **Create Account Alias** and enter an alias, such as your company name\. To sign in after you create an account alias, use the following URL:
+If you don't want the URL for your sign\-in page to contain your AWS account ID, you can create an account alias\. From the IAM dashboard, locate **IAM users sign\-in link:** and choose **Customize**\. Enter an alias, such as your company name\. To sign in after you create an account alias, use the following URL:
 
 ```
 https://your_account_alias.signin.aws.amazon.com/console/

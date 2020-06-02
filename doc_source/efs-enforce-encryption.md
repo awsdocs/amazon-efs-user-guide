@@ -15,7 +15,7 @@ If you want to delete an unencrypted\-at\-rest file system but want to retain th
 
 ### Detecting Files Systems That Are Unencrypted at Rest<a name="efs-detecting-unencrypted"></a>
 
-You can create an CloudWatch alarm to monitor CloudTrail logs for the `CreateFileSystem` event\. You can then trigger the alarm to notify an administrator if the file system that was created was unencrypted at rest\.
+You can create a CloudWatch alarm to monitor CloudTrail logs for the `CreateFileSystem` event\. You can then trigger the alarm to notify an administrator if the file system that was created was unencrypted at rest\.
 
 ### Create a Metric Filter<a name="efs-create-unencrypted-filter"></a>
 

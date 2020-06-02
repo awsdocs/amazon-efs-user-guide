@@ -9,3 +9,4 @@ This section provides walkthroughs that you can use to explore Amazon EFS and te
 + [Walkthrough: Create and Mount a File System On\-Premises with AWS Direct Connect and VPN](efs-onpremises.md)
 + [Walkthrough: Mount a File System from a Different VPC](efs-different-vpc.md)
 + [Walkthrough: Enforcing Encryption on an Amazon EFS File System at Rest](efs-enforce-encryption.md)
++ [Walkthrough: Enable Root Squashing Using IAM Authorization for NFS Clients](enable-root-squashing.md)

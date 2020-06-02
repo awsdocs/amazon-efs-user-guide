@@ -90,6 +90,8 @@ HTTP/1.1 200
 Content-type: application/json
 
 {
+   "[AvailabilityZoneId](#efs-CreateMountTarget-response-AvailabilityZoneId)": "string",
+   "[AvailabilityZoneName](#efs-CreateMountTarget-response-AvailabilityZoneName)": "string",
    "[FileSystemId](#efs-CreateMountTarget-response-FileSystemId)": "string",
    "[IpAddress](#efs-CreateMountTarget-response-IpAddress)": "string",
    "[LifeCycleState](#efs-CreateMountTarget-response-LifeCycleState)": "string",
@@ -105,6 +107,14 @@ Content-type: application/json
 If the action is successful, the service sends back an HTTP 200 response\.
 
 The following data is returned in JSON format by the service\.
+
+ ** [AvailabilityZoneId](#API_CreateMountTarget_ResponseSyntax) **   <a name="efs-CreateMountTarget-response-AvailabilityZoneId"></a>
+The unique and consistent identifier of the Availability Zone \(AZ\) that the mount target resides in\. For example, `use1-az1` is an AZ ID for the us\-east\-1 Region and it has the same location in every AWS account\.  
+Type: String
+
+ ** [AvailabilityZoneName](#API_CreateMountTarget_ResponseSyntax) **   <a name="efs-CreateMountTarget-response-AvailabilityZoneName"></a>
+The name of the Availability Zone \(AZ\) that the mount target resides in\. AZs are independently mapped to names for each AWS account\. For example, the Availability Zone `us-east-1a` for your AWS account might not be the same location as `us-east-1a` for another AWS account\.  
+Type: String
 
  ** [FileSystemId](#API_CreateMountTarget_ResponseSyntax) **   <a name="efs-CreateMountTarget-response-FileSystemId"></a>
 The ID of the file system for which the mount target is intended\.  
@@ -182,7 +192,6 @@ Returned if there is no subnet with ID `SubnetId` provided in the request\.
 HTTP Status Code: 400
 
  **UnsupportedAvailabilityZone**   
-  
 HTTP Status Code: 400
 
 ## Examples<a name="API_CreateMountTarget_Examples"></a>
@@ -273,9 +282,8 @@ For more information about using this API in one of the language\-specific AWS S
 +  [AWS SDK for \.NET](https://docs.aws.amazon.com/goto/DotNetSDKV3/elasticfilesystem-2015-02-01/CreateMountTarget) 
 +  [AWS SDK for C\+\+](https://docs.aws.amazon.com/goto/SdkForCpp/elasticfilesystem-2015-02-01/CreateMountTarget) 
 +  [AWS SDK for Go](https://docs.aws.amazon.com/goto/SdkForGoV1/elasticfilesystem-2015-02-01/CreateMountTarget) 
-+  [AWS SDK for Go \- Pilot](https://docs.aws.amazon.com/goto/SdkForGoPilot/elasticfilesystem-2015-02-01/CreateMountTarget) 
 +  [AWS SDK for Java](https://docs.aws.amazon.com/goto/SdkForJava/elasticfilesystem-2015-02-01/CreateMountTarget) 
 +  [AWS SDK for JavaScript](https://docs.aws.amazon.com/goto/AWSJavaScriptSDK/elasticfilesystem-2015-02-01/CreateMountTarget) 
 +  [AWS SDK for PHP V3](https://docs.aws.amazon.com/goto/SdkForPHPV3/elasticfilesystem-2015-02-01/CreateMountTarget) 
 +  [AWS SDK for Python](https://docs.aws.amazon.com/goto/boto3/elasticfilesystem-2015-02-01/CreateMountTarget) 
-+  [AWS SDK for Ruby V2](https://docs.aws.amazon.com/goto/SdkForRubyV2/elasticfilesystem-2015-02-01/CreateMountTarget) 
++  [AWS SDK for Ruby V3](https://docs.aws.amazon.com/goto/SdkForRubyV3/elasticfilesystem-2015-02-01/CreateMountTarget) 

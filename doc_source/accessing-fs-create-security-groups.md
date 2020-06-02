@@ -21,13 +21,13 @@ You can use the AWS Management Console to create security groups in your VPC\. T
 
 1.  You need to authorize additional access to the security groups as follows:
 
-   1. Add a rule to the EC2 security group to allow inbound access, as shown following\. Optionally, you can restrict the **Source** address\.   
-![\[Image NOT FOUND\]](http://docs.aws.amazon.com/efs/latest/ug/images/gs-ec2-resources-100.png)
+   1. Add a rule to the EC2 security group to allow SSH access to the instance on port 22 as shown following\. This is useful if you're planning on using an SSH client like PuTTy to connect to and administer your EC2 instance through a terminal interface\. Optionally, you can restrict the **Source** address\.   
+![\[Image NOT FOUND\]](http://docs.aws.amazon.com/efs/latest/ug/images/ec2-inbound-sg-ssh-rule.png)
 
       For instructions, see [Adding and Removing Rules](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_SecurityGroups.html#AddRemoveRules) in the *Amazon VPC User Guide*\.
 
    1. Add a rule to the mount target security group to allow inbound access from the EC2 security group, as shown following \(where the EC2 security group is identified as the source\):   
-![\[Image NOT FOUND\]](http://docs.aws.amazon.com/efs/latest/ug/images/gs-ec2-resources-120.png)
+![\[Image NOT FOUND\]](http://docs.aws.amazon.com/efs/latest/ug/images/mnt-tgt-sg-inbound-rules.png)
 **Note**  
 You don't need to add an outbound rule because the default outbound rule allows all traffic to leave \(otherwise, you will need to add an outbound rule to open TCP connection on the NFS port, identifying the mount target security group as the destination\)\.
 

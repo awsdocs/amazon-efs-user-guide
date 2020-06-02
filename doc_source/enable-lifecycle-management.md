@@ -12,7 +12,7 @@ You can use the AWS Management Console to enable lifecycle management when creat
 
 1. Choose **Create file system**\.
 
-1. Complete **Step 1: Configure file system access** by choosing a VPC and creating mount targets\. For more information, see [Step 2: Create Your Amazon EFS File System](gs-step-two-create-efs-resources.md)\. 
+1. Complete **Step 1: Configure file system access** by choosing a VPC and creating mount targets\. For more information, see [Step 1: Create Your Amazon EFS File System](gs-step-two-create-efs-resources.md)\. 
 
 1. Choose **Next Step**\.
 

@@ -145,7 +145,7 @@ Don't add any EC2 instances\. Later, you create an Auto Scaling Group in which y
 
    1. Choose **Create launch configuration**\.
 
-   1. From **Quick Start**, select the latest version of the **Amazon Linux \(HVM\)** AMI\. This is same AMI you used in [Step 1: Create Your EC2 Resources and Launch Your EC2 Instance](gs-step-one-create-ec2-resources.md) of the Getting Started exercise\.
+   1. From **Quick Start**, select the latest version of the **Amazon Linux \(HVM\)** AMI\. This is same AMI you used in [Step 2: Create Your EC2 Resources and Launch Your EC2 Instance](gs-step-one-create-ec2-resources.md) of the Getting Started exercise\.
 
    1. In the **Advanced** section, do the following:
       + For **IP Address Type**, choose **Assign a public IP address to every instance**\. 
@@ -198,7 +198,7 @@ Don't add any EC2 instances\. Later, you create an Auto Scaling Group in which y
 
    Follow the instructions to create an Auto Scaling group at [Set Up a Scaled and Load\-Balanced Application](https://docs.aws.amazon.com/autoscaling/latest/userguide/as-register-lbs-with-asg.html) in the *Amazon EC2 Auto Scaling User Guide*\. Use the information in the preceding tables where applicable\.
 
-1. Upon successful creation of the Auto Scaling group, you have two EC2 instances with `nfs-utils` and the Apache web server installed\. On each instance, verify that you have the `/var/www/html/efs-mount-point` subdirectory with your Amazon EFS file system mounted on it\. For instructions to connect to an EC2 instance, see [Step 3: Connect to Your Amazon EC2 Instance and Mount the Amazon EFS File System](gs-step-three-connect-to-ec2-instance.md)\.
+1. Upon successful creation of the Auto Scaling group, you have two EC2 instances with `nfs-utils` and the Apache web server installed\. On each instance, verify that you have the `/var/www/html/efs-mount-point` subdirectory with your Amazon EFS file system mounted on it\. For instructions to connect to an EC2 instance, see [Connect to Your Linux Instance](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AccessingInstances.html) in the *Amazon EC2 User Guide for Linux Instances*\.
 **Note**  
 If you choose the **Amazon Linux AMI 2016\.03\.0** Amazon Linux AMI when launching your Amazon EC2 instance, you won't need to install `nfs-utils` because it is already included in the AMI by default\.
 

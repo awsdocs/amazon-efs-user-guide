@@ -1,6 +1,6 @@
-# Backing Up Amazon EFS<a name="efs-backup-solutions"></a>
+# Data Protection for Amazon EFS<a name="efs-backup-solutions"></a>
 
-There are two options available for backing up your EFS file systems\.
+There are two options available for protecting your data by backing up your EFS file systems\.
 + AWS Backup service
 + The EFS\-to\-EFS backup solution
 

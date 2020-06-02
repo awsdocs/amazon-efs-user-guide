@@ -33,7 +33,7 @@ umount /mnt/efs
 
 We recommend that you do not specify any other `umount` options\. Avoid setting any other `umount` options that are different from the defaults\.
 
-You can verify that your Amazon EFS file system has been unmounted by running the `df` command to display the disk usage statistics for the file systems currently mounted on your Linux\-based Amazon EC2 instance\. If the Amazon EFS file system that you want to unmount isn’t listed in the `df` command output, this means that the file system is unmounted\.
+You can verify that your Amazon EFS file system has been unmounted by running the `df` command\. This command displays the disk usage statistics for the file systems currently mounted on your Linux\-based Amazon EC2 instance\. If the Amazon EFS file system that you want to unmount isn’t listed in the `df` command output, this means that the file system is unmounted\.
 
 **Example Example: Identify the Mount Status of an Amazon EFS File System and Unmount It**  
 

@@ -1,6 +1,6 @@
-# Authentication and Access Control for Amazon EFS<a name="auth-and-access-control"></a>
+# Identity and Access Management for Amazon EFS<a name="auth-and-access-control"></a>
 
-Access to Amazon EFS requires credentials that AWS can use to authenticate your requests\. Those credentials must have permissions to access AWS resources, such an Amazon EFS file system or an Amazon Elastic Compute Cloud \(Amazon EC2\) instance\. The following sections provide details on how you can use [AWS Identity and Access Management \(IAM\)](https://docs.aws.amazon.com/IAM/latest/UserGuide/introduction.html) and Amazon EFS to help secure your resources by controlling who can access them\. 
+Access to Amazon EFS requires credentials that AWS can use to authenticate your requests\. Those credentials must have permissions to access AWS resources, such an Amazon EFS file system or an Amazon EC2 instance\. The following sections provide details on how you can use [AWS Identity and Access Management \(IAM\)](https://docs.aws.amazon.com/IAM/latest/UserGuide/introduction.html) and Amazon EFS to help secure your resources by controlling who can access them\. 
 + [Authentication](#authentication)
 + [Access Control](#access-control)
 
@@ -10,7 +10,7 @@ You can access AWS as any of the following types of identities:
 + **AWS account root user** – When you sign up for AWS, you provide an email address and password that is associated with your AWS account\. This is your *AWS account root user*\. Its credentials provide complete access to all of your AWS resources\.
 **Important**  
 For security reasons, we recommend that you use the root user only to create an *administrator*, which is an *IAM user* with full permissions to your AWS account\. You can then use this administrator user to create other IAM users and roles with limited permissions\. For more information, see [IAM Best Practices](https://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html#create-iam-users) and [Creating an Admin User and Group](https://docs.aws.amazon.com/IAM/latest/UserGuide/getting-started_create-admin-group.html) in the *IAM User Guide*\.
-+ **IAM user** – An [IAM user](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_users.html) is simply an identity within your AWS account that has specific custom permissions \(for example, permissions to create a file system in Amazon EFS\)\. You can use an IAM user name and password to sign in to secure AWS webpages like the [AWS Management Console](https://console.aws.amazon.com/), [AWS Discussion Forums](https://forums.aws.amazon.com/), or the [AWS Support Center](https://console.aws.amazon.com/support/home#/)\.
++ **IAM user** – An [IAM user](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_users.html) is simply an identity within your AWS account that has specific custom permissions \(for example, permissions to create a file system in Amazon EFS\)\. You can use an IAM user name and password to sign in to secure AWS web pages like the [AWS Management Console](https://console.aws.amazon.com/), [AWS Discussion Forums](https://forums.aws.amazon.com/), or the [AWS Support Center](https://console.aws.amazon.com/support/home#/)\.
 
    
 
@@ -23,7 +23,7 @@ For security reasons, we recommend that you use the root user only to create an 
   + **Federated user access** – Instead of creating an IAM user, you can use preexisting user identities from AWS Directory Service, your enterprise user directory, or a web identity provider\. These are known as *federated users*\. AWS assigns a role to a federated user when access is requested through an [identity provider](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_providers.html)\. For more information about federated users, see [Federated Users and Roles](https://docs.aws.amazon.com/IAM/latest/UserGuide/introduction_access-management.html#intro-access-roles) in the *IAM User Guide*\.
 
      
-  + **Cross\-account administration** – You can use an IAM role in your account to grant another AWS account permissions to administer your account’s Amazon EFS resources\. For an example, see [Tutorial: Delegate Access Across AWS Accounts Using IAM Roles](https://docs.aws.amazon.com/IAM/latest/UserGuide/tutorial_cross-account-with-roles.html) in the *IAM User Guide*\. Note that you can't mount Amazon EFS file systems from across VPCs or accounts\. For more information, see [Managing File System Network Accessibility](manage-fs-access.md)
+  + **Cross\-account administration** – You can use an IAM role in your account to grant another AWS account permissions to administer your account’s Amazon EFS resources\. For an example, see [Tutorial: Delegate Access Across AWS Accounts Using IAM Roles](https://docs.aws.amazon.com/IAM/latest/UserGuide/tutorial_cross-account-with-roles.html) in the *IAM User Guide*\. You can't mount Amazon EFS file systems from across VPCs or accounts\. For more information, see [Managing File System Network Accessibility](manage-fs-access.md)\.
 
      
   + **AWS service access** – You can use an IAM role in your account to grant an AWS service permissions to access your account’s resources\. For example, you can create a role that allows Amazon Redshift to access an Amazon S3 bucket on your behalf and then load data from that bucket into an Amazon Redshift cluster\. For more information, see [Creating a Role to Delegate Permissions to an AWS Service](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create_for-service.html) in the *IAM User Guide*\.
@@ -33,8 +33,8 @@ For security reasons, we recommend that you use the root user only to create an 
 
 ## Access Control<a name="access-control"></a>
 
-You can have valid credentials to authenticate your requests, but unless you have permissions you cannot create or access Amazon Elastic File System resources\. For example, you must have permissions to create an Amazon EFS file system\.
+You can have valid credentials to authenticate your requests, but unless you have permissions you can't create or access Amazon Elastic File System resources\. For example, you must have permissions to create an Amazon EFS file system\.
 
-The following sections describe how to manage permissions for Amazon Elastic File System\. We recommend that you read the overview first\.
+The following sections describe how to manage permissions for Amazon EFS\. We recommend that you read the overview first\.
 + [Overview of Managing Access Permissions to Your Amazon EFS Resources](access-control-overview.md)
-+ [Using Identity\-Based Policies \(IAM Policies\) for Amazon Elastic File System](access-control-managing-permissions.md)
++ [Controlling Access to the EFS API](access-control-managing-permissions.md)

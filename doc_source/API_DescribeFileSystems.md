@@ -31,7 +31,7 @@ Length Constraints: Minimum length of 1\. Maximum length of 64\.
 \(Optional\) Opaque pagination token returned from a previous `DescribeFileSystems` operation \(String\)\. If present, specifies to continue the list from where the returning call had left off\. 
 
  ** [MaxItems](#API_DescribeFileSystems_RequestSyntax) **   <a name="efs-DescribeFileSystems-request-MaxItems"></a>
-\(Optional\) Specifies the maximum number of file systems to return in the response \(integer\)\. Currently, this number is automatically set to 10, and other values are ignored\. The response is paginated at 10 per page if you have more than 10 file systems\.   
+\(Optional\) Specifies the maximum number of file systems to return in the response \(integer\)\. This number is automatically set to 100\. The response is paginated at 100 per page if you have more than 100 file systems\.   
 Valid Range: Minimum value of 1\.
 
 ## Request Body<a name="API_DescribeFileSystems_RequestBody"></a>
@@ -161,9 +161,8 @@ For more information about using this API in one of the language\-specific AWS S
 +  [AWS SDK for \.NET](https://docs.aws.amazon.com/goto/DotNetSDKV3/elasticfilesystem-2015-02-01/DescribeFileSystems) 
 +  [AWS SDK for C\+\+](https://docs.aws.amazon.com/goto/SdkForCpp/elasticfilesystem-2015-02-01/DescribeFileSystems) 
 +  [AWS SDK for Go](https://docs.aws.amazon.com/goto/SdkForGoV1/elasticfilesystem-2015-02-01/DescribeFileSystems) 
-+  [AWS SDK for Go \- Pilot](https://docs.aws.amazon.com/goto/SdkForGoPilot/elasticfilesystem-2015-02-01/DescribeFileSystems) 
 +  [AWS SDK for Java](https://docs.aws.amazon.com/goto/SdkForJava/elasticfilesystem-2015-02-01/DescribeFileSystems) 
 +  [AWS SDK for JavaScript](https://docs.aws.amazon.com/goto/AWSJavaScriptSDK/elasticfilesystem-2015-02-01/DescribeFileSystems) 
 +  [AWS SDK for PHP V3](https://docs.aws.amazon.com/goto/SdkForPHPV3/elasticfilesystem-2015-02-01/DescribeFileSystems) 
 +  [AWS SDK for Python](https://docs.aws.amazon.com/goto/boto3/elasticfilesystem-2015-02-01/DescribeFileSystems) 
-+  [AWS SDK for Ruby V2](https://docs.aws.amazon.com/goto/SdkForRubyV2/elasticfilesystem-2015-02-01/DescribeFileSystems) 
++  [AWS SDK for Ruby V3](https://docs.aws.amazon.com/goto/SdkForRubyV3/elasticfilesystem-2015-02-01/DescribeFileSystems) 

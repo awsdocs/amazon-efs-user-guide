@@ -36,9 +36,9 @@ In general, you can expect the following backup rates with AWS Backup:
 + 500 files/s for file systems composed of mostly small files
 + The maximum duration for a backup or a restore operation in AWS Backup is seven days\.
 
-Restore operations generally take longer than the corresponding backup\.
+Complete restore operations generally take longer than the corresponding backup\.
 
-Using AWS Backup doesn't consume accumulated burst credits, and it doesn't count against the General Purpose mode limit of 7,000 file system operations per second\. 
+Using AWS Backup doesn't consume accumulated burst credits, and it doesn't count against the General Purpose mode file operation limits\. For more information, see [Quotas for Amazon EFS File Systems](limits.md#limits-fs-specific)\. 
 
 ### Completion Window<a name="backup-window"></a>
 
@@ -50,7 +50,7 @@ Backups that don't complete during the specified window are flagged with an inco
 
 You can use AWS Backup to back up all data in an EFS file system, whatever storage class the data is in\. You don't incur data access charges when backing up an EFS file system that has lifecycle management enabled and has data in the Infrequent Access \(IA\) storage class\. 
 
-When you restore a recovery point, generally all files are restored to the standard storage class\. However, if you restore a recovery point to a file system with lifecycle management enabled, the process is different\. In this case, EFS lifecycle management moves all files that meet the configured lifecycle age\-out policy since restoring your recovery point to the IA storage class\. For more information on storage classes, see [EFS Storage Classes](storage-classes.md) and [EFS Lifecycle Management](lifecycle-management-efs.md)\.
+When you restore a recovery point, all files are restored to the Standard storage class\. For more information on storage classes, see [EFS Storage Classes](storage-classes.md) and [EFS Lifecycle Management](lifecycle-management-efs.md)\.
 
 ### On\-Demand Backups<a name="ondemand-backup"></a>
 
@@ -62,7 +62,11 @@ AWS Backup limits backups to one concurrent backup per resource\. Therefore, sch
 
 ### Restore a Recovery Point<a name="restoring-backup-efs"></a>
 
-Using either the [AWS Backup Management Console](https://console.aws.amazon.com/backup) or the CLI, you can restore a recovery point to a new EFS file system or to the source file system\. In both cases, your recovery point is restored to the restore directory, `aws-backup-restore_2019-01-07T21-06-22-108Z`, which you can see at the root of the file system when the restore is complete\. If the restore fails to complete, you can see the directory `aws-backup-failed-restore_2019-01-07T21-06-22-108Z`\. You need to manually delete this directory when you are through using it\.
+Using either the [AWS Backup Management Console](https://console.aws.amazon.com/backup) or the CLI, you can restore a recovery point to a new EFS file system or to the source file system\. You can perform a Complete restore, which restores the entire file system\. Or, you can restore specific files and directories using a Partial restore\. To restore a specific file or directory, you must specify the relative path related to the mount point\. For example, if the file system is mounted to `/user/home/myname/efs` and the file path is `user/home/myname/efs/file1`, enter `/file1`\. Paths are case sensitive and cannot contain special characters, wildcards and regex strings\.
+
+ When you perform either a Complete or a Partial restore, your recovery point is restored to the restore directory, `aws-backup-restore_timestamp-of-restore`, which you can see at the root of the file system when the restore is complete\. If you attempt multiple restores for the same path, several directories containing the restored items might exist\. If the restore fails to complete, you can see the directory `aws-backup-failed-restore_timestamp-of-restore`\. You need to manually delete the restore and failed\_restore directories when you are through using them\.
 
 **Note**  
+For Partial restores to an existing EFS file system, AWS Backup restores the files and directories to a new directory under the file system root directory\. The full hierarchy of the specified items is preserved in the recovery directory\. For example, if directory A contains subdirectories B, C, and D, AWS Backup retains the hierarchical structure when A, B, C, and D are recovered\.
+
 After restoring a recovery point, data fragments that can't be restored to the appropriate directory are placed in the `aws-backup-lost+found` directory\. Fragments might be moved to this directory if modifications are made to the file system while the backup is occurring\.

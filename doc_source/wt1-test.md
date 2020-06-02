@@ -6,9 +6,6 @@ In this step, you do the following:
 + [Step 3\.1: Gather Information](#wt1-connect-test-gather-info)
 + [Step 3\.2: Install the NFS Client on Your EC2 Instance](#wt1-connect-install-nfs-client)
 + [Step 3\.3: Mount File System on Your EC2 Instance and Test](#wt1-mount-fs-and-test)
-+ [Next Step](#step3-next-step)
-+ Install an NFS client on your EC2 instance\. 
-+ Mount the file system on your EC2 instance and test the setup\.
 
 ## Step 3\.1: Gather Information<a name="wt1-connect-test-gather-info"></a>
 
@@ -31,12 +28,12 @@ Amazon EFS doesn't require that your Amazon EC2 instance have either a public IP
 
 ## Step 3\.2: Install the NFS Client on Your EC2 Instance<a name="wt1-connect-install-nfs-client"></a>
 
-You can connect to your EC2 instance from Windows or from a computer running Linux, or Mac OS X, or any other Unix variant\. 
+You can connect to your EC2 instance from Windows or from a computer running Linux, or macOS X, or any other Unix variant\. 
 
 **To install an NFS client**
 
 1. Connect to your EC2 instance:
-   + To connect to your instance from a computer running Mac OS or Linux, specify the \.pem file for your SSH command with the `-i` option and the path to your private key\.
+   + To connect to your instance from a computer running macOS or Linux, specify the \.pem file for your SSH command with the `-i` option and the path to your private key\.
    + To connect to your instance from a computer running Windows, you can use either MindTerm or PuTTY\. If you plan to use PuTTY, you need to install it and use the following procedure to convert the \.pem file to a \.ppk file\. 
 
    For more information, see the following topics in the *Amazon EC2 User Guide for Linux Instances*:
@@ -69,7 +66,7 @@ Now you mount the file system on your EC2 instance\.
 1. Make a directory \("efs\-mount\-point"\)\.
 
    ```
-   $  mkdir ~/efs-mount-point  
+   $ mkdir ~/efs-mount-point 
    ```
 
 1. Mount the Amazon EFS file system\. 
@@ -89,13 +86,13 @@ Now you mount the file system on your EC2 instance\.
    1. Change the directory\.
 
       ```
-      $  cd ~/efs-mount-point  
+      $ cd ~/efs-mount-point  
       ```
 
    1. List the directory contents\. 
 
       ```
-      $  ls -al
+      $ ls -al
       ```
 
       It should be empty\.
@@ -108,7 +105,7 @@ Now you mount the file system on your EC2 instance\.
    1. The root directory of a file system, upon creation, is owned by and is writable by the root user, so you need to change permissions to add files\.
 
       ```
-      $  sudo chmod go+rw .
+      $ sudo chmod go+rw .
       ```
 
       Now, if you try the `ls -al` command you see that the permissions have changed\.
@@ -121,19 +118,18 @@ Now you mount the file system on your EC2 instance\.
    1. Create a text file\.
 
       ```
-      $  touch test-file.txt 
+      $ touch test-file.txt 
       ```
 
    1. List directory content\. 
 
       ```
-      $  ls -l
+      $ ls -l
       ```
 
 You now have successfully created and mounted an Amazon EFS file system on your EC2 instance in your VPC\.
 
 The file system you mounted doesn't persist across reboots\. To automatically remount the directory, you can use the `fstab` file\. For more information, see [Automatic Remounting on Reboot](accessing-fs-nfs-permissions-per-user-subdirs.md#accessing-fs-nfs-permissions-per-user-subdirs-auto-mount-on-reboot)\. If you are using an Auto Scaling group to launch EC2 instances, you can also set scripts in a launch configuration\. For an example, see [Walkthrough: Set Up an Apache Web Server and Serve Amazon EFS Files](wt2-apache-web-server.md)\.
 
-## Next Step<a name="step3-next-step"></a>
-
+**Next Step**  
  [Step 4: Clean Up](wt1-clean-up.md) 

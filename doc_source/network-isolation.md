@@ -1,0 +1,7 @@
+# Amazon Elastic File System Network Isolation<a name="network-isolation"></a>
+
+As a managed service, Amazon Elastic File System is protected by the AWS global network security procedures described in the [Amazon Web Services: Overview of Security Processes](https://d0.awsstatic.com/whitepapers/Security/AWS_Security_Whitepaper.pdf) whitepaper\.
+
+Access to Amazon EFS by using the network is through AWS published APIs\. Clients must support Transport Layer Security \(TLS\) 1\.0\. We recommend TLS 1\.2\. Clients must also support cipher suites with Perfect Forward Secrecy \(PFS\) such as Ephemeral Diffie\-Hellman \(DHE\) or Elliptic Curve Ephemeral Diffie\-Hellman \(ECDHE\)\. Most modern systems such as Java 7 and later support these modes\. Additionally, requests must be signed by using either an access key ID and a secret access key that is associated with an IAM principal or the [AWS Security Token Service \(STS\)](https://docs.aws.amazon.com/STS/latest/APIReference/Welcome.html) to generate temporary security credentials to sign requests\.
+
+These APIs are callable from any network location, but Amazon EFS does support resource\-based access policies which can include restrictions based on the source IP address\. You can also use Amazon EFS policies to control access from specific Amazon Virtual Private Cloud \(Amazon VPC\) endpoints, or specific VPCs\. Effectively, this isolates network access to a given Amazon EFS resource from only the specific VPC within the AWS network\.

@@ -4,6 +4,16 @@ Provides a description of a mount target\.
 
 ## Contents<a name="API_MountTargetDescription_Contents"></a>
 
+ **AvailabilityZoneId**   <a name="efs-Type-MountTargetDescription-AvailabilityZoneId"></a>
+The unique and consistent identifier of the Availability Zone \(AZ\) that the mount target resides in\. For example, `use1-az1` is an AZ ID for the us\-east\-1 Region and it has the same location in every AWS account\.  
+Type: String  
+Required: No
+
+ **AvailabilityZoneName**   <a name="efs-Type-MountTargetDescription-AvailabilityZoneName"></a>
+The name of the Availability Zone \(AZ\) that the mount target resides in\. AZs are independently mapped to names for each AWS account\. For example, the Availability Zone `us-east-1a` for your AWS account might not be the same location as `us-east-1a` for another AWS account\.  
+Type: String  
+Required: No
+
  **FileSystemId**   <a name="efs-Type-MountTargetDescription-FileSystemId"></a>
 The ID of the file system for which the mount target is intended\.  
 Type: String  
@@ -45,6 +55,5 @@ Required: Yes
 For more information about using this API in one of the language\-specific AWS SDKs, see the following:
 +  [AWS SDK for C\+\+](https://docs.aws.amazon.com/goto/SdkForCpp/elasticfilesystem-2015-02-01/MountTargetDescription) 
 +  [AWS SDK for Go](https://docs.aws.amazon.com/goto/SdkForGoV1/elasticfilesystem-2015-02-01/MountTargetDescription) 
-+  [AWS SDK for Go \- Pilot](https://docs.aws.amazon.com/goto/SdkForGoPilot/elasticfilesystem-2015-02-01/MountTargetDescription) 
 +  [AWS SDK for Java](https://docs.aws.amazon.com/goto/SdkForJava/elasticfilesystem-2015-02-01/MountTargetDescription) 
-+  [AWS SDK for Ruby V2](https://docs.aws.amazon.com/goto/SdkForRubyV2/elasticfilesystem-2015-02-01/MountTargetDescription) 
++  [AWS SDK for Ruby V3](https://docs.aws.amazon.com/goto/SdkForRubyV3/elasticfilesystem-2015-02-01/MountTargetDescription) 

@@ -1,6 +1,4 @@
 # Mounting on Amazon EC2 with a DNS Name<a name="mounting-fs-mount-cmd-dns-name"></a>
-
-You can mount an Amazon EFS file system on an Amazon EC2 instance using DNS names\. You can do this with a DNS name for the file system, or a DNS name for a mount target\.
 + **File system DNS name** – Using the file system's DNS name is your simplest mounting option\. The file system DNS name automatically resolves to the mount target’s IP address in the Availability Zone of the connecting Amazon EC2 instance\. You can get this DNS name from the console, or if you have the file system ID, you can construct it using the following convention\.
 
   ```

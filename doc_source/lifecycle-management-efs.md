@@ -11,6 +11,7 @@ Lifecycle management applies to all files in the file system\.
 ## Using a Lifecycle Policy<a name="lifecycle-policy"></a>
 
 You define when EFS transitions files to the IA storage class by setting a lifecycle policy\. A file system has one lifecycle policy that applies to the entire file system\. If a file is not accessed for the period of time defined by the lifecycle policy that you choose, Amazon EFS transitions the file to the IA storage class\. You can specify one of four lifecycle policies for your Amazon EFS file system, as follows: 
++ `AFTER_7_DAYS`
 +  `AFTER_14_DAYS` 
 +  `AFTER_30_DAYS` 
 +  `AFTER_60_DAYS` 

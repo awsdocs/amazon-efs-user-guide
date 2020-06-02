@@ -1,6 +1,6 @@
 # Creating an Amazon Elastic File System<a name="creating-using-create-fs"></a>
 
-Following, you can find an explanation about how to create an Amazon EFS file system and optional tags for the file system\. This section explains how to create these resources using both the console and the AWS Command Line Interface \(AWS CLI\)\. 
+Following, you can find an explanation about how to create an Amazon EFS file system and optional tags for the file system\. This section explains how to create these resources using both the console and the AWS CLI\. 
 
 **Note**  
 If you are new to Amazon EFS, we recommend you go through the Getting Started exercise, which provides console\-based end\-to\-end instructions to create and access a file system in your VPC\. For more information, see [Getting Started](getting-started.md)\. 
@@ -16,26 +16,27 @@ To create a file system, the only requirement is that you create a token to ensu
 
 ```
 {
+    "OwnerId": "231243201240",
+    "CreationToken": "console-d7f56c5f-e433-41ca-8307-9d9c0example",
+    "FileSystemId": "fs-c7a0456e",
+    "CreationTime": 1422823614.0,
+    "LifeCycleState": "creating",
+    "Name": "MyFileSystem",
+    "NumberOfMountTargets": 0,
     "SizeInBytes": {
-
         "Value": 6144,
         "ValueInIA": 0
         "ValueInStandard": 6144
-
     },
-    "CreationToken": "console-d7f56c5f-e433-41ca-8307-9d9c0example",
-    "CreationTime": 1422823614.0,
-    "FileSystemId": "fs-c7a0456e",
     "PerformanceMode" : "generalPurpose",
-    "NumberOfMountTargets": 0,
-    "LifeCycleState": "available",
-    "OwnerId": "231243201240",
+    "Encrypted": false,
+    "ThroughputMode": "bursting",
     "Tags":[
        {
           "Key": "Name",
           "Value": "MyFileSystem"
        }
-     ]
+    ]
 }
 ```
 
@@ -47,11 +48,11 @@ You can create additional tags and edit existing tags later using the Amazon EFS
 
 For all operations, such as creating a file system and creating tags, a user must have AWS Identity and Access Management permissions for the corresponding API action and resource\. 
 
-You can perform any Amazon EFS operations using the root credentials of your AWS account, but using root credentials is not recommended\. If you create IAM users in your account, you can grant them permissions for Amazon EFS actions with user policies\. You can also use roles to grant cross\-account permissions\. For more information about managing permissions for the API actions, see [Authentication and Access Control for Amazon EFS](auth-and-access-control.md)\.
+You can perform any Amazon EFS operations using the root credentials of your AWS account, but using root credentials is not recommended\. If you create IAM users in your account, you can grant them permissions for Amazon EFS actions with user policies\. You can also use roles to grant cross\-account permissions\. For more information about managing permissions for the API actions, see [Identity and Access Management for Amazon EFS](auth-and-access-control.md)\.
 
 ## Creating a File System<a name="creating-using-create-fs-part1"></a>
 
-You can create a file system using the Amazon EFS console or using the AWS Command Line Interface\. You can also create file systems programmatically using AWS SDKs or the EFS API directly\.
+You can create a file system using the Amazon EFS console or using the AWS CLI\. You can also create file systems programmatically using AWS SDKs or the EFS API directly\.
 
 To create the file system mount targets in your VPC, you must specify VPC subnets\. The console prepopulates the list of VPCs in your account that are in the selected AWS Region\. First, you select your VPC, and then the console lists the Availability Zones in the VPC\. For each Availability Zone, you can select a subnet from the list\. After you select a subnet, you can either specify an available IP address in the subnet or let Amazon EFS choose an address\.
 
@@ -62,7 +63,7 @@ In addition to performance modes, you can also choose your throughput mode\. The
 **Note**  
 There are additional charges associated with using Provisioned Throughput mode\. For more information, see [https://aws\.amazon\.com/efs/pricing](https://aws.amazon.com/efs/pricing/)\.
 
-You can enable encryption at rest when creating a file system\. If you enable encryption at rest for your file system, all data and metadata stored on it is encrypted\. You can enable encryption in transit later, when you mount the file system\. For more information about Amazon EFS encryption, see [Security](security-considerations.md)\.
+You can enable encryption at rest when creating a file system\. If you enable encryption at rest for your file system, all data and metadata stored on it is encrypted\. You can enable encryption in transit later, when you mount the file system\. For more information about Amazon EFS encryption, see [Security in Amazon EFS](security-considerations.md)\.
 
 ### Creating a File System Using the Amazon EFS Console<a name="creating-using-fs-part1-console"></a>
 
@@ -70,7 +71,7 @@ When you choose **Create File System**, the console sends a series of API reques
 
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/efs/latest/ug/images/create-fs-descriptions-10.png)
 
-For instructions on how to create an Amazon EFS file system using the console, see [Step 1: Create Your EC2 Resources and Launch Your EC2 Instance](gs-step-one-create-ec2-resources.md)\.
+For instructions on how to create an Amazon EFS file system using the console, see [Step 2: Create Your EC2 Resources and Launch Your EC2 Instance](gs-step-one-create-ec2-resources.md)\.
 
 ### Creating a File System Using the AWS CLI<a name="creating-using-fs-part1-cli"></a>
 
