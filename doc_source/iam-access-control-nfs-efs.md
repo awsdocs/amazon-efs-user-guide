@@ -46,7 +46,7 @@ In this section, you can find example file system policies that grant or deny pe
 This example EFS file system policy has the following characteristics:
 + The effect is `Allow`\.
 + The principal is set to "\*", all IAM entities\.
-+ The action is set to `ClientMount`, `ClientWrite`, and `ClientRootAccess`\.
++ The action is set to `ClientMount`, and `ClientWrite`\.
 + The condition for granting permissions is set to `SecureTransport`—only NFS clients using TLS to connect to the file system are granted access\.
 
 ```
