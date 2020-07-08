@@ -1,7 +1,7 @@
 # Step 2: Create Amazon EFS Resources<a name="wt1-create-efs-resources"></a>
 
 In this step, you do the following:
-+ Create an Amazon EFS file system\. 
++ Create an encrypted Amazon EFS file system\. 
 + Enable lifecycle management\.
 + Create a mount target in the Availability Zone where you have your EC2 instance launched\.
 
@@ -21,6 +21,7 @@ In this step, you create an Amazon EFS file system\. Write down the `FileSystemI
 
      ```
      $  aws efs create-file-system \
+     --encrypted \
      --creation-token FileSystemForWalkthrough1 \
      --tags Key=Name,Value=SomeExampleNameValue \
      --region us-west-2 \
@@ -34,7 +35,7 @@ In this step, you create an Amazon EFS file system\. Write down the `FileSystemI
          "OwnerId": "123456789abcd",
          "CreationToken": "FileSystemForWalkthrough1",
          "FileSystemId": "fs-c657c8bf",
-         "CreationTime": 1548950706.0,
+         "CreationTime": "2020-07-08T17:39:42+09:00",
          "LifeCycleState": "creating",
          "NumberOfMountTargets": 0,
          "SizeInBytes": {
@@ -43,7 +44,8 @@ In this step, you create an Amazon EFS file system\. Write down the `FileSystemI
              "ValueInStandard": 0
          },
          "PerformanceMode": "generalPurpose",
-         "Encrypted": false,
+         "Encrypted": true,
+         "KmsKeyId": "arn:aws:kms:us-east-1:123456789abcd:key/a5e21292-7c19-43c8-9dcc-8958e5e8bfcc",
          "ThroughputMode": "bursting",
          "Tags": [
              {
