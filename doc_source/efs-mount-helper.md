@@ -15,7 +15,7 @@ Using TLS requires certificates, and these certificates are signed by a trusted 
 
 ## Using the EFS Mount Helper<a name="using-efs-mount-helper"></a>
 
-The mount helper helps you mount your EFS file systems on your Linux EC2 instances\. For more information, see [Mounting EFS File Systems](mounting-fs.md)\. 
+The mount helper helps you mount your EFS file systems on your Linux EC2 instances\. For more information, see [Mounting EFS file systems](mounting-fs.md)\. 
 
 ## Getting Support Logs<a name="mount-helper-logs"></a>
 
@@ -39,4 +39,4 @@ You can mount your Amazon EFS file systems on your on\-premises data center serv
 
 For more information on the Amazon EFS mount helper, see these related topics:
 + [Data Encryption in EFS](encryption.md)
-+ [Mounting EFS File Systems](mounting-fs.md)
++ [Mounting EFS file systems](mounting-fs.md)

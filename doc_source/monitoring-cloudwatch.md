@@ -2,7 +2,7 @@
 
 You can monitor file systems using Amazon CloudWatch, which collects and processes raw data from Amazon EFS into readable, near real\-time metrics\. These statistics are recorded for a period of 15 months, so that you can access historical information and gain a better perspective on how your web application or service is performing\. By default, Amazon EFS metric data is automatically sent to CloudWatch at 1\-minute periods\. For more information about CloudWatch, see [What Are Amazon CloudWatch, Amazon CloudWatch Events, and Amazon CloudWatch Logs?](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/WhatIsCloudWatch.html) in the *Amazon CloudWatch User Guide*\.
 
-## Amazon CloudWatch Metrics for Amazon EFS<a name="efs-metrics"></a>
+## Amazon CloudWatch metrics for Amazon EFS<a name="efs-metrics"></a>
 
 The `AWS/EFS` namespace includes the following metrics\.
 
@@ -63,10 +63,10 @@ Units:
 + Count for `SampleCount`\.
 Valid statistics: `Minimum`, `Maximum`, `Average`, `Sum`, `SampleCount`
 
-## Bytes Reported in CloudWatch<a name="cloudwatch-bytes"></a>
+## Bytes reported in CloudWatch<a name="cloudwatch-bytes"></a>
 
 As with Amazon S3 and Amazon EBS, Amazon EFS CloudWatch metrics are reported as raw *Bytes*\. Bytes are not rounded to either a decimal or binary multiple of the unit\. Keep this in mind when calculating your burst rate using the data you get from the metrics\. For more information on bursting, see [Throughput Scaling with Bursting Mode](performance.md#bursting)\.
 
-## Amazon EFS Dimensions<a name="efs-dimensions"></a>
+## Amazon EFS dimensions<a name="efs-dimensions"></a>
 
-Amazon EFS metrics use the `EFS` namespace and provides metrics for a single dimension, `FileSystemId`\. A file system's ID can be found in the Amazon EFS management console, and it takes the form of `fs-XXXXXXXX`\.
+Amazon EFS metrics use the `EFS` namespace and provide metrics for a single dimension, `FileSystemId`\. A file system's ID can be found in the Amazon EFS console, and it takes the form of `fs-XXXXXXXX`\.

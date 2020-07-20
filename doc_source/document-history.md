@@ -1,11 +1,14 @@
 # Document History<a name="document-history"></a>
 + **API version**: 2015\-02\-01
-+ **Latest documentation update**: April 1, 2020
++ **Latest documentation update**: July 16, 2020
 
 The following table describes important changes to the *Amazon Elastic File System User Guide* after July 2018\. For notifications about documentation updates, you can subscribe to the RSS feed\.
 
 | Change | Description | Date | 
 | --- |--- |--- |
+| [Support added for automatic daily backups of Amazon EFS file systems](#document-history) | Automatic daily backups are now enabled by default when creating a file system using the EFS console\. For more information, see [Using AWS Backup with Amazon EFS](https://docs.aws.amazon.com/efs/latest/ug/awsbackup.html)\. | July 16, 2020 | 
+| [New Amazon EFS management console is now available](#document-history) | The new EFS console makes it easier for you to use Amazon EFS and simplifies the management of your EFS file systems\. | July 16, 2020 | 
+| [EFS Quick Create simplifies creating Amazon EFS file systems](#document-history) | Using the Quick Create option in the EFS console, you can create an EFS file system using service recommended settings with a single button\. For more information, see [Create Your Amazon EFS File System](https://docs.aws.amazon.com/efs/latest/ug/gs-step-two-create-efs-resources.html)\. | July 16, 2020 | 
 | [Performance of General Purpose Mode file systems increased](#document-history) | Amazon EFS General Purpose mode file systems now support up to 35,000 read operations per second, a 400% increase from the previous limit of 7,000\. For more information, see [ Quotas for Amazon EFS File Systems](https://docs.aws.amazon.com/efs/latest/ug/limits.html#limits-fs-specific)\. | April 1, 2020 | 
 | [Additional AWS Region support added](#document-history) | Amazon EFS is now available to all users in the Beijing and Ningxia AWS Regions\. | January 22, 2020 | 
 | [Support added for IAM authorization for NFS clients](#document-history) | You can now use AWS Identity and Access Management \(IAM\) to manage NFS access to an Amazon EFS file system\. For more information, see [Using AWS IAM to Control NFS Access to Amazon EFS](https://docs.aws.amazon.com/efs/latest/ug/iam-access-control-nfs-efs.html)\. | January 13, 2020 | 
@@ -43,14 +46,14 @@ The following table describes important changes to the *Amazon Elastic File Syst
 | Change | Description | Date Changed | 
 | --- | --- | --- | 
 | Additional AWS Region support added | Amazon EFS is now available to all users in the Asia Pacific \(Seoul\) AWS Region\. | May 30, 2018 | 
-| Added CloudWatch metric math support | Metric math enables you to query multiple CloudWatch metrics and use math expressions to create new time series based on these metrics\. For more information, see [Using Metric Math with Amazon EFS](monitoring-metric-math.md)\. | April 4, 2018 | 
+| Added CloudWatch metric math support | Metric math enables you to query multiple CloudWatch metrics and use math expressions to create new time series based on these metrics\. For more information, see [Using metric math with Amazon EFS](monitoring-metric-math.md)\. | April 4, 2018 | 
 | Added the amazon\-efs\-utils set of open\-source tools, and added encryption in transit | The amazon\-efs\-utils tools are a set of open\-source executable files that simplifies aspects of using Amazon EFS, like mounting\. There's no additional cost to use amazon\-efs\-utils, and you can download these tools from GitHub\. For more information, see [Using the amazon\-efs\-utils Tools](using-amazon-efs-utils.md)\. Also in this release, Amazon EFS now supports encryption in transit through Transport Layer Security \(TLS\) tunneling\. For more information, see [Data Encryption in EFS](encryption.md)\. | April 4, 2018 | 
 | Updated file system limits per AWS Region | Amazon EFS has increased the limit on the number of file systems for all accounts in all AWS Regions\. For more information, see [Resource Quotas](limits.md#limits-efs-resources-per-account-per-region)\. | March 15, 2018 | 
 | Additional AWS Region support added | Amazon EFS is now available to all users in the US West \(N\. California\) AWS Region\. | March 14, 2018 | 
 | Data encryption at rest | Amazon EFS now supports data encryption at rest\. For more information, see [Data Encryption in EFS](encryption.md)\. | August 14, 2017 | 
 | Additional region support added | Amazon EFS is now available to all users in the Europe \(Frankfurt\) region\. | July 20, 2017 | 
 | File system names using Domain Name System \(DNS\) | Amazon EFS now supports DNS names for file systems\. A file system's DNS name automatically resolves to a mount target’s IP address in the Availability Zone for the connecting Amazon EC2 instance\. For more information, see [Mounting on Amazon EC2 with a DNS Name](mounting-fs-mount-cmd-dns-name.md)\. | December 20, 2016 | 
-| Increased tag support for file systems | Amazon EFS now supports 50 tags per file system\. For more information on tags in Amazon EFS, see [Managing File System Tags](manage-fs-tags.md)\. | August 29, 2016 | 
+| Increased tag support for file systems | Amazon EFS now supports 50 tags per file system\. For more information on tags in Amazon EFS, see [Managing file system tags](manage-fs-tags.md)\. | August 29, 2016 | 
 |  General availability  |  Amazon EFS is now generally available to all users in the US East \(N\. Virginia\), US West \(Oregon\), and Europe \(Ireland\) Regions\.  |  June 28, 2016  | 
 |  File system limit increase  |  The number of Amazon EFS file systems that can be created per account for each AWS Region increased from 5 to 10\.  |  August 21, 2015  | 
 |  Updated Getting Started exercise  |  The Getting Started exercise has been updated to simplify the getting started process\.  |  August 17, 2015  | 

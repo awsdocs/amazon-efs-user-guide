@@ -109,4 +109,4 @@ If you choose **Amazon Linux AMI 2016\.03\.0** or **Amazon Linux AMI 2016\
 Use one of the following procedures to mount your file system\.
 + [Mounting on Amazon EC2 with a DNS Name](mounting-fs-mount-cmd-dns-name.md)
 + [Mounting with an IP Address](mounting-fs-mount-cmd-ip-addr.md)
-+ [Mounting Your Amazon EFS File System Automatically](mount-fs-auto-mount-onreboot.md)
++ [Mounting your Amazon EFS file system automatically](mount-fs-auto-mount-onreboot.md)

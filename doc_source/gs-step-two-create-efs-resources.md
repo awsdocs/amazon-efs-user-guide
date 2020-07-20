@@ -1,31 +1,34 @@
 # Step 1: Create Your Amazon EFS File System<a name="gs-step-two-create-efs-resources"></a>
 
-In this step, you create your Amazon EFS file system\.
+In this step, you create your Amazon EFS file system that has the service recommended settings using the Amazon EFS console\.
 
 **To create your Amazon EFS file system**
 
 1. Open the Amazon EFS Management Console at [https://console\.aws\.amazon\.com/efs/](https://console.aws.amazon.com/efs/)\.
 
-1. Choose **Create File System**\. The **Create file system** page is displayed\.
+1. Choose **Create file system** to open the **Create file system** dialog box\.  
+![\[Image NOT FOUND\]](http://docs.aws.amazon.com/efs/latest/ug/images/console2-create-file-system.png)
 
-1. In the **Configure network access** section, for **VPC**, choose your default VPC\. It looks something like `vpc-xxxxxxx (172.31.0.0/16) (default)`\. Note the VPC ID; you need it in a later step\.
+1. \(Optional\) Enter a **Name** for your file system\.
 
-1. Select the check boxes for all of the Availability Zones\. Make sure that they all have the default subnets, automatic IP addresses, and the default security groups chosen\. These are your mount targets\. For more information, see [Creating Mount Targets](accessing-fs.md)\.  
-![\[Image NOT FOUND\]](http://docs.aws.amazon.com/efs/latest/ug/images/gs-configure-file-system-800w1.png)
+1. For **Virtual Private Cloud \(VPC\)**, choose your VPC, or keep it set to your default VPC\.
 
-1. Choose **Next Step**\.
+1. Choose **Create** to create a file system that uses the following service recommended settings:
+   + Automatic backups turned on, for more information, see [Using AWS Backup with Amazon EFS](awsbackup.md)\.
+   + Mount targets – Amazon EFS creates mount targets with the following settings:
+     + A mount target in each Availability Zone in the Region where the file system is created\.
+     + Located in the default subnets of the VPC you selected\.
+     + Using the VPC's default security group – you can manage security groups after the file system is the created\.
 
-1. In **Add tags**, name your file system, and add any other tags to help describe and manage your ﬁle system\.
+     For more information, see [Managing file system network accessibility](manage-fs-access.md)\.
+   + General Purpose performance mode – For more information, see [Performance Modes](performance.md#performancemodes)\.
+   + Bursting throughput mode – For more information, see [Throughput Modes](performance.md#throughput-modes)\.
+   + Encryption of data at rest enabled using your default key for Amazon EFS \(aws/elasticfilesystem\) – For more information, see [Encrypting Data at Rest](encryption-at-rest.md)\.
+   + Lifecycle management enabled with a 30\-day policy – For more information, see [EFS lifecycle management](lifecycle-management-efs.md)\.
 
-1. \(Optional\) In **Enable Lifecycle Management**, select a **Lifecycle policy** so that your file system uses the lower\-cost Infrequent Access storage class\. For more information about storage classes, see [EFS Storage Classes](storage-classes.md)\. 
+   After you create the file system, you can customize the file system's settings, with the exception of encryption and performance mode\.
 
-1. Keep **Bursting** and **General Purpose** selected as your default performance and throughput modes\.
+   If you want to create a file system with a customized configuration, choose **Customize**\. For more information about creating a file system with customized settings, see [Creating a file system using the Amazon EFS console](creating-using-create-fs.md#creating-using-fs-part1-console), 
 
-1. \(Optional\) For **Enable encryption**, leave **Enable encryption of data at rest** unchecked for this exercise\. For more information on encrypting the data on your file system, see [Data Encryption in EFS](encryption.md)\. Choose **Next Step**\. The **Configure client access** page is displayed\.
-
-1.  For this exercise, leave the default settings for **File system policy** and **Access Points**\. For more information about EFS file system policies and how to use them, see [Using IAM to Control NFS Access to Amazon EFS](iam-access-control-nfs-efs.md)\. For more information about EFS access points, see [Working with Amazon EFS Access Points](efs-access-points.md)\. Choose **Next Step**\. The **Review and create** page is displayed\.   
-![\[Image NOT FOUND\]](http://docs.aws.amazon.com/efs/latest/ug/images/gs-review-create.png)
-
-1. Review the file system configuration, and then choose **Create File System**\.
-
-1. The **File systems** page is displayed, with your new file system selected\. Note the **File system ID** value\. You need this value for the next step\.
+1. The **File systems** page appears with a banner across the top showing the status of the file system you created\. A link to access the file system details page appears in the banner when the file system becomes available\.  
+![\[File system details page showing the newly created file system and its configuration details.\]](http://docs.aws.amazon.com/efs/latest/ug/images/console2-filesystemdetails.png)

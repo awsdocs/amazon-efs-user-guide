@@ -4,7 +4,7 @@ Amazon EFS *access points *are application\-specific entry points into an EFS fi
 
 You can use AWS Identity and Access Management \(IAM\) policies to enforce that specific applications use a specific access point\. By combining IAM policies with access points, you can easily provide secure access to specific datasets for your applications\. 
 
-For more information on creating an access point, see [Creating Access Points](create-access-point.md)\.
+For more information on creating an access point, see [Creating and deleting access points](create-access-point.md)\.
 
 **Topics**
 + [Creating an Access Point](#efs-access-poiont-create)
@@ -17,7 +17,7 @@ For more information on creating an access point, see [Creating Access Points](c
 
 You can create access points for an existing Amazon EFS file system using the AWS Management Console, the AWS Command Line Interface \(AWS CLI\), and the EFS API\. 
 
-For directions about how to create an access point, see [Creating Access Points](create-access-point.md)\.
+For directions about how to create an access point, see [Creating and deleting access points](create-access-point.md)\.
 
 ## Mounting a File System Using an Access Point<a name="mount-with-access-point"></a>
 
@@ -27,7 +27,7 @@ You use the EFS mount helper when mounting a file system using an access point\.
 $ mount -t efs -o tls,accesspoint=fsap-12345678 fs-12345678: /localmountpoint
 ```
 
-For more information on mounting file systems using an access point, see [Mounting with EFS Access Points](mounting-fs.md#mounting-access-points)\.
+For more information on mounting file systems using an access point, see [Mounting with EFS access points](mounting-fs.md#mounting-access-points)\.
 
 ## Enforcing a User Identity Using an Access Point<a name="enforce-identity-access-points"></a>
 

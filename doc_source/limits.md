@@ -57,7 +57,7 @@ Following are the quotas on Amazon EFS resources for each customer account in an
 | Number of VPCs for each file system | 1 | 
 
 **Note**  
-Clients can also connect to mount targets in another account or VPC\. For more information, see [Mounting EFS File Systems from Another Account or VPC](manage-fs-access-vpc-peering.md)\.
+Clients can also connect to mount targets in another account or VPC\. For more information, see [Mounting EFS file systems from another account or VPC](manage-fs-access-vpc-peering.md)\.
 
 ## Quotas for NFS Clients<a name="limits-client-specific"></a>
 

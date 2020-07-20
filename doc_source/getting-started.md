@@ -16,6 +16,9 @@ There are four steps that you need to perform to create and use your first Amazo
 + [Step 3: Transfer Files to Amazon EFS Using AWS DataSync](gs-step-four-sync-files.md)
 + [Step 4: Clean Up Resources and Protect Your AWS Account](gs-step-five-cleanup.md)
 
+**Note**  
+The new Amazon EFS management console is not available in the following AWS Regions: Europe \(Milan\) Region, Africa \(Cape Town\) Region, Beijing and Ningxia Regions, or AWS GovCloud \(US\)\. If you are accessing the Amazon EFS console in these regions, you can access the user documentation for that console experience here: [ AWS Elastic File System User Guide](images/AmazonElasticFileSystem-UserGuide-console1.pdf)\.
+
 ## Assumptions<a name="gs-assumptions"></a>
 
 For this exercise, we assume the following:
@@ -24,7 +27,7 @@ For this exercise, we assume the following:
 + You have a default VPC in the AWS Region that you're using for this Getting Started exercise\. If you don't have a default VPC, or if you want to mount your file system from a new VPC with new or existing security groups, you can still use this Getting Started exercise\. To do so, configure [Using Security Groups for Amazon EC2 Instances and Mount Targets](network-access.md)\.
 + You haven't changed the default inbound access rule for the default security group\.
 
-You can use the root credentials of your AWS account to sign in to the console and try the Getting Started exercise\. However, AWS Identity and Access Management \(IAM\) recommends that you do not use the root credentials of your AWS account\. Instead, create an administrator user in your account and use those credentials to manage resources in your account\. For more information, see [Setting Up](setting-up.md)\.
+You can use your AWS account root user credentials to sign in to the console and try the Getting Started exercise\. However, AWS Identity and Access Management \(IAM\) recommends that you do not use the account root user credentials\. Instead, create an administrator user in your account and use those credentials to manage resources in your account\. For more information, see [Setting Up](setting-up.md)\.
 
 ## Related Topics<a name="gs-related-topics"></a>
 

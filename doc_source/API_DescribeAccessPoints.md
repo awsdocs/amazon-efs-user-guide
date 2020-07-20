@@ -12,13 +12,15 @@ GET /2015-02-01/access-points?AccessPointId=AccessPointId&FileSystemId=FileSyste
 
 ## URI Request Parameters<a name="API_DescribeAccessPoints_RequestParameters"></a>
 
-The request requires the following URI parameters\.
+The request uses the following URI parameters\.
 
  ** [AccessPointId](#API_DescribeAccessPoints_RequestSyntax) **   <a name="efs-DescribeAccessPoints-request-AccessPointId"></a>
 \(Optional\) Specifies an EFS access point to describe in the response; mutually exclusive with `FileSystemId`\.
 
  ** [FileSystemId](#API_DescribeAccessPoints_RequestSyntax) **   <a name="efs-DescribeAccessPoints-request-FileSystemId"></a>
-\(Optional\) If you provide a `FileSystemId`, EFS returns all access points for that file system; mutually exclusive with `AccessPointId`\.
+\(Optional\) If you provide a `FileSystemId`, EFS returns all access points for that file system; mutually exclusive with `AccessPointId`\.  
+Length Constraints: Maximum length of 128\.  
+Pattern: `^(arn:aws[-a-z]*:elasticfilesystem:[0-9a-z-:]+:file-system/fs-[0-9a-f]{8,40}|fs-[0-9a-f]{8,40})$` 
 
  ** [MaxResults](#API_DescribeAccessPoints_RequestSyntax) **   <a name="efs-DescribeAccessPoints-request-MaxResults"></a>
 \(Optional\) When retrieving all access points for a file system, you can optionally specify the `MaxItems` parameter to limit the number of objects returned in a response\. The default value is 100\.   
@@ -38,37 +40,37 @@ HTTP/1.1 200
 Content-type: application/json
 
 {
-   "[AccessPoints](#efs-DescribeAccessPoints-response-AccessPoints)": [ 
+   "AccessPoints": [ 
       { 
-         "[AccessPointArn](API_AccessPointDescription.md#efs-Type-AccessPointDescription-AccessPointArn)": "string",
-         "[AccessPointId](API_AccessPointDescription.md#efs-Type-AccessPointDescription-AccessPointId)": "string",
-         "[ClientToken](API_AccessPointDescription.md#efs-Type-AccessPointDescription-ClientToken)": "string",
-         "[FileSystemId](API_AccessPointDescription.md#efs-Type-AccessPointDescription-FileSystemId)": "string",
-         "[LifeCycleState](API_AccessPointDescription.md#efs-Type-AccessPointDescription-LifeCycleState)": "string",
-         "[Name](API_AccessPointDescription.md#efs-Type-AccessPointDescription-Name)": "string",
-         "[OwnerId](API_AccessPointDescription.md#efs-Type-AccessPointDescription-OwnerId)": "string",
-         "[PosixUser](API_AccessPointDescription.md#efs-Type-AccessPointDescription-PosixUser)": { 
-            "[Gid](API_PosixUser.md#efs-Type-PosixUser-Gid)": number,
-            "[SecondaryGids](API_PosixUser.md#efs-Type-PosixUser-SecondaryGids)": [ number ],
-            "[Uid](API_PosixUser.md#efs-Type-PosixUser-Uid)": number
+         "AccessPointArn": "string",
+         "AccessPointId": "string",
+         "ClientToken": "string",
+         "FileSystemId": "string",
+         "LifeCycleState": "string",
+         "Name": "string",
+         "OwnerId": "string",
+         "PosixUser": { 
+            "Gid": number,
+            "SecondaryGids": [ number ],
+            "Uid": number
          },
-         "[RootDirectory](API_AccessPointDescription.md#efs-Type-AccessPointDescription-RootDirectory)": { 
-            "[CreationInfo](API_RootDirectory.md#efs-Type-RootDirectory-CreationInfo)": { 
-               "[OwnerGid](API_CreationInfo.md#efs-Type-CreationInfo-OwnerGid)": number,
-               "[OwnerUid](API_CreationInfo.md#efs-Type-CreationInfo-OwnerUid)": number,
-               "[Permissions](API_CreationInfo.md#efs-Type-CreationInfo-Permissions)": "string"
+         "RootDirectory": { 
+            "CreationInfo": { 
+               "OwnerGid": number,
+               "OwnerUid": number,
+               "Permissions": "string"
             },
-            "[Path](API_RootDirectory.md#efs-Type-RootDirectory-Path)": "string"
+            "Path": "string"
          },
-         "[Tags](API_AccessPointDescription.md#efs-Type-AccessPointDescription-Tags)": [ 
+         "Tags": [ 
             { 
-               "[Key](API_Tag.md#efs-Type-Tag-Key)": "string",
-               "[Value](API_Tag.md#efs-Type-Tag-Value)": "string"
+               "Key": "string",
+               "Value": "string"
             }
          ]
       }
    ],
-   "[NextToken](#efs-DescribeAccessPoints-response-NextToken)": "string"
+   "NextToken": "string"
 }
 ```
 

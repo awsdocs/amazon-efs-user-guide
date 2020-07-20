@@ -12,10 +12,13 @@ DELETE /2015-02-01/file-systems/FileSystemId/policy HTTP/1.1
 
 ## URI Request Parameters<a name="API_DeleteFileSystemPolicy_RequestParameters"></a>
 
-The request requires the following URI parameters\.
+The request uses the following URI parameters\.
 
  ** [FileSystemId](#API_DeleteFileSystemPolicy_RequestSyntax) **   <a name="efs-DeleteFileSystemPolicy-request-FileSystemId"></a>
-Specifies the EFS file system for which to delete the `FileSystemPolicy`\.
+Specifies the EFS file system for which to delete the `FileSystemPolicy`\.  
+Length Constraints: Maximum length of 128\.  
+Pattern: `^(arn:aws[-a-z]*:elasticfilesystem:[0-9a-z-:]+:file-system/fs-[0-9a-f]{8,40}|fs-[0-9a-f]{8,40})$`   
+Required: Yes
 
 ## Request Body<a name="API_DeleteFileSystemPolicy_RequestBody"></a>
 

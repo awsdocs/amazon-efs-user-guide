@@ -14,10 +14,13 @@ GET /2015-02-01/mount-targets/MountTargetId/security-groups HTTP/1.1
 
 ## URI Request Parameters<a name="API_DescribeMountTargetSecurityGroups_RequestParameters"></a>
 
-The request requires the following URI parameters\.
+The request uses the following URI parameters\.
 
  ** [MountTargetId](#API_DescribeMountTargetSecurityGroups_RequestSyntax) **   <a name="efs-DescribeMountTargetSecurityGroups-request-MountTargetId"></a>
-The ID of the mount target whose security groups you want to retrieve\.
+The ID of the mount target whose security groups you want to retrieve\.  
+Length Constraints: Minimum length of 13\. Maximum length of 45\.  
+Pattern: `^fsmt-[0-9a-f]{8,40}$`   
+Required: Yes
 
 ## Request Body<a name="API_DescribeMountTargetSecurityGroups_RequestBody"></a>
 
@@ -30,7 +33,7 @@ HTTP/1.1 200
 Content-type: application/json
 
 {
-   "[SecurityGroups](#efs-DescribeMountTargetSecurityGroups-response-SecurityGroups)": [ "string" ]
+   "SecurityGroups": [ "string" ]
 }
 ```
 
@@ -43,7 +46,9 @@ The following data is returned in JSON format by the service\.
  ** [SecurityGroups](#API_DescribeMountTargetSecurityGroups_ResponseSyntax) **   <a name="efs-DescribeMountTargetSecurityGroups-response-SecurityGroups"></a>
 An array of security groups\.  
 Type: Array of strings  
-Array Members: Maximum number of 5 items\.
+Array Members: Maximum number of 5 items\.  
+Length Constraints: Minimum length of 11\. Maximum length of 43\.  
+Pattern: `^sg-[0-9a-f]{8,40}` 
 
 ## Errors<a name="API_DescribeMountTargetSecurityGroups_Errors"></a>
 

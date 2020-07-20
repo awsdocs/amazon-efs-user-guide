@@ -1,15 +1,8 @@
-# Creating Resources for Amazon EFS<a name="creating-using"></a>
+# Working with Amazon EFS resources<a name="creating-using"></a>
 
 Amazon EFS provides elastic, shared file storage that is POSIX\-compliant\. The file system you create supports concurrent read and write access from multiple Amazon EC2 instances and is accessible from all of the Availability Zones in the AWS Region where it is created\.
 
 You can mount an Amazon EFS file system on EC2 instances in your virtual private cloud \(VPC\) based on Amazon VPC using the Network File System versions 4\.0 and 4\.1 protocol \(NFSv4\)\. For more information, see [Amazon EFS: How It Works](how-it-works.md)\.
-
-**Topics**
-+ [Creating an Amazon Elastic File System](creating-using-create-fs.md)
-+ [Creating Mount Targets](accessing-fs.md)
-+ [Creating Security Groups](accessing-fs-create-security-groups.md)
-+ [Creating File System Policies](create-file-system-policy.md)
-+ [Creating Access Points](create-access-point.md)
 
 As an example, suppose that you have one or more EC2 instances launched in your VPC\. Now you want to create and use a file system on these instances\. Following are the typical steps you need to perform to use Amazon EFS file systems in the VPC:
 + **Create an Amazon EFS file system** – When creating a file system, we recommend that you consider using the **Name** tag because the **Name** tag value appears in the console and makes it easier to identify the file system\. You can also add other optional tags to the file system\. 
@@ -20,11 +13,12 @@ If you are new to Amazon EFS, we recommend that you try the following exercises 
 + [Getting Started](getting-started.md) – The Getting Started exercise provides a console\-based end\-to\-end setup in which you create a file system, mount it on an EC2 instance, and test the setup\. The console takes care of many things for you and helps you set up the end\-to\-end experience quickly\.
 + [Walkthrough: Create an Amazon EFS File System and Mount It on an Amazon EC2 Instance Using the AWS CLI](wt1-getting-started.md) – The walkthrough is similar to the Getting Started exercise, but it uses the AWS Command Line Interface \(AWS CLI\) to perform most of the tasks\. Because the AWS CLI commands closely map to the Amazon EFS API, the walkthrough can help you familiarize yourself with the Amazon EFS API operations\. 
 
-For more information about creating and accessing a file system, see the following topics\.
+For more information about creating EFS resources and accessing a file system, see the following topics\.
 
 **Topics**
-+ [Creating an Amazon Elastic File System](creating-using-create-fs.md)
-+ [Creating Mount Targets](accessing-fs.md)
-+ [Creating Security Groups](accessing-fs-create-security-groups.md)
-+ [Creating File System Policies](create-file-system-policy.md)
-+ [Creating Access Points](create-access-point.md)
++ [Creating Amazon EFS file systems](creating-using-create-fs.md)
++ [Deleting an Amazon EFS file system](delete-efs-fs.md)
++ [Creating mount targets](accessing-fs.md)
++ [Creating security groups](accessing-fs-create-security-groups.md)
++ [Creating file system policies](create-file-system-policy.md)
++ [Creating and deleting access points](create-access-point.md)

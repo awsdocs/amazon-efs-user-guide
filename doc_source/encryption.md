@@ -9,8 +9,8 @@ If your organization is subject to corporate or regulatory policies that require
 ### Related Topics<a name="relatedencrypt"></a>
 
 For more information on encryption with Amazon EFS, see these related topics:
-+ [Creating Resources for Amazon EFS](creating-using.md)
-+ [Managing Access to Encrypted File Systems](managing-encrypt.md)
++ [Working with Amazon EFS resources](creating-using.md)
++ [Managing access to encrypted file systems](managing-encrypt.md)
 + [Amazon EFS Performance Tips](performance-tips.md)
 + [Amazon EFS API Permissions: Actions, Resources, and Conditions Reference](access-control-managing-permissions.md#efs-api-permissions-ref)
 + [Amazon EFS Log File Entries for Encrypted\-at\-Rest File Systems](logging-using-cloudtrail.md#efs-encryption-cloudtrail)

@@ -17,10 +17,13 @@ DELETE /2015-02-01/file-systems/FileSystemId HTTP/1.1
 
 ## URI Request Parameters<a name="API_DeleteFileSystem_RequestParameters"></a>
 
-The request requires the following URI parameters\.
+The request uses the following URI parameters\.
 
  ** [FileSystemId](#API_DeleteFileSystem_RequestSyntax) **   <a name="efs-DeleteFileSystem-request-FileSystemId"></a>
-The ID of the file system you want to delete\.
+The ID of the file system you want to delete\.  
+Length Constraints: Maximum length of 128\.  
+Pattern: `^(arn:aws[-a-z]*:elasticfilesystem:[0-9a-z-:]+:file-system/fs-[0-9a-f]{8,40}|fs-[0-9a-f]{8,40})$`   
+Required: Yes
 
 ## Request Body<a name="API_DeleteFileSystem_RequestBody"></a>
 

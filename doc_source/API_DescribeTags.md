@@ -12,13 +12,18 @@ GET /2015-02-01/tags/FileSystemId/?Marker=Marker&MaxItems=MaxItems HTTP/1.1
 
 ## URI Request Parameters<a name="API_DescribeTags_RequestParameters"></a>
 
-The request requires the following URI parameters\.
+The request uses the following URI parameters\.
 
  ** [FileSystemId](#API_DescribeTags_RequestSyntax) **   <a name="efs-DescribeTags-request-FileSystemId"></a>
-The ID of the file system whose tag set you want to retrieve\.
+The ID of the file system whose tag set you want to retrieve\.  
+Length Constraints: Maximum length of 128\.  
+Pattern: `^(arn:aws[-a-z]*:elasticfilesystem:[0-9a-z-:]+:file-system/fs-[0-9a-f]{8,40}|fs-[0-9a-f]{8,40})$`   
+Required: Yes
 
  ** [Marker](#API_DescribeTags_RequestSyntax) **   <a name="efs-DescribeTags-request-Marker"></a>
-\(Optional\) An opaque pagination token returned from a previous `DescribeTags` operation \(String\)\. If present, it specifies to continue the list from where the previous call left off\.
+\(Optional\) An opaque pagination token returned from a previous `DescribeTags` operation \(String\)\. If present, it specifies to continue the list from where the previous call left off\.  
+Length Constraints: Minimum length of 1\. Maximum length of 128\.  
+Pattern: `.+` 
 
  ** [MaxItems](#API_DescribeTags_RequestSyntax) **   <a name="efs-DescribeTags-request-MaxItems"></a>
 \(Optional\) The maximum number of file system tags to return in the response\. Currently, this number is automatically set to 100, and other values are ignored\. The response is paginated at 100 per page if you have more than 100 tags\.  
@@ -35,12 +40,12 @@ HTTP/1.1 200
 Content-type: application/json
 
 {
-   "[Marker](#efs-DescribeTags-response-Marker)": "string",
-   "[NextMarker](#efs-DescribeTags-response-NextMarker)": "string",
-   "[Tags](#efs-DescribeTags-response-Tags)": [ 
+   "Marker": "string",
+   "NextMarker": "string",
+   "Tags": [ 
       { 
-         "[Key](API_Tag.md#efs-Type-Tag-Key)": "string",
-         "[Value](API_Tag.md#efs-Type-Tag-Value)": "string"
+         "Key": "string",
+         "Value": "string"
       }
    ]
 }
@@ -54,11 +59,15 @@ The following data is returned in JSON format by the service\.
 
  ** [Marker](#API_DescribeTags_ResponseSyntax) **   <a name="efs-DescribeTags-response-Marker"></a>
 If the request included a `Marker`, the response returns that value in this field\.  
-Type: String
+Type: String  
+Length Constraints: Minimum length of 1\. Maximum length of 128\.  
+Pattern: `.+` 
 
  ** [NextMarker](#API_DescribeTags_ResponseSyntax) **   <a name="efs-DescribeTags-response-NextMarker"></a>
 If a value is present, there are more tags to return\. In a subsequent request, you can provide the value of `NextMarker` as the value of the `Marker` parameter in your next request to retrieve the next set of tags\.  
-Type: String
+Type: String  
+Length Constraints: Minimum length of 1\. Maximum length of 128\.  
+Pattern: `.+` 
 
  ** [Tags](#API_DescribeTags_ResponseSyntax) **   <a name="efs-DescribeTags-response-Tags"></a>
 Returns tags associated with the file system as an array of `Tag` objects\.   

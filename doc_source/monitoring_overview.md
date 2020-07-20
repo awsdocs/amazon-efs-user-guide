@@ -10,7 +10,7 @@ Monitoring is an important part of maintaining the reliability, availability, an
 
 The next step is to establish a baseline for normal Amazon EFS performance in your environment, by measuring performance at various times and under different load conditions\. As you monitor Amazon EFS, you should consider storing historical monitoring data\. This stored data will give you a baseline to compare against with current performance data, identify normal performance patterns and performance anomalies, and devise methods to address issues\.
 
-For example, with Amazon EFS, you can monitor network throughput, I/O for read, write, and/or metadata operations, client connections, and burst credit balances for your file systems\. When performance falls outside your established baseline, you might need change the size of your file system or the number of connected clients to optimize the file system for your workload\.
+For example, with Amazon EFS, you can monitor network throughput, I/O for read, write, and/or metadata operations, client connections, and burst credit balances for your file systems\. When performance falls outside your established baseline, you might need to change the size of your file system or the number of connected clients to optimize the file system for your workload\.
 
 To establish a baseline you should, at a minimum, monitor the following items:
 + Your file system's network throughput\.

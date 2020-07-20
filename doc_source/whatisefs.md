@@ -4,7 +4,7 @@ Amazon Elastic File System \(Amazon EFS\) provides a simple, scalable, fully man
 
 Amazon EFS supports the Network File System version 4 \(NFSv4\.1 and NFSv4\.0\) protocol, so the applications and tools that you use today work seamlessly with Amazon EFS\. Multiple Amazon EC2 instances can access an Amazon EFS file system at the same time, providing a common data source for workloads and applications running on more than one instance or server\.
 
-With Amazon EFS, you pay only for the storage used by your file system and there is no minimum fee or setup cost\. Amazon EFS oﬀers two storage classes, Standard and Infrequent Access\. The Standard storage class is used to store frequently accessed files\. The Infrequent Access \(IA\) storage class is a lower\-cost storage class that's designed for storing long\-lived, infrequently accessed ﬁles cost\-eﬀectively\. For more information, see [EFS Storage Classes](storage-classes.md)\. Costs related to Provisioned Throughput are determined by the throughput values you specify\. For more information, see [Amazon EFS Pricing](https://aws.amazon.com/efs/pricing)\.
+With Amazon EFS, you pay only for the storage used by your file system and there is no minimum fee or setup cost\. Amazon EFS oﬀers two storage classes, Standard and Infrequent Access\. The Standard storage class is used to store frequently accessed files\. The Infrequent Access \(IA\) storage class is a lower\-cost storage class that's designed for storing long\-lived, infrequently accessed ﬁles cost\-eﬀectively\. For more information, see [EFS storage classes](storage-classes.md)\. Costs related to Provisioned Throughput are determined by the throughput values you specify\. For more information, see [Amazon EFS Pricing](https://aws.amazon.com/efs/pricing)\.
 
 The service is designed to be highly scalable, highly available, and highly durable\. Amazon EFS file systems store data and metadata across multiple Availability Zones in an AWS Region\. EFS file systems can grow to petabyte scale, drive high levels of throughput, and allow massively parallel access from Amazon EC2 instances to your data\.
 
@@ -32,6 +32,6 @@ Using Amazon EFS with Microsoft Windows–based Amazon EC2 instances is not supp
    + [Walkthroughs](walkthroughs.md)
 
 If you want to learn more about Amazon EFS, the following topics discuss the service in greater detail:
-+ [Creating Resources for Amazon EFS](creating-using.md)
-+ [Managing Amazon EFS File Systems](managing.md)
++ [Working with Amazon EFS resources](creating-using.md)
++ [Managing Amazon EFS file systems](managing.md)
 + [Amazon EFS API](api-reference.md)

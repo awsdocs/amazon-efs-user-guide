@@ -12,4 +12,4 @@ Whether you can make this network connection is governed by a combination of the
   +  The file system must have a mount target whose network interface has a security group with a rule that enables inbound connections on the NFS port from the instance\. You can enable inbound connections either by IP address \(CIDR range\) or security group\. The source of the security group rules for the inbound NFS port on mount target network interfaces is a key element of file system access control\. Inbound rules other than the one for the NFS port, and any outbound rules, aren't used by network interfaces for file system mount targets\. 
   +  The mounting instance must have a network interface with a security group rule that enables outbound connections to the NFS port on one of the file system's mount targets\. You can enable outbound connections either by IP address \(CIDR range\) or security group\.
 
-For more information, see [Creating Mount Targets](accessing-fs.md)\.
+For more information, see [Creating mount targets](accessing-fs.md)\.

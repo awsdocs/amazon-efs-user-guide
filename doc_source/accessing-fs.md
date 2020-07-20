@@ -1,105 +1,206 @@
-# Creating Mount Targets<a name="accessing-fs"></a>
+# Creating mount targets<a name="accessing-fs"></a>
 
-After you create a file system, you can create mount targets and then you can mount the file system on EC2 instances in your VPC, as shown in the following illustration\. 
+After you create a file system, you can create mount targets\. Then you can mount the file system on EC2 instances, containers, and Lambda functions in your virtual private cloud \(VPC\), as shown in the following diagram\. 
 
-![\[Image NOT FOUND\]](http://docs.aws.amazon.com/efs/latest/ug/images/overview-flow.png)
+![\[Diagram showing 3 Availability Zones in a VPC, containing EC2 instances and mount targets, and a mounted file system.\]](http://docs.aws.amazon.com/efs/latest/ug/images/overview-flow.png)
 
-For more information about creating a file system, see [Creating an Amazon Elastic File System](creating-using-create-fs.md)\.
+For more information about creating a file system, see [Creating Amazon EFS file systems](creating-using-create-fs.md)\.
 
-The mount target security group acts as a virtual firewall that controls the traffic\. For example, it determines which Amazon EC2 instances can access the file system\. This section explains the following:
-+ Mount target security groups and how to enable traffic\.
-+ How to mount the file system on your Amazon EC2 instance\.
+The mount target security group acts as a virtual firewall that controls the traffic\. For example, it determines which clients can access the file system\. This section explains the following:
++ Managing mount target security groups and enabling traffic\.
++ Mounting the file system on your clients\.
 + NFS\-level permissions considerations\. 
 
   Initially, only the root user on the Amazon EC2 instance has read\-write\-execute permissions on the file system\. This topic discusses NFS\-level permissions and provides examples that show you how to grant permissions in common scenarios\. For more information, see [Working with Users, Groups, and Permissions at the Network File System \(NFS\) Level](accessing-fs-nfs-permissions.md)\.
 
-You can create mount targets for a file system using the console, using AWS CLI, or programmatically using the AWS SDKs\. When using the console, you can create mount targets when you first create a file system or after the file system is created\.
+You can create mount targets for a file system using the AWS Management Console, AWS CLI, or programmatically using the AWS SDKs\. When using the console, you can create mount targets when you first create a file system or after the file system is created\.
 
-## Creating a Mount Target Using the Amazon EFS console<a name="create-mount-target-console"></a>
+For instructions to create mount targets using the Amazon EFS console when creating a new file system, see [Step 2: Configure network access](creating-using-create-fs.md#configure-efs-network-access)\.
 
-Perform the steps in the following procedure to create a mount target using the console\. As you follow the console steps, you can also create one or more mount targets\. You can create one mount target for each Availability Zone in your VPC\.
+## Managing mount targets using the Amazon EFS console<a name="console2-create-mount-target-existing-fs"></a>
 
-**To create an Amazon EFS file system \(console\)**
+Use the following procedure to add or modify mount targets for an existing Amazon EFS file system\.
+
+**Note**  
+The new Amazon EFS management console is not available in the following AWS Regions: Europe \(Milan\) Region, Africa \(Cape Town\) Region, Beijing and Ningxia Regions, or AWS GovCloud \(US\)\. If you are accessing the Amazon EFS console in these regions, you can access the user documentation for that console experience here: [ AWS Elastic File System User Guide](images/AmazonElasticFileSystem-UserGuide-console1.pdf)\.
+
+**To manage mount targets on an Amazon EFS file system \(console\)**
 
 1. Sign in to the AWS Management Console and open the Amazon EFS console at [ https://console\.aws\.amazon\.com/efs/](https://console.aws.amazon.com/efs/)\.
 
-1. Choose **Create File System**\.  
-![\[Image NOT FOUND\]](http://docs.aws.amazon.com/efs/latest/ug/images/gs-efs-resources-100.png)![\[Image NOT FOUND\]](http://docs.aws.amazon.com/efs/latest/ug/)![\[Image NOT FOUND\]](http://docs.aws.amazon.com/efs/latest/ug/)
+1. In the left navigation pane, choose **File systems**\. The **File systems** page displays the EFS file systems in your account\.
+
+1. Choose the file system that you want to manage mount targets for by choosing its **Name** or the **File system ID** to display the file system details page\.
+
+1. Choose **Network** to display the list of existing mount targets\.  
+![\[Amazon EFS console file system details, network tab.\]](http://docs.aws.amazon.com/efs/latest/ug/images/console2-networktab1-efs.png)
+
+1. Choose **Manage** to display the **Availability zone** page and make modifications\.  
+![\[Amazon EFS console file system details, network tab.\]](http://docs.aws.amazon.com/efs/latest/ug/images/console2-avalability-zone-efs.png)
+
+   On this page, for existing mount targets, you can add and remove security groups, or delete the mount target\. You can also create new mount targets\.
+   + To remove a security group from a mount target, choose **X** next to the security group ID\.
+   + To add a security group to a mount target, choose **Select security groups** to display a list of available security groups\. Or, enter a security group ID in the search field at the top of the list\.
+   + To queue a mount target for deletion, choose **Remove**\.
 **Note**  
-The console shows the preceding page only if you don't already have any Amazon EFS file systems\. If you have created file systems, the console shows a list of your file systems\. On the list page, choose **Create File System**\.
+Before deleting a mount target, first unmount the file system\.
+   + To add a mount target, choose **Add mount target**\. This is available only if mount targets do not already exist in each Availability Zone for the Region\.
 
-1. On the **Step 1: Configure File System Access** page, select the VPC and the Availability Zone in the VPC where you want the console to create one or more mount targets for the file system that you are creating\. This VPC should be the same Amazon VPC in which you created your Amazon EC2 instance in the preceding section\.
+1. Choose **Save** to save any changes\.<a name="change-vpc-console2"></a>
 
-   1. Select a Amazon VPC from the **VPC** list\. 
-**Warning**  
-If the Amazon VPC you want is not listed, verify the AWS Region in the global navigation in the Amazon EFS console\.
+**To change the VPC for an Amazon EFS file system \(console\)**
 
-   1. In the **Create Mount Targets** section, select all of the Availability Zones listed\.
+To change the VPC for a file system's network configuration, you must delete all of the file system's existing mount targets\.
 
-      We recommend that you create mount targets in all Availability Zones\. You can then mount your file system on Amazon EC2 instances created in any of the Amazon VPC subnets\. 
+1. Open the Amazon Elastic File System console at [https://console\.aws\.amazon\.com/efs/](https://console.aws.amazon.com/efs/)\.
+
+1. In the left navigation pane, choose **File systems**\. The **File systems** page shows the EFS file systems in your account\.
+
+1. For the file system that you want to change the VPC for, choose the **Name** or the **File system ID**\. The file system details page is displayed\.
+
+1. Choose **Network** to display the list of existing mount targets\.
+
+1. Choose **Manage**\. The **Availability zone** page appears\.
+
+1. Remove all mount targets displayed on the page\.
+
+1. Choose **Save** to save changes and delete the mount targets\. The **Network** tab shows the mount targets status as **deleting**\.
+
+1. When all the mount targets statuses show as **deleted**, choose **Manage**\. The **Availability zone** page appears\.
+
+1. Choose the new VPC from the **Virtual Private Cloud \(VPC\)** list\.
+
+1. Choose **Add mount target** to add a new mount target\. For each mount target you add, enter the following:
+   + An **Availability zone**
+   + A **Subnet ID**
+   + An **IP address**, or keep it set to **Automatic**
+   + One or more **Security groups**
+
+1. Choose **Save** to implement the VPC and mount target changes\.
+
+## Managing mount targets using the AWS CLI<a name="create-mount-target-cli"></a>
+
+**To create a mount target \(CLI\)**
++ To create a mount target, use the `create-mount-target` CLI command \(corresponding operation is [CreateMountTarget](API_CreateMountTarget.md)\), as shown following\.
+
+  ```
+  $ aws efs create-mount-target \
+  --file-system-id file-system-id \
+  --subnet-id  subnet-id \
+  --security-group ID-of-the-security-group-created-for-mount-target \
+  --region aws-region \
+  --profile adminuser
+  ```
+
+  The following example shows the command with sample data\.
+
+  ```
+  $ aws efs create-mount-target \
+  --file-system-id fs-0123467 \
+  --subnet-id  subnet-b3983dc4 \
+  --security-group sg-01234567 \
+  --region us-east-2 \
+  --profile adminuser
+  ```
+
+  After successfully creating the mount target, Amazon EFS returns the mount target description as JSON as shown in the following example\.
+
+  ```
+  {
+      "MountTargetId": "fsmt-f9a14450",
+      "NetworkInterfaceId": "eni-3851ec4e",
+      "FileSystemId": "fs-b6a0451f",
+      "LifeCycleState": "available",
+      "SubnetId": "subnet-b3983dc4",
+      "OwnerId": "23124example",
+      "IpAddress": "10.0.1.24"
+  }
+  ```
+
+**To retrieve a list of mount targets for a file system \(CLI\)**
++ You can also retrieve a list of mount targets created for a file system using the [ `describe-mount-targets`](https://docs.aws.amazon.com/cli/latest/reference/efs/describe-mount-targets.html) CLI command \(the corresponding operation is [DescribeMountTargets](API_DescribeMountTargets.md)\), as shown following\.
+
+  ```
+  $ aws efs describe-mount-targets --file-system-id fs-a576a6dc
+  ```
+
+  ```
+  {
+      "MountTargets": [
+          {
+              "OwnerId": "111122223333",
+              "MountTargetId": "fsmt-48518531",
+              "FileSystemId": "fs-a576a6dc",
+              "SubnetId": "subnet-88556633",
+              "LifeCycleState": "available",
+              "IpAddress": "172.31.25.203",
+              "NetworkInterfaceId": "eni-0123456789abcdef1",
+              "AvailabilityZoneId": "use2-az2",
+              "AvailabilityZoneName": "us-east-2b"
+          },
+          {
+              "OwnerId": "111122223333",
+              "MountTargetId": "fsmt-5651852f",
+              "FileSystemId": "fs-a576a6dc",
+              "SubnetId": "subnet-44223377",
+              "LifeCycleState": "available",
+              "IpAddress": "172.31.46.181",
+              "NetworkInterfaceId": "eni-0123456789abcdefa",
+              "AvailabilityZoneId": "use2-az3",
+              "AvailabilityZoneName": "us-east-2c"
+          },
+          {
+              "OwnerId": "111122223333",
+              "MountTargetId": "fsmt-5751852e",
+              "FileSystemId": "fs-a576a6dc",
+              "SubnetId": "subnet-a3520bcb",
+              "LifeCycleState": "available",
+              "IpAddress": "172.31.12.219",
+              "NetworkInterfaceId": "eni-0123456789abcdef0",
+              "AvailabilityZoneId": "use2-az1",
+              "AvailabilityZoneName": "us-east-2a"
+          }
+      ]
+  }
+  ```
+
+**To delete an existing mount target \(CLI\)**
++ To delete an existing mount target, use the `delete-mount-target` AWS CLI command \(corresponding operation is [DeleteMountTarget](API_DeleteMountTarget.md)\), as shown following\.
 **Note**  
-You can access a file system on an Amazon EC2 instance in one Availability Zone by using a mount target created in another Availability Zone, but there are costs associated with cross–Availability Zone access\.
+Before deleting a mount target, first unmount the file system\.
 
-      For each Availability Zone, do the following: 
-      + Choose a **Subnet** from the list where you want to create the mount target\.
+  ```
+  $ aws efs delete-mount-target \
+  --mount-target-id mount-target-ID-to-delete \
+  --region aws-region-where-mount-target-exists
+  ```
 
-        You can create one mount target in each Availability Zone\. If you have multiple subnets in an Availability Zone where you launched your Amazon EC2 instance, you don't have to create mount target in the same subnet, it can be any subnet in the Availability Zone\. 
-      + Leave **IP Address** select to **Automatic**\. Amazon EFS will select one of the available IP addresses for the mount target\.
-      + Specify the **Security Group** you created specifically for the mount target, or the default security group for the default VPC\. Both security groups will have the necessary inbound rule that allows inbound access from the EC2 instance security group\.
+  The following is an example with sample data\.
 
-        Click in the **Security Group** box and the console will show you the available security groups\. Here you can select a specific security group and remove the **Default** security group, or leave the default in place, depending on how you configured your Amazon EC2 instance\.
+  ```
+  $ aws efs delete-mount-target \
+  --mount-target-id fsmt-5751852e \
+  --region us-east-2 \
+  ```<a name="modify-mount-target-sg-cli"></a>
 
-           
-![\[Image NOT FOUND\]](http://docs.aws.amazon.com/efs/latest/ug/images/gs-efs-resources-110.png)![\[Image NOT FOUND\]](http://docs.aws.amazon.com/efs/latest/ug/)![\[Image NOT FOUND\]](http://docs.aws.amazon.com/efs/latest/ug/)
+**To modify the security group of an existing mount target**
++ To modify security groups that are in effect for a mount target, use the `modify-mount-target-security-group` AWS CLI command \(the corresponding operation is [ModifyMountTargetSecurityGroups](API_ModifyMountTargetSecurityGroups.md)\) to replace any existing security groups, as shown following\.
 
-1. On the **Step 2: Configure optional settings** page, specify a value for the **Name** tag \(**MyExampleFileSystem**\)\. Also, add any additional tags that help describe and manage your file system, and choose your performance mode\.
+  ```
+  $ aws efs modify-mount-target-security-groups \
+  --mount-target-id mount-target-ID-whose-configuration-to-update \
+  --security-groups  security-group-ids-separated-by-space \
+  --region aws-region-where-mount-target-exists \
+  --profile adminuser
+  ```
 
-   The console prepopulates the **Name** tag because Amazon EFS uses its value as the file system display name\.   
-![\[Image NOT FOUND\]](http://docs.aws.amazon.com/efs/latest/ug/images/gs-efs-resources-120.png)
+  The following is an example with sample data\.
 
-1. On the **Step 3: Review and Create** page, choose **Create File System**\.  
-![\[Image NOT FOUND\]](http://docs.aws.amazon.com/efs/latest/ug/images/gs-efs-resources-130.png)![\[Image NOT FOUND\]](http://docs.aws.amazon.com/efs/latest/ug/)![\[Image NOT FOUND\]](http://docs.aws.amazon.com/efs/latest/ug/)
+  ```
+  $ aws efs modify-mount-target-security-groups \
+  --mount-target-id fsmt-5751852e \
+  --security-groups  sg-1004395a sg-1114433a \
+  --region us-east-2
+  ```
 
-1. The console shows the newly created file system on the **File Systems** page\. Verify that all mount targets show the **Life Cycle State** as **Available**\. It might take a few moments before the mount targets become available \(you can expand/collapse the file system in the EFS console to force it to refresh\)\.
-
-1. Under **File system access**, you'll see the file system's **DNS name**\. Make a note of this DNS name\. In the next section, you use the DNS name to mount the file system on the Amazon EC2 instance through the mount target\. The Amazon EC2 instance on which you mount the file system can resolve the file system's DNS name to the mount target's IP address\.
-
-Now you are ready to mount the Amazon EFS file system on an Amazon EC2 instance\.
-
-## Creating a Mount Target using the AWS CLI<a name="create-mount-target-cli"></a>
-
-To create a mount target using AWS CLI, use the `create-mount-target` CLI command \(corresponding operation is [CreateMountTarget](API_CreateMountTarget.md)\), as shown following\.
-
-```
-$ aws efs create-mount-target \
---file-system-id file-system-id \
---subnet-id  subnet-id \
---security-group ID-of-the-security-group-created-for-mount-target \
---region aws-region \
---profile adminuser
-```
-
-After successfully creating the mount target, Amazon EFS returns the mount target description as JSON as shown in the following example\.
-
-```
-{
-    "MountTargetId": "fsmt-f9a14450",
-    "NetworkInterfaceId": "eni-3851ec4e",
-    "FileSystemId": "fs-b6a0451f",
-    "LifeCycleState": "available",
-    "SubnetId": "subnet-b3983dc4",
-    "OwnerId": "23124example",
-    "IpAddress": "10.0.1.24"
-}
-```
-
-You can also retrieve a list of mount targets created for a file system using the `describe-mount-targets` CLI command \(corresponding operation is [DescribeMountTargets](API_DescribeMountTargets.md)\), as shown following\.
-
-```
-$ aws efs describe-mount-targets \
---file-system-id file-system-id \
---region aws-region \
---profile adminuser
-```
-
-For an example, see [Walkthrough: Create an Amazon EFS File System and Mount It on an Amazon EC2 Instance Using the AWS CLI](wt1-getting-started.md)\.
+For more information, see [Walkthrough: Create an Amazon EFS File System and Mount It on an Amazon EC2 Instance Using the AWS CLI](wt1-getting-started.md)\.

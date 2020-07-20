@@ -30,7 +30,7 @@ This guide includes walkthroughs that you can use to further explore Amazon EFS\
 
 1. In the navigation pane, choose **Security Groups**\.
 
-1. Select the name of the security group that you created for this Getting Started exercise in [Step 2: Create Your EC2 Resources and Launch Your EC2 Instance](gs-step-one-create-ec2-resources.md) as a part of the Amazon EC2 instance launch wizard\.
+1. Select the name of the security group that you created for this Getting Started exercise in [Step 2: Create Your EC2 Resources and Launch Your EC2 Instance](gs-step-one-create-ec2-resources.md) as a part of the Amazon EC2 instance Launch Wizard\.
 **Warning**  
 Don't delete the default security group for your VPC\.
 

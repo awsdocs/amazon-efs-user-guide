@@ -18,17 +18,22 @@ GET /2015-02-01/file-systems?CreationToken=CreationToken&FileSystemId=FileSystem
 
 ## URI Request Parameters<a name="API_DescribeFileSystems_RequestParameters"></a>
 
-The request requires the following URI parameters\.
+The request uses the following URI parameters\.
 
  ** [CreationToken](#API_DescribeFileSystems_RequestSyntax) **   <a name="efs-DescribeFileSystems-request-CreationToken"></a>
 \(Optional\) Restricts the list to the file system with this creation token \(String\)\. You specify a creation token when you create an Amazon EFS file system\.  
-Length Constraints: Minimum length of 1\. Maximum length of 64\.
+Length Constraints: Minimum length of 1\. Maximum length of 64\.  
+Pattern: `.+` 
 
  ** [FileSystemId](#API_DescribeFileSystems_RequestSyntax) **   <a name="efs-DescribeFileSystems-request-FileSystemId"></a>
-\(Optional\) ID of the file system whose description you want to retrieve \(String\)\.
+\(Optional\) ID of the file system whose description you want to retrieve \(String\)\.  
+Length Constraints: Maximum length of 128\.  
+Pattern: `^(arn:aws[-a-z]*:elasticfilesystem:[0-9a-z-:]+:file-system/fs-[0-9a-f]{8,40}|fs-[0-9a-f]{8,40})$` 
 
  ** [Marker](#API_DescribeFileSystems_RequestSyntax) **   <a name="efs-DescribeFileSystems-request-Marker"></a>
-\(Optional\) Opaque pagination token returned from a previous `DescribeFileSystems` operation \(String\)\. If present, specifies to continue the list from where the returning call had left off\. 
+\(Optional\) Opaque pagination token returned from a previous `DescribeFileSystems` operation \(String\)\. If present, specifies to continue the list from where the returning call had left off\.   
+Length Constraints: Minimum length of 1\. Maximum length of 128\.  
+Pattern: `.+` 
 
  ** [MaxItems](#API_DescribeFileSystems_RequestSyntax) **   <a name="efs-DescribeFileSystems-request-MaxItems"></a>
 \(Optional\) Specifies the maximum number of file systems to return in the response \(integer\)\. This number is automatically set to 100\. The response is paginated at 100 per page if you have more than 100 file systems\.   
@@ -45,36 +50,37 @@ HTTP/1.1 200
 Content-type: application/json
 
 {
-   "[FileSystems](#efs-DescribeFileSystems-response-FileSystems)": [ 
+   "FileSystems": [ 
       { 
-         "[CreationTime](API_FileSystemDescription.md#efs-Type-FileSystemDescription-CreationTime)": number,
-         "[CreationToken](API_FileSystemDescription.md#efs-Type-FileSystemDescription-CreationToken)": "string",
-         "[Encrypted](API_FileSystemDescription.md#efs-Type-FileSystemDescription-Encrypted)": boolean,
-         "[FileSystemId](API_FileSystemDescription.md#efs-Type-FileSystemDescription-FileSystemId)": "string",
-         "[KmsKeyId](API_FileSystemDescription.md#efs-Type-FileSystemDescription-KmsKeyId)": "string",
-         "[LifeCycleState](API_FileSystemDescription.md#efs-Type-FileSystemDescription-LifeCycleState)": "string",
-         "[Name](API_FileSystemDescription.md#efs-Type-FileSystemDescription-Name)": "string",
-         "[NumberOfMountTargets](API_FileSystemDescription.md#efs-Type-FileSystemDescription-NumberOfMountTargets)": number,
-         "[OwnerId](API_FileSystemDescription.md#efs-Type-FileSystemDescription-OwnerId)": "string",
-         "[PerformanceMode](API_FileSystemDescription.md#efs-Type-FileSystemDescription-PerformanceMode)": "string",
-         "[ProvisionedThroughputInMibps](API_FileSystemDescription.md#efs-Type-FileSystemDescription-ProvisionedThroughputInMibps)": number,
-         "[SizeInBytes](API_FileSystemDescription.md#efs-Type-FileSystemDescription-SizeInBytes)": { 
-            "[Timestamp](API_FileSystemSize.md#efs-Type-FileSystemSize-Timestamp)": number,
-            "[Value](API_FileSystemSize.md#efs-Type-FileSystemSize-Value)": number,
-            "[ValueInIA](API_FileSystemSize.md#efs-Type-FileSystemSize-ValueInIA)": number,
-            "[ValueInStandard](API_FileSystemSize.md#efs-Type-FileSystemSize-ValueInStandard)": number
+         "CreationTime": number,
+         "CreationToken": "string",
+         "Encrypted": boolean,
+         "FileSystemArn": "string",
+         "FileSystemId": "string",
+         "KmsKeyId": "string",
+         "LifeCycleState": "string",
+         "Name": "string",
+         "NumberOfMountTargets": number,
+         "OwnerId": "string",
+         "PerformanceMode": "string",
+         "ProvisionedThroughputInMibps": number,
+         "SizeInBytes": { 
+            "Timestamp": number,
+            "Value": number,
+            "ValueInIA": number,
+            "ValueInStandard": number
          },
-         "[Tags](API_FileSystemDescription.md#efs-Type-FileSystemDescription-Tags)": [ 
+         "Tags": [ 
             { 
-               "[Key](API_Tag.md#efs-Type-Tag-Key)": "string",
-               "[Value](API_Tag.md#efs-Type-Tag-Value)": "string"
+               "Key": "string",
+               "Value": "string"
             }
          ],
-         "[ThroughputMode](API_FileSystemDescription.md#efs-Type-FileSystemDescription-ThroughputMode)": "string"
+         "ThroughputMode": "string"
       }
    ],
-   "[Marker](#efs-DescribeFileSystems-response-Marker)": "string",
-   "[NextMarker](#efs-DescribeFileSystems-response-NextMarker)": "string"
+   "Marker": "string",
+   "NextMarker": "string"
 }
 ```
 
@@ -90,11 +96,15 @@ Type: Array of [FileSystemDescription](API_FileSystemDescription.md) objects
 
  ** [Marker](#API_DescribeFileSystems_ResponseSyntax) **   <a name="efs-DescribeFileSystems-response-Marker"></a>
 Present if provided by caller in the request \(String\)\.  
-Type: String
+Type: String  
+Length Constraints: Minimum length of 1\. Maximum length of 128\.  
+Pattern: `.+` 
 
  ** [NextMarker](#API_DescribeFileSystems_ResponseSyntax) **   <a name="efs-DescribeFileSystems-response-NextMarker"></a>
 Present if there are more file systems than returned in the response \(String\)\. You can use the `NextMarker` in the subsequent request to fetch the descriptions\.  
-Type: String
+Type: String  
+Length Constraints: Minimum length of 1\. Maximum length of 128\.  
+Pattern: `.+` 
 
 ## Errors<a name="API_DescribeFileSystems_Errors"></a>
 

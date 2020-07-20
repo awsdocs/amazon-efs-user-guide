@@ -19,9 +19,9 @@ PUT /2015-02-01/file-systems/FileSystemId/lifecycle-configuration HTTP/1.1
 Content-type: application/json
 
 {
-   "[LifecyclePolicies](#efs-PutLifecycleConfiguration-request-LifecyclePolicies)": [ 
+   "LifecyclePolicies": [ 
       { 
-         "[TransitionToIA](API_LifecyclePolicy.md#efs-Type-LifecyclePolicy-TransitionToIA)": "string"
+         "TransitionToIA": "string"
       }
    ]
 }
@@ -29,10 +29,13 @@ Content-type: application/json
 
 ## URI Request Parameters<a name="API_PutLifecycleConfiguration_RequestParameters"></a>
 
-The request requires the following URI parameters\.
+The request uses the following URI parameters\.
 
  ** [FileSystemId](#API_PutLifecycleConfiguration_RequestSyntax) **   <a name="efs-PutLifecycleConfiguration-request-FileSystemId"></a>
-The ID of the file system for which you are creating the `LifecycleConfiguration` object \(String\)\.
+The ID of the file system for which you are creating the `LifecycleConfiguration` object \(String\)\.  
+Length Constraints: Maximum length of 128\.  
+Pattern: `^(arn:aws[-a-z]*:elasticfilesystem:[0-9a-z-:]+:file-system/fs-[0-9a-f]{8,40}|fs-[0-9a-f]{8,40})$`   
+Required: Yes
 
 ## Request Body<a name="API_PutLifecycleConfiguration_RequestBody"></a>
 
@@ -50,9 +53,9 @@ HTTP/1.1 200
 Content-type: application/json
 
 {
-   "[LifecyclePolicies](#efs-PutLifecycleConfiguration-response-LifecyclePolicies)": [ 
+   "LifecyclePolicies": [ 
       { 
-         "[TransitionToIA](API_LifecyclePolicy.md#efs-Type-LifecyclePolicy-TransitionToIA)": "string"
+         "TransitionToIA": "string"
       }
    ]
 }

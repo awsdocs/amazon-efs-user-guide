@@ -12,7 +12,7 @@ GET /2015-02-01/resource-tags/ResourceId?MaxResults=MaxResults&NextToken=NextTok
 
 ## URI Request Parameters<a name="API_ListTagsForResource_RequestParameters"></a>
 
-The request requires the following URI parameters\.
+The request uses the following URI parameters\.
 
  ** [MaxResults](#API_ListTagsForResource_RequestSyntax) **   <a name="efs-ListTagsForResource-request-MaxResults"></a>
 \(Optional\) Specifies the maximum number of tag objects to return in the response\. The default value is 100\.  
@@ -22,7 +22,8 @@ Valid Range: Minimum value of 1\.
 You can use `NextToken` in a subsequent request to fetch the next page of access point descriptions if the response payload was paginated\.
 
  ** [ResourceId](#API_ListTagsForResource_RequestSyntax) **   <a name="efs-ListTagsForResource-request-ResourceId"></a>
-Specifies the EFS resource you want to retrieve tags for\. You can retrieve tags for EFS file systems and access points using this API endpoint\.
+Specifies the EFS resource you want to retrieve tags for\. You can retrieve tags for EFS file systems and access points using this API endpoint\.  
+Required: Yes
 
 ## Request Body<a name="API_ListTagsForResource_RequestBody"></a>
 
@@ -35,11 +36,11 @@ HTTP/1.1 200
 Content-type: application/json
 
 {
-   "[NextToken](#efs-ListTagsForResource-response-NextToken)": "string",
-   "[Tags](#efs-ListTagsForResource-response-Tags)": [ 
+   "NextToken": "string",
+   "Tags": [ 
       { 
-         "[Key](API_Tag.md#efs-Type-Tag-Key)": "string",
-         "[Value](API_Tag.md#efs-Type-Tag-Value)": "string"
+         "Key": "string",
+         "Value": "string"
       }
    ]
 }

@@ -1,6 +1,6 @@
 # Walkthrough: Enable Root Squashing Using IAM Authorization for NFS Clients<a name="enable-root-squashing"></a>
 
-In this walkthrough, you configure Amazon EFS to deny root access to your Amazon EFS file system for all AWS principals except for a single management workstation\. You do this by configuring AWS Identity and Access Management \(IAM\) authorization for Network File System \(NFS\) clients\. For more information about IAM authorization for NFS clients in EFS, see [Using IAM to Control NFS Access to Amazon EFS](iam-access-control-nfs-efs.md)\. 
+In this walkthrough, you configure Amazon EFS to prevent root access to your Amazon EFS file system for all AWS principals except for a single management workstation\. You do this by configuring AWS Identity and Access Management \(IAM\) authorization for Network File System \(NFS\) clients\. For more information about IAM authorization for NFS clients in EFS, see [Using IAM to Control NFS Access to Amazon EFS](iam-access-control-nfs-efs.md)\. 
 
 To do this requires configuring two IAM permissions policies, as follows:
 + Create an EFS file system policy that explicitly allows read and write access to the file system, and implicitly denies root access\.
@@ -9,21 +9,18 @@ To do this requires configuring two IAM permissions policies, as follows:
 
 To enable root squashing using IAM authorization for NFS clients, use the following procedures\.
 
-**To disable root access to the file system**
+**To prevent root access to the file system**
 
 1. Open the Amazon Elastic File System console at [https://console\.aws\.amazon\.com/efs/](https://console.aws.amazon.com/efs/)\.
 
+1. Choose **Filesystems**\.
+
 1. On the **File systems** page, choose the file system that you want to enable root squashing on\.
 
-1. For **Actions**, choose **Manage client access**\. The **Manage file system permission** page appears\.
+1. On the file system details page, choose **File system policy**, and then choose **Edit**\. The **File system policy** page appears\.  
+![\[File system policy page for editing and saving file system policy.\]](http://docs.aws.amazon.com/efs/latest/ug/images/console2-disable-root-access.png)
 
-1. Choose **Disable root access**, and then choose **Set policy**\.  
-![\[Image NOT FOUND\]](http://docs.aws.amazon.com/efs/latest/ug/images/set-root-squash-console.png)
-
-   The **\{\}JSON** tab displays the file system policy that is generated\.  
-![\[Image NOT FOUND\]](http://docs.aws.amazon.com/efs/latest/ug/images/root-squash-json.png)
-
-   This policy implicitly denies root access for all AWS principals\. With this file system policy in place, you grant root access by using an IAM identity\-based policy\. Anonymous NFS clients are also denied root access because identity\-based policies are not available for anonymous NFS clients\.
+1. Choose **Prevent root access by default\*** under **Policy options**\. The policy JSON object appears in the **Policy editor**\.
 
 1. Choose **Save** to save the file system policy\.
 
@@ -69,4 +66,4 @@ Clients that aren't anonymous can get root access to the file system through an 
    $ sudo mount -t efs -o tls,iam file-system-id:/ efs-mount-point
    ```
 
-   You can configure the Amazon EC2 instance to automatically mount the file system with IAM authorization\. For more information about mounting an EFS file system with IAM authorization, see [Mounting with IAM Authorization](mounting-fs.md#mounting-IAM-option)\.
+   You can configure the Amazon EC2 instance to automatically mount the file system with IAM authorization\. For more information about mounting an EFS file system with IAM authorization, see [Mounting with IAM authorization](mounting-fs.md#mounting-IAM-option)\.

@@ -25,9 +25,9 @@ In this walkthrough, we assume that you already have the following:
 
 ## Step 1: Determine the Availability Zone ID of the EFS Mount Target<a name="wt6-efs-utils-step1"></a>
 
-To ensure high availability of your file system, we recommend that you always use an EFS mount target IP address that is in the same Availability Zone \(AZ\) as your NFS client\. If you are mounting an EFS file system that is in another account, ensure that the NFS client and EFS mount target are in the same AZ ID\. This requirement applies because AZ names can differ between accounts\.
+To ensure high availability of your file system, we recommend that you always use an EFS mount target IP address that is in the same Availability Zone as your NFS client\. If you are mounting an EFS file system that is in another account, ensure that the NFS client and EFS mount target are in the same Availability Zone ID\. This requirement applies because Availability Zone names can differ between accounts\.
 
-**To determine the AZ ID of the EC2 instance**
+**To determine the Availability Zone ID of the EC2 instance**
 
 1. Connect to your EC2 instance:
    + To connect to your instance from a computer running macOS or Linux, specify the \.pem file for your SSH command\. To do this, use the `-i` option and the path to your private key\.
@@ -37,7 +37,7 @@ To ensure high availability of your file system, we recommend that you always us
    +  [Connecting to Your Linux Instance Using SSH](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AccessingInstancesLinux.html)
    +  [Connecting to Your Linux Instance from Windows Using PuTTY](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/putty.html) 
 
-1. Determine the AZ ID that the EC2 instance is in using the `describe-availability-zones` CLI command as follows\.
+1. Determine the Availability Zone ID that the EC2 instance is in using the `describe-availability-zones` CLI command as follows\.
 
    ```
    [ec2-user@ip-10.0.0.1] $ aws ec2 describe-availability-zones --zone-name `curl -s http://169.254.169.254/latest/meta-data/placement/availability-zone`
@@ -54,13 +54,13 @@ To ensure high availability of your file system, we recommend that you always us
    }
    ```
 
-   The AZ ID is returned in the `ZoneId` property, `use2-az2`\.
+   The Availability Zone ID is returned in the `ZoneId` property, `use2-az2`\.
 
 ## Step 2: Determine the Mount Target IP Address<a name="wt6-efs-utils-step2"></a>
 
-Now that you know the AZ ID of the EC2 instance, you can now retrieve the IP address of the mount target that is in the same AZ ID\.
+Now that you know the Availability Zone ID of the EC2 instance, you can now retrieve the IP address of the mount target that is in the same Availability Zone ID\.
 
-**To determine the mount target IP address in the same AZ ID**
+**To determine the mount target IP address in the same Availability Zone ID**
 + Retrieve the mount target IP address for your file system in the `use2-az2` AZ ID using the `describe-mount-targets` CLI command, as follows\.
 
   ```
@@ -96,7 +96,7 @@ Now that you know the AZ ID of the EC2 instance, you can now retrieve the IP add
   }
   ```
 
-  The mount target in the `use2-az2` AZ ID has an IP address of 10\.0\.2\.153\.
+  The mount target in the `use2-az2` Availability Zone ID has an IP address of 10\.0\.2\.153\.
 
 ## Step 3: Add a Host Entry for the Mount Target<a name="wt6-efs-utils-step3"></a>
 
@@ -170,7 +170,7 @@ As a result, the following file is created\.
 -rw-rw-r-- 1 username username 0 Nov 15 15:32 test-file.txt
 ```
 
-You can also mount your file system automatically by adding an entry to the `/etc/fstab` file\. For more information, see [Using /etc/fstab to Mount Automatically](mount-fs-auto-mount-onreboot.md#mount-fs-auto-mount-update-fstab)\.
+You can also mount your file system automatically by adding an entry to the `/etc/fstab` file\. For more information, see [Using /etc/fstab to mount automatically](mount-fs-auto-mount-onreboot.md#mount-fs-auto-mount-update-fstab)\.
 
 **Warning**  
 Use the `_netdev` option, used to identify network file systems, when mounting your file system automatically\. If `_netdev` is missing, your EC2 instance might stop responding\. This result is because network file systems need to be initialized after the compute instance starts its networking\. For more information, see [Automatic Mounting Fails and the Instance Is Unresponsive](troubleshooting-efs-mounting.md#automount-fails)\.

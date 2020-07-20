@@ -11,25 +11,25 @@ POST /2015-02-01/access-points HTTP/1.1
 Content-type: application/json
 
 {
-   "[ClientToken](#efs-CreateAccessPoint-request-ClientToken)": "string",
-   "[FileSystemId](#efs-CreateAccessPoint-request-FileSystemId)": "string",
-   "[PosixUser](#efs-CreateAccessPoint-request-PosixUser)": { 
-      "[Gid](API_PosixUser.md#efs-Type-PosixUser-Gid)": number,
-      "[SecondaryGids](API_PosixUser.md#efs-Type-PosixUser-SecondaryGids)": [ number ],
-      "[Uid](API_PosixUser.md#efs-Type-PosixUser-Uid)": number
+   "ClientToken": "string",
+   "FileSystemId": "string",
+   "PosixUser": { 
+      "Gid": number,
+      "SecondaryGids": [ number ],
+      "Uid": number
    },
-   "[RootDirectory](#efs-CreateAccessPoint-request-RootDirectory)": { 
-      "[CreationInfo](API_RootDirectory.md#efs-Type-RootDirectory-CreationInfo)": { 
-         "[OwnerGid](API_CreationInfo.md#efs-Type-CreationInfo-OwnerGid)": number,
-         "[OwnerUid](API_CreationInfo.md#efs-Type-CreationInfo-OwnerUid)": number,
-         "[Permissions](API_CreationInfo.md#efs-Type-CreationInfo-Permissions)": "string"
+   "RootDirectory": { 
+      "CreationInfo": { 
+         "OwnerGid": number,
+         "OwnerUid": number,
+         "Permissions": "string"
       },
-      "[Path](API_RootDirectory.md#efs-Type-RootDirectory-Path)": "string"
+      "Path": "string"
    },
-   "[Tags](#efs-CreateAccessPoint-request-Tags)": [ 
+   "Tags": [ 
       { 
-         "[Key](API_Tag.md#efs-Type-Tag-Key)": "string",
-         "[Value](API_Tag.md#efs-Type-Tag-Value)": "string"
+         "Key": "string",
+         "Value": "string"
       }
    ]
 }
@@ -52,6 +52,8 @@ Required: Yes
  ** [FileSystemId](#API_CreateAccessPoint_RequestSyntax) **   <a name="efs-CreateAccessPoint-request-FileSystemId"></a>
 The ID of the EFS file system that the access point provides access to\.  
 Type: String  
+Length Constraints: Maximum length of 128\.  
+Pattern: `^(arn:aws[-a-z]*:elasticfilesystem:[0-9a-z-:]+:file-system/fs-[0-9a-f]{8,40}|fs-[0-9a-f]{8,40})$`   
 Required: Yes
 
  ** [PosixUser](#API_CreateAccessPoint_RequestSyntax) **   <a name="efs-CreateAccessPoint-request-PosixUser"></a>
@@ -76,30 +78,30 @@ HTTP/1.1 200
 Content-type: application/json
 
 {
-   "[AccessPointArn](#efs-CreateAccessPoint-response-AccessPointArn)": "string",
-   "[AccessPointId](#efs-CreateAccessPoint-response-AccessPointId)": "string",
-   "[ClientToken](#efs-CreateAccessPoint-response-ClientToken)": "string",
-   "[FileSystemId](#efs-CreateAccessPoint-response-FileSystemId)": "string",
-   "[LifeCycleState](#efs-CreateAccessPoint-response-LifeCycleState)": "string",
-   "[Name](#efs-CreateAccessPoint-response-Name)": "string",
-   "[OwnerId](#efs-CreateAccessPoint-response-OwnerId)": "string",
-   "[PosixUser](#efs-CreateAccessPoint-response-PosixUser)": { 
-      "[Gid](API_PosixUser.md#efs-Type-PosixUser-Gid)": number,
-      "[SecondaryGids](API_PosixUser.md#efs-Type-PosixUser-SecondaryGids)": [ number ],
-      "[Uid](API_PosixUser.md#efs-Type-PosixUser-Uid)": number
+   "AccessPointArn": "string",
+   "AccessPointId": "string",
+   "ClientToken": "string",
+   "FileSystemId": "string",
+   "LifeCycleState": "string",
+   "Name": "string",
+   "OwnerId": "string",
+   "PosixUser": { 
+      "Gid": number,
+      "SecondaryGids": [ number ],
+      "Uid": number
    },
-   "[RootDirectory](#efs-CreateAccessPoint-response-RootDirectory)": { 
-      "[CreationInfo](API_RootDirectory.md#efs-Type-RootDirectory-CreationInfo)": { 
-         "[OwnerGid](API_CreationInfo.md#efs-Type-CreationInfo-OwnerGid)": number,
-         "[OwnerUid](API_CreationInfo.md#efs-Type-CreationInfo-OwnerUid)": number,
-         "[Permissions](API_CreationInfo.md#efs-Type-CreationInfo-Permissions)": "string"
+   "RootDirectory": { 
+      "CreationInfo": { 
+         "OwnerGid": number,
+         "OwnerUid": number,
+         "Permissions": "string"
       },
-      "[Path](API_RootDirectory.md#efs-Type-RootDirectory-Path)": "string"
+      "Path": "string"
    },
-   "[Tags](#efs-CreateAccessPoint-response-Tags)": [ 
+   "Tags": [ 
       { 
-         "[Key](API_Tag.md#efs-Type-Tag-Key)": "string",
-         "[Value](API_Tag.md#efs-Type-Tag-Value)": "string"
+         "Key": "string",
+         "Value": "string"
       }
    ]
 }
@@ -126,7 +128,9 @@ Length Constraints: Minimum length of 1\. Maximum length of 64\.
 
  ** [FileSystemId](#API_CreateAccessPoint_ResponseSyntax) **   <a name="efs-CreateAccessPoint-response-FileSystemId"></a>
 The ID of the EFS file system that the access point applies to\.  
-Type: String
+Type: String  
+Length Constraints: Maximum length of 128\.  
+Pattern: `^(arn:aws[-a-z]*:elasticfilesystem:[0-9a-z-:]+:file-system/fs-[0-9a-f]{8,40}|fs-[0-9a-f]{8,40})$` 
 
  ** [LifeCycleState](#API_CreateAccessPoint_ResponseSyntax) **   <a name="efs-CreateAccessPoint-response-LifeCycleState"></a>
 Identifies the lifecycle phase of the access point\.  
@@ -139,7 +143,9 @@ Type: String
 
  ** [OwnerId](#API_CreateAccessPoint_ResponseSyntax) **   <a name="efs-CreateAccessPoint-response-OwnerId"></a>
 Identified the AWS account that owns the access point resource\.  
-Type: String
+Type: String  
+Length Constraints: Maximum length of 14\.  
+Pattern: `^(\d{12})|(\d{4}-\d{4}-\d{4})$` 
 
  ** [PosixUser](#API_CreateAccessPoint_ResponseSyntax) **   <a name="efs-CreateAccessPoint-response-PosixUser"></a>
 The full POSIX identity, including the user ID, group ID, and secondary group IDs on the access point that is used for all file operations by NFS clients using the access point\.  
@@ -170,6 +176,10 @@ HTTP Status Code: 400
  **FileSystemNotFound**   
 Returned if the specified `FileSystemId` value doesn't exist in the requester's AWS account\.  
 HTTP Status Code: 404
+
+ **IncorrectFileSystemLifeCycleState**   
+Returned if the file system's lifecycle state is not "available"\.  
+HTTP Status Code: 409
 
  **InternalServerError**   
 Returned if an error occurred on the server side\.  

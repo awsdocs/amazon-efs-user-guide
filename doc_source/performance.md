@@ -78,7 +78,7 @@ Our recommendation for determining which performance mode to use is as follows:
 
 If the `PercentIOLimit` percentage returned was at or near 100 percent for a significant amount of time during the test, your application should use the Max I/O performance mode\. Otherwise, it should use the default General Purpose mode\. 
 
-To move to a different performance mode, migrate the data to a different file system that was created in the other performance mode\. You can use DataSync to transfer files between two EFS file systems\. To learn more, see [Transferring Data into Amazon EFS](transfer-data-to-efs.md)\.
+To move to a different performance mode, migrate the data to a different file system that was created in the other performance mode\. You can use DataSync to transfer files between two EFS file systems\. To learn more, see [Transferring data into Amazon EFS](transfer-data-to-efs.md)\.
 
 Some latency\-sensitive workloads require the higher I/O levels provided by Max I/O performance mode and the lower latency provided by General Purpose performance mode\. For this type of workload, we recommend creating multiple General Purpose performance mode file systems\. In this case, we recommend then spreading the application workload across all these file systems, as long as the workload and applications can support it\. 
 
@@ -86,7 +86,7 @@ By taking this approach, you can create a logical file system and shard data acr
 
 ## Throughput Modes<a name="throughput-modes"></a>
 
-There are two throughput modes to choose from for your file system, Bursting Throughput and Provisioned Throughput\. With *Bursting Throughput* mode, throughput on Amazon EFS scales as the size of your file system in the standard storage class grows\. For more information about EFS storage classes, see [EFS Storage Classes](storage-classes.md)\. With *Provisioned Throughput *mode, you can instantly provision the throughput of your file system \(in MiB/s\) independent of the amount of data stored\.
+There are two throughput modes to choose from for your file system, Bursting Throughput and Provisioned Throughput\. With *Bursting Throughput* mode, throughput on Amazon EFS scales as the size of your file system in the standard storage class grows\. For more information about EFS storage classes, see [EFS storage classes](storage-classes.md)\. With *Provisioned Throughput *mode, you can instantly provision the throughput of your file system \(in MiB/s\) independent of the amount of data stored\.
 
 **Note**  
 You can decrease your file system throughput in Provisioned Throughput mode as long as it’s been more than 24 hours since the last decrease\. Additionally, you can change between Provisioned Throughput mode and the default Bursting Throughput mode as long as it’s been more than 24 hours since the last throughput mode change\.
@@ -95,7 +95,7 @@ You can decrease your file system throughput in Provisioned Throughput mode as l
 
 With Bursting Throughput mode, throughput on Amazon EFS scales as a file system stored in the standard storage class grows\. File\-based workloads are typically spiky, driving high levels of throughput for short periods of time, and low levels of throughput the rest of the time\. To accommodate this, Amazon EFS is designed to burst to high throughput levels for periods of time\.
 
-All file systems, regardless of size, can burst to 100 MiB/s of throughput\. Those over 1 TiB in the standard storage class can burst to 100 MiB/s per TiB of data stored in the file system\. For example, a 10\-TiB file system can burst to 1,000 MiB/s of throughput \(`10 TiB x 100 MiB/s/TiB`\)\. The portion of time a file system can burst is determined by its size\. The bursting model is designed so that typical file system workloads can burst virtually any time they need to\. For file systems using Bursting Throughput mode, the allowed throughput is determined based on the amount of the data stored in the Standard storage class only\. For more information about EFS storage classes, see [EFS Storage Classes](storage-classes.md)\. 
+All file systems, regardless of size, can burst to 100 MiB/s of throughput\. Those over 1 TiB in the standard storage class can burst to 100 MiB/s per TiB of data stored in the file system\. For example, a 10\-TiB file system can burst to 1,000 MiB/s of throughput \(`10 TiB x 100 MiB/s/TiB`\)\. The portion of time a file system can burst is determined by its size\. The bursting model is designed so that typical file system workloads can burst virtually any time they need to\. For file systems using Bursting Throughput mode, the allowed throughput is determined based on the amount of the data stored in the Standard storage class only\. For more information about EFS storage classes, see [EFS storage classes](storage-classes.md)\. 
 
 Amazon EFS uses a credit system to determine when file systems can burst\. Each file system earns credits over time at a baseline rate that is determined by the size of the file system that is stored in the standard storage class\. A file system uses credits whenever it reads or writes data\. The baseline rate is 50 MiB/s per TiB of storage \(equivalently, 50 KiB/s per GiB of storage\)\. 
 
@@ -161,7 +161,7 @@ Use your historical throughput patterns to calculate the file system size you ne
 
 Provisioned Throughput mode is available for applications with high throughput to storage \(MiB/s per TiB\) ratios, or with requirements greater than those allowed by the Bursting Throughput mode\. For example, say you're using Amazon EFS for development tools, web serving, or content management applications where the amount of data in your file system is low relative to throughput demands\. Your file system can now get the high levels of throughput your applications require without having to pad your file system\.
 
-Additional charges are associated with using Provisioned Throughput mode\. Using Provisioned Throughput mode, you're billed for the storage that you use and for the throughput that you provision above what you're provided\. The amount of throughput that you are provided is based on the amount of data stored in the Standard storage class\. For more information about EFS storage classes, see [EFS Storage Classes](storage-classes.md)\. For more information on pricing, see [Amazon EFS Pricing](https://aws.amazon.com/efs/pricing/)\. 
+Additional charges are associated with using Provisioned Throughput mode\. Using Provisioned Throughput mode, you're billed for the storage that you use and for the throughput that you provision above what you're provided\. The amount of throughput that you are provided is based on the amount of data stored in the Standard storage class\. For more information about EFS storage classes, see [EFS storage classes](storage-classes.md)\. For more information on pricing, see [Amazon EFS Pricing](https://aws.amazon.com/efs/pricing/)\. 
 
 Throughput limits remain the same, regardless of the throughput mode you choose\. For more information on these limits, see [Amazon EFS Quotas That You Can Increase](limits.md#soft-limits)\.
 
@@ -189,5 +189,5 @@ As previously mentioned, new file systems have an initial burst credit balance o
 ## Related Topics<a name="perf-related"></a>
 + [On\-Premises Performance Considerations](performance-onpremises.md)
 + [Amazon EFS Performance Tips](performance-tips.md)
-+ [Metering: How Amazon EFS Reports File System and Object Sizes](metered-sizes.md)
++ [Metering: How Amazon EFS reports file system and object sizes](metered-sizes.md)
 + [Troubleshooting Amazon EFS](troubleshooting.md)

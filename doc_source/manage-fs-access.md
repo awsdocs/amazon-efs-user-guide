@@ -1,4 +1,4 @@
-# Managing File System Network Accessibility<a name="manage-fs-access"></a>
+# Managing file system network accessibility<a name="manage-fs-access"></a>
 
 You mount your file system on an EC2 instance in your virtual private cloud \(VPC\) using a mount target that you create for the file system\. Managing file system network accessibility refers to managing the mount targets\. 
 
@@ -31,6 +31,6 @@ None of the configuration changes to file system network accessibility affects t
 The following sections provide information about managing network accessibility of your file system\. 
 
 **Topics**
-+ [Creating or Deleting Mount Targets in a VPC](manage-fs-access-create-delete-mount-targets.md)
-+ [Changing the VPC for Your Mount Target](manage-fs-access-change-vpc.md)
-+ [Updating the Mount Target Configuration](manage-fs-access-update-mount-target-config.md)
++ [Creating or deleting mount targets in a VPC](manage-fs-access-create-delete-mount-targets.md)
++ [Changing the VPC for your mount target](manage-fs-access-change-vpc.md)
++ [Updating the mount target configuration](manage-fs-access-update-mount-target-config.md)

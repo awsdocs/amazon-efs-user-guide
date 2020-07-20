@@ -7,11 +7,11 @@
 When you use IAM authorization for NFS clients, client connections and IAM authorization decisions are logged to AWS CloudTrail\. For more information about how to log Amazon EFS API calls with CloudTrail, see [Logging Amazon EFS API Calls with AWS CloudTrail](logging-using-cloudtrail.md)\. 
 
 **Important**  
-You must use the EFS mount helper to mount your Amazon EFS file systems in order to use IAM authorization to control access by NFS clients\. For more information, see [Mounting with IAM Authorization](mounting-fs.md#mounting-IAM-option)\.
+You must use the EFS mount helper to mount your Amazon EFS file systems in order to use IAM authorization to control access by NFS clients\. For more information, see [Mounting with IAM authorization](mounting-fs.md#mounting-IAM-option)\.
 
 ## Default EFS File System Policy<a name="default-filesystempolicy"></a>
 
-The default EFS file system policy grants full access to any NFS client that can connect to the file system\. The default policy is in effect whenever a user\-configured file system policy doesn't exist, including at file system creation\. Whenever the default file system policy is in effect, a `[DescribeFileSystemPolicy](API_DescribeFileSystemPolicy.md)` API operation returns a `PolicyNotFound` response\.
+The default EFS file system policy grants full access to any NFS client that can connect to the file system\. The default policy is in effect whenever a user\-configured file system policy doesn't exist, including at file system creation\. Whenever the default file system policy is in effect, a `` API operation returns a `PolicyNotFound` response\.
 
 ## EFS Actions for NFS Clients<a name="efs-filesystempolicy-actions"></a>
 

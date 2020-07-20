@@ -2,6 +2,7 @@
 
 The following data types are supported:
 +  [AccessPointDescription](API_AccessPointDescription.md) 
++  [BackupPolicy](API_BackupPolicy.md) 
 +  [CreationInfo](API_CreationInfo.md) 
 +  [FileSystemDescription](API_FileSystemDescription.md) 
 +  [FileSystemSize](API_FileSystemSize.md) 

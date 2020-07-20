@@ -2,9 +2,6 @@
 
 Following, you can find details about how to enforce encryption at rest using Amazon CloudWatch and AWS CloudTrail\. This walkthrough is based upon the AWS whitepaper [Encrypt Data at Rest with Amazon EFS Encrypted File Systems](https://d1.awsstatic.com/whitepapers/Security/amazon-efs-encrypted-filesystems.pdf)\. 
 
-**Note**  
-Currently, you can't enforce encryption in transit\.
-
 ## Enforcing Encryption at Rest<a name="efs-enforce-overview"></a>
 
 Your organization might require the encryption at rest of all data that meets a specific classification or that is associated with a particular application, workload, or environment\. You can enforce policies for data encryption at rest for Amazon EFS file systems by using detective controls\. These controls detect the creation of a file system and verify that encryption at rest is enabled\. 
@@ -13,7 +10,7 @@ If a file system that doesn't have encryption at rest is detected, you can respo
 
 If you want to delete an unencrypted\-at\-rest file system but want to retain the data, first create a new encrypted\-at\-rest file system\. Next, copy the data over to the new encrypted\-at\-rest file system\. After the data is copied over, you can delete the unencrypted\-at\-rest file system\. 
 
-### Detecting Files Systems That Are Unencrypted at Rest<a name="efs-detecting-unencrypted"></a>
+### Detecting File Systems That are Unencrypted at Rest<a name="efs-detecting-unencrypted"></a>
 
 You can create a CloudWatch alarm to monitor CloudTrail logs for the `CreateFileSystem` event\. You can then trigger the alarm to notify an administrator if the file system that was created was unencrypted at rest\.
 
@@ -83,20 +80,30 @@ You can test the alarm by creating an unencrypted\-at\-rest file system, as foll
 
 **To test the alarm by creating an unencrypted\-at\-rest file system**
 
-1. Open the Amazon EFS console at [https://console\.aws\.amazon\.com/efs](https://console.aws.amazon.com/efs)\.
+1. Sign in to the AWS Management Console and open the Amazon EFS console at [ https://console\.aws\.amazon\.com/efs/](https://console.aws.amazon.com/efs/)\.
 
-1. Choose **Create File System**\.
+1. Choose **Create file system** to display the **Create file system** dialog box\.
 
-1. From the **VPC** list, choose your default VPC\.
+1. To create a file system that is unencrypted at rest, choose **Customize** to display the **File system settings** page\.
 
-1. Choose all the Availability Zones\. Ensure that the default subnets, automatic IP addresses, and the default security groups are chosen\. These are your mount targets\.
+1. For **General** settings, enter the following\.
 
-1. Choose **Next Step**\.
+   1. \(Optional\) Enter a **Name** for the file system\.
 
-1. Name your file system and keep **Enable encryption** unchecked to create an unencrypted file system\.
+   1. Keep **Lifecycle management**, **Performance mode**, and **Throughput mode** set to the default values\.
 
-1. Choose **Next Step**\.
+   1. Turn off **Encryption** by clearing **Enable encryption of data at rest**\.
 
-1. Choose **Create File System**\.
+1. Choose **Next** to continue to the **Network Access** step in the configuration process\.
+
+1. Choose the default **Virtual Private Cloud \(VPC\)**\.
+
+1. For **Mount targets**, choose the default **Security groups** for each mount target\.
+
+1. Choose **Next** to display the **File system policy** page\.
+
+1. Choose **Next** to continue to the **Review and create** page\.
+
+1. Review the file system, and choose **Create** to create your file system and return to the **File systems** page\.
 
 Your trail logs the `CreateFileSystem` operation and delivers the event to your CloudWatch Logs log group\. The event triggers your metric alarm and CloudWatch Logs sends you a notification about the change\.

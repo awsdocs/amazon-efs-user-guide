@@ -1,8 +1,8 @@
-# Metering: How Amazon EFS Reports File System and Object Sizes<a name="metered-sizes"></a>
+# Metering: How Amazon EFS reports file system and object sizes<a name="metered-sizes"></a>
 
 In the following section, find how Amazon EFS reports file system sizes and sizes of objects within a file system\.
 
-## Metering Amazon EFS File System Objects<a name="metered-sizes-fs-objects"></a>
+## Metering Amazon EFS file system objects<a name="metered-sizes-fs-objects"></a>
 
 Objects that you can view in an Amazon EFS system include regular files, directories, symbolic links, and special files \(FIFOs and sockets\)\. Each of these objects is metered for 2 kibibytes \(KiB\) of metadata \(for its inode\) and one or more increments of 4 KiB of data\. The following list explains the metered data size for different types of file system objects:
 + **Regular files** – The metered data size of a regular file is the logical size of the file rounded to the next 4\-KiB increment, except that it might be less for sparse files\.
@@ -32,7 +32,7 @@ $ /usr/bin/stat --format="%b*%B" . | bc
 4096
 ```
 
-## Metering an Amazon EFS File System<a name="metered-sizes-fs"></a>
+## Metering an Amazon EFS file system<a name="metered-sizes-fs"></a>
 
 The metered size of an Amazon EFS file system includes the sum of the sizes of all current objects in the standard and IA storage classes\. The size of each object is calculated from a representative sampling that represents the size of the object during the metered hour\. An example is the hour from 8 AM to 9 AM\.
 
@@ -53,6 +53,6 @@ You can see this metered size for an Amazon EFS file system in the following way
 **Note**  
 The metered size of the Standard storage class is also used to determine your I/O throughput baseline and burst rates\. For more information, see [Throughput Scaling with Bursting Mode](performance.md#bursting)\. 
 
-### Metering for Infrequent Access<a name="metered-sizes-IA"></a>
+### Metering for infrequent access<a name="metered-sizes-IA"></a>
 
 Infrequent Access \(IA\) storage is metered in 4 KiB increments\. IA file metadata \(2 KiB per file\) is always stored and metered in the Standard storage class\. Data access for IA storage is metered in 1 MiB increments\.

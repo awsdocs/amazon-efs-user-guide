@@ -15,16 +15,19 @@ PUT /2015-02-01/mount-targets/MountTargetId/security-groups HTTP/1.1
 Content-type: application/json
 
 {
-   "[SecurityGroups](#efs-ModifyMountTargetSecurityGroups-request-SecurityGroups)": [ "string" ]
+   "SecurityGroups": [ "string" ]
 }
 ```
 
 ## URI Request Parameters<a name="API_ModifyMountTargetSecurityGroups_RequestParameters"></a>
 
-The request requires the following URI parameters\.
+The request uses the following URI parameters\.
 
  ** [MountTargetId](#API_ModifyMountTargetSecurityGroups_RequestSyntax) **   <a name="efs-ModifyMountTargetSecurityGroups-request-MountTargetId"></a>
-The ID of the mount target whose security groups you want to modify\.
+The ID of the mount target whose security groups you want to modify\.  
+Length Constraints: Minimum length of 13\. Maximum length of 45\.  
+Pattern: `^fsmt-[0-9a-f]{8,40}$`   
+Required: Yes
 
 ## Request Body<a name="API_ModifyMountTargetSecurityGroups_RequestBody"></a>
 
@@ -34,6 +37,8 @@ The request accepts the following data in JSON format\.
 An array of up to five VPC security group IDs\.  
 Type: Array of strings  
 Array Members: Maximum number of 5 items\.  
+Length Constraints: Minimum length of 11\. Maximum length of 43\.  
+Pattern: `^sg-[0-9a-f]{8,40}`   
 Required: No
 
 ## Response Syntax<a name="API_ModifyMountTargetSecurityGroups_ResponseSyntax"></a>

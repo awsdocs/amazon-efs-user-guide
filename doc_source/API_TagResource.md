@@ -11,10 +11,10 @@ POST /2015-02-01/resource-tags/ResourceId HTTP/1.1
 Content-type: application/json
 
 {
-   "[Tags](#efs-TagResource-request-Tags)": [ 
+   "Tags": [ 
       { 
-         "[Key](API_Tag.md#efs-Type-Tag-Key)": "string",
-         "[Value](API_Tag.md#efs-Type-Tag-Value)": "string"
+         "Key": "string",
+         "Value": "string"
       }
    ]
 }
@@ -22,10 +22,11 @@ Content-type: application/json
 
 ## URI Request Parameters<a name="API_TagResource_RequestParameters"></a>
 
-The request requires the following URI parameters\.
+The request uses the following URI parameters\.
 
  ** [ResourceId](#API_TagResource_RequestSyntax) **   <a name="efs-TagResource-request-ResourceId"></a>
-The ID specifying the EFS resource that you want to create a tag for\. 
+The ID specifying the EFS resource that you want to create a tag for\.   
+Required: Yes
 
 ## Request Body<a name="API_TagResource_RequestBody"></a>
 

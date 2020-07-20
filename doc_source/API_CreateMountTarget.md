@@ -47,10 +47,10 @@ POST /2015-02-01/mount-targets HTTP/1.1
 Content-type: application/json
 
 {
-   "[FileSystemId](#efs-CreateMountTarget-request-FileSystemId)": "string",
-   "[IpAddress](#efs-CreateMountTarget-request-IpAddress)": "string",
-   "[SecurityGroups](#efs-CreateMountTarget-request-SecurityGroups)": [ "string" ],
-   "[SubnetId](#efs-CreateMountTarget-request-SubnetId)": "string"
+   "FileSystemId": "string",
+   "IpAddress": "string",
+   "SecurityGroups": [ "string" ],
+   "SubnetId": "string"
 }
 ```
 
@@ -65,22 +65,30 @@ The request accepts the following data in JSON format\.
  ** [FileSystemId](#API_CreateMountTarget_RequestSyntax) **   <a name="efs-CreateMountTarget-request-FileSystemId"></a>
 The ID of the file system for which to create the mount target\.  
 Type: String  
+Length Constraints: Maximum length of 128\.  
+Pattern: `^(arn:aws[-a-z]*:elasticfilesystem:[0-9a-z-:]+:file-system/fs-[0-9a-f]{8,40}|fs-[0-9a-f]{8,40})$`   
 Required: Yes
 
  ** [IpAddress](#API_CreateMountTarget_RequestSyntax) **   <a name="efs-CreateMountTarget-request-IpAddress"></a>
 Valid IPv4 address within the address range of the specified subnet\.  
 Type: String  
+Length Constraints: Minimum length of 7\. Maximum length of 15\.  
+Pattern: `^[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}$`   
 Required: No
 
  ** [SecurityGroups](#API_CreateMountTarget_RequestSyntax) **   <a name="efs-CreateMountTarget-request-SecurityGroups"></a>
 Up to five VPC security group IDs, of the form `sg-xxxxxxxx`\. These must be for the same VPC as subnet specified\.  
 Type: Array of strings  
 Array Members: Maximum number of 5 items\.  
+Length Constraints: Minimum length of 11\. Maximum length of 43\.  
+Pattern: `^sg-[0-9a-f]{8,40}`   
 Required: No
 
  ** [SubnetId](#API_CreateMountTarget_RequestSyntax) **   <a name="efs-CreateMountTarget-request-SubnetId"></a>
 The ID of the subnet to add the mount target in\.  
 Type: String  
+Length Constraints: Minimum length of 15\. Maximum length of 47\.  
+Pattern: `^subnet-[0-9a-f]{8,40}$`   
 Required: Yes
 
 ## Response Syntax<a name="API_CreateMountTarget_ResponseSyntax"></a>
@@ -90,15 +98,16 @@ HTTP/1.1 200
 Content-type: application/json
 
 {
-   "[AvailabilityZoneId](#efs-CreateMountTarget-response-AvailabilityZoneId)": "string",
-   "[AvailabilityZoneName](#efs-CreateMountTarget-response-AvailabilityZoneName)": "string",
-   "[FileSystemId](#efs-CreateMountTarget-response-FileSystemId)": "string",
-   "[IpAddress](#efs-CreateMountTarget-response-IpAddress)": "string",
-   "[LifeCycleState](#efs-CreateMountTarget-response-LifeCycleState)": "string",
-   "[MountTargetId](#efs-CreateMountTarget-response-MountTargetId)": "string",
-   "[NetworkInterfaceId](#efs-CreateMountTarget-response-NetworkInterfaceId)": "string",
-   "[OwnerId](#efs-CreateMountTarget-response-OwnerId)": "string",
-   "[SubnetId](#efs-CreateMountTarget-response-SubnetId)": "string"
+   "AvailabilityZoneId": "string",
+   "AvailabilityZoneName": "string",
+   "FileSystemId": "string",
+   "IpAddress": "string",
+   "LifeCycleState": "string",
+   "MountTargetId": "string",
+   "NetworkInterfaceId": "string",
+   "OwnerId": "string",
+   "SubnetId": "string",
+   "VpcId": "string"
 }
 ```
 
@@ -118,11 +127,15 @@ Type: String
 
  ** [FileSystemId](#API_CreateMountTarget_ResponseSyntax) **   <a name="efs-CreateMountTarget-response-FileSystemId"></a>
 The ID of the file system for which the mount target is intended\.  
-Type: String
+Type: String  
+Length Constraints: Maximum length of 128\.  
+Pattern: `^(arn:aws[-a-z]*:elasticfilesystem:[0-9a-z-:]+:file-system/fs-[0-9a-f]{8,40}|fs-[0-9a-f]{8,40})$` 
 
  ** [IpAddress](#API_CreateMountTarget_ResponseSyntax) **   <a name="efs-CreateMountTarget-response-IpAddress"></a>
 Address at which the file system can be mounted by using the mount target\.  
-Type: String
+Type: String  
+Length Constraints: Minimum length of 7\. Maximum length of 15\.  
+Pattern: `^[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}$` 
 
  ** [LifeCycleState](#API_CreateMountTarget_ResponseSyntax) **   <a name="efs-CreateMountTarget-response-LifeCycleState"></a>
 Lifecycle state of the mount target\.  
@@ -131,7 +144,9 @@ Valid Values:` creating | available | updating | deleting | deleted`
 
  ** [MountTargetId](#API_CreateMountTarget_ResponseSyntax) **   <a name="efs-CreateMountTarget-response-MountTargetId"></a>
 System\-assigned mount target ID\.  
-Type: String
+Type: String  
+Length Constraints: Minimum length of 13\. Maximum length of 45\.  
+Pattern: `^fsmt-[0-9a-f]{8,40}$` 
 
  ** [NetworkInterfaceId](#API_CreateMountTarget_ResponseSyntax) **   <a name="efs-CreateMountTarget-response-NetworkInterfaceId"></a>
 The ID of the network interface that Amazon EFS created when it created the mount target\.  
@@ -139,10 +154,18 @@ Type: String
 
  ** [OwnerId](#API_CreateMountTarget_ResponseSyntax) **   <a name="efs-CreateMountTarget-response-OwnerId"></a>
 AWS account ID that owns the resource\.  
-Type: String
+Type: String  
+Length Constraints: Maximum length of 14\.  
+Pattern: `^(\d{12})|(\d{4}-\d{4}-\d{4})$` 
 
  ** [SubnetId](#API_CreateMountTarget_ResponseSyntax) **   <a name="efs-CreateMountTarget-response-SubnetId"></a>
 The ID of the mount target's subnet\.  
+Type: String  
+Length Constraints: Minimum length of 15\. Maximum length of 47\.  
+Pattern: `^subnet-[0-9a-f]{8,40}$` 
+
+ ** [VpcId](#API_CreateMountTarget_ResponseSyntax) **   <a name="efs-CreateMountTarget-response-VpcId"></a>
+The Virtual Private Cloud \(VPC\) ID that the mount target is configured in\.  
 Type: String
 
 ## Errors<a name="API_CreateMountTarget_Errors"></a>

@@ -11,17 +11,20 @@ PUT /2015-02-01/file-systems/FileSystemId/policy HTTP/1.1
 Content-type: application/json
 
 {
-   "[BypassPolicyLockoutSafetyCheck](#efs-PutFileSystemPolicy-request-BypassPolicyLockoutSafetyCheck)": boolean,
-   "[Policy](#efs-PutFileSystemPolicy-request-Policy)": "string"
+   "BypassPolicyLockoutSafetyCheck": boolean,
+   "Policy": "string"
 }
 ```
 
 ## URI Request Parameters<a name="API_PutFileSystemPolicy_RequestParameters"></a>
 
-The request requires the following URI parameters\.
+The request uses the following URI parameters\.
 
  ** [FileSystemId](#API_PutFileSystemPolicy_RequestSyntax) **   <a name="efs-PutFileSystemPolicy-request-FileSystemId"></a>
-The ID of the EFS file system that you want to create or update the `FileSystemPolicy` for\.
+The ID of the EFS file system that you want to create or update the `FileSystemPolicy` for\.  
+Length Constraints: Maximum length of 128\.  
+Pattern: `^(arn:aws[-a-z]*:elasticfilesystem:[0-9a-z-:]+:file-system/fs-[0-9a-f]{8,40}|fs-[0-9a-f]{8,40})$`   
+Required: Yes
 
 ## Request Body<a name="API_PutFileSystemPolicy_RequestBody"></a>
 
@@ -44,8 +47,8 @@ HTTP/1.1 200
 Content-type: application/json
 
 {
-   "[FileSystemId](#efs-PutFileSystemPolicy-response-FileSystemId)": "string",
-   "[Policy](#efs-PutFileSystemPolicy-response-Policy)": "string"
+   "FileSystemId": "string",
+   "Policy": "string"
 }
 ```
 
@@ -57,7 +60,9 @@ The following data is returned in JSON format by the service\.
 
  ** [FileSystemId](#API_PutFileSystemPolicy_ResponseSyntax) **   <a name="efs-PutFileSystemPolicy-response-FileSystemId"></a>
 Specifies the EFS file system to which the `FileSystemPolicy` applies\.  
-Type: String
+Type: String  
+Length Constraints: Maximum length of 128\.  
+Pattern: `^(arn:aws[-a-z]*:elasticfilesystem:[0-9a-z-:]+:file-system/fs-[0-9a-f]{8,40}|fs-[0-9a-f]{8,40})$` 
 
  ** [Policy](#API_PutFileSystemPolicy_ResponseSyntax) **   <a name="efs-PutFileSystemPolicy-response-Policy"></a>
 The JSON formatted `FileSystemPolicy` for the EFS file system\.  

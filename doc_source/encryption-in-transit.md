@@ -4,7 +4,7 @@ You can encrypt data in transit using an Amazon EFS file system, without needing
 
 ## Encrypting Data in Transit with TLS<a name="encrypt-mount"></a>
 
-Enabling encryption of data in transit for your Amazon EFS file system is done by enabling Transport Layer Security \(TLS\) when you mount your file system using the Amazon EFS mount helper\. For more information, see [Mounting with the EFS Mount Helper](mounting-fs.md#mounting-fs-mount-helper)\.
+Enabling encryption of data in transit for your Amazon EFS file system is done by enabling Transport Layer Security \(TLS\) when you mount your file system using the Amazon EFS mount helper\. For more information, see [Mounting with the EFS mount helper](mounting-fs.md#mounting-fs-mount-helper)\.
 
 When encryption of data in transit is declared as a mount option for your Amazon EFS file system, the mount helper initializes a client stunnel process\. Stunnel is an open source multipurpose network relay\. The client stunnel process listens on a local port for inbound traffic, and the mount helper redirects Network File System \(NFS\) client traffic to this local port\. The mount helper uses TLS version 1\.2 to communicate with your file system\.
 

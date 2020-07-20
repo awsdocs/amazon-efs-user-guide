@@ -1,10 +1,10 @@
-# Mounting EFS File Systems from Another Account or VPC<a name="manage-fs-access-vpc-peering"></a>
+# Mounting EFS file systems from another account or VPC<a name="manage-fs-access-vpc-peering"></a>
 
 You can mount your Amazon EFS file system using IAM authorization for NFS clients and EFS Access Points using the EFS mount helper\. By default, the EFS mount helper uses domain name service \(DNS\) to resolve the IP address of your EFS mount target\. If you are mounting the file system from a different account or virtual private cloud \(VPC\), you need to resolve the EFS mount target manually\.
 
 Following, you can find instructions for determining the correct EFS mount target IP address to use for your NFS client\. You can also find instructions for configuring the client to mount the EFS file system using that IP address\.
 
-## Mounting Using IAM or Access Points from Another VPC<a name="mount-fs-different-vpc"></a>
+## Mounting using IAM or access points from another VPC<a name="mount-fs-different-vpc"></a>
 
 When you use a VPC peering connection or transit gateway to connect VPCs, Amazon EC2 instances that are in one VPC can access EFS file systems in another VPC, even if the VPCs belong to different accounts\. 
 
@@ -118,7 +118,7 @@ To ensure high availability of your file system, we recommend that you always us
 
 You can't use DNS name resolution for EFS mount points in another VPC\. To mount your EFS file system, use the IP address of the mount points in the corresponding Availability Zone\. Alternatively, you can use Amazon Route 53 as your DNS service\. In Route 53, you can resolve the EFS mount target IP addresses from another VPC by creating a private hosted zone and resource record set\. For more information on how to do so, see [Working with Private Hosted Zones](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/hosted-zones-private.html) and [Working with Records](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/rrsets-working-with.html) in the *Amazon Route 53 Developer Guide*\.
 
-## Mounting from Another Account in the Same VPC<a name="mount-fs-diff-account-same-vpc"></a>
+## Mounting from another account in the same VPC<a name="mount-fs-diff-account-same-vpc"></a>
 
 Using shared VPCs, you can mount an Amazon EFS file system that is owned by one account from Amazon EC2 instances that are owned by a different account\. For more information about setting up a shared VPC, see [Working with Shared VPCs](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-sharing.html) in the *Amazon VPC Peering Guide*\. 
 

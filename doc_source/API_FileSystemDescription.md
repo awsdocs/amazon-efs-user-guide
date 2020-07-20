@@ -13,6 +13,7 @@ Required: Yes
 The opaque string specified in the request\.  
 Type: String  
 Length Constraints: Minimum length of 1\. Maximum length of 64\.  
+Pattern: `.+`   
 Required: Yes
 
  **Encrypted**   <a name="efs-Type-FileSystemDescription-Encrypted"></a>
@@ -20,15 +21,23 @@ A Boolean value that, if true, indicates that the file system is encrypted\.
 Type: Boolean  
 Required: No
 
+ **FileSystemArn**   <a name="efs-Type-FileSystemDescription-FileSystemArn"></a>
+The Amazon Resource Name \(ARN\) for the EFS file system, in the format `arn:aws:elasticfilesystem:region:account-id:file-system/file-system-id `\. Example with sample data: `arn:aws:elasticfilesystem:us-west-2:1111333322228888:file-system/fs-01234567`   
+Type: String  
+Required: No
+
  **FileSystemId**   <a name="efs-Type-FileSystemDescription-FileSystemId"></a>
 The ID of the file system, assigned by Amazon EFS\.  
 Type: String  
+Length Constraints: Maximum length of 128\.  
+Pattern: `^(arn:aws[-a-z]*:elasticfilesystem:[0-9a-z-:]+:file-system/fs-[0-9a-f]{8,40}|fs-[0-9a-f]{8,40})$`   
 Required: Yes
 
  **KmsKeyId**   <a name="efs-Type-FileSystemDescription-KmsKeyId"></a>
 The ID of an AWS Key Management Service \(AWS KMS\) customer master key \(CMK\) that was used to protect the encrypted file system\.  
 Type: String  
-Length Constraints: Minimum length of 1\. Maximum length of 2048\.  
+Length Constraints: Maximum length of 2048\.  
+Pattern: `^([0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}|alias/[a-zA-Z0-9/_-]+|(arn:aws[-a-z]*:kms:[a-z0-9-]+:\d{12}:((key/[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})|(alias/[a-zA-Z0-9/_-]+))))$`   
 Required: No
 
  **LifeCycleState**   <a name="efs-Type-FileSystemDescription-LifeCycleState"></a>
@@ -41,6 +50,7 @@ Required: Yes
 You can add tags to a file system, including a `Name` tag\. For more information, see [CreateFileSystem](API_CreateFileSystem.md)\. If the file system has a `Name` tag, Amazon EFS returns the value in this field\.   
 Type: String  
 Length Constraints: Maximum length of 256\.  
+Pattern: `^([\p{L}\p{Z}\p{N}_.:/=+\-@]*)$`   
 Required: No
 
  **NumberOfMountTargets**   <a name="efs-Type-FileSystemDescription-NumberOfMountTargets"></a>
@@ -52,6 +62,8 @@ Required: Yes
  **OwnerId**   <a name="efs-Type-FileSystemDescription-OwnerId"></a>
 The AWS account that created the file system\. If the file system was created by an IAM user, the parent account to which the user belongs is the owner\.  
 Type: String  
+Length Constraints: Maximum length of 14\.  
+Pattern: `^(\d{12})|(\d{4}-\d{4}-\d{4})$`   
 Required: Yes
 
  **PerformanceMode**   <a name="efs-Type-FileSystemDescription-PerformanceMode"></a>

@@ -17,11 +17,15 @@ Required: No
  **FileSystemId**   <a name="efs-Type-MountTargetDescription-FileSystemId"></a>
 The ID of the file system for which the mount target is intended\.  
 Type: String  
+Length Constraints: Maximum length of 128\.  
+Pattern: `^(arn:aws[-a-z]*:elasticfilesystem:[0-9a-z-:]+:file-system/fs-[0-9a-f]{8,40}|fs-[0-9a-f]{8,40})$`   
 Required: Yes
 
  **IpAddress**   <a name="efs-Type-MountTargetDescription-IpAddress"></a>
 Address at which the file system can be mounted by using the mount target\.  
 Type: String  
+Length Constraints: Minimum length of 7\. Maximum length of 15\.  
+Pattern: `^[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}$`   
 Required: No
 
  **LifeCycleState**   <a name="efs-Type-MountTargetDescription-LifeCycleState"></a>
@@ -33,6 +37,8 @@ Required: Yes
  **MountTargetId**   <a name="efs-Type-MountTargetDescription-MountTargetId"></a>
 System\-assigned mount target ID\.  
 Type: String  
+Length Constraints: Minimum length of 13\. Maximum length of 45\.  
+Pattern: `^fsmt-[0-9a-f]{8,40}$`   
 Required: Yes
 
  **NetworkInterfaceId**   <a name="efs-Type-MountTargetDescription-NetworkInterfaceId"></a>
@@ -43,12 +49,21 @@ Required: No
  **OwnerId**   <a name="efs-Type-MountTargetDescription-OwnerId"></a>
 AWS account ID that owns the resource\.  
 Type: String  
+Length Constraints: Maximum length of 14\.  
+Pattern: `^(\d{12})|(\d{4}-\d{4}-\d{4})$`   
 Required: No
 
  **SubnetId**   <a name="efs-Type-MountTargetDescription-SubnetId"></a>
 The ID of the mount target's subnet\.  
 Type: String  
+Length Constraints: Minimum length of 15\. Maximum length of 47\.  
+Pattern: `^subnet-[0-9a-f]{8,40}$`   
 Required: Yes
+
+ **VpcId**   <a name="efs-Type-MountTargetDescription-VpcId"></a>
+The Virtual Private Cloud \(VPC\) ID that the mount target is configured in\.  
+Type: String  
+Required: No
 
 ## See Also<a name="API_MountTargetDescription_SeeAlso"></a>
 

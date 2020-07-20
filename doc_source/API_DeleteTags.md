@@ -11,16 +11,19 @@ POST /2015-02-01/delete-tags/FileSystemId HTTP/1.1
 Content-type: application/json
 
 {
-   "[TagKeys](#efs-DeleteTags-request-TagKeys)": [ "string" ]
+   "TagKeys": [ "string" ]
 }
 ```
 
 ## URI Request Parameters<a name="API_DeleteTags_RequestParameters"></a>
 
-The request requires the following URI parameters\.
+The request uses the following URI parameters\.
 
  ** [FileSystemId](#API_DeleteTags_RequestSyntax) **   <a name="efs-DeleteTags-request-FileSystemId"></a>
-The ID of the file system whose tags you want to delete \(String\)\.
+The ID of the file system whose tags you want to delete \(String\)\.  
+Length Constraints: Maximum length of 128\.  
+Pattern: `^(arn:aws[-a-z]*:elasticfilesystem:[0-9a-z-:]+:file-system/fs-[0-9a-f]{8,40}|fs-[0-9a-f]{8,40})$`   
+Required: Yes
 
 ## Request Body<a name="API_DeleteTags_RequestBody"></a>
 
@@ -31,6 +34,7 @@ A list of tag keys to delete\.
 Type: Array of strings  
 Array Members: Minimum number of 1 item\. Maximum number of 50 items\.  
 Length Constraints: Minimum length of 1\. Maximum length of 128\.  
+Pattern: `^(?![aA]{1}[wW]{1}[sS]{1}:)([\p{L}\p{Z}\p{N}_.:/=+\-@]+)$`   
 Required: Yes
 
 ## Response Syntax<a name="API_DeleteTags_ResponseSyntax"></a>

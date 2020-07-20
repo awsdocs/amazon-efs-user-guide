@@ -132,7 +132,7 @@ This error can occur because either the Amazon EC2 instance or the mount target 
 
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/efs/latest/ug/images/mnt-tgt-sg-inbound-rules.png)
 
-For more information, see [Creating Security Groups](accessing-fs-create-security-groups.md)\.
+For more information, see [Creating security groups](accessing-fs-create-security-groups.md)\.
 
 Verify that the mount target IP address that you specified is valid\. If you specify the wrong IP address and there is nothing else at that IP address to reject the mount, you might experience this issue\.
 
@@ -154,7 +154,7 @@ Check your VPC configuration\. If you are using a custom VPC, make sure that DNS
 
 To specify a DNS name in the `mount` command, you must do the following:
 + Ensure that there's an Amazon EFS mount target in the same Availability Zone as the Amazon EC2 instance\.
-+ Ensure that there's a mount target in the same VPC as the Amazon EC2 instance\. Otherwise, you can't use DNS name resolution for EFS mount targets that are in another VPC\. For more information, see [Mounting EFS File Systems from Another Account or VPC](manage-fs-access-vpc-peering.md)\.
++ Ensure that there's a mount target in the same VPC as the Amazon EC2 instance\. Otherwise, you can't use DNS name resolution for EFS mount targets that are in another VPC\. For more information, see [Mounting EFS file systems from another account or VPC](manage-fs-access-vpc-peering.md)\.
 + Connect your Amazon EC2 instance inside an Amazon VPC configured to use the DNS server provided by Amazon\. For more information, see [DHCP Options Sets](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_DHCP_Options.html) in the *Amazon VPC User Guide*\.
 + Ensure that the Amazon VPC of the connecting Amazon EC2 instance has DNS hostnames enabled\. For more information, see [Updating DNS Support for Your VPC](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-dns.html#vpc-dns-updating) in the *Amazon VPC User Guide*\.
 
@@ -197,7 +197,7 @@ Operations performed on a newly mounted file system return a `bad file handle` e
 This error can happen if an Amazon EC2 instance was connected to one file system and one mount target with a specified IP address, and then that file system and mount target were deleted\. If you create a new file system and mount target to connect to that Amazon EC2 instance with the same mount target IP address, this issue can occur\. 
 
 **Action to Take**  
-You can resolve this error by unmounting the file system, and then remounting the file system on the Amazon EC2 instance\. For more information about unmounting your Amazon EFS file system, see [Unmounting File Systems](mounting-fs-mount-cmd-general.md#unmounting-fs)\.
+You can resolve this error by unmounting the file system, and then remounting the file system on the Amazon EC2 instance\. For more information about unmounting your Amazon EFS file system, see [Unmounting file systems](mounting-fs-mount-cmd-general.md#unmounting-fs)\.
 
 ## Unmounting a File System Fails<a name="troubleshooting-unmounting"></a>
 

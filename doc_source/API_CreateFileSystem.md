@@ -27,18 +27,18 @@ POST /2015-02-01/file-systems HTTP/1.1
 Content-type: application/json
 
 {
-   "[CreationToken](#efs-CreateFileSystem-request-CreationToken)": "string",
-   "[Encrypted](#efs-CreateFileSystem-request-Encrypted)": boolean,
-   "[KmsKeyId](#efs-CreateFileSystem-request-KmsKeyId)": "string",
-   "[PerformanceMode](#efs-CreateFileSystem-request-PerformanceMode)": "string",
-   "[ProvisionedThroughputInMibps](#efs-CreateFileSystem-request-ProvisionedThroughputInMibps)": number,
-   "[Tags](#efs-CreateFileSystem-request-Tags)": [ 
+   "CreationToken": "string",
+   "Encrypted": boolean,
+   "KmsKeyId": "string",
+   "PerformanceMode": "string",
+   "ProvisionedThroughputInMibps": number,
+   "Tags": [ 
       { 
-         "[Key](API_Tag.md#efs-Type-Tag-Key)": "string",
-         "[Value](API_Tag.md#efs-Type-Tag-Value)": "string"
+         "Key": "string",
+         "Value": "string"
       }
    ],
-   "[ThroughputMode](#efs-CreateFileSystem-request-ThroughputMode)": "string"
+   "ThroughputMode": "string"
 }
 ```
 
@@ -54,6 +54,7 @@ The request accepts the following data in JSON format\.
 A string of up to 64 ASCII characters\. Amazon EFS uses this to ensure idempotent creation\.  
 Type: String  
 Length Constraints: Minimum length of 1\. Maximum length of 64\.  
+Pattern: `.+`   
 Required: Yes
 
  ** [Encrypted](#API_CreateFileSystem_RequestSyntax) **   <a name="efs-CreateFileSystem-request-Encrypted"></a>
@@ -70,7 +71,8 @@ The ID of the AWS KMS CMK to be used to protect the encrypted file system\. This
 If `KmsKeyId` is specified, the [CreateFileSystem:Encrypted](#efs-CreateFileSystem-request-Encrypted) parameter must be set to true\.  
 EFS accepts only symmetric CMKs\. You cannot use asymmetric CMKs with EFS file systems\.
 Type: String  
-Length Constraints: Minimum length of 1\. Maximum length of 2048\.  
+Length Constraints: Maximum length of 2048\.  
+Pattern: `^([0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}|alias/[a-zA-Z0-9/_-]+|(arn:aws[-a-z]*:kms:[a-z0-9-]+:\d{12}:((key/[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})|(alias/[a-zA-Z0-9/_-]+))))$`   
 Required: No
 
  ** [PerformanceMode](#API_CreateFileSystem_RequestSyntax) **   <a name="efs-CreateFileSystem-request-PerformanceMode"></a>
@@ -103,30 +105,31 @@ HTTP/1.1 201
 Content-type: application/json
 
 {
-   "[CreationTime](#efs-CreateFileSystem-response-CreationTime)": number,
-   "[CreationToken](#efs-CreateFileSystem-response-CreationToken)": "string",
-   "[Encrypted](#efs-CreateFileSystem-response-Encrypted)": boolean,
-   "[FileSystemId](#efs-CreateFileSystem-response-FileSystemId)": "string",
-   "[KmsKeyId](#efs-CreateFileSystem-response-KmsKeyId)": "string",
-   "[LifeCycleState](#efs-CreateFileSystem-response-LifeCycleState)": "string",
-   "[Name](#efs-CreateFileSystem-response-Name)": "string",
-   "[NumberOfMountTargets](#efs-CreateFileSystem-response-NumberOfMountTargets)": number,
-   "[OwnerId](#efs-CreateFileSystem-response-OwnerId)": "string",
-   "[PerformanceMode](#efs-CreateFileSystem-response-PerformanceMode)": "string",
-   "[ProvisionedThroughputInMibps](#efs-CreateFileSystem-response-ProvisionedThroughputInMibps)": number,
-   "[SizeInBytes](#efs-CreateFileSystem-response-SizeInBytes)": { 
-      "[Timestamp](API_FileSystemSize.md#efs-Type-FileSystemSize-Timestamp)": number,
-      "[Value](API_FileSystemSize.md#efs-Type-FileSystemSize-Value)": number,
-      "[ValueInIA](API_FileSystemSize.md#efs-Type-FileSystemSize-ValueInIA)": number,
-      "[ValueInStandard](API_FileSystemSize.md#efs-Type-FileSystemSize-ValueInStandard)": number
+   "CreationTime": number,
+   "CreationToken": "string",
+   "Encrypted": boolean,
+   "FileSystemArn": "string",
+   "FileSystemId": "string",
+   "KmsKeyId": "string",
+   "LifeCycleState": "string",
+   "Name": "string",
+   "NumberOfMountTargets": number,
+   "OwnerId": "string",
+   "PerformanceMode": "string",
+   "ProvisionedThroughputInMibps": number,
+   "SizeInBytes": { 
+      "Timestamp": number,
+      "Value": number,
+      "ValueInIA": number,
+      "ValueInStandard": number
    },
-   "[Tags](#efs-CreateFileSystem-response-Tags)": [ 
+   "Tags": [ 
       { 
-         "[Key](API_Tag.md#efs-Type-Tag-Key)": "string",
-         "[Value](API_Tag.md#efs-Type-Tag-Value)": "string"
+         "Key": "string",
+         "Value": "string"
       }
    ],
-   "[ThroughputMode](#efs-CreateFileSystem-response-ThroughputMode)": "string"
+   "ThroughputMode": "string"
 }
 ```
 
@@ -143,20 +146,28 @@ Type: Timestamp
  ** [CreationToken](#API_CreateFileSystem_ResponseSyntax) **   <a name="efs-CreateFileSystem-response-CreationToken"></a>
 The opaque string specified in the request\.  
 Type: String  
-Length Constraints: Minimum length of 1\. Maximum length of 64\.
+Length Constraints: Minimum length of 1\. Maximum length of 64\.  
+Pattern: `.+` 
 
  ** [Encrypted](#API_CreateFileSystem_ResponseSyntax) **   <a name="efs-CreateFileSystem-response-Encrypted"></a>
 A Boolean value that, if true, indicates that the file system is encrypted\.  
 Type: Boolean
 
+ ** [FileSystemArn](#API_CreateFileSystem_ResponseSyntax) **   <a name="efs-CreateFileSystem-response-FileSystemArn"></a>
+The Amazon Resource Name \(ARN\) for the EFS file system, in the format `arn:aws:elasticfilesystem:region:account-id:file-system/file-system-id `\. Example with sample data: `arn:aws:elasticfilesystem:us-west-2:1111333322228888:file-system/fs-01234567`   
+Type: String
+
  ** [FileSystemId](#API_CreateFileSystem_ResponseSyntax) **   <a name="efs-CreateFileSystem-response-FileSystemId"></a>
 The ID of the file system, assigned by Amazon EFS\.  
-Type: String
+Type: String  
+Length Constraints: Maximum length of 128\.  
+Pattern: `^(arn:aws[-a-z]*:elasticfilesystem:[0-9a-z-:]+:file-system/fs-[0-9a-f]{8,40}|fs-[0-9a-f]{8,40})$` 
 
  ** [KmsKeyId](#API_CreateFileSystem_ResponseSyntax) **   <a name="efs-CreateFileSystem-response-KmsKeyId"></a>
 The ID of an AWS Key Management Service \(AWS KMS\) customer master key \(CMK\) that was used to protect the encrypted file system\.  
 Type: String  
-Length Constraints: Minimum length of 1\. Maximum length of 2048\.
+Length Constraints: Maximum length of 2048\.  
+Pattern: `^([0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}|alias/[a-zA-Z0-9/_-]+|(arn:aws[-a-z]*:kms:[a-z0-9-]+:\d{12}:((key/[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})|(alias/[a-zA-Z0-9/_-]+))))$` 
 
  ** [LifeCycleState](#API_CreateFileSystem_ResponseSyntax) **   <a name="efs-CreateFileSystem-response-LifeCycleState"></a>
 The lifecycle phase of the file system\.  
@@ -166,7 +177,8 @@ Valid Values:` creating | available | updating | deleting | deleted`
  ** [Name](#API_CreateFileSystem_ResponseSyntax) **   <a name="efs-CreateFileSystem-response-Name"></a>
 You can add tags to a file system, including a `Name` tag\. For more information, see [CreateFileSystem](#API_CreateFileSystem)\. If the file system has a `Name` tag, Amazon EFS returns the value in this field\.   
 Type: String  
-Length Constraints: Maximum length of 256\.
+Length Constraints: Maximum length of 256\.  
+Pattern: `^([\p{L}\p{Z}\p{N}_.:/=+\-@]*)$` 
 
  ** [NumberOfMountTargets](#API_CreateFileSystem_ResponseSyntax) **   <a name="efs-CreateFileSystem-response-NumberOfMountTargets"></a>
 The current number of mount targets that the file system has\. For more information, see [CreateMountTarget](API_CreateMountTarget.md)\.  
@@ -175,7 +187,9 @@ Valid Range: Minimum value of 0\.
 
  ** [OwnerId](#API_CreateFileSystem_ResponseSyntax) **   <a name="efs-CreateFileSystem-response-OwnerId"></a>
 The AWS account that created the file system\. If the file system was created by an IAM user, the parent account to which the user belongs is the owner\.  
-Type: String
+Type: String  
+Length Constraints: Maximum length of 14\.  
+Pattern: `^(\d{12})|(\d{4}-\d{4}-\d{4})$` 
 
  ** [PerformanceMode](#API_CreateFileSystem_ResponseSyntax) **   <a name="efs-CreateFileSystem-response-PerformanceMode"></a>
 The performance mode of the file system\.  

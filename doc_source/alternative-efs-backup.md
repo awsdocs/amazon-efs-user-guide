@@ -97,11 +97,11 @@ Follow the steps in this section to back up or restore your Amazon EFS file syst
 
 In this walkthrough, you create separate security groups, file systems, and mount points to separate your backups from your data source\. In this first step, you create those resources:
 
-1. First, create two new security groups\. The example security group for the backup mount target is `efs-backup-mt-sg (sg-9999999a)`\. The example security group for the EC2 instance to access the mount target is `efs-backup-ec2-sg (sg-9999999b)`\. Remember to create these security groups in the same VPC as the EFS volume that you want to back up\. In this example, the VPC associated with the `subnet-abcd1234` subnet\. For more information about creating security groups, see [Creating Security Groups](accessing-fs-create-security-groups.md)\.
+1. First, create two new security groups\. The example security group for the backup mount target is `efs-backup-mt-sg (sg-9999999a)`\. The example security group for the EC2 instance to access the mount target is `efs-backup-ec2-sg (sg-9999999b)`\. Remember to create these security groups in the same VPC as the EFS volume that you want to back up\. In this example, the VPC associated with the `subnet-abcd1234` subnet\. For more information about creating security groups, see [Creating security groups](accessing-fs-create-security-groups.md)\.
 
-1. Next, create a backup Amazon EFS file system\. In this example, the file system ID is `fs-abcdefaa`\. For more information about creating file systems, see [Creating an Amazon Elastic File System](creating-using-create-fs.md)\.
+1. Next, create a backup Amazon EFS file system\. In this example, the file system ID is `fs-abcdefaa`\. For more information about creating file systems, see [Creating Amazon EFS file systems](creating-using-create-fs.md)\.
 
-1. Finally, create a mount point for the EFS backup file system and assume that it has the value of `10.0.1.75:/`\. For more information about creating mount targets, see [Creating Mount Targets](accessing-fs.md)\.
+1. Finally, create a mount point for the EFS backup file system and assume that it has the value of `10.0.1.75:/`\. For more information about creating mount targets, see [Creating mount targets](accessing-fs.md)\.
 
 After you've completed this first step, your setup should look similar to the following example diagram\.
 

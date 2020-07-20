@@ -67,7 +67,7 @@ Follow the steps to set up an Apache web server on one EC2 instance to serve fil
       After you add the rule, the EC2 instance security group will have the following inbound rules\.   
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/efs/latest/ug/images/wh2-part1-10.png)
 
-      For instructions, see [Creating Security Groups Using the AWS Management Console](accessing-fs-create-security-groups.md#create-security-groups-console)\. 
+      For instructions, see [Creating security groups using the AWS Management Console](accessing-fs-create-security-groups.md#create-security-groups-console)\. 
 
    1. Create a sample html file\.
 

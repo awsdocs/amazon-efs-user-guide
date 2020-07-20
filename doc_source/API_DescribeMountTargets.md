@@ -12,23 +12,29 @@ GET /2015-02-01/mount-targets?AccessPointId=AccessPointId&FileSystemId=FileSyste
 
 ## URI Request Parameters<a name="API_DescribeMountTargets_RequestParameters"></a>
 
-The request requires the following URI parameters\.
+The request uses the following URI parameters\.
 
  ** [AccessPointId](#API_DescribeMountTargets_RequestSyntax) **   <a name="efs-DescribeMountTargets-request-AccessPointId"></a>
 \(Optional\) The ID of the access point whose mount targets that you want to list\. It must be included in your request if a `FileSystemId` or `MountTargetId` is not included in your request\. Accepts either an access point ID or ARN as input\.
 
  ** [FileSystemId](#API_DescribeMountTargets_RequestSyntax) **   <a name="efs-DescribeMountTargets-request-FileSystemId"></a>
-\(Optional\) ID of the file system whose mount targets you want to list \(String\)\. It must be included in your request if an `AccessPointId` or `MountTargetId` is not included\. Accepts either a file system ID or ARN as input\.
+\(Optional\) ID of the file system whose mount targets you want to list \(String\)\. It must be included in your request if an `AccessPointId` or `MountTargetId` is not included\. Accepts either a file system ID or ARN as input\.  
+Length Constraints: Maximum length of 128\.  
+Pattern: `^(arn:aws[-a-z]*:elasticfilesystem:[0-9a-z-:]+:file-system/fs-[0-9a-f]{8,40}|fs-[0-9a-f]{8,40})$` 
 
  ** [Marker](#API_DescribeMountTargets_RequestSyntax) **   <a name="efs-DescribeMountTargets-request-Marker"></a>
-\(Optional\) Opaque pagination token returned from a previous `DescribeMountTargets` operation \(String\)\. If present, it specifies to continue the list from where the previous returning call left off\.
+\(Optional\) Opaque pagination token returned from a previous `DescribeMountTargets` operation \(String\)\. If present, it specifies to continue the list from where the previous returning call left off\.  
+Length Constraints: Minimum length of 1\. Maximum length of 128\.  
+Pattern: `.+` 
 
  ** [MaxItems](#API_DescribeMountTargets_RequestSyntax) **   <a name="efs-DescribeMountTargets-request-MaxItems"></a>
 \(Optional\) Maximum number of mount targets to return in the response\. Currently, this number is automatically set to 10, and other values are ignored\. The response is paginated at 100 per page if you have more than 100 mount targets\.  
 Valid Range: Minimum value of 1\.
 
  ** [MountTargetId](#API_DescribeMountTargets_RequestSyntax) **   <a name="efs-DescribeMountTargets-request-MountTargetId"></a>
-\(Optional\) ID of the mount target that you want to have described \(String\)\. It must be included in your request if `FileSystemId` is not included\. Accepts either a mount target ID or ARN as input\.
+\(Optional\) ID of the mount target that you want to have described \(String\)\. It must be included in your request if `FileSystemId` is not included\. Accepts either a mount target ID or ARN as input\.  
+Length Constraints: Minimum length of 13\. Maximum length of 45\.  
+Pattern: `^fsmt-[0-9a-f]{8,40}$` 
 
 ## Request Body<a name="API_DescribeMountTargets_RequestBody"></a>
 
@@ -41,21 +47,22 @@ HTTP/1.1 200
 Content-type: application/json
 
 {
-   "[Marker](#efs-DescribeMountTargets-response-Marker)": "string",
-   "[MountTargets](#efs-DescribeMountTargets-response-MountTargets)": [ 
+   "Marker": "string",
+   "MountTargets": [ 
       { 
-         "[AvailabilityZoneId](API_MountTargetDescription.md#efs-Type-MountTargetDescription-AvailabilityZoneId)": "string",
-         "[AvailabilityZoneName](API_MountTargetDescription.md#efs-Type-MountTargetDescription-AvailabilityZoneName)": "string",
-         "[FileSystemId](API_MountTargetDescription.md#efs-Type-MountTargetDescription-FileSystemId)": "string",
-         "[IpAddress](API_MountTargetDescription.md#efs-Type-MountTargetDescription-IpAddress)": "string",
-         "[LifeCycleState](API_MountTargetDescription.md#efs-Type-MountTargetDescription-LifeCycleState)": "string",
-         "[MountTargetId](API_MountTargetDescription.md#efs-Type-MountTargetDescription-MountTargetId)": "string",
-         "[NetworkInterfaceId](API_MountTargetDescription.md#efs-Type-MountTargetDescription-NetworkInterfaceId)": "string",
-         "[OwnerId](API_MountTargetDescription.md#efs-Type-MountTargetDescription-OwnerId)": "string",
-         "[SubnetId](API_MountTargetDescription.md#efs-Type-MountTargetDescription-SubnetId)": "string"
+         "AvailabilityZoneId": "string",
+         "AvailabilityZoneName": "string",
+         "FileSystemId": "string",
+         "IpAddress": "string",
+         "LifeCycleState": "string",
+         "MountTargetId": "string",
+         "NetworkInterfaceId": "string",
+         "OwnerId": "string",
+         "SubnetId": "string",
+         "VpcId": "string"
       }
    ],
-   "[NextMarker](#efs-DescribeMountTargets-response-NextMarker)": "string"
+   "NextMarker": "string"
 }
 ```
 
@@ -67,7 +74,9 @@ The following data is returned in JSON format by the service\.
 
  ** [Marker](#API_DescribeMountTargets_ResponseSyntax) **   <a name="efs-DescribeMountTargets-response-Marker"></a>
 If the request included the `Marker`, the response returns that value in this field\.  
-Type: String
+Type: String  
+Length Constraints: Minimum length of 1\. Maximum length of 128\.  
+Pattern: `.+` 
 
  ** [MountTargets](#API_DescribeMountTargets_ResponseSyntax) **   <a name="efs-DescribeMountTargets-response-MountTargets"></a>
 Returns the file system's mount targets as an array of `MountTargetDescription` objects\.  
@@ -75,7 +84,9 @@ Type: Array of [MountTargetDescription](API_MountTargetDescription.md) objects
 
  ** [NextMarker](#API_DescribeMountTargets_ResponseSyntax) **   <a name="efs-DescribeMountTargets-response-NextMarker"></a>
 If a value is present, there are more mount targets to return\. In a subsequent request, you can provide `Marker` in your request with this value to retrieve the next set of mount targets\.  
-Type: String
+Type: String  
+Length Constraints: Minimum length of 1\. Maximum length of 128\.  
+Pattern: `.+` 
 
 ## Errors<a name="API_DescribeMountTargets_Errors"></a>
 

@@ -1,30 +1,32 @@
-# Creating File System Policies<a name="create-file-system-policy"></a>
+# Creating file system policies<a name="create-file-system-policy"></a>
 
-You can create a file system policy using the Amazon EFS console or using the AWS CLI\. You can also create a file system policy programmatically using AWS SDKs or the EFS API directly\. To learn more about file system policies and see examples, see [Using IAM to Control NFS Access to Amazon EFS](iam-access-control-nfs-efs.md)\.
+You can create a file system policy using the Amazon EFS console or using the AWS CLI\. You can also create a file system policy programmatically using AWS SDKs or the Amazon EFS API directly\. To learn more about file system policies and see examples, see [Using IAM to Control NFS Access to Amazon EFS](iam-access-control-nfs-efs.md)\.
 
-## Creating a File System Policy \(Console\)<a name="create-file-system-policy-console"></a>
+## Creating a file system policy \(console\)<a name="create-file-system-policy-console"></a>
 
 1. Open the Amazon Elastic File System console at [https://console\.aws\.amazon\.com/efs/](https://console.aws.amazon.com/efs/)\.
 
 1. Choose **File Systems**\.
 
-1. On the **File systems** page, choose the file system that you want to crate a file system policy for\.
+1. On the **File systems** page, choose the file system that you want to edit or create a file system policy for\. The details page for that file system is displayed\.
 
-1. For **Actions**, choose **Manage client access**\. The **File system policy** page appears\.
+1. Choose **File system policy**, then choose **Edit**\. The **File system policy** page appears\.  
+![\[File system policy editor is where you create and edit file system policies in the EFS console.\]](http://docs.aws.amazon.com/efs/latest/ug/images/console2-fsp-editor.png)
 
-1. On the **Policy settings** tab, choose one or more of the preset policy statements available\.
+1. In **Policy options**, you can choose any combination of the following preconfigured policies:
+   + Prevent root access by default
+   + Enforce read\-only access by default
+   + Enforce in\-transit encryption for all clients
 
-   Or choose the **\{\} JSON** tab to configure your own policy using the JSON editor\.  
-![\[Image NOT FOUND\]](http://docs.aws.amazon.com/efs/latest/ug/images/create-fsp-console.png)
+   If you choose a preconfigured policy, the policy JSON object is displayed in the **Policy editor** panel\.
 
-1. After you complete creating your policy, choose **Set policy**\. If you chose one of the policy presets, the **\{\} JSON** tab displays the JSON formatted policy\.  
-![\[Image NOT FOUND\]](http://docs.aws.amazon.com/efs/latest/ug/images/root-squash-json.png)
+1. Use the **Policy editor** to customize a preconfigured policy or to create your own policy\. When you use the editor, the preconfigured policy options become unavailable\. To undo your policy changes, choose **Clear**\.
 
-    The policy shown is the JSON that is generated if you chose the **Disable root access by default** policy\.
+   When you clear the editor, the preconfigured policies become available once again\.
 
-1. Choose **Save policy** to save the file system policy\.
+1. After you complete editing or creating the policy, choose **Save**\. The details page for the file system is displayed, showing the policy in **File system policy**\.
 
-## Creating a File System Policy \(CLI\)<a name="create-file-system-policy-cli"></a>
+## Creating a file system policy \(CLI\)<a name="create-file-system-policy-cli"></a>
 
 In the following example, the `put-file-system-policy` CLI command creates a file system policy that allows all IAM principals read\-only access to the EFS file system\. The equivalent API command is [PutFileSystemPolicy](API_PutFileSystemPolicy.md)\.
 

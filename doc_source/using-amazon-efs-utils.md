@@ -103,7 +103,7 @@ If you are unable to install the required dependencies, you can optionally disab
 
 1. Save the changes to the file and close it\.
 
-For more information on using encryption of data in transit, see [Mounting EFS File Systems](mounting-fs.md)\.
+For more information on using encryption of data in transit, see [Mounting EFS file systems](mounting-fs.md)\.
 
 ### Enabling Online Certificate Status Protocol<a name="tls-ocsp"></a>
 

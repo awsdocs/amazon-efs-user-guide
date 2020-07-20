@@ -7,31 +7,27 @@ This operation requires permissions for the `elasticfilesystem:UntagResource` ac
 ## Request Syntax<a name="API_UntagResource_RequestSyntax"></a>
 
 ```
-DELETE /2015-02-01/resource-tags/ResourceId HTTP/1.1
-Content-type: application/json
-
-{
-   "[TagKeys](#efs-UntagResource-request-TagKeys)": [ "string" ]
-}
+DELETE /2015-02-01/resource-tags/ResourceId?tagKeys=TagKeys HTTP/1.1
 ```
 
 ## URI Request Parameters<a name="API_UntagResource_RequestParameters"></a>
 
-The request requires the following URI parameters\.
+The request uses the following URI parameters\.
 
  ** [ResourceId](#API_UntagResource_RequestSyntax) **   <a name="efs-UntagResource-request-ResourceId"></a>
-Specifies the EFS resource that you want to remove tags from\.
-
-## Request Body<a name="API_UntagResource_RequestBody"></a>
-
-The request accepts the following data in JSON format\.
+Specifies the EFS resource that you want to remove tags from\.  
+Required: Yes
 
  ** [TagKeys](#API_UntagResource_RequestSyntax) **   <a name="efs-UntagResource-request-TagKeys"></a>
 The keys of the key:value tag pairs that you want to remove from the specified EFS resource\.  
-Type: Array of strings  
 Array Members: Minimum number of 1 item\. Maximum number of 50 items\.  
 Length Constraints: Minimum length of 1\. Maximum length of 128\.  
-Required: No
+Pattern: `^(?![aA]{1}[wW]{1}[sS]{1}:)([\p{L}\p{Z}\p{N}_.:/=+\-@]+)$`   
+Required: Yes
+
+## Request Body<a name="API_UntagResource_RequestBody"></a>
+
+The request does not have a request body\.
 
 ## Response Syntax<a name="API_UntagResource_ResponseSyntax"></a>
 

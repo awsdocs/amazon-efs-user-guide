@@ -27,7 +27,7 @@ RHEL 6\.9 might be suboptimal for certain workloads due to [Poor Performance Whe
 An Amazon EC2 instance can hang because you deleted a file system mount target without first unmounting the file system\. 
 
 **Action to Take**  
-Before you delete a file system mount target, unmount the file system\. For more information about unmounting your Amazon EFS file system, see [Unmounting File Systems](mounting-fs-mount-cmd-general.md#unmounting-fs)\.
+Before you delete a file system mount target, unmount the file system\. For more information about unmounting your Amazon EFS file system, see [Unmounting file systems](mounting-fs-mount-cmd-general.md#unmounting-fs)\.
 
 ## Application Writing Large Amounts of Data Hangs<a name="application-large-data-hangs"></a>
 

@@ -58,7 +58,7 @@ In this step, you create an Amazon EFS file system\. Write down the `FileSystemI
 
 ## Step 2\.2: Enable Lifecycle Management<a name="wt1-lifecycle-management"></a>
 
-In this step, you enable lifecycle management on your ﬁle system in order to use the Infrequent Access storage class\. To learn more, see [EFS Lifecycle Management](lifecycle-management-efs.md) and [EFS Storage Classes](storage-classes.md)\.
+In this step, you enable lifecycle management on your ﬁle system in order to use the Infrequent Access storage class\. To learn more, see [EFS lifecycle management](lifecycle-management-efs.md) and [EFS storage classes](storage-classes.md)\.
 
 **To enable lifecycle management**
 + At the command prompt, run the following AWS CLI `put-lifecycle-configuration` command\.

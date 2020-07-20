@@ -21,10 +21,13 @@ DELETE /2015-02-01/mount-targets/MountTargetId HTTP/1.1
 
 ## URI Request Parameters<a name="API_DeleteMountTarget_RequestParameters"></a>
 
-The request requires the following URI parameters\.
+The request uses the following URI parameters\.
 
  ** [MountTargetId](#API_DeleteMountTarget_RequestSyntax) **   <a name="efs-DeleteMountTarget-request-MountTargetId"></a>
-The ID of the mount target to delete \(String\)\.
+The ID of the mount target to delete \(String\)\.  
+Length Constraints: Minimum length of 13\. Maximum length of 45\.  
+Pattern: `^fsmt-[0-9a-f]{8,40}$`   
+Required: Yes
 
 ## Request Body<a name="API_DeleteMountTarget_RequestBody"></a>
 

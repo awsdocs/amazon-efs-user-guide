@@ -12,10 +12,13 @@ GET /2015-02-01/file-systems/FileSystemId/policy HTTP/1.1
 
 ## URI Request Parameters<a name="API_DescribeFileSystemPolicy_RequestParameters"></a>
 
-The request requires the following URI parameters\.
+The request uses the following URI parameters\.
 
  ** [FileSystemId](#API_DescribeFileSystemPolicy_RequestSyntax) **   <a name="efs-DescribeFileSystemPolicy-request-FileSystemId"></a>
-Specifies which EFS file system to retrieve the `FileSystemPolicy` for\.
+Specifies which EFS file system to retrieve the `FileSystemPolicy` for\.  
+Length Constraints: Maximum length of 128\.  
+Pattern: `^(arn:aws[-a-z]*:elasticfilesystem:[0-9a-z-:]+:file-system/fs-[0-9a-f]{8,40}|fs-[0-9a-f]{8,40})$`   
+Required: Yes
 
 ## Request Body<a name="API_DescribeFileSystemPolicy_RequestBody"></a>
 
@@ -28,8 +31,8 @@ HTTP/1.1 200
 Content-type: application/json
 
 {
-   "[FileSystemId](#efs-DescribeFileSystemPolicy-response-FileSystemId)": "string",
-   "[Policy](#efs-DescribeFileSystemPolicy-response-Policy)": "string"
+   "FileSystemId": "string",
+   "Policy": "string"
 }
 ```
 
@@ -41,7 +44,9 @@ The following data is returned in JSON format by the service\.
 
  ** [FileSystemId](#API_DescribeFileSystemPolicy_ResponseSyntax) **   <a name="efs-DescribeFileSystemPolicy-response-FileSystemId"></a>
 Specifies the EFS file system to which the `FileSystemPolicy` applies\.  
-Type: String
+Type: String  
+Length Constraints: Maximum length of 128\.  
+Pattern: `^(arn:aws[-a-z]*:elasticfilesystem:[0-9a-z-:]+:file-system/fs-[0-9a-f]{8,40}|fs-[0-9a-f]{8,40})$` 
 
  ** [Policy](#API_DescribeFileSystemPolicy_ResponseSyntax) **   <a name="efs-DescribeFileSystemPolicy-response-Policy"></a>
 The JSON formatted `FileSystemPolicy` for the EFS file system\.  

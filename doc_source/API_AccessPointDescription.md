@@ -23,6 +23,8 @@ Required: No
  **FileSystemId**   <a name="efs-Type-AccessPointDescription-FileSystemId"></a>
 The ID of the EFS file system that the access point applies to\.  
 Type: String  
+Length Constraints: Maximum length of 128\.  
+Pattern: `^(arn:aws[-a-z]*:elasticfilesystem:[0-9a-z-:]+:file-system/fs-[0-9a-f]{8,40}|fs-[0-9a-f]{8,40})$`   
 Required: No
 
  **LifeCycleState**   <a name="efs-Type-AccessPointDescription-LifeCycleState"></a>
@@ -39,6 +41,8 @@ Required: No
  **OwnerId**   <a name="efs-Type-AccessPointDescription-OwnerId"></a>
 Identified the AWS account that owns the access point resource\.  
 Type: String  
+Length Constraints: Maximum length of 14\.  
+Pattern: `^(\d{12})|(\d{4}-\d{4}-\d{4})$`   
 Required: No
 
  **PosixUser**   <a name="efs-Type-AccessPointDescription-PosixUser"></a>

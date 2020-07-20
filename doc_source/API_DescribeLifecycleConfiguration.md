@@ -12,10 +12,13 @@ GET /2015-02-01/file-systems/FileSystemId/lifecycle-configuration HTTP/1.1
 
 ## URI Request Parameters<a name="API_DescribeLifecycleConfiguration_RequestParameters"></a>
 
-The request requires the following URI parameters\.
+The request uses the following URI parameters\.
 
  ** [FileSystemId](#API_DescribeLifecycleConfiguration_RequestSyntax) **   <a name="efs-DescribeLifecycleConfiguration-request-FileSystemId"></a>
-The ID of the file system whose `LifecycleConfiguration` object you want to retrieve \(String\)\.
+The ID of the file system whose `LifecycleConfiguration` object you want to retrieve \(String\)\.  
+Length Constraints: Maximum length of 128\.  
+Pattern: `^(arn:aws[-a-z]*:elasticfilesystem:[0-9a-z-:]+:file-system/fs-[0-9a-f]{8,40}|fs-[0-9a-f]{8,40})$`   
+Required: Yes
 
 ## Request Body<a name="API_DescribeLifecycleConfiguration_RequestBody"></a>
 
@@ -28,9 +31,9 @@ HTTP/1.1 200
 Content-type: application/json
 
 {
-   "[LifecyclePolicies](#efs-DescribeLifecycleConfiguration-response-LifecyclePolicies)": [ 
+   "LifecyclePolicies": [ 
       { 
-         "[TransitionToIA](API_LifecyclePolicy.md#efs-Type-LifecyclePolicy-TransitionToIA)": "string"
+         "TransitionToIA": "string"
       }
    ]
 }

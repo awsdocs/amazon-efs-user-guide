@@ -12,10 +12,11 @@ DELETE /2015-02-01/access-points/AccessPointId HTTP/1.1
 
 ## URI Request Parameters<a name="API_DeleteAccessPoint_RequestParameters"></a>
 
-The request requires the following URI parameters\.
+The request uses the following URI parameters\.
 
  ** [AccessPointId](#API_DeleteAccessPoint_RequestSyntax) **   <a name="efs-DeleteAccessPoint-request-AccessPointId"></a>
-The ID of the access point that you want to delete\.
+The ID of the access point that you want to delete\.  
+Required: Yes
 
 ## Request Body<a name="API_DeleteAccessPoint_RequestBody"></a>
 

@@ -42,7 +42,7 @@ In this step, you create your Amazon EFS file system and mount targets\.
 
 1. Choose your default VPC from the **VPC** list\.
 
-1. Select the check boxes for all of the Availability Zones\. Make sure that they all have the default subnets, automatic IP addresses, and the default security groups chosen\. These are your mount targets\. For more information, see [Creating Mount Targets](accessing-fs.md)\.
+1. Select the check boxes for all of the Availability Zones\. Make sure that they all have the default subnets, automatic IP addresses, and the default security groups chosen\. These are your mount targets\. For more information, see [Creating mount targets](accessing-fs.md)\.
 
 1. Choose **Next Step**\.
 
@@ -154,7 +154,7 @@ As a result, the following file is created\.
 -rw-rw-r-- 1 username username 0 Nov 15 15:32 test-file.txt
 ```
 
-You can also mount your file system automatically by adding an entry to the `/etc/fstab` file\. For more information, see [Mounting Your Amazon EFS File System Automatically](mount-fs-auto-mount-onreboot.md)\.
+You can also mount your file system automatically by adding an entry to the `/etc/fstab` file\. For more information, see [Mounting your Amazon EFS file system automatically](mount-fs-auto-mount-onreboot.md)\.
 
 **Warning**  
 Use the `_netdev` option, used to identify network file systems, when mounting your file system automatically\. If `_netdev` is missing, your EC2 instance might stop responding\. This result is because network file systems need to be initialized after the compute instance starts its networking\. For more information, see [Automatic Mounting Fails and the Instance Is Unresponsive](troubleshooting-efs-mounting.md#automount-fails)\.
