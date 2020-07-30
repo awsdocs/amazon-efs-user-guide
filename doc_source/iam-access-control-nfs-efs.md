@@ -118,7 +118,7 @@ You use an EFS access policy to provide an NFS client with an application specif
             "Action": "elasticfilesystem:Client*",
             "Condition": { 
                 "StringEquals": {
-                    "elasticfilesystem:AccessPointArn":"arn:aws::account_id/access-point/access_point_id" } 
+                    "elasticfilesystem:AccessPointArn":"arn:aws:elasticfilesystem:region:account_id:access-point/access_point_id" } 
             }
             
         }
