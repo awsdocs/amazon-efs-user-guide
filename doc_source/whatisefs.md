@@ -17,7 +17,7 @@ Amazon EFS is designed to provide the throughput, IOPS, and low latency needed f
 + Using the default Bursting Throughput mode, throughput scales as your file system grows\. Using Provisioned Throughput mode, you can specify the throughput of your file system independent of the amount of data stored\. For more information, see [Amazon EFS Performance](performance.md)\.
 
 **Note**  
-Using Amazon EFS with Microsoft Windows–based Amazon EC2 instances is not supported\.
+Using Amazon EFS with Microsoft Windows–based or macOS-based Amazon EC2 instances is not supported\.
 
 ## Are You a First\-Time User of Amazon EFS?<a name="welcome-first-time-user"></a>
 
