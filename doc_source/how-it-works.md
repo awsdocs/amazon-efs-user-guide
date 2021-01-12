@@ -1,6 +1,6 @@
 # Amazon EFS: How It Works<a name="how-it-works"></a>
 
-Following, you can find a description about how Amazon EFS works, its implementation details, and security considerations\.
+In the following document, you can find a description about how Amazon EFS works, its implementation details, and security considerations\.
 
 **Topics**
 + [Overview](#how-it-works-conceptual)
