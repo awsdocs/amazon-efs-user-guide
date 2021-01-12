@@ -112,7 +112,9 @@ You use an EFS access policy to provide an NFS client with an application specif
         {
             "Sid": "access-point-statement-example03",
             "Effect”: "Allow",
-            "Principal": {"arn:aws:iam::account_id:role/myapp"},
+            "Principal": {
+                "AWS": "arn:aws:iam::account_id:role/myrole"
+            },
             "Action": "elasticfilesystem:Client*",
             "Condition": { 
                 "StringEquals": {
