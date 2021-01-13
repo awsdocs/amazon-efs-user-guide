@@ -22,7 +22,7 @@ Using Transfer Family with Amazon EFS is disabled by default for AWS accounts th
 
 To use Transfer Family to access files your Amazon EFS file system, your configuration needs to meet the following conditions:
 + The Transfer Family server and your Amazon EFS file system are located in the same AWS Region\.
-+ IAM policies are configured to enable access to the IAM role used by AWS Transfer\.
++ IAM policies are configured to enable access to the IAM role used by AWS Transfer\. For more information, see [Create an IAM role and policy](https://docs.aws.amazon.com/transfer/latest/userguide/requirements-roles.html) in the *AWS Transfer Family User Guide*\.
 + \(Optional\) If the Transfer Family server is owned by a different account, enable cross\-account access\.
   + Ensure that your file system policy does not allow public access, see [Blocking public access](access-control-block-public-access.md)\.
   + Modify the file system policy to enable cross\-account access, see [Configuring cross\-account access for Transfer Family](#efs-cross-acct-access-transfer)\.
@@ -36,7 +36,7 @@ Configuring an Amazon EFS file system to work with Transfer Family requires the 
 
 ### Setting file and directory permissions for Transfer Family users<a name="efs-access-aws-transfer"></a>
 
-Make sure that the Transfer Family users have access to the necessary file and directories on your EFS file system\. Assign access permissions to the directory using the list of POSIX IDs allocated to the Transfer Family users\.
+Make sure that the Transfer Family users have access to the necessary file and directories on your EFS file system\. Assign access permissions to the directory using the list of POSIX IDs allocated to the Transfer Family users\. In this example, a user creates a directory named `transferFam` under the EFS mount point\. Creating a directory is optional, depending on your use case\. If needed, you can choose it's name and location on the EFS file system\.
 
 **To assign file and directory permissions to POSIX users for Transfer Family**
 
@@ -46,7 +46,7 @@ Make sure that the Transfer Family users have access to the necessary file and d
 
 1. The following example creates the directory on the EFS file system, and changes its group to the POSIX group ID for the Transfer Family users, which is 1101 in this example\.
 
-   1. Create the directory efs/transferFam using the following commands\.
+   1. In this example, create the directory `efs/transferFam` using the following commands\. In practice, you can use a name and location on the file system of your choosing\.
 
       ```
       [ec2-user@ip-192-0-2-0 ~]$ ls 
@@ -58,7 +58,7 @@ Make sure that the Transfer Family users have access to the necessary file and d
       drwxr-xr-x 2 root root 6 Jan  6 15:58 transferFam
       ```
 
-   1. Use the following command to change the group of efs/transferFam to the POSIX GID assigned to the Transfer Family users\.
+   1. Use the following command to change the group of `efs/transferFam` to the POSIX GID assigned to the Transfer Family users\.
 
       ```
       [ec2-user@ip-192-0-2-0 ~]$ sudo chown :1101 efs/transferFam/
@@ -69,7 +69,7 @@ Make sure that the Transfer Family users have access to the necessary file and d
       ```
       [ec2-user@ip-192-0-2-0 ~]$ ls -l efs
       total 0
-      drwxr-xr-x 2 root 1101 6 Jan  6
+      drwxr-xr-x 2 root 1101 6 Jan  6 15:58 transferFam
       ```
 
 ### Enable access to the IAM role used by Transfer Family<a name="configure-iam-transfer-role"></a>
