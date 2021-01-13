@@ -36,14 +36,12 @@ You can view how much data is stored in each storage class of your file system u
 
 ### Viewing storage data size in the Amazon EFS console<a name="billing-metric"></a>
 
-The `File system bytes` graph metric displays the size of the file system in bytes\. The metric lets you view your file system’s metered size over time\. The metric is emitted every 15 minutes\.
+The `Storage bytes` graph metric displays the size of the file system in binary multiples of bytes \(kibibytes, mebibytes, gibibytes, and tebibytes\)\. The metric is emitted every 15 minutes and lets you view your file system's metered size over time\. `Storage bytes` displays the following information for the file system storage size:
++ `Total` is the size \(in binary bytes\) of data stored in the file system, including both storage classes\.
++ `Standard` is the size \(in binary bytes\) of data stored in the Standard storage class\.
++ `IA` is the size \(in binary bytes\) of data stored in the Infrequent Access \(IA\) storage class\.
 
-The `File system bytes` metric displays the following information for the file system:
-+ `Total` is the size \(in bytes\) of data stored in the file system, including both storage classes\.
-+ `Standard` is the size \(in bytes\) of data stored in the Standard storage class\.
-+ `IA` is the size \(in bytes\) of data stored in the Infrequent Access \(IA\) storage class\.
-
-You can view the `File system bytes` metric on the **Monitoring** tab on the **File system metrics** page in the Amazon EFS console\. For more information, see [Accessing CloudWatch metrics](accessingmetrics.md)\.
+You can view the `Storage bytes` metric on the **Monitoring** tab on the **File system metrics** page in the Amazon EFS console\. For more information, see [Accessing CloudWatch metrics](accessingmetrics.md)\.
 
 ### Viewing storage data size using the AWS CLI<a name="billing-cli"></a>
 
@@ -55,7 +53,7 @@ $  aws efs describe-file-systems \
 --profile adminuser
 ```
 
-In the response, `ValueInIA` displays the last metered size in IA storage\. `ValueInStandard` displays the last metered size in Standard storage\. Added together, they equal the size of the entire file system, displayed by `Value`\.
+In the response, `SizeInBytes`>`ValueInIA` displays the last metered size in bytes in IA storage\. `ValueInStandard` displays the last metered size in bytes in Standard storage\. Added together, they equal the size of the entire file system, displayed by `Value`\.
 
 ```
 {
