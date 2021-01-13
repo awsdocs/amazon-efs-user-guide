@@ -66,9 +66,11 @@ HTTP Status Code: 500
 Returned if the default file system policy is in effect for the EFS file system specified\.  
 HTTP Status Code: 404
 
-## Example<a name="API_DescribeFileSystemPolicy_Examples"></a>
+## Examples<a name="API_DescribeFileSystemPolicy_Examples"></a>
 
-### <a name="API_DescribeFileSystemPolicy_Example_1"></a>
+### Example<a name="API_DescribeFileSystemPolicy_Example_1"></a>
+
+This example illustrates one usage of DescribeFileSystemPolicy\.
 
 #### Sample Request<a name="API_DescribeFileSystemPolicy_Example_1_Request"></a>
 
@@ -123,7 +125,7 @@ For more information about using this API in one of the language\-specific AWS S
 +  [AWS SDK for \.NET](https://docs.aws.amazon.com/goto/DotNetSDKV3/elasticfilesystem-2015-02-01/DescribeFileSystemPolicy) 
 +  [AWS SDK for C\+\+](https://docs.aws.amazon.com/goto/SdkForCpp/elasticfilesystem-2015-02-01/DescribeFileSystemPolicy) 
 +  [AWS SDK for Go](https://docs.aws.amazon.com/goto/SdkForGoV1/elasticfilesystem-2015-02-01/DescribeFileSystemPolicy) 
-+  [AWS SDK for Java](https://docs.aws.amazon.com/goto/SdkForJava/elasticfilesystem-2015-02-01/DescribeFileSystemPolicy) 
++  [AWS SDK for Java V2](https://docs.aws.amazon.com/goto/SdkForJavaV2/elasticfilesystem-2015-02-01/DescribeFileSystemPolicy) 
 +  [AWS SDK for JavaScript](https://docs.aws.amazon.com/goto/AWSJavaScriptSDK/elasticfilesystem-2015-02-01/DescribeFileSystemPolicy) 
 +  [AWS SDK for PHP V3](https://docs.aws.amazon.com/goto/SdkForPHPV3/elasticfilesystem-2015-02-01/DescribeFileSystemPolicy) 
 +  [AWS SDK for Python](https://docs.aws.amazon.com/goto/boto3/elasticfilesystem-2015-02-01/DescribeFileSystemPolicy) 

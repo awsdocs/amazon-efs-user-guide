@@ -7,7 +7,7 @@ Following, you can find out about quotas when working with Amazon EFS\.
 + [Resource Quotas](#limits-efs-resources-per-account-per-region)
 + [Quotas for NFS Clients](#limits-client-specific)
 + [Quotas for Amazon EFS File Systems](#limits-fs-specific)
-+ [Unsupported NFSv4 Features](#nfs4-unsupported-features)
++ [Unsupported NFSv4\.0 and 4\.1 Features](#nfs4-unsupported-features)
 + [Additional Considerations](#limits-additional-considerations)
 
 ## Amazon EFS Quotas That You Can Increase<a name="soft-limits"></a>
@@ -21,7 +21,7 @@ Service Quotas is an AWS service that helps you manage your quotas, or limits, f
 | --- | --- | 
 | Number of file systems for each customer account in an AWS Region | 1,000 | 
 
-The default throughput quotas apply to both throughput modes, Bursting and Provisioned\. For more information about these different modes, see [Amazon EFS Performance](performance.md)\.
+These are the default throughput quotas for Bursting and Provisioned throughput modes\. For more information about these different modes, see [Amazon EFS Performance](performance.md)\.
 
 
 | Resource | Default Quota | 
@@ -62,7 +62,7 @@ Clients can also connect to mount targets in another account or VPC\. For more i
 ## Quotas for NFS Clients<a name="limits-client-specific"></a>
 
 The following quotas for NFS clients apply, assuming a Linux NFSv4\.1 client:
-+ The maximum throughput you can drive for each NFS client is 250 MB/s\. NFS client throughput is calculated as the total number of bytes that are sent and received, with a minimum NFS request size of 4KB\.
++ The maximum throughput you can drive for each NFS client is 500 MB/s\. NFS client throughput is calculated as the total number of bytes that are sent and received, with a minimum NFS request size of 4KB\.
 + Up to 128 active user accounts for each client can have files open at the same time\. Each user account represents one local user logged in to the instance\. A user account that is logged in multiple times counts as one active user\.
 + Up to 32,768 files open at the same time on the instance\. Listing directory contents doesn't count as opening a file\.
 + Each unique mount on the client can acquire up to a total of 8,192 locks across a maximum of 256 unique file\-process pairs\. For example, a single process can acquire one or more locks on 256 separate files\. As another example, eight processes can each acquire one or more locks on 32 files\.
@@ -78,9 +78,10 @@ The following quotas are specific to Amazon EFS file systems:
 + Maximum size of a single file: 52,673,613,135,872 bytes \(47\.9 TiB\)\.
 + Maximum directory depth: 1,000 levels deep\.
 + Any one particular file can have up to 512 locks across all instances connected and users accessing the file\.
++ Amazon EFS file system policies have a 20,000 character limit\.
 + In General Purpose mode, there is a limit of 35,000 file operations per second\. Operations that read data or metadata consume one file operation, operations that write data or update metadata consume five file operations\. This means that a file system can support 35,000 read operations per second, or 7,000 write operations, or some combination of the two\. For example, 20,000 read operations and 3,000 write operations \(20,000 reads x 1 file operation per read \+ 3,000 writes x 5 file operations per write = 35,000 file operations\)\. File operations are counted from all connecting clients\.
 
-## Unsupported NFSv4 Features<a name="nfs4-unsupported-features"></a>
+## Unsupported NFSv4\.0 and 4\.1 Features<a name="nfs4-unsupported-features"></a>
 
 Although Amazon Elastic File System doesn't support NFSv2, or NFSv3, Amazon EFS supports both NFSv4\.1 and NFSv4\.0, except for the following features:
 + pNFS

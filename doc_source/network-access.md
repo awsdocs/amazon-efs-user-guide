@@ -29,3 +29,4 @@ You can authorize inbound and outbound access to your EFS file system\. To do so
 1. Verify that both security groups now authorize inbound and outbound access\.
 
 For more information about security groups, see [Security Groups for EC2\-VPC](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-network-security.html#vpc-security-groups) in the *Amazon EC2 User Guide for Linux Instances*\. 
+

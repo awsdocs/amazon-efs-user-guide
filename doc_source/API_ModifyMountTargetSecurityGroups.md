@@ -77,7 +77,7 @@ HTTP Status Code: 400
 Returned if one of the specified security groups doesn't exist in the subnet's VPC\.  
 HTTP Status Code: 400
 
-## Example<a name="API_ModifyMountTargetSecurityGroups_Examples"></a>
+## Examples<a name="API_ModifyMountTargetSecurityGroups_Examples"></a>
 
 ### Replace a mount target's security groups<a name="API_ModifyMountTargetSecurityGroups_Example_1"></a>
 
@@ -114,7 +114,7 @@ For more information about using this API in one of the language\-specific AWS S
 +  [AWS SDK for \.NET](https://docs.aws.amazon.com/goto/DotNetSDKV3/elasticfilesystem-2015-02-01/ModifyMountTargetSecurityGroups) 
 +  [AWS SDK for C\+\+](https://docs.aws.amazon.com/goto/SdkForCpp/elasticfilesystem-2015-02-01/ModifyMountTargetSecurityGroups) 
 +  [AWS SDK for Go](https://docs.aws.amazon.com/goto/SdkForGoV1/elasticfilesystem-2015-02-01/ModifyMountTargetSecurityGroups) 
-+  [AWS SDK for Java](https://docs.aws.amazon.com/goto/SdkForJava/elasticfilesystem-2015-02-01/ModifyMountTargetSecurityGroups) 
++  [AWS SDK for Java V2](https://docs.aws.amazon.com/goto/SdkForJavaV2/elasticfilesystem-2015-02-01/ModifyMountTargetSecurityGroups) 
 +  [AWS SDK for JavaScript](https://docs.aws.amazon.com/goto/AWSJavaScriptSDK/elasticfilesystem-2015-02-01/ModifyMountTargetSecurityGroups) 
 +  [AWS SDK for PHP V3](https://docs.aws.amazon.com/goto/SdkForPHPV3/elasticfilesystem-2015-02-01/ModifyMountTargetSecurityGroups) 
 +  [AWS SDK for Python](https://docs.aws.amazon.com/goto/boto3/elasticfilesystem-2015-02-01/ModifyMountTargetSecurityGroups) 

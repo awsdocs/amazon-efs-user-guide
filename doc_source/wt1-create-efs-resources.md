@@ -21,7 +21,7 @@ In this step, you create an Amazon EFS file system\. Write down the `FileSystemI
 
      ```
      $  aws efs create-file-system \
-     --encrypted \
+     --encrypted true \
      --creation-token FileSystemForWalkthrough1 \
      --tags Key=Name,Value=SomeExampleNameValue \
      --region us-west-2 \
@@ -32,10 +32,10 @@ In this step, you create an Amazon EFS file system\. Write down the `FileSystemI
 
      ```
      {
-         "OwnerId": "123456789abcd",
+         "OwnerId": "111122223333",
          "CreationToken": "FileSystemForWalkthrough1",
          "FileSystemId": "fs-c657c8bf",
-         "CreationTime": "2020-07-08T17:39:42+09:00",
+         "CreationTime": 1548950706.0,
          "LifeCycleState": "creating",
          "NumberOfMountTargets": 0,
          "SizeInBytes": {
@@ -45,7 +45,7 @@ In this step, you create an Amazon EFS file system\. Write down the `FileSystemI
          },
          "PerformanceMode": "generalPurpose",
          "Encrypted": true,
-         "KmsKeyId": "arn:aws:kms:us-east-1:123456789abcd:key/a5e21292-7c19-43c8-9dcc-8958e5e8bfcc",
+         "KmsKeyId": "arn:aws:kms:us-west-2:111122223333:a5c11222-7a99-43c8-9dcc-abcdef123456",
          "ThroughputMode": "bursting",
          "Tags": [
              {

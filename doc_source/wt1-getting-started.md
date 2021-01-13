@@ -1,6 +1,6 @@
 # Walkthrough: Create an Amazon EFS File System and Mount It on an Amazon EC2 Instance Using the AWS CLI<a name="wt1-getting-started"></a>
 
-This walkthrough uses the AWS CLI to explore the Amazon EFS API\. In this walkthrough, you create an Amazon EFS file system, mount it on an Amazon EC2 instance in your VPC, and test the setup\.
+This walkthrough uses the AWS CLI to explore the Amazon EFS API\. In this walkthrough, you create an encrypted Amazon EFS file system, mount it on an Amazon EC2 instance in your VPC, and test the setup\.
 
 **Note**  
 This walkthrough is similar to the Getting Started exercise\. In the [Getting Started](getting-started.md) exercise, you use the console to create EC2 and Amazon EFS resources\. In this walkthrough, you use the AWS CLI to do the same—primarily to familiarize yourself with the Amazon EFS API\.

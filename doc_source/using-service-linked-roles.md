@@ -47,7 +47,7 @@ If the Amazon EFS service is using the role when you try to delete the resources
 
 **To delete Amazon EFS resources used by the AWSServiceRoleForAmazonElasticFileSystem**
 
-Complete the following steps to delete Amazon EFS resources used by the AWSServiceRoleForAmazonElasticFileSystem\. For the detailed procedure, see [Step 4: Clean Up Resources and Protect Your AWS Account](gs-step-five-cleanup.md)
+Complete the following steps to delete Amazon EFS resources used by the AWSServiceRoleForAmazonElasticFileSystem\. For the detailed procedure, see [Step 4: Clean Up Resources and Protect Your AWS Account](gs-step-five-cleanup.md)\.
 
 1.  On your Amazon EC2 instance, unmount the Amazon EFS file system\. 
 

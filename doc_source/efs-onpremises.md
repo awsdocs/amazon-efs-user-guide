@@ -42,7 +42,7 @@ In this step, you create your Amazon EFS file system and mount targets\.
 
 1. Choose your default VPC from the **VPC** list\.
 
-1. Select the check boxes for all of the Availability Zones\. Make sure that they all have the default subnets, automatic IP addresses, and the default security groups chosen\. These are your mount targets\. For more information, see [Creating mount targets](accessing-fs.md)\.
+1. Select the check boxes for all of the Availability Zones\. Make sure that they all have the default subnets, automatic IP addresses, and the default security groups chosen\. These are your mount targets\. For more information, see [Creating and managing mount targets](accessing-fs.md)\.
 
 1. Choose **Next Step**\.
 

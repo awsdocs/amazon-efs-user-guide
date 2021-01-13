@@ -16,24 +16,55 @@ If you are using another distribution or a custom kernel, we recommend kernel ve
 RHEL 6\.9 might be suboptimal for certain workloads due to [Poor Performance When Opening Many Files in Parallel](#open-close-operations-serialized)\.
 
 **Topics**
++ [Unable to Create an EFS File System](#cant-create-filesystem)
++ [Errors when accessing the Amazon EFS console](#efs-console-access-errors)
 + [Amazon EC2 Instance Hangs](#ec2-instance-hangs)
 + [Application Writing Large Amounts of Data Hangs](#application-large-data-hangs)
 + [Poor Performance When Opening Many Files in Parallel](#open-close-operations-serialized)
 + [Custom NFS Settings Causing Write Delays](#custom-nfs-settings-write-delays)
 + [Creating Backups with Oracle Recovery Manager Is Slow](#oracle-backup-slow)
 
+## Unable to Create an EFS File System<a name="cant-create-filesystem"></a>
+
+A request to create an EFS file system fails with the following message:
+
+```
+User: arn:aws:iam::111122223333:user/username is not authorized to
+perform: elasticfilesystem:CreateFileSystem on the specified resource.
+```
+
+**Action to take**  
+Check your AWS Identity and Access Management \(IAM\) policy to confirm that you are authorized to create EFS file systems with the specified resource conditions\. For more information, see [Identity and Access Management for Amazon EFS](auth-and-access-control.md)\.
+
+## Errors when accessing the Amazon EFS console<a name="efs-console-access-errors"></a>
+
+This section describes errors users might experience when accessing the Amazon EFS management console\.
+
+### Error authenticating credentials for `ec2:DescribeVPCs`<a name="efs-console-access-error-ec2"></a>
+
+The following error message displays when accessing the Amazon EFS console:
+
+```
+AuthFailure: An error occurred authenticating your credentials for ec2:DescribeVPCs.
+```
+
+This error indicates that your login credentials did not successfully authenticate with the Amazon EC2 service\. The Amazon EFS console calls the Amazon EC2 service on your behalf when creating EFS file systems in the VPC that you choose\.
+
+**Action to take**  
+Ensure that the time on the client accessing the Amazon EFS console is set correctly\.
+
 ## Amazon EC2 Instance Hangs<a name="ec2-instance-hangs"></a>
 
 An Amazon EC2 instance can hang because you deleted a file system mount target without first unmounting the file system\. 
 
-**Action to Take**  
+**Action to take**  
 Before you delete a file system mount target, unmount the file system\. For more information about unmounting your Amazon EFS file system, see [Unmounting file systems](mounting-fs-mount-cmd-general.md#unmounting-fs)\.
 
 ## Application Writing Large Amounts of Data Hangs<a name="application-large-data-hangs"></a>
 
 An application that writes a large amount of data to Amazon EFS hangs and causes the instance to reboot\.
 
-**Action to Take**
+**Action to take**
 
 If an application takes too long to write all of its data to Amazon EFS, Linux might reboot because it appears that the process has become unresponsive\. Two kernel configuration parameters define this behavior, `kernel.hung_task_panic` and `kernel.hung_task_timeout_secs`\.
 
@@ -55,7 +86,7 @@ $ sudo sysctl -w kernel.hung_task_panic=0
 
 Applications that open multiple files in parallel do not experience the expected increase in performance of I/O parallelization\.
 
-**Action to Take**
+**Action to take**
 
 This issue occurs on Network File System version 4 \(NFSv4\) clients and on RHEL 6 clients using NFSv4\.1 because these NFS clients serialize NFS OPEN and CLOSE operations\. Use NFS protocol version 4\.1 and one of the suggested [Linux distributions](#recommend.linux.dist) that does not have this issue\.
 
@@ -68,7 +99,7 @@ If you can't use NFSv4\.1, be aware that the Linux NFSv4\.0 client serializes op
 
 You have custom NFS client settings, and it takes up to three seconds for an Amazon EC2 instance to see a write operation performed on a file system from another Amazon EC2 instance\.
 
-**Action to Take**
+**Action to take**
 
 If you encounter this issue, you can resolve it in one of the following ways:
 + If the NFS client on the Amazon EC2 instance that's reading data has attribute caching activated, unmount your file system\. Then remount it with the `noac` option to disable attribute caching\. Attribute caching in NFSv4\.1 is enabled by default\.
@@ -88,7 +119,7 @@ Disabling client\-side caching can potentially reduce your application's perform
 
 Creating backups with Oracle Recovery Manager can be slow if Oracle Recovery Manager pauses for 120 seconds before starting a backup job\.
 
-**Action to Take**
+**Action to take**
 
 If you encounter this issue, disable Oracle Direct NFS, as described in [Enabling and Disabling Direct NFS Client Control of NFS](https://docs.oracle.com/database/122/HPDBI/enabling-and-disabling-direct-nfs-client-control-of-nfs.htm#HPDBI-GUID-27DDB55B-F79E-4F40-8228-5D94456E620B) in the Oracle Help Center\.
 

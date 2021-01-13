@@ -4,7 +4,7 @@ You can encrypt data in transit using an Amazon EFS file system, without needing
 
 ## Encrypting Data in Transit with TLS<a name="encrypt-mount"></a>
 
-Enabling encryption of data in transit for your Amazon EFS file system is done by enabling Transport Layer Security \(TLS\) when you mount your file system using the Amazon EFS mount helper\. For more information, see [Mounting with the EFS mount helper](mounting-fs.md#mounting-fs-mount-helper)\.
+Enabling encryption of data in transit for your Amazon EFS file system is done by enabling Transport Layer Security \(TLS\) when you mount your file system using the Amazon EFS mount helper\. For more information, see [Mounting with the EFS mount helper](mounting-fs-mount-helper.md)\.
 
 When encryption of data in transit is declared as a mount option for your Amazon EFS file system, the mount helper initializes a client stunnel process\. Stunnel is an open source multipurpose network relay\. The client stunnel process listens on a local port for inbound traffic, and the mount helper redirects Network File System \(NFS\) client traffic to this local port\. The mount helper uses TLS version 1\.2 to communicate with your file system\.
 
@@ -36,7 +36,7 @@ Because encryption of data in transit is configured on a per\-connection basis, 
 
 **Note**  
 By default, when using the Amazon EFS mount helper with TLS, the mount helper enforces certificate hostname checking\. The Amazon EFS mount helper uses the stunnel program for its TLS functionality\. Some versions of Linux don't include a version of stunnel that supports these TLS features by default\. When using one of those Linux versions, mounting an Amazon EFS file system using TLS fails\.  
-After you've installed the amazon\-efs\-utils package, to upgrade your system's version of stunnel see [Upgrading Stunnel](using-amazon-efs-utils.md#upgrading-stunnel)\.  
+After you've installed the amazon\-efs\-utils package, to upgrade your system's version of stunnel see [Upgrading Stunnel](upgrading-stunnel.md)\.  
 For issues with encryption, see [Troubleshooting Encryption](troubleshooting-efs-encryption.md)\.
 
 When using encryption of data in transit, your NFS client setup is changed\. When you inspect your actively mounted file systems, you see one mounted to 127\.0\.0\.1, or localhost, as in the following example\.

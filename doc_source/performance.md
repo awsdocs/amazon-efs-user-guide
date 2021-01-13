@@ -74,11 +74,11 @@ Our recommendation for determining which performance mode to use is as follows:
 
 1. Run your application \(or a use case similar to your application\) for a period of time to test its performance\.
 
-1. Monitor the [PercentIOLimit](monitoring-cloudwatch.md#efs-metrics) Amazon CloudWatch metric for Amazon EFS during the performance test\. For more information about accessing this and other metrics, see [Amazon CloudWatch Metrics](monitoring_overview.md)\.
+1. Monitor the [PercentIOLimit](efs-metrics.md) Amazon CloudWatch metric for Amazon EFS during the performance test\. For more information about accessing this and other metrics, see [Amazon CloudWatch Metrics](monitoring_overview.md)\.
 
 If the `PercentIOLimit` percentage returned was at or near 100 percent for a significant amount of time during the test, your application should use the Max I/O performance mode\. Otherwise, it should use the default General Purpose mode\. 
 
-To move to a different performance mode, migrate the data to a different file system that was created in the other performance mode\. You can use DataSync to transfer files between two EFS file systems\. To learn more, see [Transferring data into Amazon EFS](transfer-data-to-efs.md)\.
+To move to a different performance mode, migrate the data to a different file system that was created in the other performance mode\. You can use DataSync to transfer files between two EFS file systems\. To learn more, see [Transferring data into and out of Amazon EFS](transfer-data-to-efs.md)\.
 
 Some latency\-sensitive workloads require the higher I/O levels provided by Max I/O performance mode and the lower latency provided by General Purpose performance mode\. For this type of workload, we recommend creating multiple General Purpose performance mode file systems\. In this case, we recommend then spreading the application workload across all these file systems, as long as the workload and applications can support it\. 
 
@@ -118,7 +118,7 @@ File systems larger than 1 TiB can always burst for up to 50 percent of the time
 | Generally, a larger file system can\.\.\. |  [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/efs/latest/ug/performance.html)  | 
 
 **Note**  
-The minimum file system size used when calculating the baseline rate is 1 GiB, so all file systems have a baseline rate of at least 50 KiB/s\.  
+Amazon EFS gives a throughput of 1 MiB/s to all file systems, even if the baseline rate is lower\.  
 The file system size used when determining the baseline rate and burst rate is the same as the metered size available through the `DescribeFileSystems` operation\.  
 File systems can earn credits up to a maximum credit balance of 2\.1 TiB for file systems smaller than 1 TiB, or 2\.1 TiB per TiB stored for file systems larger than 1 TiB\. This approach implies that file systems can accumulate enough credits to burst for up to 12 hours continuously\.
 
@@ -129,7 +129,7 @@ The following table provides more detailed examples of bursting behavior for fil
 
 |  File System Size \(GiB\)  | Baseline Aggregate Throughput \(MiB/s\) | Burst Aggregate Throughput \(MiB/s\)  | Maximum Burst Duration \(Min/Day\)  |  % of Time File System Can Burst \(Per Day\) | 
 | --- | --- | --- | --- | --- | 
-| 10 | 0\.5 | 100 | 7\.2 | 0\.5% | 
+| 10 | 0\.5\* | 100 | 7\.2 | 0\.5% | 
 | 256 | 12\.5 | 100 | 180 | 12\.5% | 
 | 512 | 25\.0 | 100 | 360 | 25\.0% | 
 | 1024 | 50\.0 | 100 | 720  | 50\.0% | 
@@ -139,6 +139,7 @@ The following table provides more detailed examples of bursting behavior for fil
 | 4096 | 200\.0 | 400 | 720  | 50\.0% | 
 
 **Note**  
+\* For file systems smaller than 20 GiB, minimum throughput is 1 MiB/s\.  
 As previously mentioned, new file systems have an initial burst credit balance of 2\.1 TiB\. With this starting balance, you can burst at 100 MB/s for 6\.12 hours without spending any credits that you're earning from your storage\. This starting formula is calculated as `2.1 x 1024 x (1024/100/3600)` to get 6\.116 hours, rounded up to 6\.12\. 
 
 #### Managing Burst Credits<a name="managecredits"></a>

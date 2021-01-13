@@ -1,9 +1,9 @@
-# Transferring data into Amazon EFS<a name="transfer-data-to-efs"></a>
+# Transferring data into and out of Amazon EFS<a name="transfer-data-to-efs"></a>
 
-We recommend using AWS DataSync to transfer data into Amazon EFS\. DataSync is a data transfer service that simplifies, automates, and accelerates moving and replicating data between on\-premises storage systems and AWS storage services over the internet or AWS Direct Connect\. DataSync can transfer your file system data and metadata, such as ownership, timestamps, and access permissions\.
+You can use AWS Transfer Family and AWS DataSync to tranfer data into and out of your Amazon EFS file systems\. AWS DataSync is an online data transfer service that can copy data between Network File System \(NFS\), Server Message Block \(SMB\) file servers, self\-managed object storage, and also between AWS services\. For more information about using DataSync with Amazon EFS, see [Using AWS DataSync to transfer data in Amazon EFS](trnsfr-data-using-datasync.md)\.
 
- You can also use DataSync to transfer files between two EFS file systems, including file systems in different AWS Regions and file systems owned by different AWS accounts\. Using DataSync to copy data between EFS file systems, you can perform one\-time data migrations, periodic data ingestion for distributed workloads, and automate replication for data protection and recovery\.
+Transfer Family is a fully managed AWS service that you can use to transfer files into and out of Amazon EFS file systems over the Secure File Transfer Protocol \(SFTP\), File Transfer Protocol \(FTP\) and FTP over Secure Sockets Layer \(FTPS\) protocols\. Using Transfer Family you can provide your business partners access to files stored in your Amazon EFS file systems for use cases such as data distribution, supply chain, content management, and web serving applications\. For more information about using Transfer Family with Amazon EFS, see [Using AWS Transfer Family to access files in your Amazon EFS file systemUsing AWS Transfer Family with Amazon EFS](using-aws-transfer-integration.md)\.
 
- To simplify transferring files between two EFS file systems using DataSync, you can use the [AWS DataSync In\-Cloud QuickStart and Scheduler](https://github.com/aws-samples/amazon-efs-tutorial/tree/master/in-cloud-transfer)\.
-
- For more information, see [Getting Started with Amazon Elastic File System](getting-started.md) and the [https://docs.aws.amazon.com/datasync/latest/userguide/](https://docs.aws.amazon.com/datasync/latest/userguide/)\.
+**Topics**
++ [Using AWS DataSync to transfer data in Amazon EFS](trnsfr-data-using-datasync.md)
++ [Using AWS Transfer Family to access files in your Amazon EFS file system](using-aws-transfer-integration.md)

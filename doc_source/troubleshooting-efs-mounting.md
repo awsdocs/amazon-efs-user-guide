@@ -20,7 +20,7 @@
 
 A file system mount on an Amazon EC2 instance on Microsoft Windows fails\.
 
-**Action to Take**  
+**Action to take**  
 Don't use Amazon EFS with Windows EC2 instances, which isn't supported\.
 
 ## Access Denied by Server<a name="mount-fail-access-denied-by-server"></a>
@@ -33,14 +33,14 @@ A file system mount fails with the following message:
 
 This issue can occur if your NFS client does not have permission to mount the file system\. 
 
-**Action to Take**  
+**Action to take**  
  If you are attempting to mount the file system using IAM, make sure you are using the `-o iam` option in your mount command\. This tells the EFS mount helper to pass your credentials to the EFS mount target\. If you still don't have access, check your file system policy and your identity policy to ensure there are no DENY clauses that apply to your connection, and that there is at least one ALLOW clause that applies to the connection\. 
 
 ## Automatic Mounting Fails and the Instance Is Unresponsive<a name="automount-fails"></a>
 
 This issue can occur if the file system was mounted automatically on an instance and the `_netdev` option wasn't declared\. If `_netdev` is missing, your EC2 instance might stop responding\. This result is because network file systems need to be initialized after the compute instance starts its networking\.
 
-**Action to Take**  
+**Action to take**  
 If this issue occurs, contact AWS Support\.
 
 ## Mounting Multiple Amazon EFS File Systems in /etc/fstab Fails<a name="automount-fix-multiple-fs"></a>
@@ -51,7 +51,7 @@ For instances that use the systemd init system with two or more Amazon EFS entri
 NFS: nfs4_discover_server_trunking unhandled error -512. Exiting with error EIO
 ```
 
-**Action to Take**  
+**Action to take**  
 In this case, we recommend that you create a new systemd service file in `/etc/systemd/system/mount-nfs-sequentially.service` with the following contents\.
 
 ```
@@ -87,7 +87,7 @@ missing codepage or helper program, or other error (for several filesystems
 In some cases useful info is found in syslog - try dmesg | tail or so.
 ```
 
-**Action to Take**  
+**Action to take**  
 If you receive this message, install the `nfs-utils` \(or `nfs-common` on Ubuntu\) package\. For more information, see [Installing the NFS Client](mounting-fs-old.md#mounting-fs-install-nfsclient)\.
 
 ## Mount Command Fails with "incorrect mount option" Error Message<a name="mount-error-incorrect-mount"></a>
@@ -98,7 +98,7 @@ The mount command fails with the following error message\.
 mount.nfs: an incorrect mount option was specified
 ```
 
-**Action to Take**  
+**Action to take**  
 This error message most likely means that your Linux distribution doesn't support Network File System versions 4\.0 and 4\.1 \(NFSv4\)\. To confirm this is the case, you can run the following command\.
 
 ```
@@ -111,7 +111,7 @@ If the preceding command returns `# CONFIG_NFS_V4_1 is not set`, NFSv4\.1 is not
 
 It can take up to 90 seconds after creating a mount target for the Domain Name Service \(DNS\) records to propagate fully in an AWS Region\.
 
-**Action to Take**  
+**Action to take**  
 If you're programmatically creating and mounting file systems, for example with an AWS CloudFormation template, we recommend that you implement a wait condition\.
 
 ## File System Mount Hangs and Then Fails with Timeout Error<a name="mount-hangs-fails-timeout"></a>
@@ -126,7 +126,7 @@ mount.nfs: Connection timed out
 $Â 
 ```
 
-**Action to Take**
+**Action to take**
 
 This error can occur because either the Amazon EC2 instance or the mount target security groups are not configured properly\. Make sure that the mount target security group has an inbound rule that allows NFS access from the EC2 security group\.
 
@@ -148,7 +148,7 @@ mount.nfs: Failed to resolve server file-system-id.efs.aws-region.amazonaws.com:
 $ 
 ```
 
-**Action to Take**
+**Action to take**
 
 Check your VPC configuration\. If you are using a custom VPC, make sure that DNS settings are enabled\. For more information, see [Using DNS with Your VPC](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-dns.html) in the *Amazon VPC User Guide*\. 
 
@@ -162,7 +162,7 @@ To specify a DNS name in the `mount` command, you must do the following:
 
 An Amazon EFS file system mount fails on a Transmission Control Protocol \(TCP\) reconnection event with `"nfs: server_name still not responding"`\.
 
-**Action to Take**
+**Action to take**
 
 Use the `noresvport` mount option to make sure that the NFS client uses a new TCP source port when a network connection is reestablished\. Doing this helps ensure uninterrupted availability after a network recovery event\.
 
@@ -170,14 +170,14 @@ Use the `noresvport` mount option to make sure that the NFS client uses a new TC
 
 The mount target lifecycle state is stuck in the **creating** or **deleting** state\.
 
-**Action to Take**  
+**Action to take**  
 Retry the `CreateMountTarget` or `DeleteMountTarget` call\.
 
 ## Mount Does Not Respond<a name="mount-unresponsive"></a>
 
 An Amazon EFS mount appears unresponsive\. For example, commands like `ls` hang\.
 
-**Action to Take**
+**Action to take**
 
 This error can occur if another application is writing large amounts of data to the file system\. Access to the files that are being written might be blocked until the operation is complete\. In general, any commands or applications that attempt to access files that are being written to might appear to hang\. For example, the `ls` command might hang when it gets to the file that is being written\. This result is because some Linux distributions alias the `ls` command so that it retrieves file attributes in addition to listing the directory contents\.
 
@@ -196,16 +196,17 @@ Operations performed on a newly mounted file system return a `bad file handle` e
 
 This error can happen if an Amazon EC2 instance was connected to one file system and one mount target with a specified IP address, and then that file system and mount target were deleted\. If you create a new file system and mount target to connect to that Amazon EC2 instance with the same mount target IP address, this issue can occur\. 
 
-**Action to Take**  
+**Action to take**  
 You can resolve this error by unmounting the file system, and then remounting the file system on the Amazon EC2 instance\. For more information about unmounting your Amazon EFS file system, see [Unmounting file systems](mounting-fs-mount-cmd-general.md#unmounting-fs)\.
 
 ## Unmounting a File System Fails<a name="troubleshooting-unmounting"></a>
 
 If your file system is busy, you can't unmount it\.
 
-**Action to Take**  
+**Action to take**  
 You can resolve this issue in the following ways:
-+ Wait for all read and write operations to finish, and then attempt the `umount` command again\.
-+ Force the `umount` command to finish with the `-f` option\.
++ Use lazy unmount, umount \-l which detaches the filesystem from the filesystem hierarchy when run, then cleans up all references to the filesystem as soon as it is not busy anymore\.
++ Wait for all read and write operations to finish, and then attempt the umount command again\.
++ Force an unmount using the umount \-f command\. 
 **Warning**  
-Forcing an unmount interrupts any data read or write operations that are currently in process for the file system\.
+Forcing an unmount interrupts any data read or write operations that are currently in process for the file system\. See the [umount man page](https://man7.org/linux/man-pages/man8/umount.8.html) for more information and guidance when using this option\.

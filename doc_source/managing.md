@@ -1,13 +1,12 @@
 # Managing Amazon EFS file systems<a name="managing"></a>
 
-File system management tasks refer to creating and deleting file systems, managing tags, and managing network accessibility of an existing file system\. Managing network accessibility is about creating and managing mount targets\. 
+File system management tasks refer to creating and deleting file systems, managing tags, managing file system backups, managing access, and managing network accessibility with mount targets of existing file system\.
 
-You can perform these file system management tasks using the AWS Management Console, AWS Command Line Interface \(AWS CLI\), or programmatically, as discussed in the following sections\.
+You can perform these file system management tasks using the AWS Management Console, or programmatically using the AWS Command Line Interface \(AWS CLI\) or API, as discussed in the following sections\.
 
 **Topics**
 + [Managing file system network accessibility](manage-fs-access.md)
 + [Managing file system tags](manage-fs-tags.md)
-+ [Transferring data into Amazon EFS](transfer-data-to-efs.md)
 + [EFS storage classes](storage-classes.md)
 + [EFS lifecycle management](lifecycle-management-efs.md)
 + [Metering: How Amazon EFS reports file system and object sizes](metered-sizes.md)

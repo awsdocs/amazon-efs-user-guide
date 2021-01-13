@@ -1,6 +1,6 @@
 # Walkthrough: Enable Root Squashing Using IAM Authorization for NFS Clients<a name="enable-root-squashing"></a>
 
-In this walkthrough, you configure Amazon EFS to prevent root access to your Amazon EFS file system for all AWS principals except for a single management workstation\. You do this by configuring AWS Identity and Access Management \(IAM\) authorization for Network File System \(NFS\) clients\. For more information about IAM authorization for NFS clients in EFS, see [Using IAM to Control NFS Access to Amazon EFS](iam-access-control-nfs-efs.md)\. 
+In this walkthrough, you configure Amazon EFS to prevent root access to your Amazon EFS file system for all AWS principals except for a single management workstation\. You do this by configuring AWS Identity and Access Management \(IAM\) authorization for Network File System \(NFS\) clients\. For more information about IAM authorization for NFS clients in EFS, see [Using IAM to control file system data access](iam-access-control-nfs-efs.md)\. 
 
 To do this requires configuring two IAM permissions policies, as follows:
 + Create an EFS file system policy that explicitly allows read and write access to the file system, and implicitly denies root access\.
@@ -66,4 +66,4 @@ Clients that aren't anonymous can get root access to the file system through an 
    $ sudo mount -t efs -o tls,iam file-system-id:/ efs-mount-point
    ```
 
-   You can configure the Amazon EC2 instance to automatically mount the file system with IAM authorization\. For more information about mounting an EFS file system with IAM authorization, see [Mounting with IAM authorization](mounting-fs.md#mounting-IAM-option)\.
+   You can configure the Amazon EC2 instance to automatically mount the file system with IAM authorization\. For more information about mounting an EFS file system with IAM authorization, see [Mounting with IAM authorization](mounting-fs-mount-helper.md#mounting-IAM-option)\.

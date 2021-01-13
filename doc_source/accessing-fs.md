@@ -1,4 +1,4 @@
-# Creating mount targets<a name="accessing-fs"></a>
+# Creating and managing mount targets<a name="accessing-fs"></a>
 
 After you create a file system, you can create mount targets\. Then you can mount the file system on EC2 instances, containers, and Lambda functions in your virtual private cloud \(VPC\), as shown in the following diagram\. 
 
@@ -22,7 +22,7 @@ For instructions to create mount targets using the Amazon EFS console when creat
 Use the following procedure to add or modify mount targets for an existing Amazon EFS file system\.
 
 **Note**  
-The new Amazon EFS management console is not available in the following AWS Regions: Europe \(Milan\) Region, Africa \(Cape Town\) Region, Beijing and Ningxia Regions, or AWS GovCloud \(US\)\. If you are accessing the Amazon EFS console in these regions, you can access the user documentation for that console experience here: [ AWS Elastic File System User Guide](images/AmazonElasticFileSystem-UserGuide-console1.pdf)\.
+The new Amazon EFS management console is not available in the AWS GovCloud \(US\) region\. If you are accessing the Amazon EFS console in the AWS GovCloud \(US\) region, you can access the user documentation for that console experience here: [ AWS Elastic File System User Guide](images/AmazonElasticFileSystem-UserGuide-console1.pdf)\.
 
 **To manage mount targets on an Amazon EFS file system \(console\)**
 

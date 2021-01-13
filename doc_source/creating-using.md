@@ -18,7 +18,7 @@ For more information about creating EFS resources and accessing a file system, s
 **Topics**
 + [Creating Amazon EFS file systems](creating-using-create-fs.md)
 + [Deleting an Amazon EFS file system](delete-efs-fs.md)
-+ [Creating mount targets](accessing-fs.md)
++ [Creating and managing mount targets](accessing-fs.md)
 + [Creating security groups](accessing-fs-create-security-groups.md)
 + [Creating file system policies](create-file-system-policy.md)
 + [Creating and deleting access points](create-access-point.md)

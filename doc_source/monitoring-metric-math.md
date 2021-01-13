@@ -7,7 +7,7 @@ Following, find some useful metric math expressions for Amazon EFS\.
 **Topics**
 + [Metric math: Throughput in MiB/second](#metric-math-throughput-mib)
 + [Metric math: Percent throughput](#metric-math-throughput-percent)
-+ [Metric Math: Percentage of permitted throughput utilization](#metric-math-throughput-utilization)
++ [Metric math: Percentage of permitted throughput utilization](#metric-math-throughput-utilization)
 + [Metric math: Throughput IOPS](#metric-math-throughput-iops)
 + [Metric math: Percentage of IOPS](#metric-math-iops-percent)
 + [Metric math: Average I/O size in KiB](#metric-math-average-io)
@@ -54,7 +54,7 @@ Your metric math ID and expression are the following\.
 | --- | --- | 
 | e1 | \(m2\*100\)/m1 | 
 
-## Metric Math: Percentage of permitted throughput utilization<a name="metric-math-throughput-utilization"></a>
+## Metric math: Percentage of permitted throughput utilization<a name="metric-math-throughput-utilization"></a>
 
 To calculate the percentage of permitted throughput utilization \(`TotalIOBytes`\) for a time period, first multiply the throughput in MiB/second by 100\. Then divide the result by the sum statistic of `PermittedThroughput` converted to MiB for the same period\.
 

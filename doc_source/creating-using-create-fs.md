@@ -88,7 +88,7 @@ Creating an Amazon EFS file system using the console is a four\-step process:
 + Step 4 \- Review the file system settings, make any modifications, then create the file system\.
 
 **Note**  
-The new Amazon EFS management console is not available in the following AWS Regions: Europe \(Milan\) Region, Africa \(Cape Town\) Region, Beijing and Ningxia Regions, or AWS GovCloud \(US\)\. If you are accessing the Amazon EFS console in these regions, you can access the user documentation for that console experience here: [ AWS Elastic File System User Guide](images/AmazonElasticFileSystem-UserGuide-console1.pdf)\.<a name="config-file-system-settings"></a>
+The new Amazon EFS management console is not available in the AWS GovCloud \(US\) region\. If you are accessing the Amazon EFS console in the AWS GovCloud \(US\) region, you can access the user documentation for that console experience here: [AWS Elastic File System User Guide](images/AmazonElasticFileSystem-UserGuide-console1.pdf)\.<a name="config-file-system-settings"></a>
 
 **Step 1: Configure file system settings**
 
@@ -136,7 +136,7 @@ In Step 2, you configure the file system's network settings, including the VPC a
 1. For **Mount targets**, you create one or more mount targets for your file system\. For each mount target, set the following properties:
    + **Availability zone** – By default, a mount target is configured in each Availability Zone in an AWS Region\. If you don't want a mount target in a particular Availability Zone, choose **Remove** to delete the mount target for that zone\. Create a mount target in every Availability Zone that you plan to access your file system from – there is no cost to do so\.
    + **Subnet ID** – Choose from the available subnets in an Availability Zone\. The default subnet is preselected\.
-   + **IP Address** – By default, Amazon EFS chooses the IP address automatically from the available addresses in the subnet\. Or, you can enter a specific IP address that's in the subnet\. Although mountstarget have a single IP address, they are redundant, highly available network resources\.
+   + **IP Address** – By default, Amazon EFS chooses the IP address automatically from the available addresses in the subnet\. Or, you can enter a specific IP address that's in the subnet\. Although mount targets have a single IP address, they are redundant, highly available network resources\.
    + **Security groups** – You can specify one or more security groups for the mount target\. For more information, see [Using Security Groups for Amazon EC2 Instances and Mount Targets](network-access.md)\.
 
      To add another security group, or to change the security group, choose **Choose security groups** and add another security group from the list\. If you don't want to use the default security group, you can delete it\. For more information, see [Creating security groups](accessing-fs-create-security-groups.md)\.
@@ -147,7 +147,7 @@ In Step 2, you configure the file system's network settings, including the VPC a
 
 **Step 3: Create a file system policy \(optional\)**
 
-Optionally, you can create a file system policy for your file system\. An EFS file system policy is an IAM resource policy that you use to control NFS client access to the file system\. For more information, see [Using IAM to Control NFS Access to Amazon EFS](iam-access-control-nfs-efs.md)\.  
+Optionally, you can create a file system policy for your file system\. An EFS file system policy is an IAM resource policy that you use to control NFS client access to the file system\. For more information, see [Using IAM to control file system data access](iam-access-control-nfs-efs.md)\.  
 ![\[Step 3 in creating an EFS file system, optionally create a file system policy.\]](http://docs.aws.amazon.com/efs/latest/ug/images/console2-fscustomcreate-step3-fsp.png)
 
 1. In **Policy options**, you can choose any combination of the available preconfigured policies:

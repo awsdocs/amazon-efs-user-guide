@@ -1,6 +1,6 @@
 # Amazon EFS: How It Works<a name="how-it-works"></a>
 
-In the following document, you can find a description about how Amazon EFS works, its implementation details, and security considerations\.
+Following, you can find a description about how Amazon EFS works, its implementation details, and security considerations\.
 
 **Topics**
 + [Overview](#how-it-works-conceptual)
@@ -98,7 +98,7 @@ Amazon EFS also supports other resources to configure the primary resource\. The
   $ sudo mount -t nfs -o nfsvers=4.1,rsize=1048576,wsize=1048576,hard,timeo=600,retrans=2,noresvport file-system-DNS-name:/ ~/efs-mount-point 
   ```
 
-  For more information, see [Creating mount targets](accessing-fs.md)\. First, you need to install the NFS client on your EC2 instance\. The [Getting Started](getting-started.md) exercise provides step\-by\-step instructions\.
+  For more information, see [Creating and managing mount targets](accessing-fs.md)\. First, you need to install the NFS client on your EC2 instance\. The [Getting Started](getting-started.md) exercise provides step\-by\-step instructions\.
 + **Access Points** – An access point applies an operating system user, group, and file system path to any file system request made using the access point\. The access point's operating system user and group override any identity information provided by the NFS client\. The file system path is exposed to the client as the access point's root directory\. This ensures that each application always uses the correct operating system identity and the correct directory when accessing shared file\-based datasets\. Applications using the access point can only access data in its own directory and below\. For more information, see [Working with Amazon EFS Access Points](efs-access-points.md)\.
 
 Mount targets and tags are *subresources* that are associated with a file system\. You can only create them within the context of an existing file system\. 
@@ -114,7 +114,7 @@ Amazon EFS provides API operations for you to create and manage these resources\
 
 You must have valid credentials to make Amazon EFS API requests, such as create a file system\. In addition, you must also have permissions to create or access resources\. By default, when you use the root account credentials of your AWS account you can create and access resources owned by that account\. However, we don't recommend using root account credentials\. In addition, any AWS Identity and Access Management \(IAM\) users and roles that you create in your account must be granted permissions to create or access resources\. For more information about permissions, see [Identity and Access Management for Amazon EFS](auth-and-access-control.md)\.
 
-IAM authorization for NFS clients is an additional security option for Amazon EFS that uses IAM to simplify access management for Network File System \(NFS\) clients at scale\. With IAM authorization for NFS clients, you can use IAM to manage access to an EFS file system in an inherently scalable way\. IAM authorization for NFS clients is also optimized for cloud environments\. For more information on using IAM authorization for NFS clients, see [Using IAM to Control NFS Access to Amazon EFS](iam-access-control-nfs-efs.md)\.
+IAM authorization for NFS clients is an additional security option for Amazon EFS that uses IAM to simplify access management for Network File System \(NFS\) clients at scale\. With IAM authorization for NFS clients, you can use IAM to manage access to an EFS file system in an inherently scalable way\. IAM authorization for NFS clients is also optimized for cloud environments\. For more information on using IAM authorization for NFS clients, see [Using IAM to control file system data access](iam-access-control-nfs-efs.md)\.
 
 ## Data Consistency in Amazon EFS<a name="consistency"></a>
 

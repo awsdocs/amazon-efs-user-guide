@@ -36,7 +36,7 @@ You can't immediately delete an AWS KMS CMK, but you can schedule it for deletio
 To learn how to disable and re\-enable customer managed CMKs, see [Enabling and Disabling Keys](https://docs.aws.amazon.com/kms/latest/developerguide/enabling-keys.html) in the AWS Key Management Service Developer Guide\. To learn how to schedule deletion of customer managed CMKs, see [Deleting Customer Master Keys](https://docs.aws.amazon.com/kms/latest/developerguide/deleting-keys.html) in the AWS Key Management Service Developer Guide\.
 
 ## Related topics<a name="related-managing-encryption"></a>
-+ For more information on encrypted data and metadata at rest in Amazon EFS, see [Data Encryption in EFS](encryption.md)\.
++ For more information on encrypted data and metadata at rest in Amazon EFS, see [Data Encryption in Amazon EFS](encryption.md)\.
 + For example key policies, see [Amazon EFS Key Policies for AWS KMS](encryption-at-rest.md#EFSKMSPolicy)\.
 + For a list of AWS CloudTrail log entries associated with an encrypted file system, see [Amazon EFS Log File Entries for Encrypted\-at\-Rest File Systems](logging-using-cloudtrail.md#efs-encryption-cloudtrail)\.
 + For more information on determining what accounts and services have access to your CMKs, see [Determining Access to an AWS KMS Customer Master Key](https://docs.aws.amazon.com/kms/latest/developerguide/determining-access.html) in the *AWS Key Management Service Developer Guide*\.

@@ -16,3 +16,4 @@ To establish a baseline you should, at a minimum, monitor the following items:
 + Your file system's network throughput\.
 + The number of client connections to a file system\.
 + The number of bytes for each file system operation, including data read, data write, and metadata operations\.
+

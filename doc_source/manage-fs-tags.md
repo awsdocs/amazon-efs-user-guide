@@ -22,7 +22,7 @@ The console lists existing tags associated with a file system\. You can add new 
    + Edit a tag value \- Choose the tag value, edit the value, and then choose **Save**\.
    + Add a new tag \- Choose **Add tag**, enter the key\-value pair, and choose **Save**\.
    + Remove an existing tag \- Choose **Remove tag** next to the tag you want to delete\. Then choose **Save**, or choose **Undo** to revert the deletion\.  
-![\[Manage file system tages in the EFS console.\]](http://docs.aws.amazon.com/efs/latest/ug/images/console2-manage-tags.png)
+![\[Manage file system tags in the EFS console.\]](http://docs.aws.amazon.com/efs/latest/ug/images/console2-manage-tags.png)
 
 ## Using the CLI<a name="manage-tags-cli"></a>
 
@@ -99,7 +99,7 @@ The AWS CLI commands for managing tags, and the equivalent Amazon EFS API action
 
   If the command is successful, the AWS CLI doesn't provide a response\.
 
-**To delete, or untag, an EFS access point**
+**To delete tags \(untag\) on an EFS access point**
 + Delete an EFS access point's tag using the [https://docs.aws.amazon.com/cli/latest/reference/efs/untag-resource.html](https://docs.aws.amazon.com/cli/latest/reference/efs/untag-resource.html) CLI command \(the corresponding API operation is [UntagResource](API_UntagResource.md)\) as follows\.
 
   ```

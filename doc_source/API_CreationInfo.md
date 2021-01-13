@@ -2,6 +2,8 @@
 
 Required if the `RootDirectory` > `Path` specified does not exist\. Specifies the POSIX IDs and permissions to apply to the access point's `RootDirectory` > `Path`\. If the access point root directory does not exist, EFS creates it with these settings when a client connects to the access point\. When specifying `CreationInfo`, you must include values for all properties\. 
 
+Amazon EFS creates a root directory only if you have provided the CreationInfo: OwnUid, OwnGID, and permissions for the directory\. If you do not provide this information, Amazon EFS does not create the root directory\. If the root directory does not exist, attempts to mount using the access point will fail\.
+
 **Important**  
 If you do not provide `CreationInfo` and the specified `RootDirectory` does not exist, attempts to mount the file system using the access point will fail\.
 
@@ -30,5 +32,5 @@ Required: Yes
 For more information about using this API in one of the language\-specific AWS SDKs, see the following:
 +  [AWS SDK for C\+\+](https://docs.aws.amazon.com/goto/SdkForCpp/elasticfilesystem-2015-02-01/CreationInfo) 
 +  [AWS SDK for Go](https://docs.aws.amazon.com/goto/SdkForGoV1/elasticfilesystem-2015-02-01/CreationInfo) 
-+  [AWS SDK for Java](https://docs.aws.amazon.com/goto/SdkForJava/elasticfilesystem-2015-02-01/CreationInfo) 
++  [AWS SDK for Java V2](https://docs.aws.amazon.com/goto/SdkForJavaV2/elasticfilesystem-2015-02-01/CreationInfo) 
 +  [AWS SDK for Ruby V3](https://docs.aws.amazon.com/goto/SdkForRubyV3/elasticfilesystem-2015-02-01/CreationInfo) 

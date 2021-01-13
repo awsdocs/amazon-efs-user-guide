@@ -111,7 +111,7 @@ You can now make an entry in the `/etc/hosts` file on the EC2 instance that maps
 
 ## Step 4: Mount Your File System Using the EFS Mount Helper<a name="wt6-efs-utils-step4"></a>
 
-To mount your EFS file system, you first create a mount directory on the EC2 instance\. Then, using the EFS mount helper, you can mount the file system with either IAM authorization or an EFS access point\. For more information, see [Using IAM to Control NFS Access to Amazon EFS](iam-access-control-nfs-efs.md) and [Working with Amazon EFS Access Points](efs-access-points.md)\.
+To mount your EFS file system, you first create a mount directory on the EC2 instance\. Then, using the EFS mount helper, you can mount the file system with either IAM authorization or an EFS access point\. For more information, see [Using IAM to control file system data access](iam-access-control-nfs-efs.md) and [Working with Amazon EFS Access Points](efs-access-points.md)\.
 
 **To create a mount directory**
 + Create a directory for mounting the file system using the following command\.

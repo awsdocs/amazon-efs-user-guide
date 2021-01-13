@@ -43,6 +43,8 @@ In this section, you create security groups in your VPC for your EC2 instance an
       $ aws  ec2 describe-vpcs    
       ```
 
+      
+
    1. Create a security group \(`efs-walkthrough1-mt-sg`\) for your Amazon EFS mount target\. You need to provide your VPC ID\.
 
       ```
@@ -146,6 +148,8 @@ You can use most general purpose Linux\-based AMIs\. If you use another Linux AM
      For the Amazon Linux HVM AMI, you can find the latest IDs at [Amazon Linux AMI](https://aws.amazon.com/amazon-linux-ami/)\. You choose the ID value from the Amazon Linux AMI IDs table as follows:
      + Choose the **US West Oregon** region\. This walkthrough assumes you are creating all resources in the US West \(Oregon\) Region \(us\-west\-2\)\.
      + Choose the **EBS\-backed HVM 64\-bit** type \(because in the CLI command you specify the `t2.micro` instance type, which does not support instance store\)\.
+
+     
    + ID of the security group you created for an EC2 instance\. 
    + AWS Region\. This walkthrough uses the us\-west\-2 region\.
    + Your VPC subnet ID where you want to launch the instance\. You can get list of subnets using the `describe-subnets` command\. 

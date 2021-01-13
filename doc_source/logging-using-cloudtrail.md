@@ -239,7 +239,7 @@ The following example shows a CloudTrail log entry that demonstrates a `CreateNe
 
 ### Log Entries for EFS IAM Authentication<a name="efs-access-point-ct"></a>
 
-Amazon EFS IAM authorization for NFS clients emits `NewClientConnection` and `UpdateClientConnection` CloudTrail events\. A `NewClientConnection` event is emitted when a connection is authorized immediately after an initial connection, and immediately after a re\-connection\. An `UpdateClientConnection` is emitted when a connection is reauthorized and the list of permitted actions has changed, It's also emitted when the new list of permitted actions doesn't include `ClientMount`\. For more information about EFS IAM authorization, see [Using IAM to Control NFS Access to Amazon EFS](iam-access-control-nfs-efs.md)\.
+Amazon EFS IAM authorization for NFS clients emits `NewClientConnection` and `UpdateClientConnection` CloudTrail events\. A `NewClientConnection` event is emitted when a connection is authorized immediately after an initial connection, and immediately after a re\-connection\. An `UpdateClientConnection` is emitted when a connection is reauthorized and the list of permitted actions has changed, It's also emitted when the new list of permitted actions doesn't include `ClientMount`\. For more information about EFS IAM authorization, see [Using IAM to control file system data access](iam-access-control-nfs-efs.md)\.
 
 The following example shows a CloudTrail log entry that demonstrates a `NewClientConnection` event\.
 
@@ -305,7 +305,7 @@ The following example shows a CloudTrail log entry that demonstrates a `NewClien
 
 ## Amazon EFS Log File Entries for Encrypted\-at\-Rest File Systems<a name="efs-encryption-cloudtrail"></a>
 
-Amazon EFS gives you the option of using encryption at rest, encryption in transit, or both, for your file systems\. For more information, see [Data Encryption in EFS](encryption.md)\.
+Amazon EFS gives you the option of using encryption at rest, encryption in transit, or both, for your file systems\. For more information, see [Data Encryption in Amazon EFS](encryption.md)\.
 
 If you're using an encrypted\-at\-rest file system, the calls that Amazon EFS makes on your behalf appear in your AWS CloudTrail logs as coming from an AWS\-owned account\. If you see one of the following account IDs in your CloudTrail logs, depending on the AWS Region that your file system is created in, this ID is one owned by the Amazon EFS service\.
 

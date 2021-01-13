@@ -54,6 +54,8 @@ Follow the steps to set up an Apache web server on one EC2 instance to serve fil
          $ sudo mkdir /var/www/html/efs-mount-point
          ```
 
+         
+
       1. Mount your Amazon EFS file system\. You need to update the following mount command using the EFS mount helper utility by providing your file system ID\.
 
          ```
@@ -224,6 +226,8 @@ If you choose the **Amazon Linux AMI 2016\.03\.0** Amazon Linux AMI when launchi
       ```
       $ echo "<html><h1>Hello from Amazon EFS</h1></html>" > index.html    
       ```
+
+   
 
 1. Now you can test the setup\. Using the load balancer's public DNS name, access the index\.html page\.
 

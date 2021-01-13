@@ -6,7 +6,7 @@ You can configure an Amazon EC2 instance to automatically mount an EFS file syst
 
 Both of these methods use the EFS mount helper to mount the file system\. The mount helper is part of the `amazon-efs-utils` set of tools\. 
 
-The `amazon-efs-utils` tools are available for installation on Amazon Linux and Amazon Linux 2 Amazon Machine Images \(AMIs\)\. For more information about `amazon-efs-utils`, see [Using the amazon\-efs\-utils Tools](using-amazon-efs-utils.md)\. If you are using another Linux distribution, such as Red Hat Enterprise Linux \(RHEL\), manually build and install `amazon-efs-utils`\. For more information, see [Installing the amazon\-efs\-utils Package on Other Linux Distributions](installing-other-distro.md)\.
+The `amazon-efs-utils` tools are available for installation on Amazon Linux and Amazon Linux 2 Amazon Machine Images \(AMIs\)\. For more information about `amazon-efs-utils`, see [Using the amazon\-efs\-utils Tools](using-amazon-efs-utils.md)\. If you are using another Linux distribution, such as Red Hat Enterprise Linux \(RHEL\), manually build and install `amazon-efs-utils`\. For more information, see [Installing the amazon\-efs\-utils package on other Linux distributions](installing-other-distro.md)\.
 
 ## Configuring EC2 instances to mount an EFS file system at instance launch<a name="mount-fs-auto-mount-on-creation"></a>
 
@@ -61,7 +61,7 @@ Your EC2 instance is now configured to mount the EFS file system at launch and w
 
 To automatically remount your Amazon EFS file system directory when the Amazon EC2 instance reboots, use the file `/etc/fstab`\. The `/etc/fstab` file contains information about file systems\. The command `mount -a`, which runs during instance startup, mounts the file systems listed in `/etc/fstab`\. This procedure uses the EFS mount helper to mount the file system and needs to be installed on the EC2 instance\. 
 
-The mount helper is part of the `amazon-efs-utils` set of tools, which is available for installation on Amazon Linux and Amazon Linux 2 Amazon Machine Images \(AMIs\)\. For more information about installing `amazon-efs-utils` on an Amazon Linux or Amazon Linux 2 AMI, see [Installing the amazon\-efs\-utils Package on Amazon Linux](installing-amazon-efs-utils.md)\. If you are using another Linux distribution, such as Red Hat Enterprise Linux \(RHEL\), manually build and install `amazon-efs-utils`\. For more information, see [Installing the amazon\-efs\-utils Package on Other Linux Distributions](installing-other-distro.md)\.
+The mount helper is part of the `amazon-efs-utils` set of tools, which is available for installation on Amazon Linux and Amazon Linux 2 Amazon Machine Images \(AMIs\)\. For more information about installing `amazon-efs-utils` on an Amazon Linux or Amazon Linux 2 AMI, see [Installing the amazon\-efs\-utils Package on Amazon Linux](installing-amazon-efs-utils.md)\. If you are using another Linux distribution, such as Red Hat Enterprise Linux \(RHEL\), manually build and install `amazon-efs-utils`\. For more information, see [Installing the amazon\-efs\-utils package on other Linux distributions](installing-other-distro.md)\.
 
 **Note**  
 Before you can update the `/etc/fstab` file of your EC2 instance, make sure that you already created your Amazon EFS file system\. For more information, see [Step 1: Create Your Amazon EFS File System](gs-step-two-create-efs-resources.md) in the Amazon EFS Getting Started exercise\.
@@ -82,22 +82,22 @@ Before you can update the `/etc/fstab` file of your EC2 instance, make sure that
    + To automatically mount with IAM authorization to an Amazon EC2 instance that has an instance profile, add the following line to the `/etc/fstab` file\.
 
      ```
-     file-system-id:/ efs-mount-point efs _netdev,tls,iam 0 0
+     file-system-id:/ efs-mount-point efs _netdev,noresvport,tls,iam 0 0
      ```
    + To automatically mount with IAM authorization to a Linux instance using a credentials file, add the following line to the `/etc/fstab` file\.
 
      ```
-     file-system-id:/ efs-mount-point efs _netdev,tls,iam,awsprofile=namedprofile 0 0
+     file-system-id:/ efs-mount-point efs _netdev,noresvport,tls,iam,awsprofile=namedprofile 0 0
      ```
    + To automatically mount a file system using an EFS access point, add the following line to the `/etc/fstab` file\.
 
      ```
-     file-system-id efs-mount-point efs _netdev,tls,accesspoint=access-point-id 0 0
+     file-system-id efs-mount-point efs _netdev,noresvport,tls,accesspoint=access-point-id 0 0
      ```
 **Warning**  
 Use the `_netdev` option, used to identify network file systems, when mounting your file system automatically\. If `_netdev` is missing, your EC2 instance might stop responding\. This result is because network file systems need to be initialized after the compute instance starts its networking\. For more information, see [Automatic Mounting Fails and the Instance Is Unresponsive](troubleshooting-efs-mounting.md#automount-fails)\.
 
-   For more information, see [Mounting with IAM authorization](mounting-fs.md#mounting-IAM-option) and [Mounting with EFS access points](mounting-fs.md#mounting-access-points)\.
+   For more information, see [Mounting with IAM authorization](mounting-fs-mount-helper.md#mounting-IAM-option) and [Mounting with EFS access points](mounting-fs-mount-helper.md#mounting-access-points)\.
 
 1. Save the changes to the file\.
 

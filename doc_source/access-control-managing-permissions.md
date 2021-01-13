@@ -85,7 +85,7 @@ To use the Amazon EFS console, you need to grant permissions for additional acti
 The Amazon EFS console needs these additional permissions for the following reasons:
 + Permissions for the Amazon EFS actions enable the console to display Amazon EFS resources in the account\.
 + The console needs permissions for the `ec2` actions to query Amazon EC2 so it can display Availability Zones, VPCs, security groups, and account attributes\.
-+ The console needs permissions for the `kms` actions to create an encrypted file system\. For more information on encrypted file systems, see [Data Encryption in EFS](encryption.md)\.
++ The console needs permissions for the `kms` actions to create an encrypted file system\. For more information on encrypted file systems, see [Data Encryption in Amazon EFS](encryption.md)\.
 
 ## AWS Managed \(Predefined\) Policies for Amazon EFS<a name="access-policy-examples-aws-managed"></a>
 
@@ -113,7 +113,7 @@ All examples use the us\-west\-2 Region and contain fictitious account IDs\.
 
 ### Example 1: Allow a User to Create a Mount Target and Tags on an Existing File System<a name="access-policy-example-allow-create-mount-target"></a>
 
-The following permissions policy grants the user permissions to create mount targets and tags on a particular file system in the `us-west-2` region\. To create mount targets, permissions for specific Amazon EC2 actions are also required and are included in the permissions policy\.
+The following permissions policy grants the user permissions to create mount targets and tags on a particular file system in the `us-west-2` Region\. To create mount targets, permissions for specific Amazon EC2 actions are also required and are included in the permissions policy\.
 
 ```
 {
@@ -146,7 +146,7 @@ The following permissions policy grants the user permissions to create mount tar
 
 ### Example 2: Allow a User to Perform All Amazon EFS Actions<a name="access-policy-example-allow-perform-all-actions"></a>
 
-The following permissions policy uses a wild card character \(`"elasticfilesystem:*"`\) to allow all Amazon EFS actions in the `us-west-2` region\. Because some of the Amazon EFS actions also require permissions for Amazon EC2 actions, the policy also grants permissions for all those actions\.
+The following permissions policy uses a wild card character \(`"elasticfilesystem:*"`\) to allow all Amazon EFS actions in the `us-west-2` Region\. Because some of the Amazon EFS actions also require permissions for Amazon EC2 actions, the policy also grants permissions for all those actions\.
 
 ```
 {
@@ -192,21 +192,21 @@ Use the scroll bars to see the rest of the table\.
 
 | Amazon EFS API Operations | Required Permissions \(API Actions\) | Resources | 
 | --- | --- | --- | 
-|   [CreateAccessPoint](API_CreateAccessPoint.md)   | elasticfilesystem:CreateAccessPoint  |  `arn:aws:elasticfilesystem:region:account-id:access-point/*`  | 
+|   [CreateAccessPoint](API_CreateAccessPoint.md)   | elasticfilesystem:CreateAccessPoint  |  `arn:aws:elasticfilesystem:region:account-id:file-system/file-system-id`  | 
 |   [CreateFileSystem](API_CreateFileSystem.md)   | elasticfilesystem:CreateFileSystem For information about KMS\-related permissions for encrypted file systems, see [Amazon EFS Key Policies for AWS KMS](encryption-at-rest.md#EFSKMSPolicy)\.   |  `arn:aws:elasticfilesystem:region:account-id:file-system/*`  | 
 |   [CreateMountTarget](API_CreateMountTarget.md)  |  `elasticfilesystem:CreateMountTarget` `ec2:DescribeSubnets` `ec2:DescribeNetworkInterfaces` `ec2:CreateNetworkInterface`  | arn:aws:elasticfilesystem:region:account\-id:file\-system/file\-system\-id | 
 |   [CreateTags](API_CreateTags.md)   | elasticfilesystem:CreateTags | arn:aws:elasticfilesystem:region:account\-id:file\-system/file\-system\-id | 
-| [DeleteAccessPoint](API_DeleteAccessPoint.md) | elasticfilesystem:DeleteAccessPoint | arn:aws:elasticfilesystem:region:account\-id:file\-system/file\-system\-id | 
+| [DeleteAccessPoint](API_DeleteAccessPoint.md) | elasticfilesystem:DeleteAccessPoint | arn:aws:elasticfilesystem:region:account\-id:access\-point/access\-point\-id | 
 | [DeleteFileSystem](API_DeleteFileSystem.md) | elasticfilesystem:DeleteFileSystem | arn:aws:elasticfilesystem:region:account\-id:file\-system/file\-system\-id | 
 | [DeleteFileSystemPolicy](API_DeleteFileSystemPolicy.md) | elasticfilesystem:DeleteFileSystemPolicy | arn:aws:elasticfilesystem:region:account\-id:file\-system/file\-system\-id | 
 | [DeleteMountTarget](API_DeleteMountTarget.md)  |  `elasticfilesystem:DeleteMountTarget` `ec2:DeleteNetworkInterface`  | arn:aws:elasticfilesystem:region:account\-id:file\-system/file\-system\-id | 
 |  [DeleteTags](API_DeleteTags.md) | elasticfilesystem:DeleteTags | arn:aws:elasticfilesystem:region:account\-id:file\-system/file\-system\-id | 
-| [DescribeAccessPoints](API_DescribeAccessPoints.md) | elasticfilesystem:DescribeAccessPoints |  `arn:aws:elasticfilesystem:region:account-id:file-system/file-system-id`  | 
+| [DescribeAccessPoints](API_DescribeAccessPoints.md) | elasticfilesystem:DescribeAccessPoints |  `arn:aws:elasticfilesystem:region:account-id:access-point/*` or `arn:aws:elasticfilesystem:region:account-id:access-point/access-point-id`  | 
 | [DescribeFileSystemPolicy](API_DescribeFileSystemPolicy.md) | elasticfilesystem:DescribeFileSystemPolicy |  `arn:aws:elasticfilesystem:region:account-id:file-system/file-system-id`  | 
 | [DescribeFileSystems](API_DescribeFileSystems.md) | elasticfilesystem:DescribeFileSystems |  `arn:aws:elasticfilesystem:region:account-id:file-system/file-system-id` or `arn:aws:elasticfilesystem:region:account-id:file-system/*`  | 
 | [DescribeLifecycleConfiguration](API_DescribeLifecycleConfiguration.md) |  `elasticfilesystem:DescribeLifecycleConfiguration`  | arn:aws:elasticfilesystem:*region*:*account\-id*:file\-system/*file\-system\-id* | 
 | [DescribeMountTargetSecurityGroups](API_DescribeMountTargetSecurityGroups.md) |  `elasticfilesystem:DescribeMountTargetSecurityGroups` `ec2:DescribeNetworkInterfaceAttribute`  | arn:aws:elasticfilesystem:region:account\-id:file\-system/file\-system\-id | 
-| [DescribeMountTargets](API_DescribeMountTargets.md) | elasticfilesystem:DescribeMountTargets | arn:aws:elasticfilesystem:region:account\-id:file\-system/file\-system\-id | 
+| [DescribeMountTargets](API_DescribeMountTargets.md) | elasticfilesystem:DescribeMountTargets | `arn:aws:elasticfilesystem:region:account-id:file-system/file-system-id` or `arn:aws:elasticfilesystem:region:account-id:access-point/access-point-id` | 
 | [DescribeTags](API_DescribeTags.md) | elasticfilesystem:DescribeTags | arn:aws:elasticfilesystem:region:account\-id:file\-system/file\-system\-id | 
 | [ModifyMountTargetSecurityGroups](API_ModifyMountTargetSecurityGroups.md) |  `elasticfilesystem:ModifyMountTargetSecurityGroups` ` ec2:ModifyNetworkInterfaceAttribute `  | arn:aws:elasticfilesystem:region:account\-id:file\-system/file\-system\-id | 
 | [PutFileSystemPolicy](API_PutFileSystemPolicy.md) |  `elasticfilesystem:PutFileSystemPolicy`  | arn:aws:elasticfilesystem:region:account\-id:file\-system/file\-system\-id | 

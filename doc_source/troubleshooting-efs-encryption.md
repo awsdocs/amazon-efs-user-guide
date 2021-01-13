@@ -10,14 +10,14 @@
 
 By default, when you use the Amazon EFS mount helper with Transport Layer Security \(TLS\), it enforces hostname checking\. Some systems don't support this feature, such as when you use Red Hat Enterprise Linux or CentOS\. In these cases, mounting an EFS file system using TLS fails\.
 
-**Action to Take**  
- We recommend that you upgrade the version of stunnel on your client to support hostname checking\. For more information, see [Upgrading Stunnel](using-amazon-efs-utils.md#upgrading-stunnel)\.
+**Action to take**  
+ We recommend that you upgrade the version of stunnel on your client to support hostname checking\. For more information, see [Upgrading Stunnel](upgrading-stunnel.md)\.
 
 ## Mounting with Encryption of Data in Transit is Interrupted<a name="mounting-tls-interrupt"></a>
 
 It's possible, however unlikely, that your encrypted connection to your Amazon EFS file system can hang or be interrupted by client\-side events\.
 
-**Action to Take**  
+**Action to take**  
 If your connection to your Amazon EFS file system with encryption of data in transit is interrupted, take the following steps:
 
 1. Ensure that the stunnel service is running on the client\.
@@ -40,7 +40,7 @@ If the interruptions continue, contact AWS Support\.
 
 You've tried to create a new encrypted\-at\-rest file system\. However, you get an error message saying that AWS KMS is unavailable\.
 
-**Action to Take**  
+**Action to take**  
 This error can occur in the rare case that AWS KMS becomes temporarily unavailable in your AWS Region\. If this happens, wait until AWS KMS returns to full availability, and then try again to create the file system\.
 
 ## Unusable Encrypted File System<a name="unusable-encrypt"></a>
@@ -51,7 +51,7 @@ An encrypted file system consistently returns NFS server errors\. These errors c
 + Permission for Amazon EFS to use the key was revoked\.
 + AWS KMS is temporarily unavailable\.
 
-**Action to Take**  
+**Action to take**  
 First, confirm that the AWS KMS key is enabled\. You can do so by viewing the keys in the console\. For more information, see [Viewing Keys](https://docs.aws.amazon.com/kms/latest/developerguide/viewing-keys.html) in the *AWS Key Management Service Developer Guide*\.
 
 If the key is not enabled, enable it\. For more information, see [Enabling and Disabling Keys](https://docs.aws.amazon.com/kms/latest/developerguide/enabling-keys.html) in the *AWS Key Management Service Developer Guide*\.

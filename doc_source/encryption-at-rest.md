@@ -1,29 +1,46 @@
 # Encrypting Data at Rest<a name="encryption-at-rest"></a>
 
-As with unencrypted file systems, you can create encrypted file systems through the AWS Management Console, the AWS CLI, or programmatically through the Amazon EFS API or one of the AWS SDKs\. Your organization might require the encryption of all data that meets a specific classification or is associated with a particular application, workload, or environment\. 
-
-You can monitor whether encryption at rest is being used for Amazon EFS file systems by using Amazon CloudWatch and AWS CloudTrail to detect the creation of a file system and verify that encryption is enabled\. For more information, see [Walkthrough: Enforcing Encryption on an Amazon EFS File System at Rest](efs-enforce-encryption.md)\. You can enforce encryption in transit on file systems using a file system policy\. For more information, see [Using IAM to Control NFS Access to Amazon EFS](iam-access-control-nfs-efs.md)\.
+As with unencrypted file systems, you can create encrypted file systems using the AWS Management Console, the AWS CLI, or programmatically through the Amazon EFS API or one of the AWS SDKs\. Your organization might require the encryption of all data that meets a specific classification or is associated with a particular application, workload, or environment\. 
 
 **Note**  
 The AWS key management infrastructure uses Federal Information Processing Standards \(FIPS\) 140\-2 approved cryptographic algorithms\. The infrastructure is consistent with National Institute of Standards and Technology \(NIST\) 800\-57 recommendations\.
 
+## Enforcing the Creation of Amazon EFS File Systems Encrypted at Rest<a name="enforce-encryption-at-rest"></a>
+
+You can use the `elasticfilesystem:Encrypted` IAM condition key in AWS Identity and Access Management \(IAM\) identity\-based policies to control whether users can create Amazon EFS file systems that are encrypted at rest\. For more information about using the condition key, see [Using IAM to Enforce Creating Encrypted File Systems](using-iam-to-enforce-encryption-at-rest.md)\. 
+
+You can also define service control policies \(SCPs\) inside AWS Organizations to enforce EFS encryption for all AWS accounts in your organization\. For more information about service control policies in AWS Organizations, see [Service control policies](https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_scps.html#orgs_manage_policies_scp) in the *AWS Organizations User Guide*\.
+
 ## Encrypting a File System at Rest Using the Console<a name="encrypt-console"></a>
 
-You can choose to enable encryption at rest for a file system when you create it\. The following procedure describes how to enable encryption for a new file system when you create it from the console\.
+When you create a new file system using the Amazon EFS console, encryption at rest is enabled by default\. The following procedure describes how to enable encryption for a new file system when you create it from the console\.
 
-**To encrypt a new file system on the console**
+**To encrypt a new file system using the EFS console**
 
 1. Open the Amazon Elastic File System console at [https://console\.aws\.amazon\.com/efs/](https://console.aws.amazon.com/efs/)\.
 
-1. Choose **Create file system** to open the file system creation wizard\.
+1. Choose **Create file system** to open the **Create file system** dialog box\.  
+![\[Image NOT FOUND\]](http://docs.aws.amazon.com/efs/latest/ug/images/console2-create-file-system.png)
 
-1. For **Step 1: Configure network access**, choose your VPC, create your mount targets, and then choose **Next Step**\.
+1. \(Optional\) Enter a **Name** for your file system\.
 
-1. For **Step 2: Configure file system settings**, add any tags, enable Lifecycle management, choose your throughput and performance modes, and Enable encryption to encrypt your file system, and then choose **Next Step**\.
+1. For **Virtual Private Cloud \(VPC\)**, choose your VPC, or keep it set to your default VPC\.
 
-1. For **Step 3\. Configure client access**, you can choose a preconfigured **File system policy**, or use the JSON editor in the **\{\} JSON** tab to create a more advanced policy\. For more information, see [Using IAM to Control NFS Access to Amazon EFS](iam-access-control-nfs-efs.md)\. Choose **Next Step**\.
+1. Choose **Create** to create a file system that uses the following service recommended settings:
+   + Encryption of data at rest enabled using your default key for Amazon EFS \(`aws/elasticfilesystem`\)\.
+   + Automatic backups turned on – For more information, see [Using AWS Backup with Amazon EFS](awsbackup.md)\.
+   + Mount targets – Amazon EFS creates mount targets with the following settings:
+     + Located in each Availability Zone in the Region where the file system is created\.
+     + Located in the default subnets of the VPC that you selected\.
+     + Use the VPC's default security group\. You can manage security groups after the file system is created\.
 
-1. For **Step 4: Review and create**, review your settings, and choose **Create File System**\.
+     For more information, see [Managing file system network accessibility](manage-fs-access.md)\.
+   + General Purpose performance mode – For more information, see [Performance Modes](performance.md#performancemodes)\.
+   + Bursting throughput mode – For more information, see [Throughput Modes](performance.md#throughput-modes)\.
+   + Lifecycle management enabled with a 30\-day policy – For more information, see [EFS lifecycle management](lifecycle-management-efs.md)\.
+
+1. The **File systems** page appears with a banner across the top showing the status of the file system you created\. A link to access the file system details page appears in the banner when the file system becomes available\.  
+![\[File system details page showing the newly created file system and its configuration details.\]](http://docs.aws.amazon.com/efs/latest/ug/images/console2-filesystemdetails.png)
 
 You now have a new encrypted\-at\-rest file system\.
 

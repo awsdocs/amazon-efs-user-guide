@@ -17,7 +17,7 @@ There are four steps that you need to perform to create and use your first Amazo
 + [Step 4: Clean Up Resources and Protect Your AWS Account](gs-step-five-cleanup.md)
 
 **Note**  
-The new Amazon EFS management console is not available in the following AWS Regions: Europe \(Milan\) Region, Africa \(Cape Town\) Region, Beijing and Ningxia Regions, or AWS GovCloud \(US\)\. If you are accessing the Amazon EFS console in these regions, you can access the user documentation for that console experience here: [ AWS Elastic File System User Guide](images/AmazonElasticFileSystem-UserGuide-console1.pdf)\.
+The new Amazon EFS management console is not available in the AWS GovCloud \(US\) Region\. If you are accessing the Amazon EFS console in the AWS GovCloud \(US\) Region, you can access the user documentation for that console experience here: [ AWS Elastic File System User Guide](images/AmazonElasticFileSystem-UserGuide-console1.pdf)\.
 
 ## Assumptions<a name="gs-assumptions"></a>
 

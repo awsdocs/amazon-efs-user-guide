@@ -27,7 +27,7 @@ You use the EFS mount helper when mounting a file system using an access point\.
 $ mount -t efs -o tls,accesspoint=fsap-12345678 fs-12345678: /localmountpoint
 ```
 
-For more information on mounting file systems using an access point, see [Mounting with EFS access points](mounting-fs.md#mounting-access-points)\.
+For more information on mounting file systems using an access point, see [Mounting with EFS access points](mounting-fs-mount-helper.md#mounting-access-points)\.
 
 ## Enforcing a User Identity Using an Access Point<a name="enforce-identity-access-points"></a>
 
@@ -58,10 +58,12 @@ When specifying a root directory in your access point, ensure that the directory
 
 ### Creating the Root Directory for an Access Point<a name="create-root-directory-access-point"></a>
 
-If a root directory path for an access point doesn't exist on the file system, Amazon EFS automatically creates that root directory with configurable ownership and permissions\. This approach makes it possible to provision file system access for a specific user or application without mounting your file system from a Linux host\. You can configure the root directory ownership and permission by using the following attributes when creating an access point:
+If a root directory path for an access point doesn't exist on the file system, Amazon EFS automatically creates that root directory with configurable ownership and permissions\. This approach makes it possible to provision file system access for a specific user or application without mounting your file system from a Linux host\. To create a root directory, you have to configure the root directory ownership and permission by using the following attributes when creating an access point:
 + `OwnerUid` – The numeric POSIX user ID to use as the root directory owner\.
 + `OwnerGiD` – The numeric POSIX group ID to use as the root directory owner group\.
 + Permissions – The Unix mode of the directory\. A common configuration is 755\. Ensure that the execute bit is set for the access point user so they are able to mount\. This configuration gives the directory owner permission to enter, list, and write new files in the directory\. It gives all other users permission to enter and list files\. For more information on working with Unix file and directory modes, see [Working with Users, Groups, and Permissions at the Network File System \(NFS\) Level](accessing-fs-nfs-permissions.md)\.
+
+Amazon EFS creates a root directories only if you have provided the OwnUid, OwnGID, and permissions for the directory\. If you do not provide this information, Amazon EFS does not create the root directory\. If the root directory does not exist, attempts to mount using the access point will fail\.
 
 When you mount a file system with an access point, the root directory for the access point is created if the directory doesn't already exist\. If the root directory configured on the access point already exists before mount time, the existing permissions aren't overwritten by the access point\. If you delete the root directory, EFS recreates it the next time that the file system is mounted using the access point\.
 

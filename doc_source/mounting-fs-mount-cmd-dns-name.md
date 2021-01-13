@@ -5,7 +5,7 @@
   file-system-id.efs.aws-region.amazonaws.com
   ```
 **Note**  
- DNS resolution requires that the Amazon EFS file system has a mount target in the same Availabilty Zone as the client instance\. 
+ DNS resolution requires that the Amazon EFS file system has a mount target in the same Availability Zone as the client instance\. 
 
   Using the file system DNS name, you can mount a file system on your Amazon EC2 instance with the following command\.
 
@@ -15,7 +15,7 @@
 + **Mount target DNS name** – In December 2016, we introduced file system DNS names\. We continue to provide a DNS name for each Availability Zone mount target for backward compatibility\. The generic form of a mount target DNS name is as follows\.
 
   ```
-  availability-zone.file-system-id.efs.aws-region.amazonaws.com 
+  availability-zone.file-system-id.efs.aws-region.amazonaws.com
   ```
 
   In some cases, you might delete a mount target and then create a new one in the same Availability Zone\. In such a case, the DNS name for that new mount target in that Availability Zone is the same as the DNS name for the old mount target\.

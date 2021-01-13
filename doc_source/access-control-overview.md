@@ -28,7 +28,7 @@ These resources and subresources have unique Amazon Resource Names \(ARNs\) asso
 | File system | arn:aws:elasticfilesystem:region:account\-id:file\-system/file\-system\-id | 
 | Access point | arn:aws:elasticfilesystem:region:account\-id:access\-point/access\-point\-id | 
 
-Amazon EFS provides a set of operations to work with Amazon EFS resources\. For a list of available operations, see Amazon EFS [Actions](API_Operations.md) and [EFS Actions for NFS Clients](iam-access-control-nfs-efs.md#efs-filesystempolicy-actions)\.
+Amazon EFS provides a set of operations to work with Amazon EFS resources\. For a list of available operations, see Amazon EFS [Actions](API_Operations.md) and [EFS Actions for Clients](iam-access-control-nfs-efs.md#efs-filesystempolicy-actions)\.
 
 ## Understanding Resource Ownership<a name="access-control-owner"></a>
 
@@ -44,7 +44,7 @@ A *permissions policy* describes who has access to what\. The following section 
 **Note**  
 This section discusses using IAM in the context of Amazon EFS\. It doesn't provide detailed information about the IAM service\. For complete IAM documentation, see [What Is IAM?](https://docs.aws.amazon.com/IAM/latest/UserGuide/introduction.html) in the *IAM User Guide*\. For information about IAM policy syntax and descriptions, see [IAM Policy Reference](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies.html) in the *IAM User Guide*\.
 
-Policies attached to an IAM identity are referred to as *identity\-based* policies \(IAM polices\) and policies attached to a resource are referred to as *resource\-based* policies\. Amazon EFS supports both identity\-based policies and resource\-based policies\. 
+Policies attached to an IAM identity are referred to as *identity\-based* policies \(IAM policies\) and policies attached to a resource are referred to as *resource\-based* policies\. Amazon EFS supports both identity\-based policies and resource\-based policies\. 
 
 **Topics**
 + [Identity\-Based Policies \(IAM Policies\)](#access-control-manage-access-intro-iam-policies)
@@ -110,9 +110,14 @@ You can use file system policies to control API access and NFS client access to 
 }
 ```
 
+**Note**  
+Amazon EFS file system policies have a 20,000 character limit\.
+
+For more information about using EFS file system policies to control access to file system data, see [Using IAM to control file system data access](iam-access-control-nfs-efs.md)\.
+
 ## Specifying Policy Elements: Actions, Effects, and Principals<a name="access-control-specify-efs-actions"></a>
 
-For each Amazon EFS resource \(see [Amazon EFS Resources and Operations](#access-control-resources)\), the service defines a set of actions API operations \(see [Actions](API_Operations.md) and [EFS Actions for NFS Clients](iam-access-control-nfs-efs.md#efs-filesystempolicy-actions)\)that you can grant permissions for\. For the Amazon EFS file system resource, example actions are: `CreateFileSystem`, `DeleteFileSystem`, and `DescribeFileSystems`\. Performing an API operation can require permissions for more than one action\.
+For each Amazon EFS resource \(see [Amazon EFS Resources and Operations](#access-control-resources)\), the service defines a set of actions API operations \(see [Actions](API_Operations.md) and [EFS Actions for Clients](iam-access-control-nfs-efs.md#efs-filesystempolicy-actions)\) that you can grant permissions for\. For the Amazon EFS file system resource, example actions are: `CreateFileSystem`, `DeleteFileSystem`, and `DescribeFileSystems`\. Performing an API operation can require permissions for more than one action\.
 
 The following are the most basic policy elements:
 + **Resource** – In resource\-based policies \(file system policies\), the resource that the policy is attached to is the implicit resource\. For identity\-based policies, you use an Amazon Resource Name \(ARN\) to identify the resource to which the policy applies\. For more information, see [Amazon EFS Resources and Operations](#access-control-resources)\.
@@ -124,13 +129,13 @@ To learn more about IAM policy syntax and descriptions, see [IAM Policy Referenc
 
 For a table showing all of the Amazon EFS API actions, see [Amazon EFS API Permissions: Actions, Resources, and Conditions Reference](access-control-managing-permissions.md#efs-api-permissions-ref)\.
 
-For a table showing all of the Amazon EFS NFS client actions, see [Using IAM to Control NFS Access to Amazon EFS](iam-access-control-nfs-efs.md)\.
+For a table showing all of the Amazon EFS NFS client actions, see [Using IAM to control file system data access](iam-access-control-nfs-efs.md)\.
 
 ## Specifying Conditions in a Policy<a name="specifying-conditions"></a>
 
 When you grant permissions, you can use the IAM policy language to specify the conditions when a policy should take effect\. For more information about specifying conditions in a policy, see [IAM JSON Policy Elements: Condition](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_elements_condition.html) in the *IAM User Guide*\.
 
-There are both EFS\-specific and AWS\-wide condition keys that you can use as appropriate\. For a complete list of AWS\-wide keys, see [Available Keys for Conditions](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_elements.html#AvailableKeys) in the *IAM User Guide*\. For a complete list of EFS\-specific condition keys, see [EFS Condition Keys for NFS Clients](iam-access-control-nfs-efs.md#efs-condition-keys-for-nfs)\.
+There are both EFS\-specific and AWS\-wide condition keys that you can use as appropriate\. For a complete list of AWS\-wide keys, see [Available Keys for Conditions](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_elements.html#AvailableKeys) in the *IAM User Guide*\. For a complete list of EFS\-specific condition keys, see [EFS Condition Keys for Clients](iam-access-control-nfs-efs.md#efs-condition-keys-for-nfs)\.
 
 **Note**  
 The `aws:SourceIp` AWS\-wide condition can be used to control what hosts are able to use EFS actions like `CreateFileSystem`, `CreateMountTarget`, `DeleteMountTarget`, `DescribeMountTargetSecurityGroups`, or `ModifyMountTargetSecurityGroup` actions\. The `aws:SourceIp` condition cannot be used to control NFS access to EFS mount targets\. To control access to EFS mount targets, see [Controlling Network Access to Amazon EFS File Systems for NFS Clients](NFS-access-control-efs.md)\.

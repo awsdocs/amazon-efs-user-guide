@@ -19,10 +19,12 @@ Before you can launch and connect to an Amazon EC2 instance, you need to create 
 1. In **Step 2: Choose an Instance Type**, choose **Next: Configure Instance Details**\.
 
 1. In **Step 3: Configure Instance Details**, provide the following information: 
+   + Leave **Number of instances** at one\.
+   + Leave **Purchasing option** at the default setting\.
    + For **Network**, choose the entry for the same VPC that you noted when you created your EFS file system in [Step 1: Create Your Amazon EFS File System](gs-step-two-create-efs-resources.md)\.
    + For **Subnet**, choose a default subnet in any Availability Zone\.
-   + For **File systems**, make sure that the EFS file system that you created in [Step 1: Create Your Amazon EFS File System](gs-step-two-create-efs-resources.md) is selected\. The path shown next to the file system ID is the mount point that the EC2 instance will use, which you can change\. Choose **Add to user data** to mount the file system when the EC2 is launched\.
-   + Under **Advanced Details**, confirm that the user data is present in **User data**\.
+   + For **File systems**, make sure that the EFS file system that you created in [Step 1: Create Your Amazon EFS File System](gs-step-two-create-efs-resources.md) is selected\. The path shown next to the file system ID is the mount point that the EC2 instance will use, which you can change\.
+   + The **User data** automatically includes the commands for mounting your Amazon EFS file system\.
 
 1. Choose **Next: Add Storage**\.
 

@@ -26,6 +26,8 @@ Make sure you have the following information as you follow the steps in this sec
 **Note**  
 Amazon EFS doesn't require that your Amazon EC2 instance have either a public IP address or public DNS name\. The requirements listed preceding are just for this walkthrough example to ensure that you can connect by using SSH into the instance from outside the VPC\.
 
+
+
 ## Step 3\.2: Install the NFS Client on Your EC2 Instance<a name="wt1-connect-install-nfs-client"></a>
 
 You can connect to your EC2 instance from Windows or from a computer running Linux, or macOS X, or any other Unix variant\. 
@@ -101,6 +103,8 @@ Now you mount the file system on your EC2 instance\.
       drwxr-xr-x 2 root     root     4096 Dec 29 22:33 .
       drwx------ 4 ec2-user ec2-user 4096 Dec 29 22:54 ..
       ```
+
+      
 
    1. The root directory of a file system, upon creation, is owned by and is writable by the root user, so you need to change permissions to add files\.
 

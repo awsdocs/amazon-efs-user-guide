@@ -60,7 +60,7 @@ For example, if there are two backup nodes, one node backs up all of the even fi
 Consider the following when you're deciding whether to implement an Amazon EFS backup solution using AWS Data Pipeline:
 + This approach to EFS backup involves a number of AWS resources\. For this solution, you need to create the following:
   + One production file system and one backup file system that contains a full copy of the production file system\. The system also contains any incremental changes to your data over the backup rotation period\.
-  + Amazon EC2 instances, whose lifecycles are managed by AWS Data Pipeline, that perform restorations and scheduled backups\.
+  + Amazon EC2 instances, whose life cycles are managed by AWS Data Pipeline, that perform restorations and scheduled backups\.
   + One regularly scheduled AWS Data Pipeline for backing up data\.
   + An AWS Data Pipeline for restoring backups\.
 
@@ -101,7 +101,7 @@ In this walkthrough, you create separate security groups, file systems, and moun
 
 1. Next, create a backup Amazon EFS file system\. In this example, the file system ID is `fs-abcdefaa`\. For more information about creating file systems, see [Creating Amazon EFS file systems](creating-using-create-fs.md)\.
 
-1. Finally, create a mount point for the EFS backup file system and assume that it has the value of `10.0.1.75:/`\. For more information about creating mount targets, see [Creating mount targets](accessing-fs.md)\.
+1. Finally, create a mount point for the EFS backup file system and assume that it has the value of `10.0.1.75:/`\. For more information about creating mount targets, see [Creating and managing mount targets](accessing-fs.md)\.
 
 After you've completed this first step, your setup should look similar to the following example diagram\.
 

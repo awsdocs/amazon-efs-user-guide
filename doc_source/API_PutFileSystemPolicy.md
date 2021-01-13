@@ -1,6 +1,8 @@
 # PutFileSystemPolicy<a name="API_PutFileSystemPolicy"></a>
 
-Applies an Amazon EFS `FileSystemPolicy` to an Amazon EFS file system\. A file system policy is an IAM resource\-based policy and can contain multiple policy statements\. A file system always has exactly one file system policy, which can be the default policy or an explicit policy set or updated using this API operation\. When an explicit policy is set, it overrides the default policy\. For more information about the default file system policy, see [Default EFS File System Policy](https://docs.aws.amazon.com/efs/latest/ug/iam-access-control-nfs-efs.html#default-filesystempolicy)\. 
+Applies an Amazon EFS `FileSystemPolicy` to an Amazon EFS file system\. A file system policy is an IAM resource\-based policy and can contain multiple policy statements\. A file system always has exactly one file system policy, which can be the default policy or an explicit policy set or updated using this API operation\. EFS file system policies have a 20,000 character limit\. When an explicit policy is set, it overrides the default policy\. For more information about the default file system policy, see [Default EFS File System Policy](https://docs.aws.amazon.com/efs/latest/ug/iam-access-control-nfs-efs.html#default-filesystempolicy)\. 
+
+EFS file system policies have a 20,000 character limit\.
 
 This operation requires permissions for the `elasticfilesystem:PutFileSystemPolicy` action\.
 
@@ -36,7 +38,7 @@ Type: Boolean
 Required: No
 
  ** [Policy](#API_PutFileSystemPolicy_RequestSyntax) **   <a name="efs-PutFileSystemPolicy-request-Policy"></a>
-The `FileSystemPolicy` that you're creating\. Accepts a JSON formatted policy definition\. To find out more about the elements that make up a file system policy, see [EFS Resource\-based Policies](https://docs.aws.amazon.com/efs/latest/ug/access-control-overview.html#access-control-manage-access-intro-resource-policies)\.   
+The `FileSystemPolicy` that you're creating\. Accepts a JSON formatted policy definition\. EFS file system policies have a 20,000 character limit\. To find out more about the elements that make up a file system policy, see [EFS Resource\-based Policies](https://docs.aws.amazon.com/efs/latest/ug/access-control-overview.html#access-control-manage-access-intro-resource-policies)\.   
 Type: String  
 Required: Yes
 
@@ -86,7 +88,7 @@ HTTP Status Code: 500
 Returned if the `FileSystemPolicy` is is malformed or contains an error such as an invalid parameter value or a missing required parameter\. Returned in the case of a policy lockout safety check error\.  
 HTTP Status Code: 400
 
-## Example<a name="API_PutFileSystemPolicy_Examples"></a>
+## Examples<a name="API_PutFileSystemPolicy_Examples"></a>
 
 ### Create an EFS FileSystemPolicy<a name="API_PutFileSystemPolicy_Example_1"></a>
 
@@ -143,7 +145,7 @@ For more information about using this API in one of the language\-specific AWS S
 +  [AWS SDK for \.NET](https://docs.aws.amazon.com/goto/DotNetSDKV3/elasticfilesystem-2015-02-01/PutFileSystemPolicy) 
 +  [AWS SDK for C\+\+](https://docs.aws.amazon.com/goto/SdkForCpp/elasticfilesystem-2015-02-01/PutFileSystemPolicy) 
 +  [AWS SDK for Go](https://docs.aws.amazon.com/goto/SdkForGoV1/elasticfilesystem-2015-02-01/PutFileSystemPolicy) 
-+  [AWS SDK for Java](https://docs.aws.amazon.com/goto/SdkForJava/elasticfilesystem-2015-02-01/PutFileSystemPolicy) 
++  [AWS SDK for Java V2](https://docs.aws.amazon.com/goto/SdkForJavaV2/elasticfilesystem-2015-02-01/PutFileSystemPolicy) 
 +  [AWS SDK for JavaScript](https://docs.aws.amazon.com/goto/AWSJavaScriptSDK/elasticfilesystem-2015-02-01/PutFileSystemPolicy) 
 +  [AWS SDK for PHP V3](https://docs.aws.amazon.com/goto/SdkForPHPV3/elasticfilesystem-2015-02-01/PutFileSystemPolicy) 
 +  [AWS SDK for Python](https://docs.aws.amazon.com/goto/boto3/elasticfilesystem-2015-02-01/PutFileSystemPolicy) 

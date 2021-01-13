@@ -62,7 +62,8 @@ Type: [PosixUser](API_PosixUser.md) object
 Required: No
 
  ** [RootDirectory](#API_CreateAccessPoint_RequestSyntax) **   <a name="efs-CreateAccessPoint-request-RootDirectory"></a>
-Specifies the directory on the Amazon EFS file system that the access point exposes as the root directory of your file system to NFS clients using the access point\. The clients using the access point can only access the root directory and below\. If the `RootDirectory` > `Path` specified does not exist, EFS creates it and applies the `CreationInfo` settings when a client connects to an access point\. When specifying a `RootDirectory`, you need to provide the `Path`, and the `CreationInfo` is optional\.  
+Specifies the directory on the Amazon EFS file system that the access point exposes as the root directory of your file system to NFS clients using the access point\. The clients using the access point can only access the root directory and below\. If the `RootDirectory` > `Path` specified does not exist, EFS creates it and applies the `CreationInfo` settings when a client connects to an access point\. When specifying a `RootDirectory`, you need to provide the `Path`, and the `CreationInfo`\.  
+Amazon EFS creates a root directory only if you have provided the CreationInfo: OwnUid, OwnGID, and permissions for the directory\. If you do not provide this information, Amazon EFS does not create the root directory\. If the root directory does not exist, attempts to mount using the access point will fail\.  
 Type: [RootDirectory](API_RootDirectory.md) object  
 Required: No
 
@@ -192,7 +193,7 @@ For more information about using this API in one of the language\-specific AWS S
 +  [AWS SDK for \.NET](https://docs.aws.amazon.com/goto/DotNetSDKV3/elasticfilesystem-2015-02-01/CreateAccessPoint) 
 +  [AWS SDK for C\+\+](https://docs.aws.amazon.com/goto/SdkForCpp/elasticfilesystem-2015-02-01/CreateAccessPoint) 
 +  [AWS SDK for Go](https://docs.aws.amazon.com/goto/SdkForGoV1/elasticfilesystem-2015-02-01/CreateAccessPoint) 
-+  [AWS SDK for Java](https://docs.aws.amazon.com/goto/SdkForJava/elasticfilesystem-2015-02-01/CreateAccessPoint) 
++  [AWS SDK for Java V2](https://docs.aws.amazon.com/goto/SdkForJavaV2/elasticfilesystem-2015-02-01/CreateAccessPoint) 
 +  [AWS SDK for JavaScript](https://docs.aws.amazon.com/goto/AWSJavaScriptSDK/elasticfilesystem-2015-02-01/CreateAccessPoint) 
 +  [AWS SDK for PHP V3](https://docs.aws.amazon.com/goto/SdkForPHPV3/elasticfilesystem-2015-02-01/CreateAccessPoint) 
 +  [AWS SDK for Python](https://docs.aws.amazon.com/goto/boto3/elasticfilesystem-2015-02-01/CreateAccessPoint) 

@@ -34,7 +34,7 @@ $ /usr/bin/stat --format="%b*%B" . | bc
 
 ## Metering an Amazon EFS file system<a name="metered-sizes-fs"></a>
 
-The metered size of an Amazon EFS file system includes the sum of the sizes of all current objects in the standard and IA storage classes\. The size of each object is calculated from a representative sampling that represents the size of the object during the metered hour\. An example is the hour from 8 AM to 9 AM\.
+The metered size of an Amazon EFS file system includes the sum of the sizes of all current objects in the Standard and IA storage classes\. The size of each object is calculated from a representative sampling that represents the size of the object during the metered hour\. An example is the hour from 8 AM to 9 AM\.
 
 For example, an empty file contributes 6 KiB \(2 KiB metadata \+ 4 KiB data\) to the metered size of its file system\. Upon creation, a file system has a single empty root directory and therefore has a metered size of 6 KiB\.
 
@@ -56,3 +56,7 @@ The metered size of the Standard storage class is also used to determine your I/
 ### Metering for infrequent access<a name="metered-sizes-IA"></a>
 
 Infrequent Access \(IA\) storage is metered in 4 KiB increments\. IA file metadata \(2 KiB per file\) is always stored and metered in the Standard storage class\. Data access for IA storage is metered in 1 MiB increments\.
+
+## Metering provisioned throughput<a name="metering-provisioned-throughput"></a>
+
+ Customers only pay for the amount of time that Provisioned Throughput is enabled\. Provisioned Throughput is metered once every hour\. For metering when Provision Throughput is set for less than one hour, Amazon FSx calculates the time\-average using millisecond precision\. 

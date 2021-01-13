@@ -10,14 +10,14 @@ The service is designed to be highly scalable, highly available, and highly dura
 
 Amazon EFS provides file system access semantics, such as strong data consistency and file locking\. For more information, see [Data Consistency in Amazon EFS](how-it-works.md#consistency)\. Amazon EFS also enables you to control access to your file systems through Portable Operating System Interface \(POSIX\) permissions\. For more information, see [Security in Amazon EFS](security-considerations.md)\.
 
-Amazon EFS supports authentication, authorization, and encryption capabilities to help you meet your security and compliance requirements\. Amazon EFS supports two forms of encryption for file systems, encryption in transit and encryption at rest\. You can enable encryption at rest when creating an Amazon EFS file system\. If you do, all your data and metadata is encrypted\. You can enable encryption in transit when you mount the file system\. NFS client access to EFS is controlled by both AWS Identity and Access Management \(IAM\) policies and network security policies like security groups\. For more information, see [Data Encryption in EFS](encryption.md), [Identity and Access Management for Amazon EFS](auth-and-access-control.md), and [Controlling Network Access to Amazon EFS File Systems for NFS Clients](NFS-access-control-efs.md)\.
+Amazon EFS supports authentication, authorization, and encryption capabilities to help you meet your security and compliance requirements\. Amazon EFS supports two forms of encryption for file systems, encryption in transit and encryption at rest\. You can enable encryption at rest when creating an Amazon EFS file system\. If you do, all your data and metadata is encrypted\. You can enable encryption in transit when you mount the file system\. NFS client access to EFS is controlled by both AWS Identity and Access Management \(IAM\) policies and network security policies like security groups\. For more information, see [Data Encryption in Amazon EFS](encryption.md), [Identity and Access Management for Amazon EFS](auth-and-access-control.md), and [Controlling Network Access to Amazon EFS File Systems for NFS Clients](NFS-access-control-efs.md)\.
 
 Amazon EFS is designed to provide the throughput, IOPS, and low latency needed for a broad range of workloads\. With Amazon EFS, you can choose from two performance modes and two throughput modes:
 + The default General Purpose performance mode is ideal for latency\-sensitive use cases, like web serving environments, content management systems, home directories, and general file serving\. File systems in the Max I/O mode can scale to higher levels of aggregate throughput and operations per second with a tradeoff of slightly higher latencies for file metadata operations\. For more information, see [Performance Modes](performance.md#performancemodes)\.
 + Using the default Bursting Throughput mode, throughput scales as your file system grows\. Using Provisioned Throughput mode, you can specify the throughput of your file system independent of the amount of data stored\. For more information, see [Amazon EFS Performance](performance.md)\.
 
 **Note**  
-Using Amazon EFS with Microsoft Windows–based or macOS-based Amazon EC2 instances is not supported\.
+Using Amazon EFS with Microsoft Windows–based Amazon EC2 instances is not supported\.
 
 ## Are You a First\-Time User of Amazon EFS?<a name="welcome-first-time-user"></a>
 
@@ -35,3 +35,4 @@ If you want to learn more about Amazon EFS, the following topics discuss the ser
 + [Working with Amazon EFS resources](creating-using.md)
 + [Managing Amazon EFS file systems](managing.md)
 + [Amazon EFS API](api-reference.md)
+
