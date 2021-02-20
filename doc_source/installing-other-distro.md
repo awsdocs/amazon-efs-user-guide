@@ -25,7 +25,7 @@ After you clone the package, you can build and install amazon\-efs\-utils using 
 1. Clone `amazon-efs-utils` from GitHub using the following command\.
 
    ```
-   git clone https://github.com/aws/efs-utils
+   git clone --depth=1 https://github.com/aws/efs-utils
    ```
 
 1. Open a terminal on your client and navigate to the directory that contains the `amazon-efs-utils` package\.
