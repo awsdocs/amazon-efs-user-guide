@@ -4,9 +4,6 @@ You can create Amazon EFS access points using the AWS Management Console or the 
 
 The following procedures describe how to create an access point using the console and the AWS CLI\.
 
-**Note**  
-The new Amazon EFS management console is not available in the AWS GovCloud \(US\) region\. If you are accessing the Amazon EFS console in the AWS GovCloud \(US\) region, you can access the user documentation for that console experience here: [AWS Elastic File System User Guide](images/AmazonElasticFileSystem-UserGuide-console1.pdf)\.
-
 ## Creating an access point \(console\)<a name="console2-create-access-point"></a>
 
 1. Open the Amazon Elastic File System console at [https://console\.aws\.amazon\.com/efs/](https://console.aws.amazon.com/efs/)\.

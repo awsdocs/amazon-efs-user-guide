@@ -70,7 +70,7 @@ HTTP Status Code: 404
 
 ## Examples<a name="API_DescribeMountTargetSecurityGroups_Examples"></a>
 
-### Retrieve Security Groups in Effect for a File System<a name="API_DescribeMountTargetSecurityGroups_Example_1"></a>
+### Retrieve security groups in effect for a file system<a name="API_DescribeMountTargetSecurityGroups_Example_1"></a>
 
  The following example retrieves the security groups that are in effect for the network interface associated with a mount target\. 
 

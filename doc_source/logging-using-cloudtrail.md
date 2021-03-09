@@ -305,7 +305,7 @@ The following example shows a CloudTrail log entry that demonstrates a `NewClien
 
 ## Amazon EFS Log File Entries for Encrypted\-at\-Rest File Systems<a name="efs-encryption-cloudtrail"></a>
 
-Amazon EFS gives you the option of using encryption at rest, encryption in transit, or both, for your file systems\. For more information, see [Data Encryption in Amazon EFS](encryption.md)\.
+Amazon EFS gives you the option of using encryption at rest, encryption in transit, or both, for your file systems\. For more information, see [Data encryption in Amazon EFS](encryption.md)\.
 
 If you're using an encrypted\-at\-rest file system, the calls that Amazon EFS makes on your behalf appear in your AWS CloudTrail logs as coming from an AWS\-owned account\. If you see one of the following account IDs in your CloudTrail logs, depending on the AWS Region that your file system is created in, this ID is one owned by the Amazon EFS service\.
 
@@ -323,6 +323,7 @@ If you're using an encrypted\-at\-rest file system, the calls that Amazon EFS ma
 | Asia Pacific \(Singapore\) | 448676862907 | 
 | Asia Pacific \(Sydney\) | 288718191711 | 
 | Asia Pacific \(Tokyo\) | 620757817088 | 
+| Asia Pacific \(Osaka\) | 740446410266 | 
 | Canada \(Central\) | 838331228873 | 
 | China \(Beijing\) | 365623262523 | 
 | China \(Ningxia\) | 361049930386 | 

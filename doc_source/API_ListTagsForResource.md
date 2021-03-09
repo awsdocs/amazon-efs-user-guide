@@ -19,10 +19,14 @@ The request uses the following URI parameters\.
 Valid Range: Minimum value of 1\.
 
  ** [NextToken](#API_ListTagsForResource_RequestSyntax) **   <a name="efs-ListTagsForResource-request-NextToken"></a>
-You can use `NextToken` in a subsequent request to fetch the next page of access point descriptions if the response payload was paginated\.
+You can use `NextToken` in a subsequent request to fetch the next page of access point descriptions if the response payload was paginated\.  
+Length Constraints: Minimum length of 1\. Maximum length of 128\.  
+Pattern: `.+` 
 
  ** [ResourceId](#API_ListTagsForResource_RequestSyntax) **   <a name="efs-ListTagsForResource-request-ResourceId"></a>
 Specifies the EFS resource you want to retrieve tags for\. You can retrieve tags for EFS file systems and access points using this API endpoint\.  
+Length Constraints: Maximum length of 128\.  
+Pattern: `^(arn:aws[-a-z]*:elasticfilesystem:[0-9a-z-:]+:(access-point/fsap|file-system/fs)-[0-9a-f]{8,40}|fs(ap)?-[0-9a-f]{8,40})$`   
 Required: Yes
 
 ## Request Body<a name="API_ListTagsForResource_RequestBody"></a>
@@ -54,7 +58,9 @@ The following data is returned in JSON format by the service\.
 
  ** [NextToken](#API_ListTagsForResource_ResponseSyntax) **   <a name="efs-ListTagsForResource-response-NextToken"></a>
  `NextToken` is present if the response payload is paginated\. You can use `NextToken` in a subsequent request to fetch the next page of access point descriptions\.  
-Type: String
+Type: String  
+Length Constraints: Minimum length of 1\. Maximum length of 128\.  
+Pattern: `.+` 
 
  ** [Tags](#API_ListTagsForResource_ResponseSyntax) **   <a name="efs-ListTagsForResource-response-Tags"></a>
 An array of the tags for the specified EFS resource\.  

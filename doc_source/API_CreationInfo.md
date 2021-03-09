@@ -24,6 +24,7 @@ Required: Yes
  **Permissions**   <a name="efs-Type-CreationInfo-Permissions"></a>
 Specifies the POSIX permissions to apply to the `RootDirectory`, in the format of an octal number representing the file's mode bits\.  
 Type: String  
+Length Constraints: Minimum length of 3\. Maximum length of 4\.  
 Pattern: `^[0-7]{3,4}$`   
 Required: Yes
 

@@ -16,7 +16,7 @@ Follow the steps to set up an Apache web server on one EC2 instance to serve fil
    + EC2 instance
    + File system mounted on the EC2 instance
 
-   For instructions, see [Getting Started with Amazon Elastic File System](getting-started.md)\. As you follow the steps, write down the following:
+   For instructions, see [Getting started with Amazon Elastic File System](getting-started.md)\. As you follow the steps, write down the following:
    + Public DNS name of the EC2 instance\.
    + Public DNS name of the mount target created in the same Availability Zone where you launched the EC2 instance\.
 
@@ -109,7 +109,7 @@ This setup does not configure the EC2 instance to automatically start httpd \(we
 
 Follow the steps to serve the same content in your Amazon EFS file system from multiple EC2 instances for improved scalability or availability\.
 
-1. Follow the steps in the [Getting Started](getting-started.md) exercise so that you have an Amazon EFS file system created and tested\.
+1. Follow the steps in the [Getting started](getting-started.md) exercise so that you have an Amazon EFS file system created and tested\.
 **Important**  
 For this walkthrough, you don't use the EC2 instance that you created in the Getting Started exercise\. Instead, you launch new EC2 instances\. 
 
@@ -147,7 +147,7 @@ Don't add any EC2 instances\. Later, you create an Auto Scaling Group in which y
 
    1. Choose **Create launch configuration**\.
 
-   1. From **Quick Start**, select the latest version of the **Amazon Linux \(HVM\)** AMI\. This is same AMI you used in [Step 2: Create Your EC2 Resources and Launch Your EC2 Instance](gs-step-one-create-ec2-resources.md) of the Getting Started exercise\.
+   1. From **Quick Start**, select the latest version of the **Amazon Linux \(HVM\)** AMI\. This is same AMI you used in [Step 2: Create your EC2 resources and launch your EC2 instance](gs-step-one-create-ec2-resources.md) of the Getting Started exercise\.
 
    1. In the **Advanced** section, do the following:
       + For **IP Address Type**, choose **Assign a public IP address to every instance**\. 
@@ -157,7 +157,7 @@ Don't add any EC2 instances\. Later, you create an Auto Scaling Group in which y
 
         In the script, note the following:
         + The script installs the NFS client and the Apache web server\.
-        + The echo command writes the following entry in the `/etc/fstab` file identifying the file system's DNS name and subdirectory on which to mount it\. This entry ensures that the file gets mounted after each system reboot\. Note that the file system's DNS name is dynamically constructed\. For more information, see [Mounting on Amazon EC2 with a DNS Name](mounting-fs-mount-cmd-dns-name.md)\. 
+        + The echo command writes the following entry in the `/etc/fstab` file identifying the file system's DNS name and subdirectory on which to mount it\. This entry ensures that the file gets mounted after each system reboot\. Note that the file system's DNS name is dynamically constructed\. For more information, see [Mounting on Amazon EC2 with a DNS name](mounting-fs-mount-cmd-dns-name.md)\. 
 
           ```
           file-system-ID.efs.aws-region.amazonaws.com:/ /var/www/html/efs-mount-point   nfs4   defaults

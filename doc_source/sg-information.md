@@ -1,4 +1,4 @@
-# Security Considerations for Network Access<a name="sg-information"></a>
+# Security considerations for network access<a name="sg-information"></a>
 
 An NFS version 4\.1 \(NFSv4\.1\) client can only mount a file system if it can make a network connection to the NFS port of one of the file system's mount targets\. Similarly, an NFSv4\.1 client can only assert a user and group ID when accessing a file system if it can make this network connection\. 
 

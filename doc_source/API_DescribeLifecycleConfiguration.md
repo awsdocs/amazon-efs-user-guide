@@ -65,7 +65,7 @@ HTTP Status Code: 500
 
 ## Examples<a name="API_DescribeLifecycleConfiguration_Examples"></a>
 
-### Retrieve a Lifecycle Configuration for a File System<a name="API_DescribeLifecycleConfiguration_Example_1"></a>
+### Retrieve the lifecycle configuration for a file system<a name="API_DescribeLifecycleConfiguration_Example_1"></a>
 
 The following request retrieves the `LifecycleConfiguration` object for the specified file system\.
 

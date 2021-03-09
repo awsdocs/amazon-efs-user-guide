@@ -63,11 +63,11 @@ This example EFS file system policy has the following characteristics:
             "Principal": {
                 "AWS": "arn:aws:iam::111122223333:user/CarlosSalazar"
             },
-            "Action": [
-                
+            "Action": [                
                 "elasticfilesystem:ClientMount",
                 "elasticfilesystem:ClientWrite"
             ],
+            "Resource": "arn:aws:elasticfilesystem:us-east-2:111122223333:file-system/fs-12345678",
             "Condition": {
                 "Bool": {
                     "aws:SecureTransport": "true"
@@ -94,8 +94,8 @@ The following file system policy only grants `ClientMount`, or read\-only, permi
             },
             "Action": [
                 "elasticfilesystem:ClientMount"
-            ]
-            
+            ],
+            "Resource": "arn:aws:elasticfilesystem:us-east-2:111122223333:file-system/fs-12345678"            
         }
     ]
 }
@@ -116,11 +116,11 @@ You use an EFS access policy to provide an NFS client with an application\-speci
             "Effect": "Allow",
             "Principal": {"AWS": "arn:aws:iam::555555555555:role/EfsAccessPointFullAccess"},
             "Action": "elasticfilesystem:Client*",
+            "Resource": "arn:aws:elasticfilesystem:us-east-2:111122223333:file-system/fs-12345678",
             "Condition": { 
                 "StringEquals": {
                     "elasticfilesystem:AccessPointArn":"arn:aws:elasticfilesystem:us-east-2:555555555555:access-point/fsap-12345678" } 
-            }
-            
+            }            
         }
     ]
 }

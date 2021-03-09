@@ -26,6 +26,8 @@ The request uses the following URI parameters\.
 
  ** [ResourceId](#API_TagResource_RequestSyntax) **   <a name="efs-TagResource-request-ResourceId"></a>
 The ID specifying the EFS resource that you want to create a tag for\.   
+Length Constraints: Maximum length of 128\.  
+Pattern: `^(arn:aws[-a-z]*:elasticfilesystem:[0-9a-z-:]+:(access-point/fsap|file-system/fs)-[0-9a-f]{8,40}|fs(ap)?-[0-9a-f]{8,40})$`   
 Required: Yes
 
 ## Request Body<a name="API_TagResource_RequestBody"></a>

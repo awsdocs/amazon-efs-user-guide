@@ -40,6 +40,8 @@ Required: No
  ** [Policy](#API_PutFileSystemPolicy_RequestSyntax) **   <a name="efs-PutFileSystemPolicy-request-Policy"></a>
 The `FileSystemPolicy` that you're creating\. Accepts a JSON formatted policy definition\. EFS file system policies have a 20,000 character limit\. To find out more about the elements that make up a file system policy, see [EFS Resource\-based Policies](https://docs.aws.amazon.com/efs/latest/ug/access-control-overview.html#access-control-manage-access-intro-resource-policies)\.   
 Type: String  
+Length Constraints: Minimum length of 1\. Maximum length of 20000\.  
+Pattern: `[\s\S]+`   
 Required: Yes
 
 ## Response Syntax<a name="API_PutFileSystemPolicy_ResponseSyntax"></a>
@@ -68,7 +70,9 @@ Pattern: `^(arn:aws[-a-z]*:elasticfilesystem:[0-9a-z-:]+:file-system/fs-[0-9a-f]
 
  ** [Policy](#API_PutFileSystemPolicy_ResponseSyntax) **   <a name="efs-PutFileSystemPolicy-response-Policy"></a>
 The JSON formatted `FileSystemPolicy` for the EFS file system\.  
-Type: String
+Type: String  
+Length Constraints: Minimum length of 1\. Maximum length of 20000\.  
+Pattern: `[\s\S]+` 
 
 ## Errors<a name="API_PutFileSystemPolicy_Errors"></a>
 
@@ -132,7 +136,7 @@ PUT /2015-02-01/file-systems/fs-01234567/file-system-policy HTTP/1.1
             "Principal": {
                 "AWS": ["*"]
             },
-            "Resource":"arn:aws:elasticfilesystem:us-east-1:0123456789abc:file-system/fs-01234567"
+            "Resource":"arn:aws:elasticfilesystem:us-east-1:1111222233334444:file-system/fs-01234567"
         }
     ]
 }

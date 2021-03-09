@@ -1,21 +1,21 @@
-# EFS Mount Helper<a name="efs-mount-helper"></a>
+# Using the EFS mount helper<a name="efs-mount-helper"></a>
 
-The Amazon EFS mount helper simplifies mounting your file systems\. It includes the Amazon EFS recommended mount options by default\. Additionally, the mount helper has built\-in logging for troubleshooting purposes\. If you encounter an issue with your Amazon EFS file system, you can share these logs with AWS Support\. 
+The EFS mount helper helps you mount your EFS file systems on your EC2 Linux and Mac instances running the the supported distributions listed in [Overview](using-amazon-efs-utils.md#overview-amazon-efs-utils)\. 
 
-## How It Works<a name="efs-mount-helper-how"></a>
+The Amazon EFS mount helper simplifies mounting your file systems\. It includes the Amazon EFS recommended mount options by default\. Additionally, the mount helper has built\-in logging for troubleshooting purposes\. If you encounter an issue with your Amazon EFS file system, you can share these logs with AWS Support\. For more information about mounting your file system, see [Mounting EFS file systems](mounting-fs.md)\. 
+
+## How it works<a name="efs-mount-helper-how"></a>
 
 The mount helper defines a new network file system type, called `efs`, which is fully compatible with the standard `mount` command in Linux\. The mount helper also supports mounting an Amazon EFS file system at instance boot time automatically by using entries in the `/etc/fstab` configuration file\.
 
 **Warning**  
 Use the `_netdev` option, used to identify network file systems, when mounting your file system automatically\. If `_netdev` is missing, your EC2 instance might stop responding\. This result is because network file systems need to be initialized after the compute instance starts its networking\. For more information, see [Automatic Mounting Fails and the Instance Is Unresponsive](troubleshooting-efs-mounting.md#automount-fails)\.
 
-When encryption of data in transit is declared as a mount option for your Amazon EFS file system, the mount helper initializes a client stunnel process, and a supervisor process called `amazon-efs-mount-watchdog`\. Stunnel is a multipurpose network relay that is open\-source\. The client stunnel process listens on a local port for inbound traffic, and the mount helper redirects NFS client traffic to this local port\. The mount helper uses TLS version 1\.2 to communicate with your file system\.
+When encryption of data in transit is declared as a mount option for your Amazon EFS file system, the mount helper initializes a client stunnel process, and a supervisor process called `amazon-efs-mount-watchdog`\. The `amazon-efs-mount-watchdog` process monitors the health of TLS mounts, and is started automatically the first time an EFS file system is mounted over TLS\. This process is managed by either `upstart` or `systemd` depending on your Linux distribution, and by `launchd` on the macOS Big Sur distribution
 
-Using TLS requires certificates, and these certificates are signed by a trusted Amazon Certificate Authority\. For more information on how encryption works, see [Data Encryption in Amazon EFS](encryption.md)\.
+Stunnel is an open\-source multipurpose network relay\. The client stunnel process listens on a local port for inbound traffic, and the mount helper redirects NFS client traffic to this local port\. 
 
-## Using the EFS Mount Helper<a name="using-efs-mount-helper"></a>
-
-The mount helper helps you mount your EFS file systems on your Linux EC2 instances\. For more information, see [Mounting EFS file systems](mounting-fs.md)\. 
+The mount helper uses TLS version 1\.2 to communicate with your file system\. Using TLS requires certificates, and these certificates are signed by a trusted Amazon Certificate Authority\. For more information on how encryption works, see [Data encryption in Amazon EFS](encryption.md)\.
 
 ## Getting Support Logs<a name="mount-helper-logs"></a>
 
@@ -31,12 +31,12 @@ You can change the configuration of your logs in `/etc/amazon/efs/efs-utils.conf
 **Important**  
 You can enable logging for the stunnel process logs\. However, enabling the stunnel logs can use up a nontrivial amount of space on your file system\.
 
-## Using amazon\-efs\-utils with AWS Direct Connect and VPN<a name="amazon-efs-utils-direct"></a>
+## Using EFS mount helper with AWS Direct Connect and VPN<a name="amazon-efs-utils-direct"></a>
 
-You can mount your Amazon EFS file systems on your on\-premises data center servers when connected to your Amazon VPC with AWS Direct Connect\. Using amazon\-efs\-utils also makes mounting simpler with the mount helper and allows you to enable encryption of data in transit\. To see how to use amazon\-efs\-utils with AWS Direct Connect to mount Amazon EFS file systems onto on\-premises Linux clients, see [Walkthrough: Create and Mount a File System On\-Premises with AWS Direct Connect and VPN](efs-onpremises.md)\.
+You can mount your Amazon EFS file systems on your on\-premises data center servers when connected to your Amazon VPC with AWS Direct Connect\. Using the EFS mount helper also makes mounting onto on\-premises Linux clients simpler and allows you to enable encryption of data in transit\. For more information, see [Walkthrough: Create and Mount a File System On\-Premises with AWS Direct Connect and VPN](efs-onpremises.md)\.
 
 ## Related Topics<a name="amazon-efs-utils-related"></a>
 
 For more information on the Amazon EFS mount helper, see these related topics:
-+ [Data Encryption in Amazon EFS](encryption.md)
++ [Data encryption in Amazon EFS](encryption.md)
 + [Mounting EFS file systems](mounting-fs.md)

@@ -89,7 +89,7 @@ HTTP Status Code: 500
 
 ## Examples<a name="API_DescribeTags_Examples"></a>
 
-### Retrieve Tags Associated with a File System<a name="API_DescribeTags_Example_1"></a>
+### Retrieve tags associated with a file system<a name="API_DescribeTags_Example_1"></a>
 
  The following request retrieves tags \(key\-value pairs\) associated with the specified file system\. 
 

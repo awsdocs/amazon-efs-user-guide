@@ -1,8 +1,8 @@
-# Encrypting Data in Transit<a name="encryption-in-transit"></a>
+# Encrypting data in transit<a name="encryption-in-transit"></a>
 
 You can encrypt data in transit using an Amazon EFS file system, without needing to modify your applications\.
 
-## Encrypting Data in Transit with TLS<a name="encrypt-mount"></a>
+## Encrypting data in transit with TLS<a name="encrypt-mount"></a>
 
 Enabling encryption of data in transit for your Amazon EFS file system is done by enabling Transport Layer Security \(TLS\) when you mount your file system using the Amazon EFS mount helper\. For more information, see [Mounting with the EFS mount helper](mounting-fs-mount-helper.md)\.
 
@@ -18,7 +18,7 @@ When encryption of data in transit is declared as a mount option for your Amazon
    sudo mount -t efs  -o tls fs-12345678:/ /mnt/efs
    ```
 
-## How Encrypting in Transit Works<a name="how-encrypt-transit"></a>
+## How encrypting in transit works<a name="how-encrypt-transit"></a>
 
 To enable encryption of data in transit, you connect to Amazon EFS using TLS\. We recommend using the mount helper because it's the simplest option\.
 

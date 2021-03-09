@@ -1,17 +1,21 @@
 # Creating and managing mount targets<a name="accessing-fs"></a>
 
-After you create a file system, you can create mount targets\. Then you can mount the file system on EC2 instances, containers, and Lambda functions in your virtual private cloud \(VPC\), as shown in the following diagram\. 
+After you create an Amazon EFS file system, you can create mount targets\. For Amazon EFS file systems that use Standard storage classes, you can create a mount target in each Available Zone in an AWS region\. For EFS file systems that use One Zone stoarge classes, you can only create a single mount target in the same Availability Zone as the file system\. Then you can mount the file system on compute instances, including Amazon EC2, Amazon ECS, and AWS Lambda in your virtual private cloud \(VPC\)\.
 
-![\[Diagram showing 3 Availability Zones in a VPC, containing EC2 instances and mount targets, and a mounted file system.\]](http://docs.aws.amazon.com/efs/latest/ug/images/overview-flow.png)
+The following diagram shows an Amazon EFS file system that uses Standard storage classes, with mount targets created in all Availability Zones in the VPC\.
 
-For more information about creating a file system, see [Creating Amazon EFS file systems](creating-using-create-fs.md)\.
+![\[Diagram showing 3 Availability Zones in a VPC, containing EC2 instances and mount targets, and a mounted EFS regional file system.\]](http://docs.aws.amazon.com/efs/latest/ug/images/efs-ec2-how-it-works-Regional.png)
+
+The following diagram shows an Amazon EFS file system using One Zone storage classes, with a single mount target created in the same Availability Zone as the file system\.
+
+![\[Diagram showing 2 Availability Zones in a VPC, containing EC2 instances, only one mount target, and a mounted EFS One Zone file system.\]](http://docs.aws.amazon.com/efs/latest/ug/images/efs-ec2-how-it-works-OneZone.png)
 
 The mount target security group acts as a virtual firewall that controls the traffic\. For example, it determines which clients can access the file system\. This section explains the following:
 + Managing mount target security groups and enabling traffic\.
 + Mounting the file system on your clients\.
 + NFS\-level permissions considerations\. 
 
-  Initially, only the root user on the Amazon EC2 instance has read\-write\-execute permissions on the file system\. This topic discusses NFS\-level permissions and provides examples that show you how to grant permissions in common scenarios\. For more information, see [Working with Users, Groups, and Permissions at the Network File System \(NFS\) Level](accessing-fs-nfs-permissions.md)\.
+  Initially, only the root user on the Amazon EC2 instance has read\-write\-execute permissions on the file system\. This topic discusses NFS\-level permissions and provides examples that show you how to grant permissions in common scenarios\. For more information, see [Working with users, groups, and permissions at the Network File System \(NFS\) Level](accessing-fs-nfs-permissions.md)\.
 
 You can create mount targets for a file system using the AWS Management Console, AWS CLI, or programmatically using the AWS SDKs\. When using the console, you can create mount targets when you first create a file system or after the file system is created\.
 
@@ -19,10 +23,7 @@ For instructions to create mount targets using the Amazon EFS console when creat
 
 ## Managing mount targets using the Amazon EFS console<a name="console2-create-mount-target-existing-fs"></a>
 
-Use the following procedure to add or modify mount targets for an existing Amazon EFS file system\.
-
-**Note**  
-The new Amazon EFS management console is not available in the AWS GovCloud \(US\) region\. If you are accessing the Amazon EFS console in the AWS GovCloud \(US\) region, you can access the user documentation for that console experience here: [ AWS Elastic File System User Guide](images/AmazonElasticFileSystem-UserGuide-console1.pdf)\.
+Use the following procedure to add or modify mount targets for an existing Amazon EFS file system\. 
 
 **To manage mount targets on an Amazon EFS file system \(console\)**
 
@@ -39,12 +40,14 @@ The new Amazon EFS management console is not available in the AWS GovCloud \(US\
 ![\[Amazon EFS console file system details, network tab.\]](http://docs.aws.amazon.com/efs/latest/ug/images/console2-avalability-zone-efs.png)
 
    On this page, for existing mount targets, you can add and remove security groups, or delete the mount target\. You can also create new mount targets\.
+**Note**  
+For file systems that use One Zone storage classes, you can only create a single mount target that is in the same Availability Zone as the file system\. 
    + To remove a security group from a mount target, choose **X** next to the security group ID\.
    + To add a security group to a mount target, choose **Select security groups** to display a list of available security groups\. Or, enter a security group ID in the search field at the top of the list\.
    + To queue a mount target for deletion, choose **Remove**\.
 **Note**  
 Before deleting a mount target, first unmount the file system\.
-   + To add a mount target, choose **Add mount target**\. This is available only if mount targets do not already exist in each Availability Zone for the Region\.
+   + To add a mount target, choose **Add mount target**\. This is available only for file systems that use Standard storage classes, and if mount targets do not already exist in each Availability Zone for the AWS Region\.
 
 1. Choose **Save** to save any changes\.<a name="change-vpc-console2"></a>
 
@@ -79,6 +82,9 @@ To change the VPC for a file system's network configuration, you must delete all
 1. Choose **Save** to implement the VPC and mount target changes\.
 
 ## Managing mount targets using the AWS CLI<a name="create-mount-target-cli"></a>
+
+**Note**  
+For file systems that use One Zone storage classes, you can only create a single mount target that is in the same Availability Zone as the file system\. 
 
 **To create a mount target \(CLI\)**
 + To create a mount target, use the `create-mount-target` CLI command \(corresponding operation is [CreateMountTarget](API_CreateMountTarget.md)\), as shown following\.

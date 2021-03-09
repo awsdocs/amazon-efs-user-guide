@@ -56,7 +56,7 @@ You can attach policies to IAM identities to control access to the EFS API or to
 
 For more information about using IAM to delegate permissions, see [Access Management](https://docs.aws.amazon.com/IAM/latest/UserGuide/access.html) in the *IAM User Guide*\.
 
-The following is an example policy that allows a user to perform the `CreateFileSystem` action for your AWS account\.
+The following is an example policy that provides the EFS and EC2 permissions required for a user to perform the `CreateFileSystem` action for your AWS account\.
 
 ```
 {
@@ -88,7 +88,7 @@ For more information about using identity\-based policies with Amazon EFS, see [
 
 ### Resource\-Based Policies<a name="access-control-manage-access-intro-resource-policies"></a>
 
-You can use file system policies to control API access and NFS client access to the file system\. Amazon EFS supports a resource\-based policy for file systems, called a `FileSystemPolicy`\. Using an EFS `FileSystemPolicy` you can specify who has access to the file system and what actions they can perform on it\. Using file system policies provides you an easy way to control access to your file systems, and lets you grant usage permission to other accounts on a per\-file system basis\. The following file system policy grants `ClientMount`, or read\-only, permissions to all AWS IAM principals\. 
+You can use file system policies to control API access and NFS client access to the file system\. Amazon EFS supports a resource\-based policy for file systems, called a `FileSystemPolicy`\. Using an EFS `FileSystemPolicy` you can specify who has access to the file system and what actions they can perform on it\. Using file system policies provides you an easy way to control access to your file systems, and lets you grant usage permission to other accounts on a per\-file system basis\. The following file system policy grants `ClientMount`, or read\-only, permissions to the `EfsReadOnly` IAM role\. 
 
 ```
 {
@@ -99,7 +99,7 @@ You can use file system policies to control API access and NFS client access to 
             "Sid": "efs-statement-example02",
             "Effect": "Allow",
             "Principal": {
-                "AWS": "*"
+                "AWS": "arn:aws:iam::111122223333:role/EfsReadOnly"
             },
             "Action": [
                 "elasticfilesystem:ClientMount"
@@ -138,4 +138,4 @@ When you grant permissions, you can use the IAM policy language to specify the c
 There are both EFS\-specific and AWS\-wide condition keys that you can use as appropriate\. For a complete list of AWS\-wide keys, see [Available Keys for Conditions](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_elements.html#AvailableKeys) in the *IAM User Guide*\. For a complete list of EFS\-specific condition keys, see [EFS Condition Keys for Clients](iam-access-control-nfs-efs.md#efs-condition-keys-for-nfs)\.
 
 **Note**  
-The `aws:SourceIp` AWS\-wide condition can be used to control what hosts are able to use EFS actions like `CreateFileSystem`, `CreateMountTarget`, `DeleteMountTarget`, `DescribeMountTargetSecurityGroups`, or `ModifyMountTargetSecurityGroup` actions\. The `aws:SourceIp` condition cannot be used to control NFS access to EFS mount targets\. To control access to EFS mount targets, see [Controlling Network Access to Amazon EFS File Systems for NFS Clients](NFS-access-control-efs.md)\.
+The `aws:SourceIp` AWS\-wide condition can be used to control what hosts are able to use EFS actions like `CreateFileSystem`, `CreateMountTarget`, `DeleteMountTarget`, `DescribeMountTargetSecurityGroups`, or `ModifyMountTargetSecurityGroup` actions\. The `aws:SourceIp` condition can be used to control NFS access to EFS mount targets, but it is not the recommended approach due to security considerations\. To control access to EFS mount targets, see [Controlling network access to Amazon EFS file systems for NFS clients](NFS-access-control-efs.md)\.

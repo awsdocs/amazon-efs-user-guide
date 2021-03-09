@@ -15,7 +15,9 @@ GET /2015-02-01/mount-targets?AccessPointId=AccessPointId&FileSystemId=FileSyste
 The request uses the following URI parameters\.
 
  ** [AccessPointId](#API_DescribeMountTargets_RequestSyntax) **   <a name="efs-DescribeMountTargets-request-AccessPointId"></a>
-\(Optional\) The ID of the access point whose mount targets that you want to list\. It must be included in your request if a `FileSystemId` or `MountTargetId` is not included in your request\. Accepts either an access point ID or ARN as input\.
+\(Optional\) The ID of the access point whose mount targets that you want to list\. It must be included in your request if a `FileSystemId` or `MountTargetId` is not included in your request\. Accepts either an access point ID or ARN as input\.  
+Length Constraints: Maximum length of 128\.  
+Pattern: `^(arn:aws[-a-z]*:elasticfilesystem:[0-9a-z-:]+:access-point/fsap-[0-9a-f]{8,40}|fsap-[0-9a-f]{8,40})$` 
 
  ** [FileSystemId](#API_DescribeMountTargets_RequestSyntax) **   <a name="efs-DescribeMountTargets-request-FileSystemId"></a>
 \(Optional\) ID of the file system whose mount targets you want to list \(String\)\. It must be included in your request if an `AccessPointId` or `MountTargetId` is not included\. Accepts either a file system ID or ARN as input\.  
@@ -112,7 +114,7 @@ HTTP Status Code: 404
 
 ## Examples<a name="API_DescribeMountTargets_Examples"></a>
 
-### Retrieve Descriptions of Mount Targets Created for a File System<a name="API_DescribeMountTargets_Example_1"></a>
+### Retrieve descriptions of mount targets created for a file system<a name="API_DescribeMountTargets_Example_1"></a>
 
 The following request retrieves descriptions of mount targets created for the specified file system\. 
 

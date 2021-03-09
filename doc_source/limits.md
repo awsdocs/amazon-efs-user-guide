@@ -1,35 +1,32 @@
-# Amazon EFS Quotas and Limits<a name="limits"></a>
+# Amazon EFS quotas and limits<a name="limits"></a>
 
 Following, you can find out about quotas when working with Amazon EFS\.
 
 **Topics**
-+ [Amazon EFS Quotas That You Can Increase](#soft-limits)
-+ [Resource Quotas](#limits-efs-resources-per-account-per-region)
-+ [Quotas for NFS Clients](#limits-client-specific)
-+ [Quotas for Amazon EFS File Systems](#limits-fs-specific)
-+ [Unsupported NFSv4\.0 and 4\.1 Features](#nfs4-unsupported-features)
-+ [Additional Considerations](#limits-additional-considerations)
++ [Amazon EFS quotas that you can increase](#soft-limits)
++ [Resource quotas](#limits-efs-resources-per-account-per-region)
++ [Quotas for NFS clients](#limits-client-specific)
++ [Quotas for Amazon EFS file systems](#limits-fs-specific)
++ [Unsupported NFSv4\.0 and 4\.1 features](#nfs4-unsupported-features)
++ [Additional considerations](#limits-additional-considerations)
++ [Availability Zones that support EFS single Availability Zone storage classes](#one-zone-azs)
 
-## Amazon EFS Quotas That You Can Increase<a name="soft-limits"></a>
+## Amazon EFS quotas that you can increase<a name="soft-limits"></a>
 
 Service Quotas is an AWS service that helps you manage your quotas, or limits, from one location\. You can view all Amazon EFS limit values in the [Service Quotas console](https://console.aws.amazon.com/servicequotas/home?region=us-east-1#!/dashboard)\. You can also request a quota increase for the number of EFS file systems in an AWS Region using the Service Quotas console\. 
 
- You can also request an increase to the following Amazon EFS quotas by contacting AWS Support\. To learn more, see [Requesting a Quota Increase](#request-limit-increase)\. The Amazon EFS service team reviews each request individually\. 
+ You can also request an increase to the following Amazon EFS quotas by contacting AWS Support\. To learn more, see [Requesting a quota increase](#request-limit-increase)\. The Amazon EFS service team reviews each request individually\. 
 
 
-| Resource | Default Quota | 
+| Resource | Default quota | 
 | --- | --- | 
 | Number of file systems for each customer account in an AWS Region | 1,000 | 
 
-These are the default throughput quotas for Bursting and Provisioned throughput modes\. For more information about these different modes, see [Amazon EFS Performance](performance.md)\.
+These are the default throughput quotas for Bursting and Provisioned throughput modes\. For more information about these different modes, see [Amazon EFS performance](performance.md)\.
 
+[\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/efs/latest/ug/limits.html)
 
-| Resource | Default Quota | 
-| --- | --- | 
-| Total bursting throughput for all connected clients |  US East \(Ohio\) Region – 3 GB/s US East \(N\. Virginia\) Region – 3 GB/s US West \(N\. California\) Region – 1 GB/s US West \(Oregon\) Region – 3 GB/s Africa \(Cape Town\) Region – 1 GB/s Asia Pacific \(Hong Kong\) Region – 1 GB/s Asia Pacific \(Mumbai\) Region – 1 GB/s Asia Pacific \(Seoul\) Region – 1 GB/s Asia Pacific \(Singapore\) Region – 1 GB/s Asia Pacific \(Sydney\) Region – 3 GB/s Asia Pacific \(Tokyo\) Region – 1 GB/s Canada \(Central\) Region – 1 GB/s China \(Beijing\) Region – 1 GB/s China \(Ningxia\) Region – 1 GB/s Europe \(Frankfurt\) Region – 1 GB/s Europe \(Ireland\) Region – 3 GB/s Europe \(London\) Region – 1 GB/s Europe \(Milan\) Region – 1 GB/s Europe \(Paris\) Region – 1 GB/s Europe \(Stockholm\) Region – 1 GB/s Middle East \(Bahrain\) Region – 1 GB/s South America \(São Paulo\) Region – 1 GB/s  | 
-| Total provisioned throughput for all connected clients |  All AWS Regions – 1 GB/s  | 
-
-### Requesting a Quota Increase<a name="request-limit-increase"></a>
+### Requesting a quota increase<a name="request-limit-increase"></a>
 
 To request an increase for these quotas through AWS Support, take the following steps\. The Amazon EFS team reviews each quota increase request\. 
 
@@ -41,7 +38,7 @@ To request an increase for these quotas through AWS Support, take the following 
 
 1. For **Limit Type**, choose the type of limit to increase\. Fill in the necessary fields in the form, and then choose your preferred method of contact\.
 
-## Resource Quotas<a name="limits-efs-resources-per-account-per-region"></a>
+## Resource quotas<a name="limits-efs-resources-per-account-per-region"></a>
 
 Following are the quotas on Amazon EFS resources for each customer account in an AWS Region\. 
 
@@ -59,17 +56,17 @@ Following are the quotas on Amazon EFS resources for each customer account in an
 **Note**  
 Clients can also connect to mount targets in another account or VPC\. For more information, see [Mounting EFS file systems from another account or VPC](manage-fs-access-vpc-peering.md)\.
 
-## Quotas for NFS Clients<a name="limits-client-specific"></a>
+## Quotas for NFS clients<a name="limits-client-specific"></a>
 
 The following quotas for NFS clients apply, assuming a Linux NFSv4\.1 client:
-+ The maximum throughput you can drive for each NFS client is 500 MB/s\. NFS client throughput is calculated as the total number of bytes that are sent and received, with a minimum NFS request size of 4KB\.
++ The maximum throughput you can drive for each NFS client is 500 MB/s\. NFS client throughput is calculated as the total number of bytes that are sent and received, with a minimum NFS request size of 4KB \(after applying a 1/3 metering rate for read requests\)\.
 + Up to 128 active user accounts for each client can have files open at the same time\. Each user account represents one local user logged in to the instance\. A user account that is logged in multiple times counts as one active user\.
 + Up to 32,768 files open at the same time on the instance\. Listing directory contents doesn't count as opening a file\.
 + Each unique mount on the client can acquire up to a total of 8,192 locks across a maximum of 256 unique file\-process pairs\. For example, a single process can acquire one or more locks on 256 separate files\. As another example, eight processes can each acquire one or more locks on 32 files\.
-+ When connecting to Amazon EFS, NFS clients located on\-premises or in another AWS Region can observe lower throughput than when connecting to EFS from the same AWS Region\. This effect is because of increased network latency\. Network latency of 1 ms or less is required to achieve maximum per\-client throughput\. Use the DataSync data migration service when migrating large datasets from on\-premises NFS servers to EFS\. For more information, see [On\-Premises Performance Considerations](performance-onpremises.md)\.
++ When connecting to Amazon EFS, NFS clients located on\-premises or in another AWS Region can observe lower throughput than when connecting to EFS from the same AWS Region\. This effect is because of increased network latency\. Network latency of 1 ms or less is required to achieve maximum per\-client throughput\. Use the DataSync data migration service when migrating large datasets from on\-premises NFS servers to EFS\. For more information, see [On\-premises performance considerations](performance-onpremises.md)\.
 + Using Amazon EFS with Microsoft Windows isn't supported\.
 
-## Quotas for Amazon EFS File Systems<a name="limits-fs-specific"></a>
+## Quotas for Amazon EFS file systems<a name="limits-fs-specific"></a>
 
 The following quotas are specific to Amazon EFS file systems:
 + Maximum name length: 255 bytes\.
@@ -81,7 +78,7 @@ The following quotas are specific to Amazon EFS file systems:
 + Amazon EFS file system policies have a 20,000 character limit\.
 + In General Purpose mode, there is a limit of 35,000 file operations per second\. Operations that read data or metadata consume one file operation, operations that write data or update metadata consume five file operations\. This means that a file system can support 35,000 read operations per second, or 7,000 write operations, or some combination of the two\. For example, 20,000 read operations and 3,000 write operations \(20,000 reads x 1 file operation per read \+ 3,000 writes x 5 file operations per write = 35,000 file operations\)\. File operations are counted from all connecting clients\.
 
-## Unsupported NFSv4\.0 and 4\.1 Features<a name="nfs4-unsupported-features"></a>
+## Unsupported NFSv4\.0 and 4\.1 features<a name="nfs4-unsupported-features"></a>
 
 Although Amazon Elastic File System doesn't support NFSv2, or NFSv3, Amazon EFS supports both NFSv4\.1 and NFSv4\.0, except for the following features:
 + pNFS
@@ -110,9 +107,13 @@ Although Amazon Elastic File System doesn't support NFSv2, or NFSv3, Amazon EFS 
 
    An attempt to set these attributes results in an `NFS4ERR_ATTRNOTSUPP` error that is sent back to the client\. 
 
-## Additional Considerations<a name="limits-additional-considerations"></a>
+## Additional considerations<a name="limits-additional-considerations"></a>
 
 In addition, note the following:
 + For a list of AWS Regions where you can create Amazon EFS file systems, see the [AWS General Reference](https://docs.aws.amazon.com/general/latest/gr/rande.html#elasticfilesystem-region)\.
-+ You mount your file system from EC2 instances in your VPC by using the mount targets you create in the VPC\. You can also mount your file system on your EC2\-Classic instances, which are not in the VPC\. However, you must first link them to your VPC by using ClassicLink\. For more information about using ClassicLink, see [ClassicLink](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/vpc-classiclink.html) in the *Amazon EC2 User Guide for Linux Instances*\.
++ You mount your file system from Amazon EC2 instances in your Amazon VPC by using the mount targets you create in the VPC\. You can also mount your file system on your EC2\-Classic instances, which are not in the VPC\. However, you must first link them to your VPC by using ClassicLink\. For more information about using ClassicLink, see [ClassicLink](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/vpc-classiclink.html) in the *Amazon EC2 User Guide for Linux Instances*\.
 + You can mount an Amazon EFS file system from on\-premises data center servers using AWS Direct Connect and VPN\.
+
+## Availability Zones that support EFS single Availability Zone storage classes<a name="one-zone-azs"></a>
+
+The following AWS Availability Zones support Amazon EFS One Zone–Standard and EFS One Zone–IA single Availability Zone storage classes\.

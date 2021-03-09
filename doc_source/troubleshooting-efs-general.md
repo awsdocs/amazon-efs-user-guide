@@ -1,6 +1,6 @@
 # Troubleshooting Amazon EFS: General Issues<a name="troubleshooting-efs-general"></a>
 
-Use this information to troubleshoot general Amazon EFS issues\. For information about performance, see [Amazon EFS Performance](performance.md)\.
+Use this information to troubleshoot general Amazon EFS issues\. For information about performance, see [Amazon EFS performance](performance.md)\.
 
 In general, if you encounter issues with Amazon EFS that you have trouble resolving, confirm that you're using a recent Linux kernel\. If you are using an enterprise Linux distribution, we recommend the following:
 + Amazon Linux 2

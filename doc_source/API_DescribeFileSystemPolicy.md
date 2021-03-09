@@ -50,7 +50,9 @@ Pattern: `^(arn:aws[-a-z]*:elasticfilesystem:[0-9a-z-:]+:file-system/fs-[0-9a-f]
 
  ** [Policy](#API_DescribeFileSystemPolicy_ResponseSyntax) **   <a name="efs-DescribeFileSystemPolicy-response-Policy"></a>
 The JSON formatted `FileSystemPolicy` for the EFS file system\.  
-Type: String
+Type: String  
+Length Constraints: Minimum length of 1\. Maximum length of 20000\.  
+Pattern: `[\s\S]+` 
 
 ## Errors<a name="API_DescribeFileSystemPolicy_Errors"></a>
 

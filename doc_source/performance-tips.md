@@ -1,4 +1,4 @@
-# Amazon EFS Performance Tips<a name="performance-tips"></a>
+# Amazon EFS performance tips<a name="performance-tips"></a>
 
 When using Amazon EFS, keep the following performance tips in mind:
 + **Average I/O Size** – The distributed nature of Amazon EFS enables high levels of availability, durability, and scalability\. This distributed architecture results in a small latency overhead for each file operation\. Due to this per\-operation latency, overall throughput generally increases as the average I/O size increases, because the overhead is amortized over a larger amount of data\.
@@ -12,4 +12,4 @@ You might want to increase the size of the read and write buffers for your NFS c
 + **Amazon EC2 Instances** – Applications that perform a large number of read and write operations likely need more memory or computing capacity than applications that don't\. When launching your Amazon EC2 instances, choose instance types that have the amount of these resources that your application needs\. The performance characteristics of Amazon EFS file systems don't depend on the use of EBS\-optimized instances\.
 + **Encryption** – Amazon EFS supports two forms of encryption, encryption in transit and encryption at rest\. This option is for encryption at rest\. Choosing to enable either or both types of encryption for your file system has a minimal effect on I/O latency and throughput\.
 
-For information about the Amazon EFS limits for total file system throughput, per\-instance throughput, and operations per second in General Purpose performance mode, see [Amazon EFS Quotas and Limits](limits.md)\.
+For information about the Amazon EFS limits for total file system throughput, per\-instance throughput, and operations per second in General Purpose performance mode, see [Amazon EFS quotas and limits](limits.md)\.

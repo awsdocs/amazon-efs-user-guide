@@ -1,6 +1,6 @@
 # CreateAccessPoint<a name="API_CreateAccessPoint"></a>
 
-Creates an EFS access point\. An access point is an application\-specific view into an EFS file system that applies an operating system user and group, and a file system path, to any file system request made through the access point\. The operating system user and group override any identity information provided by the NFS client\. The file system path is exposed as the access point's root directory\. Applications using the access point can only access data in its own directory and below\. To learn more, see [Mounting a File System Using EFS Access Points](https://docs.aws.amazon.com/efs/latest/ug/efs-access-points.html)\.
+Creates an EFS access point\. An access point is an application\-specific view into an EFS file system that applies an operating system user and group, and a file system path, to any file system request made through the access point\. The operating system user and group override any identity information provided by the NFS client\. The file system path is exposed as the access point's root directory\. Applications using the access point can only access data in its own directory and below\. To learn more, see [Mounting a file system using EFS access points](https://docs.aws.amazon.com/efs/latest/ug/efs-access-points.html)\.
 
 This operation requires permissions for the `elasticfilesystem:CreateAccessPoint` action\.
 
@@ -47,6 +47,7 @@ The request accepts the following data in JSON format\.
 A string of up to 64 ASCII characters that Amazon EFS uses to ensure idempotent creation\.  
 Type: String  
 Length Constraints: Minimum length of 1\. Maximum length of 64\.  
+Pattern: `.+`   
 Required: Yes
 
  ** [FileSystemId](#API_CreateAccessPoint_RequestSyntax) **   <a name="efs-CreateAccessPoint-request-FileSystemId"></a>
@@ -116,16 +117,21 @@ The following data is returned in JSON format by the service\.
 
  ** [AccessPointArn](#API_CreateAccessPoint_ResponseSyntax) **   <a name="efs-CreateAccessPoint-response-AccessPointArn"></a>
 The unique Amazon Resource Name \(ARN\) associated with the access point\.  
-Type: String
+Type: String  
+Length Constraints: Maximum length of 128\.  
+Pattern: `^arn:aws[-a-z]*:elasticfilesystem:[0-9a-z-:]+:access-point/fsap-[0-9a-f]{8,40}$` 
 
  ** [AccessPointId](#API_CreateAccessPoint_ResponseSyntax) **   <a name="efs-CreateAccessPoint-response-AccessPointId"></a>
 The ID of the access point, assigned by Amazon EFS\.  
-Type: String
+Type: String  
+Length Constraints: Maximum length of 128\.  
+Pattern: `^(arn:aws[-a-z]*:elasticfilesystem:[0-9a-z-:]+:access-point/fsap-[0-9a-f]{8,40}|fsap-[0-9a-f]{8,40})$` 
 
  ** [ClientToken](#API_CreateAccessPoint_ResponseSyntax) **   <a name="efs-CreateAccessPoint-response-ClientToken"></a>
 The opaque string specified in the request to ensure idempotent creation\.  
 Type: String  
-Length Constraints: Minimum length of 1\. Maximum length of 64\.
+Length Constraints: Minimum length of 1\. Maximum length of 64\.  
+Pattern: `.+` 
 
  ** [FileSystemId](#API_CreateAccessPoint_ResponseSyntax) **   <a name="efs-CreateAccessPoint-response-FileSystemId"></a>
 The ID of the EFS file system that the access point applies to\.  
@@ -136,7 +142,7 @@ Pattern: `^(arn:aws[-a-z]*:elasticfilesystem:[0-9a-z-:]+:file-system/fs-[0-9a-f]
  ** [LifeCycleState](#API_CreateAccessPoint_ResponseSyntax) **   <a name="efs-CreateAccessPoint-response-LifeCycleState"></a>
 Identifies the lifecycle phase of the access point\.  
 Type: String  
-Valid Values:` creating | available | updating | deleting | deleted` 
+Valid Values:` creating | available | updating | deleting | deleted | error` 
 
  ** [Name](#API_CreateAccessPoint_ResponseSyntax) **   <a name="efs-CreateAccessPoint-response-Name"></a>
 The name of the access point\. This is the value of the `Name` tag\.  

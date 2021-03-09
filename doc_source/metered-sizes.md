@@ -51,7 +51,7 @@ You can see this metered size for an Amazon EFS file system in the following way
   Use the `df` command and not the `du` command\. Don't use the `du` command on the root of the file system for storage metering purposes\. The results don't provide full data\.
 
 **Note**  
-The metered size of the Standard storage class is also used to determine your I/O throughput baseline and burst rates\. For more information, see [Throughput Scaling with Bursting Mode](performance.md#bursting)\. 
+The metered size of the Standard storage class is also used to determine your I/O throughput baseline and burst rates\. For more information, see [Throughput scaling with bursting mode](performance.md#bursting)\. 
 
 ### Metering for infrequent access<a name="metered-sizes-IA"></a>
 
@@ -59,4 +59,6 @@ Infrequent Access \(IA\) storage is metered in 4 KiB increments\. IA file metada
 
 ## Metering provisioned throughput<a name="metering-provisioned-throughput"></a>
 
- Customers only pay for the amount of time that Provisioned Throughput is enabled\. Provisioned Throughput is metered once every hour\. For metering when Provision Throughput is set for less than one hour, Amazon FSx calculates the time\-average using millisecond precision\. 
+ Customers only pay for the amount of time that Provisioned Throughput is enabled\. Provisioned Throughput is metered once every hour\. For metering when Provision Throughput is set for less than one hour, Amazon EFS calculates the time\-average using millisecond precision\. 
+
+Amazon EFS file systems meter the throughput for read requests at one\-third the rate of the other file system I/O operations\. For example, if you are driving 30 MB/s of both read throughput and write throughput, the read portion counts as 10 MB/s of effective throughput, the write portion counts as 30 MB/s, and the combined metered throughput is 40 MB/s\. This combined throughput adjusted for consumption rates is reflected in the `MeteredIOBytes` CloudWatch metric\.

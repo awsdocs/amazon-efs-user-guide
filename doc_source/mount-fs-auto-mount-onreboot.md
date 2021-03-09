@@ -6,13 +6,19 @@ You can configure an Amazon EC2 instance to automatically mount an EFS file syst
 
 Both of these methods use the EFS mount helper to mount the file system\. The mount helper is part of the `amazon-efs-utils` set of tools\. 
 
-The `amazon-efs-utils` tools are available for installation on Amazon Linux and Amazon Linux 2 Amazon Machine Images \(AMIs\)\. For more information about `amazon-efs-utils`, see [Using the amazon\-efs\-utils Tools](using-amazon-efs-utils.md)\. If you are using another Linux distribution, such as Red Hat Enterprise Linux \(RHEL\), manually build and install `amazon-efs-utils`\. For more information, see [Installing the amazon\-efs\-utils package on other Linux distributions](installing-other-distro.md)\.
+The `amazon-efs-utils` tools are available for installation on Amazon Linux and Amazon Linux 2 Amazon Machine Images \(AMIs\)\. For more information about `amazon-efs-utils`, see [Using the amazon\-efs\-utils Tools](using-amazon-efs-utils.md)\. If you are using another Linux distribution, such as Red Hat Enterprise Linux \(RHEL\), manually build and install `amazon-efs-utils`\. For more information, see [Installing the Amazon EFS client on other Linux distributions](installing-amazon-efs-utils.md#installing-other-distro)\.
+
+**Note**  
+Amazon EFS file systems do not support automatic mounting on Amazon EC2 Mac instances running macOS Big Sur\.
 
 ## Configuring EC2 instances to mount an EFS file system at instance launch<a name="mount-fs-auto-mount-on-creation"></a>
 
 When you create a new Amazon EC2 Linux instance using the EC2 Launch Instance Wizard, you can configure it to mount your Amazon EFS file system automatically\. The EC2 instance mounts the file system automatically the instance first launched and also whenever it restarts\.
 
-Before you perform this procedure, make sure that you have created your Amazon EFS file system\. For more information, see [Step 1: Create Your Amazon EFS File System](gs-step-two-create-efs-resources.md) in the Amazon EFS Getting Started exercise\.
+**Note**  
+Amazon EFS file systems do not support mounting on Amazon EC2 Mac instances running macOS Big Sur at instance launch\.
+
+Before you perform this procedure, make sure that you have created your Amazon EFS file system\. For more information, see [Step 1: Create your Amazon EFS file system](gs-step-two-create-efs-resources.md) in the Amazon EFS Getting Started exercise\.
 
 **Note**  
 You can't use Amazon EFS with Microsoft Windows–based Amazon EC2 instances\.
@@ -59,12 +65,15 @@ Your EC2 instance is now configured to mount the EFS file system at launch and w
 
 ## Using /etc/fstab to mount automatically<a name="mount-fs-auto-mount-update-fstab"></a>
 
-To automatically remount your Amazon EFS file system directory when the Amazon EC2 instance reboots, use the file `/etc/fstab`\. The `/etc/fstab` file contains information about file systems\. The command `mount -a`, which runs during instance startup, mounts the file systems listed in `/etc/fstab`\. This procedure uses the EFS mount helper to mount the file system and needs to be installed on the EC2 instance\. 
-
-The mount helper is part of the `amazon-efs-utils` set of tools, which is available for installation on Amazon Linux and Amazon Linux 2 Amazon Machine Images \(AMIs\)\. For more information about installing `amazon-efs-utils` on an Amazon Linux or Amazon Linux 2 AMI, see [Installing the amazon\-efs\-utils Package on Amazon Linux](installing-amazon-efs-utils.md)\. If you are using another Linux distribution, such as Red Hat Enterprise Linux \(RHEL\), manually build and install `amazon-efs-utils`\. For more information, see [Installing the amazon\-efs\-utils package on other Linux distributions](installing-other-distro.md)\.
+To automatically remount your Amazon EFS file system directory when the Amazon EC2 instance reboots, use the file `/etc/fstab`\. The `/etc/fstab` file contains information about file systems\. The command `mount -a`, which runs during instance startup, mounts the file systems listed in `/etc/fstab`\. This procedure uses the EFS mount helper to mount the file system which needs to be installed on the EC2 instance\. 
 
 **Note**  
-Before you can update the `/etc/fstab` file of your EC2 instance, make sure that you already created your Amazon EFS file system\. For more information, see [Step 1: Create Your Amazon EFS File System](gs-step-two-create-efs-resources.md) in the Amazon EFS Getting Started exercise\.
+Amazon EFS file systems do not support automatic mounting using `/etc/fstab` on Amazon EC2 Mac instances running macOS Big Sur\.
+
+The mount helper is part of the `amazon-efs-utils` set of tools, which is available for installation on Amazon Linux and Amazon Linux 2 Amazon Machine Images \(AMIs\)\. For more information about installing `amazon-efs-utils` on an Amazon Linux or Amazon Linux 2 AMI, see [Manually installing the Amazon EFS client](installing-amazon-efs-utils.md)\. If you are using another Linux distribution, such as Red Hat Enterprise Linux \(RHEL\), manually build and install `amazon-efs-utils`\. For more information, see [Installing the Amazon EFS client on other Linux distributions](installing-amazon-efs-utils.md#installing-other-distro)\.
+
+**Note**  
+Before you can update the `/etc/fstab` file of your EC2 instance, make sure that you already created your Amazon EFS file system\. For more information, see [Step 1: Create your Amazon EFS file system](gs-step-two-create-efs-resources.md) in the Amazon EFS Getting Started exercise\.
 
 **To update the /etc/fstab file on your EC2 instance**
 

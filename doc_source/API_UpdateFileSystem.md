@@ -29,13 +29,13 @@ Required: Yes
 The request accepts the following data in JSON format\.
 
  ** [ProvisionedThroughputInMibps](#API_UpdateFileSystem_RequestSyntax) **   <a name="efs-UpdateFileSystem-request-ProvisionedThroughputInMibps"></a>
-\(Optional\) The amount of throughput, in MiB/s, that you want to provision for your file system\. Valid values are 1\-1024\. Required if `ThroughputMode` is changed to `provisioned` on update\. If you're not updating the amount of provisioned throughput for your file system, you don't need to provide this value in your request\.   
+\(Optional\) Sets the amount of provisioned throughput, in MiB/s, for the file system\. Valid values are 1\-1024\. If you are changing the throughput mode to provisioned, you must also provide the amount of provisioned throughput\. Required if `ThroughputMode` is changed to `provisioned` on update\.  
 Type: Double  
 Valid Range: Minimum value of 1\.0\.  
 Required: No
 
  ** [ThroughputMode](#API_UpdateFileSystem_RequestSyntax) **   <a name="efs-UpdateFileSystem-request-ThroughputMode"></a>
-\(Optional\) The throughput mode that you want your file system to use\. If you're not updating your throughput mode, you don't need to provide this value in your request\. If you are changing the `ThroughputMode` to `provisioned`, you must also set a value for `ProvisionedThroughputInMibps`\.  
+\(Optional\) Updates the file system's throughput mode\. If you're not updating your throughput mode, you don't need to provide this value in your request\. If you are changing the `ThroughputMode` to `provisioned`, you must also set a value for `ProvisionedThroughputInMibps`\.  
 Type: String  
 Valid Values:` bursting | provisioned`   
 Required: No
@@ -47,6 +47,8 @@ HTTP/1.1 202
 Content-type: application/json
 
 {
+   "AvailabilityZoneId": "string",
+   "AvailabilityZoneName": "string",
    "CreationTime": number,
    "CreationToken": "string",
    "Encrypted": boolean,
@@ -81,6 +83,16 @@ If the action is successful, the service sends back an HTTP 202 response\.
 
 The following data is returned in JSON format by the service\.
 
+ ** [AvailabilityZoneId](#API_UpdateFileSystem_ResponseSyntax) **   <a name="efs-UpdateFileSystem-response-AvailabilityZoneId"></a>
+The unique and consistent identifier of the Availability Zone in which the file system's One Zone storage classes exist\. For example, `use1-az1` is an Availability Zone ID for the us\-east\-1 AWS Region, and it has the same location in every AWS account\.  
+Type: String
+
+ ** [AvailabilityZoneName](#API_UpdateFileSystem_ResponseSyntax) **   <a name="efs-UpdateFileSystem-response-AvailabilityZoneName"></a>
+Describes the AWS Availability Zone in which the file system is located, and is valid only for file systems using One Zone storage classes\. For more information, see [Using EFS storage classes](https://docs.aws.amazon.com/efs/latest/ug/storage-classes.html) in the *Amazon EFS User Guide*\.  
+Type: String  
+Length Constraints: Minimum length of 1\. Maximum length of 64\.  
+Pattern: `.+` 
+
  ** [CreationTime](#API_UpdateFileSystem_ResponseSyntax) **   <a name="efs-UpdateFileSystem-response-CreationTime"></a>
 The time that the file system was created, in seconds \(since 1970\-01\-01T00:00:00Z\)\.  
 Type: Timestamp
@@ -114,7 +126,7 @@ Pattern: `^([0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}|alias/[
  ** [LifeCycleState](#API_UpdateFileSystem_ResponseSyntax) **   <a name="efs-UpdateFileSystem-response-LifeCycleState"></a>
 The lifecycle phase of the file system\.  
 Type: String  
-Valid Values:` creating | available | updating | deleting | deleted` 
+Valid Values:` creating | available | updating | deleting | deleted | error` 
 
  ** [Name](#API_UpdateFileSystem_ResponseSyntax) **   <a name="efs-UpdateFileSystem-response-Name"></a>
 You can add tags to a file system, including a `Name` tag\. For more information, see [CreateFileSystem](API_CreateFileSystem.md)\. If the file system has a `Name` tag, Amazon EFS returns the value in this field\.   
@@ -139,7 +151,7 @@ Type: String
 Valid Values:` generalPurpose | maxIO` 
 
  ** [ProvisionedThroughputInMibps](#API_UpdateFileSystem_ResponseSyntax) **   <a name="efs-UpdateFileSystem-response-ProvisionedThroughputInMibps"></a>
-The throughput, measured in MiB/s, that you want to provision for a file system\. Valid values are 1\-1024\. Required if `ThroughputMode` is set to `provisioned`\. The limit on throughput is 1024 MiB/s\. You can get these limits increased by contacting AWS Support\. For more information, see [Amazon EFS Limits That You Can Increase](https://docs.aws.amazon.com/efs/latest/ug/limits.html#soft-limits) in the *Amazon EFS User Guide\.*   
+The amount of provisioned throughput, measured in MiB/s, for the file system\. Valid for file systems using `ThroughputMode` set to `provisioned`\.  
 Type: Double  
 Valid Range: Minimum value of 1\.0\.
 
@@ -152,7 +164,7 @@ The tags associated with the file system, presented as an array of `Tag` objects
 Type: Array of [Tag](API_Tag.md) objects
 
  ** [ThroughputMode](#API_UpdateFileSystem_ResponseSyntax) **   <a name="efs-UpdateFileSystem-response-ThroughputMode"></a>
-The throughput mode for a file system\. There are two throughput modes to choose from for your file system: `bursting` and `provisioned`\. If you set `ThroughputMode` to `provisioned`, you must also set a value for `ProvisionedThroughPutInMibps`\. You can decrease your file system's throughput in Provisioned Throughput mode or change between the throughput modes as long as it’s been more than 24 hours since the last decrease or throughput mode change\.   
+Displays the file system's throughput mode\. For more information, see [Throughput modes](https://docs.aws.amazon.com/efs/latest/ug/performance.html#throughput-modes) in the *Amazon EFS User Guide*\.   
 Type: String  
 Valid Values:` bursting | provisioned` 
 
@@ -171,7 +183,7 @@ Returned if the file system's lifecycle state is not "available"\.
 HTTP Status Code: 409
 
  **InsufficientThroughputCapacity**   
-Returned if there's not enough capacity to provision additional throughput\. This value might be returned when you try to create a file system in provisioned throughput mode, when you attempt to increase the provisioned throughput of an existing file system, or when you attempt to change an existing file system from bursting to provisioned throughput mode\.  
+Returned if there's not enough capacity to provision additional throughput\. This value might be returned when you try to create a file system in provisioned throughput mode, when you attempt to increase the provisioned throughput of an existing file system, or when you attempt to change an existing file system from bursting to provisioned throughput mode\. Try again later\.  
 HTTP Status Code: 503
 
  **InternalServerError**   

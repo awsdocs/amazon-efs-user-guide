@@ -2,14 +2,20 @@
 
 Creates a mount target for a file system\. You can then mount the file system on EC2 instances by using the mount target\.
 
-You can create one mount target in each Availability Zone in your VPC\. All EC2 instances in a VPC within a given Availability Zone share a single mount target for a given file system\. If you have multiple subnets in an Availability Zone, you create a mount target in one of the subnets\. EC2 instances do not need to be in the same subnet as the mount target in order to access their file system\. For more information, see [Amazon EFS: How it Works](https://docs.aws.amazon.com/efs/latest/ug/how-it-works.html)\. 
+You can create one mount target in each Availability Zone in your VPC\. All EC2 instances in a VPC within a given Availability Zone share a single mount target for a given file system\. If you have multiple subnets in an Availability Zone, you create a mount target in one of the subnets\. EC2 instances do not need to be in the same subnet as the mount target in order to access their file system\.
 
-In the request, you also specify a file system ID for which you are creating the mount target and the file system's lifecycle state must be `available`\. For more information, see [DescribeFileSystems](API_DescribeFileSystems.md)\.
+You can create only one mount target for an EFS file system using One Zone storage classes\. You must create that mount target in the same Availability Zone in which the file system is located\. Use the `AvailabilityZoneName` and `AvailabiltyZoneId` properties in the [DescribeFileSystems](API_DescribeFileSystems.md) response object to get this information\. Use the `subnetId` associated with the file system's Availability Zone when creating the mount target\.
 
-In the request, you also provide a subnet ID, which determines the following:
-+ VPC in which Amazon EFS creates the mount target
-+ Availability Zone in which Amazon EFS creates the mount target
-+ IP address range from which Amazon EFS selects the IP address of the mount target \(if you don't specify an IP address in the request\)
+For more information, see [Amazon EFS: How it Works](https://docs.aws.amazon.com/efs/latest/ug/how-it-works.html)\. 
+
+To create a mount target for a file system, the file system's lifecycle state must be `available`\. For more information, see [DescribeFileSystems](API_DescribeFileSystems.md)\.
+
+In the request, provide the following:
++ The file system ID for which you are creating the mount target\.
++ A subnet ID, which determines the following:
+  + The VPC in which Amazon EFS creates the mount target
+  + The Availability Zone in which Amazon EFS creates the mount target
+  + The IP address range from which Amazon EFS selects the IP address of the mount target \(if you don't specify an IP address in the request\)
 
 After creating the mount target, Amazon EFS returns a response that includes, a `MountTargetId` and an `IpAddress`\. You use this IP address when mounting the file system in an EC2 instance\. You can also use the mount target's DNS name when mounting the file system\. The EC2 instance on which you mount the file system by using the mount target can resolve the mount target's DNS name to its IP address\. For more information, see [How it Works: Implementation Overview](https://docs.aws.amazon.com/efs/latest/ug/how-it-works.html#how-it-works-implementation)\. 
 
@@ -85,7 +91,7 @@ Pattern: `^sg-[0-9a-f]{8,40}`
 Required: No
 
  ** [SubnetId](#API_CreateMountTarget_RequestSyntax) **   <a name="efs-CreateMountTarget-request-SubnetId"></a>
-The ID of the subnet to add the mount target in\.  
+The ID of the subnet to add the mount target in\. For file systems that use One Zone storage classes, use the subnet that is associated with the file system's Availability Zone\.  
 Type: String  
 Length Constraints: Minimum length of 15\. Maximum length of 47\.  
 Pattern: `^subnet-[0-9a-f]{8,40}$`   
@@ -118,12 +124,14 @@ If the action is successful, the service sends back an HTTP 200 response\.
 The following data is returned in JSON format by the service\.
 
  ** [AvailabilityZoneId](#API_CreateMountTarget_ResponseSyntax) **   <a name="efs-CreateMountTarget-response-AvailabilityZoneId"></a>
-The unique and consistent identifier of the Availability Zone \(AZ\) that the mount target resides in\. For example, `use1-az1` is an AZ ID for the us\-east\-1 Region and it has the same location in every AWS account\.  
+The unique and consistent identifier of the Availability Zone that the mount target resides in\. For example, `use1-az1` is an AZ ID for the us\-east\-1 Region and it has the same location in every AWS account\.  
 Type: String
 
  ** [AvailabilityZoneName](#API_CreateMountTarget_ResponseSyntax) **   <a name="efs-CreateMountTarget-response-AvailabilityZoneName"></a>
-The name of the Availability Zone \(AZ\) that the mount target resides in\. AZs are independently mapped to names for each AWS account\. For example, the Availability Zone `us-east-1a` for your AWS account might not be the same location as `us-east-1a` for another AWS account\.  
-Type: String
+The name of the Availability Zone in which the mount target is located\. Availability Zones are independently mapped to names for each AWS account\. For example, the Availability Zone `us-east-1a` for your AWS account might not be the same location as `us-east-1a` for another AWS account\.  
+Type: String  
+Length Constraints: Minimum length of 1\. Maximum length of 64\.  
+Pattern: `.+` 
 
  ** [FileSystemId](#API_CreateMountTarget_ResponseSyntax) **   <a name="efs-CreateMountTarget-response-FileSystemId"></a>
 The ID of the file system for which the mount target is intended\.  
@@ -140,7 +148,7 @@ Pattern: `^[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}$`
  ** [LifeCycleState](#API_CreateMountTarget_ResponseSyntax) **   <a name="efs-CreateMountTarget-response-LifeCycleState"></a>
 Lifecycle state of the mount target\.  
 Type: String  
-Valid Values:` creating | available | updating | deleting | deleted` 
+Valid Values:` creating | available | updating | deleting | deleted | error` 
 
  ** [MountTargetId](#API_CreateMountTarget_ResponseSyntax) **   <a name="efs-CreateMountTarget-response-MountTargetId"></a>
 System\-assigned mount target ID\.  
@@ -165,10 +173,14 @@ Length Constraints: Minimum length of 15\. Maximum length of 47\.
 Pattern: `^subnet-[0-9a-f]{8,40}$` 
 
  ** [VpcId](#API_CreateMountTarget_ResponseSyntax) **   <a name="efs-CreateMountTarget-response-VpcId"></a>
-The Virtual Private Cloud \(VPC\) ID that the mount target is configured in\.  
+The virtual private cloud \(VPC\) ID that the mount target is configured in\.  
 Type: String
 
 ## Errors<a name="API_CreateMountTarget_Errors"></a>
+
+ **AvailabilityZonesMismatch**   
+Returned if the Availability Zone that was specified for a mount target is different from the Availability Zone that was specified for One Zone storage classes\. For more information, see [Regional and One Zone storage redundancy](https://docs.aws.amazon.com/efs/latest/ug/availability-durability.html)\.  
+HTTP Status Code: 400
 
  **BadRequest**   
 Returned if the request is malformed or contains an error such as an invalid parameter value or a missing required parameter\.  
@@ -215,12 +227,12 @@ Returned if there is no subnet with ID `SubnetId` provided in the request\.
 HTTP Status Code: 400
 
  **UnsupportedAvailabilityZone**   
-  
+Returned if the requested Amazon EFS functionality is not available in the specified Availability Zone\.  
 HTTP Status Code: 400
 
 ## Examples<a name="API_CreateMountTarget_Examples"></a>
 
-### Add a Mount Target to a File System<a name="API_CreateMountTarget_Example_1"></a>
+### Add a mount target to a file system<a name="API_CreateMountTarget_Example_1"></a>
 
  The following request creates a mount target for a file system\. The request specifies values for only the required `FileSystemId` and `SubnetId` parameters\. The request does not provide the optional `IpAddress` and `SecurityGroups` parameters\. For `IpAddress`, the operation uses one of the available IP addresses in the specified subnet\. And, the operation uses the default security group associated with the VPC for the `SecurityGroups`\.
 
@@ -256,7 +268,7 @@ Content-Length: 252
 }
 ```
 
-### Add a Mount Target to a File System<a name="API_CreateMountTarget_Example_2"></a>
+### Add a mount target to a file system<a name="API_CreateMountTarget_Example_2"></a>
 
  The following request specifies all the request parameters to create a mount target\.
 

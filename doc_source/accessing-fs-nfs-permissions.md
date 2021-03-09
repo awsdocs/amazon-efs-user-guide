@@ -1,8 +1,8 @@
-# Working with Users, Groups, and Permissions at the Network File System \(NFS\) Level<a name="accessing-fs-nfs-permissions"></a>
+# Working with users, groups, and permissions at the Network File System \(NFS\) Level<a name="accessing-fs-nfs-permissions"></a>
 
 **Topics**
-+ [File and Directory Permissions](user-and-group-permissions.md)
-+ [Example Amazon EFS File System Use Cases and Permissions](#accessing-fs-nfs-permissions-ex-scenarios)
++ [File and directory permissions](user-and-group-permissions.md)
++ [Example Amazon EFS file system use cases and permissions](#accessing-fs-nfs-permissions-ex-scenarios)
 + [User and Group ID Permissions for Files and Directories Within a File System](#accessing-fs-nfs-permissions-uid-gid)
 + [No Root Squashing](#accessing-fs-nfs-permissions-root-user)
 + [Permissions Caching](#accessing-fs-nfs-permissions-caching)
@@ -17,7 +17,7 @@ Additionally, on Unix\-style systems, users and groups are mapped to numeric ide
 
 Following, you can find examples of permissions and a discussion about NFS permissions considerations for Amazon EFS\. 
 
-## Example Amazon EFS File System Use Cases and Permissions<a name="accessing-fs-nfs-permissions-ex-scenarios"></a>
+## Example Amazon EFS file system use cases and permissions<a name="accessing-fs-nfs-permissions-ex-scenarios"></a>
 
 After you create an Amazon EFS file system and mount targets for the file system in your VPC, you can mount the remote file system locally on your Amazon EC2 instance\. The `mount` command can mount any directory in the file system\. However, when you first create the file system, there is only one root directory at `/`\. 
 

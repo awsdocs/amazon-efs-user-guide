@@ -16,6 +16,8 @@ The request uses the following URI parameters\.
 
  ** [AccessPointId](#API_DeleteAccessPoint_RequestSyntax) **   <a name="efs-DeleteAccessPoint-request-AccessPointId"></a>
 The ID of the access point that you want to delete\.  
+Length Constraints: Maximum length of 128\.  
+Pattern: `^(arn:aws[-a-z]*:elasticfilesystem:[0-9a-z-:]+:access-point/fsap-[0-9a-f]{8,40}|fsap-[0-9a-f]{8,40})$`   
 Required: Yes
 
 ## Request Body<a name="API_DeleteAccessPoint_RequestBody"></a>
