@@ -88,7 +88,7 @@ In some cases useful info is found in syslog - try dmesg | tail or so.
 ```
 
 **Action to take**  
-If you receive this message, install the `nfs-utils` \(or `nfs-common` on Ubuntu\) package\. For more information, see [Installing the NFS Client](mounting-fs-old.md#mounting-fs-install-nfsclient)\.
+If you receive this message, install the `nfs-utils` \(or `nfs-common` on Ubuntu\) package\. For more information, see [Installing the NFS client](mounting-fs-old.md#mounting-fs-install-nfsclient)\.
 
 ## Mount Command Fails with "incorrect mount option" Error Message<a name="mount-error-incorrect-mount"></a>
 
@@ -105,7 +105,7 @@ This error message most likely means that your Linux distribution doesn't suppor
 $ grep CONFIG_NFS_V4_1 /boot/config*
 ```
 
-If the preceding command returns `# CONFIG_NFS_V4_1 is not set`, NFSv4\.1 is not supported on your Linux distribution\. For a list of the Amazon Machine Images \(AMIs\) for Amazon Elastic Compute Cloud \(Amazon EC2\) that support NFSv4\.1, see [NFS Support](mounting-fs-old.md#mounting-fs-nfs-info)\. 
+If the preceding command returns `# CONFIG_NFS_V4_1 is not set`, NFSv4\.1 is not supported on your Linux distribution\. For a list of the Amazon Machine Images \(AMIs\) for Amazon Elastic Compute Cloud \(Amazon EC2\) that support NFSv4\.1, see [NFS support](mounting-fs-old.md#mounting-fs-nfs-info)\. 
 
 ## File System Mount Fails Immediately After File System Creation<a name="mount-fails-propegation"></a>
 
@@ -150,7 +150,7 @@ $ 
 
 **Action to take**
 
-Check your VPC configuration\. If you are using a custom VPC, make sure that DNS settings are enabled\. For more information, see [Using DNS with Your VPC](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-dns.html) in the *Amazon VPC User Guide*\. 
+Check your VPC configuration\. If you are using a custom VPC, make sure that DNS settings are enabled\. For more information, see [Using DNS with Your VPC](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-dns.html) in the *Amazon VPC User Guide*\. Also, file system and mount target DNS names are not resolvable from outside the VPC where they exist\.
 
 To specify a DNS name in the `mount` command, you must do the following:
 + Ensure that there's an Amazon EFS mount target in the same Availability Zone as the Amazon EC2 instance\.

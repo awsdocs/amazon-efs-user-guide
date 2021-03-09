@@ -1,6 +1,6 @@
 # Troubleshooting File Operation Errors<a name="troubleshooting-efs-fileop-errors"></a>
 
-When you access Amazon EFS file systems, certain limits on the files in the file system apply\. Exceeding these limits causes file operation errors\. For more information on client and file\-based limits in Amazon EFS, see [Quotas for NFS Clients](limits.md#limits-client-specific)\. Following, you can find some common file operation errors and the limits associated with each error\.
+When you access Amazon EFS file systems, certain limits on the files in the file system apply\. Exceeding these limits causes file operation errors\. For more information on client and file\-based limits in Amazon EFS, see [Quotas for NFS clients](limits.md#limits-client-specific)\. Following, you can find some common file operation errors and the limits associated with each error\.
 
 **Topics**
 + [Command Fails with “Disk quota exceeded” Error](#diskquotaerror)

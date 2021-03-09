@@ -16,10 +16,12 @@ The request uses the following URI parameters\.
 
  ** [ResourceId](#API_UntagResource_RequestSyntax) **   <a name="efs-UntagResource-request-ResourceId"></a>
 Specifies the EFS resource that you want to remove tags from\.  
+Length Constraints: Maximum length of 128\.  
+Pattern: `^(arn:aws[-a-z]*:elasticfilesystem:[0-9a-z-:]+:(access-point/fsap|file-system/fs)-[0-9a-f]{8,40}|fs(ap)?-[0-9a-f]{8,40})$`   
 Required: Yes
 
  ** [TagKeys](#API_UntagResource_RequestSyntax) **   <a name="efs-UntagResource-request-TagKeys"></a>
-The keys of the key:value tag pairs that you want to remove from the specified EFS resource\.  
+The keys of the key\-value tag pairs that you want to remove from the specified EFS resource\.  
 Array Members: Minimum number of 1 item\. Maximum number of 50 items\.  
 Length Constraints: Minimum length of 1\. Maximum length of 128\.  
 Pattern: `^(?![aA]{1}[wW]{1}[sS]{1}:)([\p{L}\p{Z}\p{N}_.:/=+\-@]+)$`   

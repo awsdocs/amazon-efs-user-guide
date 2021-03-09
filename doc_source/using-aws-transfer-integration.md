@@ -5,14 +5,14 @@ AWS Transfer Family is a fully managed AWS service that you can use to transfer 
 + File Transfer Protocol Secure \(FTPS\) \(AWS Transfer for FTPS\)
 + File Transfer Protocol \(FTP\) \(AWS Transfer for FTP\)
 
-Using Transfer Family, you can securely enable third parties such as your vendors, partners or customers access to your files over the supported protocols at scale globally, without needing to manage any infrastructure\. Additionally, you can now easily access your EFS file systems from Windows, Mac and Linux environments using SFTP, FTPS, and FTP clients, expanding the accessibility of your data beyond NFS clients and access points, to users across multiple environments\.
+Using Transfer Family, you can securely enable third parties such as your vendors, partners, or customers access to your files over the supported protocols at scale globally, without needing to manage any infrastructure\. Additionally, you can now easily access your EFS file systems from Windows, macOS, and Linux environments using SFTP, FTPS, and FTP clients\. This helps expand the accessibility of your data beyond NFS clients and access points, to users across multiple environments\.
 
-Using Transfer Family to transfer data in Amazon EFS file systems is accounted for in the same manner as other client usage\. For more information, see [Throughput Modes](performance.md#throughput-modes) and [Amazon EFS Quotas and Limits](limits.md)\.
+Using Transfer Family to transfer data in Amazon EFS file systems is accounted for in the same manner as other client usage\. For more information, see [Throughput modes](performance.md#throughput-modes) and [Amazon EFS quotas and limits](limits.md)\.
 
-To learn more about AWS Transfer Family service, see the [AWS Transfer Family User Guide](https://docs.aws.amazon.com/transfer/latest/userguide/what-is-aws-transfer-family.html)\.
+To learn more about AWS Transfer Family, see the [AWS Transfer Family User Guide](https://docs.aws.amazon.com/transfer/latest/userguide/what-is-aws-transfer-family.html)\.
 
 **Note**  
-Using Transfer Family with Amazon EFS is disabled by default for AWS accounts that have EFS file systems with policies that allow public access that were created before January 6, 2021\. Please contact customer support to enable using Transfer Family to access your file system\.
+Using Transfer Family with Amazon EFS is disabled by default for AWS accounts that have Amazon EFS file systems with policies that allow public access that were created before January 6, 2021\. To enable using Transfer Family to access your file system, contact AWS Support\.
 
 **Topics**
 + [Prerequisites for using AWS Transfer Family with Amazon EFS](#prerequisites-aws-transfer)
@@ -20,19 +20,19 @@ Using Transfer Family with Amazon EFS is disabled by default for AWS accounts th
 
 ## Prerequisites for using AWS Transfer Family with Amazon EFS<a name="prerequisites-aws-transfer"></a>
 
-To use Transfer Family to access files your Amazon EFS file system, your configuration needs to meet the following conditions:
+To use Transfer Family to access files your Amazon EFS file system, your configuration must meet the following conditions:
 + The Transfer Family server and your Amazon EFS file system are located in the same AWS Region\.
 + IAM policies are configured to enable access to the IAM role used by AWS Transfer\. For more information, see [Create an IAM role and policy](https://docs.aws.amazon.com/transfer/latest/userguide/requirements-roles.html) in the *AWS Transfer Family User Guide*\.
 + \(Optional\) If the Transfer Family server is owned by a different account, enable cross\-account access\.
-  + Ensure that your file system policy does not allow public access, see [Blocking public access](access-control-block-public-access.md)\.
-  + Modify the file system policy to enable cross\-account access, see [Configuring cross\-account access for Transfer Family](#efs-cross-acct-access-transfer)\.
+  + Ensure that your file system policy does not allow public access\. For more information, see [Blocking public access](access-control-block-public-access.md)\.
+  + Modify the file system policy to enable cross\-account access\. For more information, see [Configuring cross\-account access for Transfer Family](#efs-cross-acct-access-transfer)\.
 
 ## Configuring your Amazon EFS file system to work with AWS Transfer Family<a name="config-efs-aws-transfer-int"></a>
 
 Configuring an Amazon EFS file system to work with Transfer Family requires the following steps:
 + **Step 1\.** Get the list of POSIX IDs that are allocated to the Transfer Family users\.
 + **Step 2\.** Ensure that your file system's directories are accessible to the Transfer Family users by using the POSIX IDs allocated to the Transfer Family users\.
-+ **Step 3\.** Configure IAM to enable access to the IAM role used by AWS Transfer\.
++ **Step 3\.** Configure IAM to enable access to the IAM role used by Transfer Family\.
 
 ### Setting file and directory permissions for Transfer Family users<a name="efs-access-aws-transfer"></a>
 
@@ -46,7 +46,7 @@ Make sure that the Transfer Family users have access to the necessary file and d
 
 1. The following example creates the directory on the EFS file system, and changes its group to the POSIX group ID for the Transfer Family users, which is 1101 in this example\.
 
-   1. In this example, create the directory `efs/transferFam` using the following commands\. In practice, you can use a name and location on the file system of your choosing\.
+   1. Create the directory `efs/transferFam` using the following commands\. In practice, you can use a name and location on the file system of your choosing\.
 
       ```
       [ec2-user@ip-192-0-2-0 ~]$ ls 
@@ -74,9 +74,9 @@ Make sure that the Transfer Family users have access to the necessary file and d
 
 ### Enable access to the IAM role used by Transfer Family<a name="configure-iam-transfer-role"></a>
 
-In Transfer Family you create a resource\-based IAM policy and an IAM role that define user access to the EFS file system\. For more information, see [Create an IAM role and policy](https://docs.aws.amazon.com/transfer/latest/userguide/requirements-roles.html) in the *AWS Transfer Family User Guide*\. You need to grant that Transfer Family IAM role access to your EFS file system using either an IAM identity policy or a file system policy\.
+In Transfer Family, you create a resource\-based IAM policy and an IAM role that define user access to the EFS file system\. For more information, see [Create an IAM role and policy](https://docs.aws.amazon.com/transfer/latest/userguide/requirements-roles.html) in the *AWS Transfer Family User Guide*\. You must grant that Transfer Family IAM role access to your EFS file system using either an IAM identity policy or a file system policy\.
 
-The following is an example file system policy that grants ClientMount \(read\) and ClientWrite access to the IAM role EFS\-role\-for\-transfer\.
+The following is an example file system policy that grants `ClientMount` \(read\) and `ClientWrite` access to the IAM role `EFS-role-for-transfer`\.
 
 ```
 {
@@ -102,13 +102,17 @@ For more information about creating a file system policy, see [Creating file sys
 
 ### Configuring cross\-account access for Transfer Family<a name="efs-cross-acct-access-transfer"></a>
 
-If the Transfer Family server used to access your file system belongs to a different AWS account, you will need to grant that account access to your file system\. Also, your file system policy has to be non\-public\. For more information about blocking public access to your file system, see [Blocking public access](access-control-block-public-access.md)\. You can grant a different AWS account access to your file system in the file system policy\. In the Amazon EFS console, use the **Grant additional permissions** section of the **File system policy editor** to specify the AWS account, and the level of file system access you are granting\. For more information about creating or editing a file system policy, see [Creating file system policies](create-file-system-policy.md)\. You can specify the account using the account ID or the account ARN\. For more information about ARNs, see [IAM ARNs](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_identifiers.html#identifiers-arns) in the *IAM User Guide*\.
+If the Transfer Family server used to access your file system belongs to a different AWS account, you must grant that account access to your file system\. Also, your file system policy has to be non\-public\. For more information about blocking public access to your file system, see [Blocking public access](access-control-block-public-access.md)\. 
 
-The following example is a non\-public file system policy that grants cross\-account access to the file system\. It has the following 2 statements:
+You can grant a different AWS account access to your file system in the file system policy\. In the Amazon EFS console, use the **Grant additional permissions** section of the **File system policy editor** to specify the AWS account and the level of file system access you are granting\. For more information about creating or editing a file system policy, see [Creating file system policies](create-file-system-policy.md)\. 
 
-1. The first statement, NFS\-client\-read\-write\-via\-fsmt, grants read, write, root privileges to NFS clients accessing the file system using a file system mount target\.
+You can specify the account using the account ID or the account Amazon Resource Name \(ARN\)\. For more information about ARNs, see [IAM ARNs](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_identifiers.html#identifiers-arns) in the *IAM User Guide*\.
 
-1. The second statement, Grant\-cross\-account\-access, grants only read and write privileges to the AWS account 111122223333, which is the account that owns the Transfer Family server that needs access to this EFS file system in your account\.
+The following example is a non\-public file system policy that grants cross\-account access to the file system\. It has the following two statements:
+
+1. The first statement, `NFS-client-read-write-via-fsmt`, grants read, write, and root privileges to NFS clients accessing the file system using a file system mount target\.
+
+1. The second statement, `Grant-cross-account-access`, grants only read and write privileges to the AWS account 111122223333, which is the account that owns the Transfer Family server that needs access to this EFS file system in your account\.
 
 ```
 {    

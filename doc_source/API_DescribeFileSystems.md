@@ -52,6 +52,8 @@ Content-type: application/json
 {
    "FileSystems": [ 
       { 
+         "AvailabilityZoneId": "string",
+         "AvailabilityZoneName": "string",
          "CreationTime": number,
          "CreationToken": "string",
          "Encrypted": boolean,
@@ -122,7 +124,7 @@ HTTP Status Code: 500
 
 ## Examples<a name="API_DescribeFileSystems_Examples"></a>
 
-### Retrieve a List of 10 File Systems<a name="API_DescribeFileSystems_Example_1"></a>
+### Retrieve a list of 10 file systems<a name="API_DescribeFileSystems_Example_1"></a>
 
  The following example sends a GET request to the `file-systems` endpoint \(`elasticfilesystem.us-west-2.amazonaws.com/2015-02-01/file-systems`\)\. The request specifies a `MaxItems` query parameter to limit the number of file system descriptions to 10\.
 

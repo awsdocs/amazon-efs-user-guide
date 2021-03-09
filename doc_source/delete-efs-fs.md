@@ -5,7 +5,7 @@ File system deletion is a destructive action that you can't undo\. You lose the 
 **Important**  
 You should always unmount a file system before you delete it\.
 
-## Using the Console<a name="manage-delete-fs-console"></a>
+## Using the console<a name="manage-delete-fs-console"></a>
 
 **To delete a file system**
 
@@ -26,6 +26,6 @@ Before you can use the AWS CLI command to delete a file system, you must delete 
 
 For example AWS CLI commands, see [Step 4: Clean Up](wt1-clean-up.md)\. 
 
-## Related Topics<a name="manage-delete-fs-related"></a>
+## Related topics<a name="manage-delete-fs-related"></a>
 
  [Managing Amazon EFS file systems](managing.md) 

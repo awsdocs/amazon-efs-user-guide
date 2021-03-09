@@ -1,6 +1,6 @@
-# File and Directory Permissions<a name="user-and-group-permissions"></a>
+# File and directory permissions<a name="user-and-group-permissions"></a>
 
-Files and directories in an EFS file system support standard Unix\-style read, write, and execute permissions based on the user and group ID asserted by the mounting NFSv4\.1 client, unless overridden by an EFS access point\.  For more information, see [Working with Users, Groups, and Permissions at the Network File System \(NFS\) Level](accessing-fs-nfs-permissions.md)\.
+Files and directories in an EFS file system support standard Unix\-style read, write, and execute permissions based on the user and group ID asserted by the mounting NFSv4\.1 client, unless overridden by an EFS access point\.  For more information, see [Working with users, groups, and permissions at the Network File System \(NFS\) Level](accessing-fs-nfs-permissions.md)\.
 
 **Note**  
 By default, this layer of access control depends on trusting the NFSv4\.1 client in its assertion of the user and group ID\. You can use AWS Identity and Access Management \(IAM\) resource\-based policies and identity policies to authorize NFS clients and provide read\-only, write, and root access permissions\. You can use EFS access points to override the operating system user and group identity information provided by the NFS client\. For more information, see [Using IAM to control file system data access](iam-access-control-nfs-efs.md) and [Creating and deleting access points](create-access-point.md)\.

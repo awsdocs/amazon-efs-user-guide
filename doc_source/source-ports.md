@@ -1,4 +1,4 @@
-# Source Ports for Working with EFS<a name="source-ports"></a>
+# Source ports for working with EFS<a name="source-ports"></a>
 
 To support a broad set of NFS clients, Amazon EFS allows connections from any source port\. If you require that only privileged users can access Amazon EFS, we recommend using the following client firewall rule\.
 

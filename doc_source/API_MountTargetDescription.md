@@ -5,13 +5,15 @@ Provides a description of a mount target\.
 ## Contents<a name="API_MountTargetDescription_Contents"></a>
 
  **AvailabilityZoneId**   <a name="efs-Type-MountTargetDescription-AvailabilityZoneId"></a>
-The unique and consistent identifier of the Availability Zone \(AZ\) that the mount target resides in\. For example, `use1-az1` is an AZ ID for the us\-east\-1 Region and it has the same location in every AWS account\.  
+The unique and consistent identifier of the Availability Zone that the mount target resides in\. For example, `use1-az1` is an AZ ID for the us\-east\-1 Region and it has the same location in every AWS account\.  
 Type: String  
 Required: No
 
  **AvailabilityZoneName**   <a name="efs-Type-MountTargetDescription-AvailabilityZoneName"></a>
-The name of the Availability Zone \(AZ\) that the mount target resides in\. AZs are independently mapped to names for each AWS account\. For example, the Availability Zone `us-east-1a` for your AWS account might not be the same location as `us-east-1a` for another AWS account\.  
+The name of the Availability Zone in which the mount target is located\. Availability Zones are independently mapped to names for each AWS account\. For example, the Availability Zone `us-east-1a` for your AWS account might not be the same location as `us-east-1a` for another AWS account\.  
 Type: String  
+Length Constraints: Minimum length of 1\. Maximum length of 64\.  
+Pattern: `.+`   
 Required: No
 
  **FileSystemId**   <a name="efs-Type-MountTargetDescription-FileSystemId"></a>
@@ -31,7 +33,7 @@ Required: No
  **LifeCycleState**   <a name="efs-Type-MountTargetDescription-LifeCycleState"></a>
 Lifecycle state of the mount target\.  
 Type: String  
-Valid Values:` creating | available | updating | deleting | deleted`   
+Valid Values:` creating | available | updating | deleting | deleted | error`   
 Required: Yes
 
  **MountTargetId**   <a name="efs-Type-MountTargetDescription-MountTargetId"></a>
@@ -61,7 +63,7 @@ Pattern: `^subnet-[0-9a-f]{8,40}$`
 Required: Yes
 
  **VpcId**   <a name="efs-Type-MountTargetDescription-VpcId"></a>
-The Virtual Private Cloud \(VPC\) ID that the mount target is configured in\.  
+The virtual private cloud \(VPC\) ID that the mount target is configured in\.  
 Type: String  
 Required: No
 

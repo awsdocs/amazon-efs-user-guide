@@ -5,10 +5,9 @@ Following, you can find a description of the Amazon EFS client, which is install
 **Topics**
 + [Overview](#overview-amazon-efs-utils)
 + [Using AWS Systems Manager to automatically install or update Amazon EFS clients](manage-efs-utils-with-aws-sys-manager.md)
-+ [Installing the amazon\-efs\-utils Package on Amazon Linux](installing-amazon-efs-utils.md)
-+ [Installing the amazon\-efs\-utils package on other Linux distributions](installing-other-distro.md)
++ [Manually installing the Amazon EFS client](installing-amazon-efs-utils.md)
 + [Upgrading Stunnel](upgrading-stunnel.md)
-+ [EFS Mount Helper](efs-mount-helper.md)
++ [Using the EFS mount helper](efs-mount-helper.md)
 
 ## Overview<a name="overview-amazon-efs-utils"></a>
 
@@ -30,12 +29,17 @@ When you've installed the amazon\-efs\-utils package, to upgrade your system's v
 You can use AWS Systems Manager to manage Amazon EFS clients and automate the tasks required to install or update the amazon\-efs\-utils package on your EC2 instances\. For more information, see [Using AWS Systems Manager to automatically install or update Amazon EFS clients](manage-efs-utils-with-aws-sys-manager.md)\.  
 For issues with encryption, see [Troubleshooting Encryption](troubleshooting-efs-encryption.md)\.
 
-The following Linux distributions support `amazon-efs-utils:`
+The following Linux and Mac distributions support the Amazon EFS client \(the `amazon-efs-utils` package\)
 + Amazon Linux 2
 + Amazon Linux
 + Debian version 9 and newer
 + Fedora version 28 and newer
++ macOS Big Sur
++ OpenSUSE Leap, Tumbleweed
 + Red Hat Enterprise Linux \(and derivatives such as CentOS\) version 7 and newer
++ SLES 12, 15
 + Ubuntu 16\.04 LTS and newer
 
-In the following sections, you can find out how to install amazon\-efs\-utils on your Linux instances\.
+For a complete list of supported Linux distributions that the package has been verified against, see the efs\-utils [README](https://github.com/aws/efs-utils/blob/master/README.md) on Github\.
+
+In the following sections, you can learn how to install the Amazon EFS client on yourEC2 Linux or Mac instances\.

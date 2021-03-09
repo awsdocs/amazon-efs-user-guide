@@ -85,7 +85,7 @@ To use the Amazon EFS console, you need to grant permissions for additional acti
 The Amazon EFS console needs these additional permissions for the following reasons:
 + Permissions for the Amazon EFS actions enable the console to display Amazon EFS resources in the account\.
 + The console needs permissions for the `ec2` actions to query Amazon EC2 so it can display Availability Zones, VPCs, security groups, and account attributes\.
-+ The console needs permissions for the `kms` actions to create an encrypted file system\. For more information on encrypted file systems, see [Data Encryption in Amazon EFS](encryption.md)\.
++ The console needs permissions for the `kms` actions to create an encrypted file system\. For more information on encrypted file systems, see [Data encryption in Amazon EFS](encryption.md)\.
 
 ## AWS Managed \(Predefined\) Policies for Amazon EFS<a name="access-policy-examples-aws-managed"></a>
 
@@ -193,7 +193,7 @@ Use the scroll bars to see the rest of the table\.
 | Amazon EFS API Operations | Required Permissions \(API Actions\) | Resources | 
 | --- | --- | --- | 
 |   [CreateAccessPoint](API_CreateAccessPoint.md)   | elasticfilesystem:CreateAccessPoint  |  `arn:aws:elasticfilesystem:region:account-id:file-system/file-system-id`  | 
-|   [CreateFileSystem](API_CreateFileSystem.md)   | elasticfilesystem:CreateFileSystem For information about KMS\-related permissions for encrypted file systems, see [Amazon EFS Key Policies for AWS KMS](encryption-at-rest.md#EFSKMSPolicy)\.   |  `arn:aws:elasticfilesystem:region:account-id:file-system/*`  | 
+|   [CreateFileSystem](API_CreateFileSystem.md)   | elasticfilesystem:CreateFileSystem For information about KMS\-related permissions for encrypted file systems, see [Amazon EFS key policies for AWS KMS](encryption-at-rest.md#EFSKMSPolicy)\.   |  `arn:aws:elasticfilesystem:region:account-id:file-system/*`  | 
 |   [CreateMountTarget](API_CreateMountTarget.md)  |  `elasticfilesystem:CreateMountTarget` `ec2:DescribeSubnets` `ec2:DescribeNetworkInterfaces` `ec2:CreateNetworkInterface`  | arn:aws:elasticfilesystem:region:account\-id:file\-system/file\-system\-id | 
 |   [CreateTags](API_CreateTags.md)   | elasticfilesystem:CreateTags | arn:aws:elasticfilesystem:region:account\-id:file\-system/file\-system\-id | 
 | [DeleteAccessPoint](API_DeleteAccessPoint.md) | elasticfilesystem:DeleteAccessPoint | arn:aws:elasticfilesystem:region:account\-id:access\-point/access\-point\-id | 

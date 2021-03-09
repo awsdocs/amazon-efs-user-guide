@@ -4,6 +4,18 @@ A description of the file system\.
 
 ## Contents<a name="API_FileSystemDescription_Contents"></a>
 
+ **AvailabilityZoneId**   <a name="efs-Type-FileSystemDescription-AvailabilityZoneId"></a>
+The unique and consistent identifier of the Availability Zone in which the file system's One Zone storage classes exist\. For example, `use1-az1` is an Availability Zone ID for the us\-east\-1 AWS Region, and it has the same location in every AWS account\.  
+Type: String  
+Required: No
+
+ **AvailabilityZoneName**   <a name="efs-Type-FileSystemDescription-AvailabilityZoneName"></a>
+Describes the AWS Availability Zone in which the file system is located, and is valid only for file systems using One Zone storage classes\. For more information, see [Using EFS storage classes](https://docs.aws.amazon.com/efs/latest/ug/storage-classes.html) in the *Amazon EFS User Guide*\.  
+Type: String  
+Length Constraints: Minimum length of 1\. Maximum length of 64\.  
+Pattern: `.+`   
+Required: No
+
  **CreationTime**   <a name="efs-Type-FileSystemDescription-CreationTime"></a>
 The time that the file system was created, in seconds \(since 1970\-01\-01T00:00:00Z\)\.  
 Type: Timestamp  
@@ -43,7 +55,7 @@ Required: No
  **LifeCycleState**   <a name="efs-Type-FileSystemDescription-LifeCycleState"></a>
 The lifecycle phase of the file system\.  
 Type: String  
-Valid Values:` creating | available | updating | deleting | deleted`   
+Valid Values:` creating | available | updating | deleting | deleted | error`   
 Required: Yes
 
  **Name**   <a name="efs-Type-FileSystemDescription-Name"></a>
@@ -73,7 +85,7 @@ Valid Values:` generalPurpose | maxIO`
 Required: Yes
 
  **ProvisionedThroughputInMibps**   <a name="efs-Type-FileSystemDescription-ProvisionedThroughputInMibps"></a>
-The throughput, measured in MiB/s, that you want to provision for a file system\. Valid values are 1\-1024\. Required if `ThroughputMode` is set to `provisioned`\. The limit on throughput is 1024 MiB/s\. You can get these limits increased by contacting AWS Support\. For more information, see [Amazon EFS Limits That You Can Increase](https://docs.aws.amazon.com/efs/latest/ug/limits.html#soft-limits) in the *Amazon EFS User Guide\.*   
+The amount of provisioned throughput, measured in MiB/s, for the file system\. Valid for file systems using `ThroughputMode` set to `provisioned`\.  
 Type: Double  
 Valid Range: Minimum value of 1\.0\.  
 Required: No
@@ -89,7 +101,7 @@ Type: Array of [Tag](API_Tag.md) objects
 Required: Yes
 
  **ThroughputMode**   <a name="efs-Type-FileSystemDescription-ThroughputMode"></a>
-The throughput mode for a file system\. There are two throughput modes to choose from for your file system: `bursting` and `provisioned`\. If you set `ThroughputMode` to `provisioned`, you must also set a value for `ProvisionedThroughPutInMibps`\. You can decrease your file system's throughput in Provisioned Throughput mode or change between the throughput modes as long as it’s been more than 24 hours since the last decrease or throughput mode change\.   
+Displays the file system's throughput mode\. For more information, see [Throughput modes](https://docs.aws.amazon.com/efs/latest/ug/performance.html#throughput-modes) in the *Amazon EFS User Guide*\.   
 Type: String  
 Valid Values:` bursting | provisioned`   
 Required: No

@@ -17,14 +17,14 @@ Amazon EFS file system policy changes can take several minutes to take effect\.
 ![\[File system policy editor is where you create and edit file system policies in the EFS console.\]](http://docs.aws.amazon.com/efs/latest/ug/images/console2-fsp-editor.png)
 
 1. In **Policy options**, you can choose any combination of the preconfigured file system policies:
-   + Prevent root access by default \- This option removes ClientRootAccess from the set of allowed EFS actions\.
-   + Enforce read\-only access by default \- This option removes ClientWriteAccess from the set of allowed EFS actions\.
-   + Prevent anonymous access \- This option removes ClientMount from the set of allowed EFS actions\.
+   + Prevent root access by default \- This option removes `ClientRootAccess` from the set of allowed EFS actions\.
+   + Enforce read\-only access by default \- This option removes `ClientWriteAccess` from the set of allowed EFS actions\.
+   + Prevent anonymous access \- This option removes `ClientMount` from the set of allowed EFS actions\.
    + Enforce in\-transit encryption for all clients \- This option denies access to unencrypted clients\.
 
-   When you choose a preconfigured policy, the policy JSON object is displayed in the **Policy editor** panel\.
+   When you choose a preconfigured policy, the policy JSON object is displayed in the **Policy editor** pane\.
 
-1. Use **Grant additional permissions** to grant file system permissions to additional IAM principals, including another AWS account\. Choose **Add**, then enter the Principal ARN of the entity to which you are granting permissions to, then choose the **Permissions** to grant\. The additional permissions are shown in the **Policy editor**\.
+1. Use **Grant additional permissions** to grant file system permissions to additional IAM principals, including another AWS account\. Choose **Add**, and enter the principal ARN of the entity that you are granting permissions to\. Then choose the **Permissions** that you want to grant\. The additional permissions are shown in the **Policy editor**\.
 
 1. You can use the **Policy editor** to customize a preconfigured policy or to create your own file system policy\. When you use the editor, the preconfigured policy options become unavailable\. To clear the current file system policy and start creating a new policy, choose **Clear**\.
 

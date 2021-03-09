@@ -14,6 +14,7 @@ Required: No
 Specifies the path on the EFS file system to expose as the root directory to NFS clients using the access point to access the EFS file system\. A path can have up to four subdirectories\. If the specified path does not exist, you are required to provide the `CreationInfo`\.  
 Type: String  
 Length Constraints: Minimum length of 1\. Maximum length of 100\.  
+Pattern: `^(\/|(\/(?!\.)+[^$#<>;`|&?{}^*/\n]+){1,4})$`   
 Required: No
 
 ## See Also<a name="API_RootDirectory_SeeAlso"></a>

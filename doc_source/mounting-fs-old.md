@@ -1,31 +1,32 @@
-# Mounting File Systems Without the EFS Mount Helper<a name="mounting-fs-old"></a>
+# Mounting file systems without the EFS mount helper<a name="mounting-fs-old"></a>
 
 **Note**  
-In this section, you can learn how to mount your Amazon EFS file system without the amazon\-efs\-utils package\. To use encryption of data in transit with your file system, you must mount your file system with Transport Layer Security \(TLS\)\. To do so, we recommend using the amazon\-efs\-utils package\. For more information, see [Using the amazon\-efs\-utils Tools](using-amazon-efs-utils.md)
+In this section, you can learn how to mount your Amazon EFS file system without the amazon\-efs\-utils package\. To use encryption of data in transit with your file system, you must mount your file system with Transport Layer Security \(TLS\)\. To do so, we recommend using the amazon\-efs\-utils package\. For more information, see [Using the amazon\-efs\-utils Tools](using-amazon-efs-utils.md)\.
 
 Following, you can learn how to install the Network File System \(NFS\) client and how to mount your Amazon EFS file system on an Amazon EC2 instance\. You also can find an explanation of the `mount` command and the available options for specifying your file system's Domain Name System \(DNS\) name in the `mount` command\. In addition, you can find how to use the file `fstab` to automatically remount your file system after any system restarts\.
 
 **Note**  
-Before you can mount a file system, you must create, configure, and launch your related AWS resources\. For detailed instructions, see [Getting Started with Amazon Elastic File System](getting-started.md)\.
+Before you can mount a file system, you must create, configure, and launch your related AWS resources\. For detailed instructions, see [Getting started with Amazon Elastic File System](getting-started.md)\.
 
 **Topics**
-+ [NFS Support](#mounting-fs-nfs-info)
-+ [Installing the NFS Client](#mounting-fs-install-nfsclient)
-+ [Recommended NFS Mount Options](mounting-fs-nfs-mount-settings.md)
-+ [Mounting on Amazon EC2 with a DNS Name](mounting-fs-mount-cmd-dns-name.md)
-+ [Mounting with an IP Address](mounting-fs-mount-cmd-ip-addr.md)
++ [NFS support](#mounting-fs-nfs-info)
++ [Installing the NFS client](#mounting-fs-install-nfsclient)
++ [Recommended NFS mount options](mounting-fs-nfs-mount-settings.md)
++ [Mounting on Amazon EC2 with a DNS name](mounting-fs-mount-cmd-dns-name.md)
++ [Mounting with an IP address](mounting-fs-mount-cmd-ip-addr.md)
 
-## NFS Support<a name="mounting-fs-nfs-info"></a>
+## NFS support<a name="mounting-fs-nfs-info"></a>
 
 Amazon EFS supports the Network File System versions 4\.0 and 4\.1 \(NFSv4\) protocols when mounting your file systems on Amazon EC2 instances\. Although NFSv4\.0 is supported, we recommend that you use NFSv4\.1\. Mounting your Amazon EFS file system on your Amazon EC2 instance also requires an NFS client that supports your chosen NFSv4 protocol\.
 
+**Note**  
+Amazon EC2 Mac instances running macOS Big Sur only support NFS v4\.0\.
+
 For optimal performance and to avoid a variety of known NFS client bugs, we recommend working with a recent Linux kernel\. If you are using an enterprise Linux distribution, we recommend the following:
 + Amazon Linux 2
-+ Amazon Linux 2015\.09 or newer
-+ RHEL 7\.3 or newer
-+ RHEL 6\.9 with kernel 2\.6\.32\-696 or newer
-+ All versions of Ubuntu 16\.04
-+ Ubuntu 14\.04 with kernel 3\.13\.0\-83 or newer
++ Amazon Linux 2017\.09 or newer
++ Red Hat Enterprise Linux \(and derivatives such as CentOS\) version 7 and newer
++ Ubuntu 16\.04 LTS and newer
 + SLES 12 Sp2 or later
 
 If you are using another distribution or a custom kernel, we recommend kernel version 4\.3 or newer\.
@@ -36,11 +37,11 @@ RHEL 6\.9 might be suboptimal for certain workloads due to [Poor Performance Whe
 **Note**  
 Using Amazon EFS with Amazon EC2 instances based on Microsoft Windows is not supported\.
 
-### Troubleshooting AMI and Kernel Versions<a name="ami-kernel-versions-troubleshooting"></a>
+### Troubleshooting AMI and kernel versions<a name="ami-kernel-versions-troubleshooting"></a>
 
 To troubleshoot issues related to certain AMI or kernel versions when using Amazon EFS from an EC2 instance, see [Troubleshooting AMI and Kernel Issues](troubleshooting-efs-ami-kernel.md)\.
 
-## Installing the NFS Client<a name="mounting-fs-install-nfsclient"></a>
+## Installing the NFS client<a name="mounting-fs-install-nfsclient"></a>
 
 To mount your Amazon EFS file system on your Amazon EC2 instance, first you need to install an NFS client\. To connect to your EC2 instance and install an NFS client, you need the public DNS name of the EC2 instance and a user name to log in\. That user name for your instance is typically `ec2-user`\.
 
@@ -79,10 +80,16 @@ To mount your Amazon EFS file system on your Amazon EC2 instance, first you need
    $ sudo apt-get -y install nfs-common
    ```
 
-1. Start the NFS service using the following command\.
+1. Start the NFS service using the following commands\. For RHEL 7:
 
    ```
    $ sudo service nfs start
+   ```
+
+   For RHEL 8:
+
+   ```
+   $ sudo service nfs-server start
    ```
 
 1. Verify that the NFS service started, as follows\.
@@ -105,8 +112,8 @@ If you use a custom kernel \(that is, if you build a custom AMI\), you need to i
 **Note**  
 If you choose **Amazon Linux AMI 2016\.03\.0** or **Amazon Linux AMI 2016\.09\.0** when launching your Amazon EC2 instance, you don't need to install `nfs-utils` because it's already included in the AMI by default\.
 
-**Next: Mount Your File System**  
+**Next: Mount your file system**  
 Use one of the following procedures to mount your file system\.
-+ [Mounting on Amazon EC2 with a DNS Name](mounting-fs-mount-cmd-dns-name.md)
-+ [Mounting with an IP Address](mounting-fs-mount-cmd-ip-addr.md)
++ [Mounting on Amazon EC2 with a DNS name](mounting-fs-mount-cmd-dns-name.md)
++ [Mounting with an IP address](mounting-fs-mount-cmd-ip-addr.md)
 + [Mounting your Amazon EFS file system automatically](mount-fs-auto-mount-onreboot.md)

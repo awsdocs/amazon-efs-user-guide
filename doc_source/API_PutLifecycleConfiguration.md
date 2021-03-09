@@ -91,7 +91,7 @@ HTTP Status Code: 500
 
 ## Examples<a name="API_PutLifecycleConfiguration_Examples"></a>
 
-### Create a Lifecycle Configuration<a name="API_PutLifecycleConfiguration_Example_1"></a>
+### Create a lifecycle configuration<a name="API_PutLifecycleConfiguration_Example_1"></a>
 
 The following example creates a `LifecyclePolicy` object using the PutLifecycleConfiguration operation\. This object tells EFS lifecycle management to move all files in the file system that haven't been accessed in the last 14 days to the IA storage class\. This is the only lifecycle policy that is currently supported\. To learn more, see [EFS Lifecycle Management](https://docs.aws.amazon.com/efs/latest/ug/lifecycle-management-efs.html)\.
 
@@ -131,7 +131,7 @@ Content-Length: 86
 }
 ```
 
-### Disable Lifecycle Management<a name="API_PutLifecycleConfiguration_Example_2"></a>
+### Disable lifecycle management<a name="API_PutLifecycleConfiguration_Example_2"></a>
 
 The following example disables lifecycle management for the specified file system\.
 

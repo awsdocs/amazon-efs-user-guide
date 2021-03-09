@@ -3,7 +3,7 @@
 This walkthrough uses the AWS CLI to explore the Amazon EFS API\. In this walkthrough, you create an encrypted Amazon EFS file system, mount it on an Amazon EC2 instance in your VPC, and test the setup\.
 
 **Note**  
-This walkthrough is similar to the Getting Started exercise\. In the [Getting Started](getting-started.md) exercise, you use the console to create EC2 and Amazon EFS resources\. In this walkthrough, you use the AWS CLI to do the same—primarily to familiarize yourself with the Amazon EFS API\.
+This walkthrough is similar to the Getting Started exercise\. In the [Getting started](getting-started.md) exercise, you use the console to create EC2 and Amazon EFS resources\. In this walkthrough, you use the AWS CLI to do the same—primarily to familiarize yourself with the Amazon EFS API\.
 
 In this walkthrough, you create the following AWS resources in your account:
 + Amazon EC2 resources:
@@ -15,7 +15,7 @@ In this walkthrough, you create the following AWS resources in your account:
   + A file system\.
   + A mount target for your file system\.
 
-    To mount your file system on an EC2 instance you need to create a mount target in your VPC\. You can create one mount target in each of the Availability Zones in your VPC\. For more information, see [Amazon EFS: How It Works](how-it-works.md)\. 
+    To mount your file system on an EC2 instance you need to create a mount target in your VPC\. You can create one mount target in each of the Availability Zones in your VPC\. For more information, see [Amazon EFS: How it works](how-it-works.md)\. 
 
  Then, you test the file system on your EC2 instance\. The cleanup step at the end of the walkthrough provides information for you to remove these resources\. 
 

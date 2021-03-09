@@ -64,7 +64,7 @@ Returned if the default file system policy is in effect for the EFS file system 
 HTTP Status Code: 404
 
  **ValidationException**   
-Returned if the AWS Backup service is not available in the region that the request was made\.  
+Returned if the AWS Backup service is not available in the Region in which the request was made\.  
 HTTP Status Code: 400
 
 ## See Also<a name="API_DescribeBackupPolicy_SeeAlso"></a>

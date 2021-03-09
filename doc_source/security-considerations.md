@@ -11,10 +11,10 @@ This documentation helps you understand how to apply the shared responsibility m
 Following, you can find a description of security considerations for working with Amazon EFS\. There are four levels of access control to consider for Amazon EFS file systems, with different mechanisms used for each\.
 
 **Topics**
-+ [Data Encryption in Amazon EFS](encryption.md)
++ [Data encryption in Amazon EFS](encryption.md)
 + [Identity and Access Management for Amazon EFS](auth-and-access-control.md)
-+ [Controlling Network Access to Amazon EFS File Systems for NFS Clients](NFS-access-control-efs.md)
-+ [Working with Users, Groups, and Permissions at the Network File System \(NFS\) Level](accessing-fs-nfs-permissions.md)
++ [Controlling network access to Amazon EFS file systems for NFS clients](NFS-access-control-efs.md)
++ [Working with users, groups, and permissions at the Network File System \(NFS\) Level](accessing-fs-nfs-permissions.md)
 + [Working with Amazon EFS Access Points](efs-access-points.md)
 + [Logging and Monitoring in Amazon EFS](logging-monitoring.md)
 + [Compliance Validation for Amazon Elastic File System](SERVICENAME-compliance.md)

@@ -1,4 +1,4 @@
-# Step 2: Create Your EC2 Resources and Launch Your EC2 Instance<a name="gs-step-one-create-ec2-resources"></a>
+# Step 2: Create your EC2 resources and launch your EC2 instance<a name="gs-step-one-create-ec2-resources"></a>
 
 **Note**  
 You can't use Amazon EFS with Microsoft Windows–based Amazon EC2 instances\.
@@ -6,7 +6,7 @@ You can't use Amazon EFS with Microsoft Windows–based Amazon EC2 instances\.
 Before you can launch and connect to an Amazon EC2 instance, you need to create a key pair, unless you already have one\. You can create a key pair using the Amazon EC2 console, and then you can launch your EC2 instance\.
 
 **To create a key pair**
-+ Follow the steps in [Setting Up with Amazon EC2](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/get-set-up-for-amazon-ec2.html) in the *Amazon EC2 User Guide for Linux Instances* to create a key pair\. If you already have a key pair, you don't need to create a new one\. You can use your existing key pair for this exercise\.
++ Follow the steps in [Setting up with Amazon EC2](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/get-set-up-for-amazon-ec2.html) in the *Amazon EC2 User Guide for Linux Instances* to create a key pair\. If you already have a key pair, you don't need to create a new one\. You can use your existing key pair for this exercise\.
 
 **To launch the EC2 instance and mount an EFS file system**
 
@@ -21,9 +21,9 @@ Before you can launch and connect to an Amazon EC2 instance, you need to create 
 1. In **Step 3: Configure Instance Details**, provide the following information: 
    + Leave **Number of instances** at one\.
    + Leave **Purchasing option** at the default setting\.
-   + For **Network**, choose the entry for the same VPC that you noted when you created your EFS file system in [Step 1: Create Your Amazon EFS File System](gs-step-two-create-efs-resources.md)\.
+   + For **Network**, choose the entry for the same VPC that you noted when you created your EFS file system in [Step 1: Create your Amazon EFS file system](gs-step-two-create-efs-resources.md)\.
    + For **Subnet**, choose a default subnet in any Availability Zone\.
-   + For **File systems**, make sure that the EFS file system that you created in [Step 1: Create Your Amazon EFS File System](gs-step-two-create-efs-resources.md) is selected\. The path shown next to the file system ID is the mount point that the EC2 instance will use, which you can change\.
+   + For **File systems**, make sure that the EFS file system that you created in [Step 1: Create your Amazon EFS file system](gs-step-two-create-efs-resources.md) is selected\. The path shown next to the file system ID is the mount point that the EC2 instance will use, which you can change\.
    + The **User data** automatically includes the commands for mounting your Amazon EFS file system\.
 
 1. Choose **Next: Add Storage**\.

@@ -63,7 +63,7 @@ HTTP Status Code: 500
 
 ## Examples<a name="API_DeleteTags_Examples"></a>
 
-### Delete Tags from a File System<a name="API_DeleteTags_Example_1"></a>
+### Delete tags from a file system<a name="API_DeleteTags_Example_1"></a>
 
  The following request deletes the tag `key2` from the tag set associated with the file system\. 
 

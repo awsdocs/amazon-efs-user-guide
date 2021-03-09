@@ -25,7 +25,7 @@ To ensure high availability of your file system, we recommend that you always us
 **To mount an EFS file system in another VPC using IAM or an access point**
 
 1. Connect to your EC2 instance:
-   + To connect to your instance from a computer running Mac OS or Linux, specify the \.pem file for your SSH command\. To do this, use the `-i` option and the path to your private key\.
+   + To connect to your instance from a computer running macOS or Linux, specify the \.pem file for your SSH command\. To do this, use the `-i` option and the path to your private key\.
    + To connect to your instance from a computer running Windows, you can use either MindTerm or PuTTY\. To use PuTTY, install it and convert the \.pem file to a \.ppk file\.
 
    For more information, see the following topics in the *Amazon EC2 User Guide for Linux Instances*:
@@ -118,15 +118,15 @@ To ensure high availability of your file system, we recommend that you always us
 
 You can't use DNS name resolution for EFS mount points in another VPC\. To mount your EFS file system, use the IP address of the mount points in the corresponding Availability Zone\. Alternatively, you can use Amazon Route 53 as your DNS service\. In Route 53, you can resolve the EFS mount target IP addresses from another VPC by creating a private hosted zone and resource record set\. For more information on how to do so, see [Working with Private Hosted Zones](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/hosted-zones-private.html) and [Working with Records](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/rrsets-working-with.html) in the *Amazon Route 53 Developer Guide*\.
 
-### Mounting Amazon EFS file systems from a different region<a name="mount-different-region-vpc"></a>
+### Mounting Amazon EFS file systems from a different Region<a name="mount-different-region-vpc"></a>
 
-If you are mounting your EFS file system from another VPC that is in a different region than the file system, you will need to edit the `efs-utils.conf` file\. In `efs-utils.conf`, locate the following lines:
+If you are mounting your EFS file system from another VPC that is in a different Region than the file system, you will need to edit the `efs-utils.conf` file\. In `efs-utils.conf`, locate the following lines:
 
 ```
 #region = us-east-1
 ```
 
-Uncomment the line, and replace the region value with the region in which the file system is located, if it is not in `us-east-1`\.
+Uncomment the line, and replace the Region value with the Region in which the file system is located, if it is not in `us-east-1`\.
 
 ## Mounting from another account in the same VPC<a name="mount-fs-diff-account-same-vpc"></a>
 

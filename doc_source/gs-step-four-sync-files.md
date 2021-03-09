@@ -1,12 +1,12 @@
-# Step 3: Transfer Files to Amazon EFS Using AWS DataSync<a name="gs-step-four-sync-files"></a>
+# Step 3: Transfer files to Amazon EFS using AWS DataSync<a name="gs-step-four-sync-files"></a>
 
 Now that you have created a functioning Amazon EFS file system, you can use AWS DataSync to transfer files from an existing file system to Amazon EFS\. AWS DataSync is a data transfer service that simplifies, automates, and accelerates moving and replicating data between on\-premises storage systems and AWS storage services over the internet or AWS Direct Connect\. AWS DataSync can transfer your file data, and also file system metadata such as ownership, timestamps, and access permissions\.
 
-## Before You Begin<a name="step4-prereq"></a>
+## Before you begin<a name="step4-prereq"></a>
 
 In this step, we assume that you have the following:
 + A source NFS file system that you can transfer files from\. This source system needs to be accessible over NFS version 3, version 4, or 4\.1\. Example file systems include those located in an on\-premises data center, self\-managed in\-cloud file systems, and Amazon EFS file systems\. 
-+ A destination Amazon EFS file system to transfer files to\. If you don't have an Amazon EFS file system, create one\. For more information, see [Getting Started with Amazon Elastic File System](getting-started.md)\.
++ A destination Amazon EFS file system to transfer files to\. If you don't have an Amazon EFS file system, create one\. For more information, see [Getting started with Amazon Elastic File System](getting-started.md)\.
 + Your server and network meet the AWS DataSync requirements\. To learn more, see the [ AWS DataSync requirements](https://docs.aws.amazon.com/datasync/latest/userguide/requirements.html)\.
 
 To transfer files from a source location to a destination location using AWS DataSync, you do the following:

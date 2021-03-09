@@ -1,4 +1,4 @@
-# Recommended NFS Mount Options<a name="mounting-fs-nfs-mount-settings"></a>
+# Recommended NFS mount options<a name="mounting-fs-nfs-mount-settings"></a>
 
 We recommend the following default values for mount options on Linux: 
 + `rsize=1048576` – Sets the maximum number of bytes of data that the NFS client can receive for each network READ request\. This value applies when reading data from a file on an EFS file system\. We recommend that you use the largest size possible \(up to `1048576`\) to avoid diminished performance\.

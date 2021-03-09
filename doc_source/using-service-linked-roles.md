@@ -26,7 +26,7 @@ The role permissions policy allows Amazon EFS to complete the following actions:
 You must configure permissions to allow an IAM entity \(such as a user, group, or role\) to create, edit, or delete a service\-linked role\. For more information, see [Service\-Linked Role Permissions](https://docs.aws.amazon.com/IAM/latest/UserGuide/using-service-linked-roles.html#service-linked-role-permissions) in the *IAM User Guide*\.
 
 **Note**  
- You must manually configure IAM permissions for AWS KMS when creating a new Amazon EFS file system that is encrypted at rest\. To learn more, see [Encrypting Data at Rest](encryption-at-rest.md)\. 
+ You must manually configure IAM permissions for AWS KMS when creating a new Amazon EFS file system that is encrypted at rest\. To learn more, see [Encrypting data at rest](encryption-at-rest.md)\. 
 
 ## Creating a Service\-Linked Role for Amazon EFS<a name="create-slr"></a>
 
@@ -47,7 +47,7 @@ If the Amazon EFS service is using the role when you try to delete the resources
 
 **To delete Amazon EFS resources used by the AWSServiceRoleForAmazonElasticFileSystem**
 
-Complete the following steps to delete Amazon EFS resources used by the AWSServiceRoleForAmazonElasticFileSystem\. For the detailed procedure, see [Step 4: Clean Up Resources and Protect Your AWS Account](gs-step-five-cleanup.md)\.
+Complete the following steps to delete Amazon EFS resources used by the AWSServiceRoleForAmazonElasticFileSystem\. For the detailed procedure, see [Step 4: Clean up resources and protect your AWS account](gs-step-five-cleanup.md)\.
 
 1.  On your Amazon EC2 instance, unmount the Amazon EFS file system\. 
 

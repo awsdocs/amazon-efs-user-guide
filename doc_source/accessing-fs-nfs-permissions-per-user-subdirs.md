@@ -7,7 +7,7 @@ In this walkthrough, you first create a user "mike" on your EC2 instance\. You t
 Suppose you have an Amazon EFS file system created and mounted on a local directory on your EC2 instance\. Let's call it *EFSroot*\. 
 
 **Note**  
-You can follow the [Getting Started](getting-started.md) exercise to create and mount an Amazon EFS file system on your EC2 instance\.
+You can follow the [Getting started](getting-started.md) exercise to create and mount an Amazon EFS file system on your EC2 instance\.
 
 In the following steps, you create a user \(mike\), create a subdirectory for the user \(*EFSroot*`/mike`\), make user mike the owner of the subdirectory, granting him full permissions, and finally mount the Amazon EFS subdirectory on the user's home directory \(`/home/mike`\)\.
 

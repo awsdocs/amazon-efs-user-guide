@@ -35,7 +35,7 @@ Your metric math ID and expression are the following\.
 
 ## Metric math: Percent throughput<a name="metric-math-throughput-percent"></a>
 
-To calculate the percent throughput of the different I/O types \(`DataReadIOBytes`, `DataWriteIOBytes`, or `MetadataIOBytes`\) for a time period, first multiply the respective sum statistic by 100\. Then divide the result by the sum statistic of `TotalIOBytes` for the same period\.
+This metric math expression calculates the percent of overall throughput used for the different I/O types—for example, the percentage of total throughput that is driven by read requests\. To calculate the percent of overall throughput used by one of the I/O types \(`DataReadIOBytes`, `DataWriteIOBytes`, or `MetadataIOBytes`\) for a time period, first multiply the respective sum statistic by 100\. Then divide the result by the sum statistic of `TotalIOBytes` for the same period\.
 
 Suppose that your example logic is this: \(sum of `DataReadIOBytes` x 100 \(to convert to percentage\)\) ÷ sum of `TotalIOBytes`
 
@@ -56,7 +56,7 @@ Your metric math ID and expression are the following\.
 
 ## Metric math: Percentage of permitted throughput utilization<a name="metric-math-throughput-utilization"></a>
 
-To calculate the percentage of permitted throughput utilization \(`TotalIOBytes`\) for a time period, first multiply the throughput in MiB/second by 100\. Then divide the result by the sum statistic of `PermittedThroughput` converted to MiB for the same period\.
+To calculate the percentage of permitted throughput utilization \(`MeteredIOBytes`\) for a time period, first multiply the throughput in MiB/second by 100\. Then divide the result by the sum statistic of `PermittedThroughput` converted to MiB for the same period\.
 
 Suppose that your example logic is this: \(metric math expression for throughput in MiB/second x 100 \(to convert to percentage\)\) ÷ \(sum of `PermittedThroughput` ÷ 1,048,576 \(to convert bytes to MiB\)\)
 
@@ -65,15 +65,17 @@ Then your CloudWatch metric information is the following\.
 
 | ID | Usable metric or metrics | Statistic | Period | 
 | --- | --- | --- | --- | 
-| e1 | [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/efs/latest/ug/monitoring-metric-math.html)  |  |  | 
-| m1 | [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/efs/latest/ug/monitoring-metric-math.html)  | sum | 1 minute | 
+| m1 |  `MeteredIOBytes`  | sum | 1 minute | 
+| m2 | `PermittedThroughput` | sum | 1 minute | 
 
 Your metric math ID and expression are the following\.
 
 
 | ID | Expression | 
 | --- | --- | 
-| e2 | \(e1\*100\)/\(m1/1048576\) | 
+| e1 |   \(m1/1048576\)/PERIOD\(m1\)  | 
+| e2 | m2/1048576 | 
+| e3 | \(\(e1\)\*100\)/\(e2\) | 
 
 ## Metric math: Throughput IOPS<a name="metric-math-throughput-iops"></a>
 

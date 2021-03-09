@@ -7,17 +7,22 @@ Provides a description of an EFS file system access point\.
  **AccessPointArn**   <a name="efs-Type-AccessPointDescription-AccessPointArn"></a>
 The unique Amazon Resource Name \(ARN\) associated with the access point\.  
 Type: String  
+Length Constraints: Maximum length of 128\.  
+Pattern: `^arn:aws[-a-z]*:elasticfilesystem:[0-9a-z-:]+:access-point/fsap-[0-9a-f]{8,40}$`   
 Required: No
 
  **AccessPointId**   <a name="efs-Type-AccessPointDescription-AccessPointId"></a>
 The ID of the access point, assigned by Amazon EFS\.  
 Type: String  
+Length Constraints: Maximum length of 128\.  
+Pattern: `^(arn:aws[-a-z]*:elasticfilesystem:[0-9a-z-:]+:access-point/fsap-[0-9a-f]{8,40}|fsap-[0-9a-f]{8,40})$`   
 Required: No
 
  **ClientToken**   <a name="efs-Type-AccessPointDescription-ClientToken"></a>
 The opaque string specified in the request to ensure idempotent creation\.  
 Type: String  
 Length Constraints: Minimum length of 1\. Maximum length of 64\.  
+Pattern: `.+`   
 Required: No
 
  **FileSystemId**   <a name="efs-Type-AccessPointDescription-FileSystemId"></a>
@@ -30,7 +35,7 @@ Required: No
  **LifeCycleState**   <a name="efs-Type-AccessPointDescription-LifeCycleState"></a>
 Identifies the lifecycle phase of the access point\.  
 Type: String  
-Valid Values:` creating | available | updating | deleting | deleted`   
+Valid Values:` creating | available | updating | deleting | deleted | error`   
 Required: No
 
  **Name**   <a name="efs-Type-AccessPointDescription-Name"></a>

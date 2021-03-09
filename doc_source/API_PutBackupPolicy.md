@@ -76,7 +76,7 @@ Returned if an error occurred on the server side\.
 HTTP Status Code: 500
 
  **ValidationException**   
-Returned if the AWS Backup service is not available in the region that the request was made\.  
+Returned if the AWS Backup service is not available in the Region in which the request was made\.  
 HTTP Status Code: 400
 
 ## See Also<a name="API_PutBackupPolicy_SeeAlso"></a>

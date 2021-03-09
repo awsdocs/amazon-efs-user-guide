@@ -25,7 +25,7 @@ In general, you can expect the following backup rates with AWS Backup:
 
 Complete restore operations generally take longer than the corresponding backup\.
 
-Using AWS Backup doesn't consume accumulated burst credits, and it doesn't count against the General Purpose mode file operation limits\. For more information, see [Quotas for Amazon EFS File Systems](limits.md#limits-fs-specific)\. 
+Using AWS Backup doesn't consume accumulated burst credits, and it doesn't count against the General Purpose mode file operation limits\. For more information, see [Quotas for Amazon EFS file systems](limits.md#limits-fs-specific)\. 
 
 ## Completion window<a name="backup-window"></a>
 
@@ -37,7 +37,7 @@ Backups that don't complete during the specified window are flagged with an inco
 
 You can use AWS Backup to back up all data in an EFS file system, whatever storage class the data is in\. You don't incur data access charges when backing up an EFS file system that has lifecycle management enabled and has data in the Infrequent Access \(IA\) storage class\. 
 
-When you restore a recovery point, all files are restored to the Standard storage class\. For more information on storage classes, see [EFS storage classes](storage-classes.md) and [EFS lifecycle management](lifecycle-management-efs.md)\.
+When you restore a recovery point, all files are restored to the Standard storage class\. For more information on storage classes, see [Managing EFS storage classes](storage-classes.md) and [Amazon EFS lifecycle management](lifecycle-management-efs.md)\.
 
 ## On\-demand backups<a name="ondemand-backup"></a>
 
@@ -125,6 +125,9 @@ Sockets and named pipes are not supported, and are omitted from backups\.
 ## Restore a recovery point<a name="restoring-backup-efs"></a>
 
 Using either the [AWS Backup Management Console](https://console.aws.amazon.com/backup) or the CLI, you can restore a recovery point to a new EFS file system or to the source file system\. You can perform a Complete restore, which restores the entire file system\. Or, you can restore specific files and directories using a Partial restore\. To restore a specific file or directory, you must specify the relative path related to the mount point\. For example, if the file system is mounted to `/user/home/myname/efs` and the file path is `user/home/myname/efs/file1`, enter `/file1`\. Paths are case sensitive and cannot contain special characters, wild cards and reg ex strings\.
+
+**Note**  
+Users require the `backup:StartRestoreJob` permission in order to restore a recovery point\.
 
  When you perform either a Complete or a Partial restore, your recovery point is restored to the restore directory, `aws-backup-restore_timestamp-of-restore`, which you can see at the root of the file system when the restore is complete\. If you attempt multiple restores for the same path, several directories containing the restored items might exist\. If the restore fails to complete, you can see the directory `aws-backup-failed-restore_timestamp-of-restore`\. You need to manually delete the restore and failed\_restore directories when you are through using them\.
 

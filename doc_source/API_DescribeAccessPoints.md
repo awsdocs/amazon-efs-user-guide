@@ -15,7 +15,9 @@ GET /2015-02-01/access-points?AccessPointId=AccessPointId&FileSystemId=FileSyste
 The request uses the following URI parameters\.
 
  ** [AccessPointId](#API_DescribeAccessPoints_RequestSyntax) **   <a name="efs-DescribeAccessPoints-request-AccessPointId"></a>
-\(Optional\) Specifies an EFS access point to describe in the response; mutually exclusive with `FileSystemId`\.
+\(Optional\) Specifies an EFS access point to describe in the response; mutually exclusive with `FileSystemId`\.  
+Length Constraints: Maximum length of 128\.  
+Pattern: `^(arn:aws[-a-z]*:elasticfilesystem:[0-9a-z-:]+:access-point/fsap-[0-9a-f]{8,40}|fsap-[0-9a-f]{8,40})$` 
 
  ** [FileSystemId](#API_DescribeAccessPoints_RequestSyntax) **   <a name="efs-DescribeAccessPoints-request-FileSystemId"></a>
 \(Optional\) If you provide a `FileSystemId`, EFS returns all access points for that file system; mutually exclusive with `AccessPointId`\.  
@@ -27,7 +29,9 @@ Pattern: `^(arn:aws[-a-z]*:elasticfilesystem:[0-9a-z-:]+:file-system/fs-[0-9a-f]
 Valid Range: Minimum value of 1\.
 
  ** [NextToken](#API_DescribeAccessPoints_RequestSyntax) **   <a name="efs-DescribeAccessPoints-request-NextToken"></a>
- `NextToken` is present if the response is paginated\. You can use `NextMarker` in the subsequent request to fetch the next page of access point descriptions\.
+ `NextToken` is present if the response is paginated\. You can use `NextMarker` in the subsequent request to fetch the next page of access point descriptions\.  
+Length Constraints: Minimum length of 1\. Maximum length of 128\.  
+Pattern: `.+` 
 
 ## Request Body<a name="API_DescribeAccessPoints_RequestBody"></a>
 
@@ -86,7 +90,9 @@ Type: Array of [AccessPointDescription](API_AccessPointDescription.md) objects
 
  ** [NextToken](#API_DescribeAccessPoints_ResponseSyntax) **   <a name="efs-DescribeAccessPoints-response-NextToken"></a>
 Present if there are more access points than returned in the response\. You can use the NextMarker in the subsequent request to fetch the additional descriptions\.  
-Type: String
+Type: String  
+Length Constraints: Minimum length of 1\. Maximum length of 128\.  
+Pattern: `.+` 
 
 ## Errors<a name="API_DescribeAccessPoints_Errors"></a>
 
