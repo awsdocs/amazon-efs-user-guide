@@ -1,8 +1,8 @@
 # Creating Amazon EFS file systems<a name="creating-using-create-fs"></a>
 
-Following, you can find an explanation about how to create an Amazon EFS file system using the AWS Management Console and the AWS CLI\. 
+Following, you can find an explanation about how to create an Amazon EFS file system using the AWS Management Console and the AWS CLI\.
 
-If you are new to Amazon EFS, we recommend you go through the Getting Started exercise, which provides console\-based end\-to\-end instructions to create and access a file system in your VPC\. For more information, see [Getting started](getting-started.md)\. 
+If you are new to Amazon EFS, we recommend you go through the Getting Started exercise, which provides console\-based end\-to\-end instructions to create and access a file system in your VPC\. For more information, see [Getting started](getting-started.md)\.
 
 **Topics**
 + [Requirements](#reqs-fs-create)
@@ -62,14 +62,14 @@ Automatic backups are always enabled by default when you create a file system us
 
 When creating a file system, you also choose a performance mode\. There are two performance modes to choose from—*General Purpose* and *Max I/O*\. For the majority of use cases, we recommend that you use the General Purpose performance mode for your file system\. For more information, see [Performance modes](performance.md#performancemodes)\.
 
-**Note**  
+**Note**
 For file systems that use One Zone storage classes, only the General Purpose performance mode is available\.
 
 ### Throughput modes<a name="create-fs-throughput-mode"></a>
 
 There are two throughput modes to choose from—*Bursting Throughput* and *Provisioned Throughput*\. The default Bursting Throughput mode is simple to work with and is suitable for a majority of applications and a wide range of performance requirements\. Provisioned Throughput mode is for applications that require a greater ratio of throughput to storage capacity than allowed by Bursting Throughput mode\. For more information, see [Throughput modes](performance.md#throughput-modes)\.
 
-**Note**  
+**Note**
 Additional charges are associated with using Provisioned Throughput mode\. For more information, see [Amazon EFS pricing](http://aws.amazon.com/efs/pricing/)\.
 
 ### Encryption<a name="create-fs-encryption"></a>
@@ -92,12 +92,12 @@ Creating an Amazon EFS file system using the console is a four\-step process:
 
 1. Sign in to the AWS Management Console and open the Amazon EFS console at [ https://console\.aws\.amazon\.com/efs/](https://console.aws.amazon.com/efs/)\.
 
-1. Choose **Create file system** to open the **Create file system** dialog box\.  
+1. Choose **Create file system** to open the **Create file system** dialog box\.
 ![\[Amazon EFS Create file system window\]](http://docs.aws.amazon.com/efs/latest/ug/images/console2-create-file-system.png)
 
-1. Choose **Customize** to create a customized file system instead of creating a file system using the service recommended settings\. 
+1. Choose **Customize** to create a customized file system instead of creating a file system using the service recommended settings\.
 
-   The **File system settings** page appears\.  
+   The **File system settings** page appears\.
 ![\[Step 1 in creating an EFS file system using the General settings page in the EFS console.\]](http://docs.aws.amazon.com/efs/latest/ug/images/console2-fscustomcreate-step1-general.png)
 
 1. For **General** settings, enter the following\.
@@ -119,14 +119,14 @@ Creating an Amazon EFS file system using the console is a four\-step process:
    1. Choose a **Lifecycle management** policy\. The default policy is **30 days after last access**\. If you don't want to use lifecycle management, choose **None**\. For more information, see [Amazon EFS lifecycle management](lifecycle-management-efs.md)\.
 
    1. Choose a **Performance mode**, either the default **General Purpose** mode or **Max I/O**\. You can change the performance mode after the file system becomes available\. For more information, see [Performance modes](performance.md#performancemodes)\.
-**Note**  
+**Note**
 Only the General Purpose mode is available for file systems that are configured for One Zone availability and durability\.
 
-   1. Choose a **Throughput mode**, either the default **Bursting** mode or **Provisioned** mode\. 
+   1. Choose a **Throughput mode**, either the default **Bursting** mode or **Provisioned** mode\.
 
       If you choose **Provisioned**, the **Provisioned Throughput \(MiB/s\)** section appears\. Enter the amount of **Throughput** to provision for file system requests\.
 
-      The amount of **Maximum Read Throughput** is displayed at three times the amount of the throughput you enter\. EFS file systems meter read requests at one\-third the rate of other requests\. After you enter the throughput, an estimate of the monthly cost for the file system is displayed\. 
+      The amount of **Maximum Read Throughput** is displayed at three times the amount of the throughput you enter\. EFS file systems meter read requests at one\-third the rate of other requests\. After you enter the throughput, an estimate of the monthly cost for the file system is displayed\.
 
       You can change the amount of write throughput anytime after the file system becomes available\. For more information, see [Throughput modes](performance.md#throughput-modes)\.
 
@@ -142,7 +142,7 @@ Only the General Purpose mode is available for file systems that are configured 
 
 **Step 2: Configure network access**
 
-In Step 2, you configure the file system's network settings, including the VPC and mount targets\.  
+In Step 2, you configure the file system's network settings, including the VPC and mount targets\.
 ![\[Step 2 in creating an EFS file system, configuring network settings using the EFS console.\]](http://docs.aws.amazon.com/efs/latest/ug/images/console2-fscustomcreate-step2-networkaccess.png)
 
 1. Choose the **Virtual Private Cloud \(VPC\)** where you want EC2 instances to connect to your file system\. For more information, see [Managing file system network accessibility](manage-fs-access.md)\.
@@ -161,7 +161,7 @@ In Step 2, you configure the file system's network settings, including the VPC a
 
 **Step 3: Create a file system policy \(optional\)**
 
-Optionally, you can create a file system policy for your file system\. An EFS file system policy is an IAM resource policy that you use to control NFS client access to the file system\. For more information, see [Using IAM to control file system data access](iam-access-control-nfs-efs.md)\.  
+Optionally, you can create a file system policy for your file system\. An EFS file system policy is an IAM resource policy that you use to control NFS client access to the file system\. For more information, see [Using IAM to control file system data access](iam-access-control-nfs-efs.md)\.
 ![\[Step 3 in creating an EFS file system, optionally create a file system policy.\]](http://docs.aws.amazon.com/efs/latest/ug/images/console2-fscustomcreate-step3-fsp.png)
 
 1. In **Policy options**, you can choose any combination of the available preconfigured policies:
@@ -177,14 +177,14 @@ Optionally, you can create a file system policy for your file system\. An EFS fi
 
 **Step 4: Review and create**
 
-1. Review each of the file system configuration groups\. You can make changes to each group at this time by choosing **Edit**\.  
+1. Review each of the file system configuration groups\. You can make changes to each group at this time by choosing **Edit**\.
 ![\[File system details page showing the newly created file system and its configuration details.\]](http://docs.aws.amazon.com/efs/latest/ug/images/console2-fscustomcreate-step4-rvw.png)
 
-1. Choose **Create** to create your file system and return to the **File systems** page\. 
+1. Choose **Create** to create your file system and return to the **File systems** page\.
 
    A banner across the top shows that the new file system is being created\. A link to access the new file system details page appears in the banner when the file system becomes available\.
 
-1. The **File systems** page displays the file system and its configuration details, as shown following\.   
+1. The **File systems** page displays the file system and its configuration details, as shown following\.
 ![\[File system details page showing the newly created file system and its configuration details.\]](http://docs.aws.amazon.com/efs/latest/ug/images/console2-efs-filesystem-details.png)
 
 ## Creating a file system using the AWS CLI<a name="creating-using-fs-part1-cli"></a>
@@ -196,28 +196,28 @@ The following examples use the `adminuser` as the `profile` parameter values\. Y
 
   ```
   $ aws efs create-file-system \
-  -\-creation-token creation-token \
-  -\-encrypted true \
-  -\-backup true \
-  -\-performance-mode generalPurpose \
-  -\-throughput-mode bursting \
-  -\-region aws-region \
-  -\-tags Key=key,Value=value Key=key1,Value=value1 \
-  -\-profile adminuser
+  --creation-token creation-token \
+  --encrypted true \
+  --backup true \
+  --performance-mode generalPurpose \
+  --throughput-mode bursting \
+  --region aws-region \
+  --tags Key=key,Value=value Key=key1,Value=value1 \
+  --profile adminuser
   ```
 
   For example, the following `create-file-system` command creates a file system in the `us-west-2` AWS Region\. The command specifies `MyFirstFS` as the creation token\. For a list of AWS Regions where you can create an Amazon EFS file system, see the [Amazon Web Services General Reference](https://docs.aws.amazon.com/general/latest/gr/rande.html#elasticfilesystem_region)\.
 
   ```
   $  aws efs create-file-system \
-  -\-creation-token MyFirstFS \
-  -\-backup true \
-  -\-encrypted true \
-  -\-performance-mode generalPurpose \
-  -\-throughput-mode bursting \
-  -\-region us-west-2 \
-  -\-tags Key=Name,Value="Test File System" Key=developer,Value=rhoward \
-  -\-profile adminuser
+  --creation-token MyFirstFS \
+  --backup true \
+  --encrypted true \
+  --performance-mode generalPurpose \
+  --throughput-mode bursting \
+  --region us-west-2 \
+  --tags Key=Name,Value="Test File System" Key=developer,Value=rhoward \
+  --profile adminuser
   ```
 
   After successfully creating the file system, Amazon EFS returns the file system description as JSON, as shown in the following example\.
@@ -239,8 +239,8 @@ The following examples use the `adminuser` as the `profile` parameter values\. Y
       },
       "PerformanceMode": "generalPurpose",
       "ThroughputMode": "bursting",
-      "Tags": [ 
-        { 
+      "Tags": [
+        {
            "Key": "Name",
            "Value": "Test File System"
         }
@@ -252,15 +252,15 @@ The following examples use the `adminuser` as the `profile` parameter values\. Y
 
   ```
   $  aws efs create-file-system \
-  -\-creation-token MyFirstFS \
-  -\-availability-zone-name us-west-2a \
-  -\-backup true \
-  -\-encrypted true \
-  -\-performance-mode generalPurpose \
-  -\-throughput-mode bursting \
-  -\-region us-west-2 \
-  -\-tags Key=Name,Value="Test File System" Key=developer,Value=rhoward \
-  -\-profile adminuser
+  --creation-token MyFirstFS \
+  --availability-zone-name us-west-2a \
+  --backup true \
+  --encrypted true \
+  --performance-mode generalPurpose \
+  --throughput-mode bursting \
+  --region us-west-2 \
+  --tags Key=Name,Value="Test File System" Key=developer,Value=rhoward \
+  --profile adminuser
   ```
 
   After successfully creating the file system, Amazon EFS returns the file system description as JSON, as shown in the following example\.
@@ -284,8 +284,8 @@ The following examples use the `adminuser` as the `profile` parameter values\. Y
       },
       "PerformanceMode": "generalPurpose",
       "ThroughputMode": "bursting",
-      "Tags": [ 
-        { 
+      "Tags": [
+        {
            "Key": "Name",
            "Value": "Test File System"
         }
@@ -297,8 +297,8 @@ The following examples use the `adminuser` as the `profile` parameter values\. Y
 
   ```
   $  aws efs describe-file-systems \
-  -\-region aws-region \
-  -\-profile adminuser
+  --region aws-region \
+  --profile adminuser
   ```
 
   Amazon EFS returns a list of the file systems in your AWS account created in the specified Region\.
