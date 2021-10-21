@@ -21,7 +21,7 @@ In this step, you create an Amazon EFS file system\. Write down the `FileSystemI
 
      ```
      $  aws efs create-file-system \
-     --encrypted true \
+     --encrypted \
      --creation-token FileSystemForWalkthrough1 \
      --tags Key=Name,Value=SomeExampleNameValue \
      --region us-west-2 \
