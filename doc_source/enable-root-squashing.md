@@ -36,12 +36,12 @@ Clients that aren't anonymous can get root access to the file system through an 
 
    ```
    {
-       “Version”: “2012-10-17”,
-       “Statement”: [
+       "Version": "2012-10-17",
+       "Statement": [
            {
-           “Resource”: “*”,
-           “Effect”: “Allow”,
-           “Action”: “elasticfilesystem:Client*”
+           "Resource": "*",
+           "Effect": "Allow",
+           "Action": "elasticfilesystem:Client*"
            }
        ],
        "Condition": {}
