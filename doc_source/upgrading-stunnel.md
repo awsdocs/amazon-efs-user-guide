@@ -23,6 +23,8 @@ After installing the Amazon EFS mount helper, you can upgrade your system's vers
    ```
    sudo curl -o latest-stunnel-version.tar.gz https://www.stunnel.org/downloads/latest-stunnel-version.tar.gz
    ```
+**Warning**
+Verify the signature on this file before proceeding by using the gpg key with fingerprint `AC91 5EA3 0645 D9D3 D4DA  E4FE B104 8932 DD3A AAA3`. For an example of how to do this, see [this link](https://docs.aws.amazon.com/systems-manager/latest/userguide/verify-agent-signature.html).
 
 1. 
 
