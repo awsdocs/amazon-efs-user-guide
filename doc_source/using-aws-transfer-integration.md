@@ -22,7 +22,7 @@ Using Transfer Family with Amazon EFS is disabled by default for AWS accounts th
 
 To use Transfer Family to access files your Amazon EFS file system, your configuration must meet the following conditions:
 + The Transfer Family server and your Amazon EFS file system are located in the same AWS Region\.
-+ IAM policies are configured to enable access to the IAM role used by AWS Transfer\. For more information, see [Create an IAM role and policy](https://docs.aws.amazon.com/transfer/latest/userguide/requirements-roles.html) in the *AWS Transfer Family User Guide*\.
++ IAM policies are configured to enable access to the IAM role used by Transfer Family\. For more information, see [Create an IAM role and policy](https://docs.aws.amazon.com/transfer/latest/userguide/requirements-roles.html) in the *AWS Transfer Family User Guide*\.
 + \(Optional\) If the Transfer Family server is owned by a different account, enable cross\-account access\.
   + Ensure that your file system policy does not allow public access\. For more information, see [Blocking public access](access-control-block-public-access.md)\.
   + Modify the file system policy to enable cross\-account access\. For more information, see [Configuring cross\-account access for Transfer Family](#efs-cross-acct-access-transfer)\.
@@ -98,7 +98,7 @@ The following is an example file system policy that grants `ClientMount` \(read\
 }
 ```
 
-For more information about creating a file system policy, see [Creating file system policies](create-file-system-policy.md)\. For more information about using identity\-based IAM policies to manage access to EFS resources, see [Managing Access to Resources](access-control-overview.md#access-control-manage-access-intro)\.
+For more information about creating a file system policy, see [Creating file system policies](create-file-system-policy.md)\. For more information about using identity\-based IAM policies to manage access to EFS resources, see [Managing access to resources](access-control-overview.md#access-control-manage-access-intro)\.
 
 ### Configuring cross\-account access for Transfer Family<a name="efs-cross-acct-access-transfer"></a>
 

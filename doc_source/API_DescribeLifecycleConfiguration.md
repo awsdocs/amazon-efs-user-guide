@@ -2,6 +2,8 @@
 
 Returns the current `LifecycleConfiguration` object for the specified Amazon EFS file system\. EFS lifecycle management uses the `LifecycleConfiguration` object to identify which files to move to the EFS Infrequent Access \(IA\) storage class\. For a file system without a `LifecycleConfiguration` object, the call returns an empty array in the response\.
 
+When EFS Intelligent\-Tiering is enabled, `TransitionToPrimaryStorageClass` has a value of `AFTER_1_ACCESS`\.
+
 This operation requires permissions for the `elasticfilesystem:DescribeLifecycleConfiguration` operation\.
 
 ## Request Syntax<a name="API_DescribeLifecycleConfiguration_RequestSyntax"></a>
@@ -33,7 +35,8 @@ Content-type: application/json
 {
    "LifecyclePolicies": [ 
       { 
-         "TransitionToIA": "string"
+         "TransitionToIA": "string",
+         "TransitionToPrimaryStorageClass": "string"
       }
    ]
 }
@@ -46,20 +49,21 @@ If the action is successful, the service sends back an HTTP 200 response\.
 The following data is returned in JSON format by the service\.
 
  ** [LifecyclePolicies](#API_DescribeLifecycleConfiguration_ResponseSyntax) **   <a name="efs-DescribeLifecycleConfiguration-response-LifecyclePolicies"></a>
-An array of lifecycle management policies\. Currently, EFS supports a maximum of one policy per file system\.  
-Type: Array of [LifecyclePolicy](API_LifecyclePolicy.md) objects
+An array of lifecycle management policies\. EFS supports a maximum of one policy per file system\.  
+Type: Array of [LifecyclePolicy](API_LifecyclePolicy.md) objects  
+Array Members: Maximum number of 2 items\.
 
 ## Errors<a name="API_DescribeLifecycleConfiguration_Errors"></a>
 
- **BadRequest**   
+ ** BadRequest **   
 Returned if the request is malformed or contains an error such as an invalid parameter value or a missing required parameter\.  
 HTTP Status Code: 400
 
- **FileSystemNotFound**   
+ ** FileSystemNotFound **   
 Returned if the specified `FileSystemId` value doesn't exist in the requester's AWS account\.  
 HTTP Status Code: 404
 
- **InternalServerError**   
+ ** InternalServerError **   
 Returned if an error occurred on the server side\.  
 HTTP Status Code: 500
 
@@ -89,6 +93,9 @@ HTTP/1.1 200 OK
   "LifecyclePolicies": [
     {
         "TransitionToIA": "AFTER_14_DAYS"
+    },
+    {
+        "TransitionToPrimaryStorageClass": "AFTER_1_ACCESS"
     }
   ]
 }

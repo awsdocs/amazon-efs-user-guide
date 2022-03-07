@@ -77,4 +77,4 @@ You can make this file system policy non\-public by using the EFS condition key 
 }
 ```
 
-For more information about Amazon EFS condition keys, see [EFS Condition Keys for Clients](iam-access-control-nfs-efs.md#efs-condition-keys-for-nfs)\. For more information about creating file system policies, see [Creating file system policies](create-file-system-policy.md)\.
+For more information about Amazon EFS condition keys, see [EFS condition keys for clients](iam-access-control-nfs-efs.md#efs-condition-keys-for-nfs)\. For more information about creating file system policies, see [Creating file system policies](create-file-system-policy.md)\.

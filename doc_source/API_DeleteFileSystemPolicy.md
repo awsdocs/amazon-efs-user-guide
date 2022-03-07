@@ -36,15 +36,19 @@ If the action is successful, the service sends back an HTTP 200 response with an
 
 ## Errors<a name="API_DeleteFileSystemPolicy_Errors"></a>
 
- **FileSystemNotFound**   
+ ** BadRequest **   
+Returned if the request is malformed or contains an error such as an invalid parameter value or a missing required parameter\.  
+HTTP Status Code: 400
+
+ ** FileSystemNotFound **   
 Returned if the specified `FileSystemId` value doesn't exist in the requester's AWS account\.  
 HTTP Status Code: 404
 
- **IncorrectFileSystemLifeCycleState**   
+ ** IncorrectFileSystemLifeCycleState **   
 Returned if the file system's lifecycle state is not "available"\.  
 HTTP Status Code: 409
 
- **InternalServerError**   
+ ** InternalServerError **   
 Returned if an error occurred on the server side\.  
 HTTP Status Code: 500
 

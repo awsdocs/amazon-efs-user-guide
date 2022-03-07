@@ -1,7 +1,7 @@
 # Step 2: Create your EC2 resources and launch your EC2 instance<a name="gs-step-one-create-ec2-resources"></a>
 
 **Note**  
-You can't use Amazon EFS with Microsoft Windows–based Amazon EC2 instances\.
+You can't use Amazon EFS with Microsoft Windows–based Amazon EC2 instances with Amazon EFS\.
 
 Before you can launch and connect to an Amazon EC2 instance, you need to create a key pair, unless you already have one\. You can create a key pair using the Amazon EC2 console, and then you can launch your EC2 instance\.
 
@@ -14,7 +14,7 @@ Before you can launch and connect to an Amazon EC2 instance, you need to create 
 
 1. Choose **Launch Instance**\.
 
-1. In **Step 1: Choose an Amazon Machine Image \(AMI\)**, find an Amazon Linux AMI at the top of the list and choose **Select**\.
+1. In **Step 1: Choose an Amazon Machine Image \(AMI\)**, find an Amazon Linux 2 AMI at the top of the list and choose **Select**\.
 
 1. In **Step 2: Choose an Instance Type**, choose **Next: Configure Instance Details**\.
 

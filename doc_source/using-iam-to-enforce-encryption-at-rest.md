@@ -1,4 +1,4 @@
-# Using IAM to Enforce Creating Encrypted File Systems<a name="using-iam-to-enforce-encryption-at-rest"></a>
+# Using IAM to enforce creating encrypted file systems<a name="using-iam-to-enforce-encryption-at-rest"></a>
 
 You can create an AWS Identity and Access Management \(IAM\) identity\-based policy to control whether users can create Amazon EFS file systems that are encrypted at rest\. The Boolean condition key `elasticfilesystem:Encrypted` specifies the type of file system, encrypted or unencrypted, that the policy applies to\. You use the condition key with the `elasticfilesystem:CreateFileSystem` action and the policy effect, allow or deny, to create a policy for creating encrypted or unencrypted file systems\. 
 
@@ -11,10 +11,8 @@ The following example illustrates an IAM identity\-based policy that authorizes 
 
 ```
 {
-    "Version": "2012-10-17",
     "Statement": [
         {
-            "Sid": "VisualEditor0",
             "Effect": "Allow",
             "Action": "elasticfilesystem:CreateFileSystem",
             "Condition": {
@@ -44,10 +42,8 @@ The following example illustrates an IAM identity\-based policy that authorizes 
 
 ```
 {
-    "Version": "2012-10-17",
-    "Statement": [
-        {
-            "Sid": "VisualEditor1",
+      "Statement": [
+        {            
             "Effect": "Allow",
             "Action": "elasticfilesystem:CreateFileSystem",
             "Condition": {
@@ -74,7 +70,7 @@ User: arn:aws:iam::111122223333:user/username is not authorized to
 
 You can also use policies like the previous examples in an AWS Organizations service control policy \(SCP\) to enforce the creation of encrypted Amazon EFS file systems for all AWS accounts in your organization\. For more information about service control policies in AWS Organizations, see [Service control policies](https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_scps.html#orgs_manage_policies_scp) in the *AWS Organizations User Guide*\.
 
-## Create an IAM Policy That Authorizes Users to Create Only Encrypted EFS File Systems<a name="create-IAM-policy-enforce-encryption"></a>
+## Create an IAM policy that authorizes users to create only encrypted efs file systems<a name="create-IAM-policy-enforce-encryption"></a>
 
 You can create an IAM identity\-based policy that authorizes users to create only encrypted Amazon EFS file systems using the console, the AWS CLI, and the API\. The following procedure describes how to create such a policy using the IAM console, and then apply the policy to a user in your account\.
 

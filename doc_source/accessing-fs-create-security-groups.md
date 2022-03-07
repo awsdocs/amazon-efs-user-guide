@@ -35,4 +35,4 @@ You don't need to add an outbound rule because the default outbound rule allows 
 
 ## Creating security groups using the AWS CLI<a name="create-security-groups-cli"></a>
 
-For an example that shows how to create security groups using the AWS CLI, see [Step 1: Create Amazon EC2 Resources](wt1-create-ec2-resources.md)\.
+For an example that shows how to create security groups using the AWS CLI, see [Step 1: Create Amazon EC2 resources](wt1-create-ec2-resources.md)\.

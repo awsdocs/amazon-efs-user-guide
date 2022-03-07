@@ -49,6 +49,6 @@ In the following steps, you create a user \(mike\), create a subdirectory for th
 
 Now user mike's home directory is a subdirectory, writable by mike, in the Amazon EFS file system\. If you unmount this mount target, the user can't access their EFS directory without remounting, which requires root permissions\. 
 
-## Automatic Remounting on Reboot<a name="accessing-fs-nfs-permissions-per-user-subdirs-auto-mount-on-reboot"></a>
+## Automatic remounting on reboot<a name="accessing-fs-nfs-permissions-per-user-subdirs-auto-mount-on-reboot"></a>
 
- You can use the file `fstab` to automatically remount your file system after any system reboots\. For more information, see [Mounting your Amazon EFS file system automatically](mount-fs-auto-mount-onreboot.md)\. 
+ You can use the file `fstab` to automatically remount your file system after any system reboots\. For more information, see [Mounting your Amazon EFS file system automatically](efs-mount-helper.md#mount-fs-auto-mount-onreboot)\. 

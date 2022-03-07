@@ -7,7 +7,7 @@ Now that you have created a functioning Amazon EFS file system, you can use AWS 
 In this step, we assume that you have the following:
 + A source NFS file system that you can transfer files from\. This source system needs to be accessible over NFS version 3, version 4, or 4\.1\. Example file systems include those located in an on\-premises data center, self\-managed in\-cloud file systems, and Amazon EFS file systems\. 
 + A destination Amazon EFS file system to transfer files to\. If you don't have an Amazon EFS file system, create one\. For more information, see [Getting started with Amazon Elastic File System](getting-started.md)\.
-+ Your server and network meet the AWS DataSync requirements\. To learn more, see the [ AWS DataSync requirements](https://docs.aws.amazon.com/datasync/latest/userguide/requirements.html)\.
++ Your server and network meet the AWS DataSync requirements\. To learn more, see the [AWS DataSync requirements](https://docs.aws.amazon.com/datasync/latest/userguide/requirements.html)\.
 
 To transfer files from a source location to a destination location using AWS DataSync, you do the following:
 + Download and deploy an agent in your environment and activate it\.

@@ -1,4 +1,4 @@
-# Walkthrough: Set Up an Apache Web Server and Serve Amazon EFS Files<a name="wt2-apache-web-server"></a>
+# Walkthrough: Set up an Apache web server and serve Amazon EFS files<a name="wt2-apache-web-server"></a>
 
 You can have EC2 instances running the Apache web server serving files stored on your Amazon EFS file system\. It can be one EC2 instance, or if your application needs, you can have multiple EC2 instances serving files from your Amazon EFS file system\. The following procedures are described\.
 + [Set up an Apache web server on an EC2 instance](#wt2-apache-web-server-one-ec2-host)\.
@@ -7,7 +7,7 @@ You can have EC2 instances running the Apache web server serving files stored on
 **Note**  
 For both procedures, you create all resources in the US West \(Oregon\) Region \(`us-west-2`\)\. 
 
-## Single EC2 Instance Serving Files<a name="wt2-apache-web-server-one-ec2-host"></a>
+## Single EC2 instance serving files<a name="wt2-apache-web-server-one-ec2-host"></a>
 
 Follow the steps to set up an Apache web server on one EC2 instance to serve files you create in your Amazon EFS file system\.
 
@@ -105,7 +105,7 @@ Follow the steps to set up an Apache web server on one EC2 instance to serve fil
 **Note**  
 This setup does not configure the EC2 instance to automatically start httpd \(web server\) on boot, and also does not mount the file system on boot\. In the next walkthrough, you create a launch configuration to set this up\.
 
-## Multiple EC2 Instances Serving Files<a name="wt2-apache-web-server-auto-scale-group"></a>
+## Multiple EC2 instances serving files<a name="wt2-apache-web-server-auto-scale-group"></a>
 
 Follow the steps to serve the same content in your Amazon EFS file system from multiple EC2 instances for improved scalability or availability\.
 
@@ -212,7 +212,7 @@ If you choose the **Amazon Linux AMI 2016\.03\.0** Amazon Linux AMI when launchi
       $ cd /var/www/html/efs-mount-point 
       ```
 
-   1.  Make a subdirectory for `sampledir` and change the ownership\. And change directory so you can create files in the `sampledir` subdirectory\. If you followed the preceding [Single EC2 Instance Serving Files](#wt2-apache-web-server-one-ec2-host), you already created the `sampledir` subdirectory, so you can skip this step\.
+   1.  Make a subdirectory for `sampledir` and change the ownership\. And change directory so you can create files in the `sampledir` subdirectory\. If you followed the preceding [Single EC2 instance serving files](#wt2-apache-web-server-one-ec2-host), you already created the `sampledir` subdirectory, so you can skip this step\.
 
       ```
       $  sudo mkdir sampledir  

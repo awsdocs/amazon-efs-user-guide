@@ -85,7 +85,7 @@ Required: No
  ** [SecurityGroups](#API_CreateMountTarget_RequestSyntax) **   <a name="efs-CreateMountTarget-request-SecurityGroups"></a>
 Up to five VPC security group IDs, of the form `sg-xxxxxxxx`\. These must be for the same VPC as subnet specified\.  
 Type: Array of strings  
-Array Members: Maximum number of 5 items\.  
+Array Members: Maximum number of 100 items\.  
 Length Constraints: Minimum length of 11\. Maximum length of 43\.  
 Pattern: `^sg-[0-9a-f]{8,40}`   
 Required: No
@@ -161,7 +161,7 @@ The ID of the network interface that Amazon EFS created when it created the moun
 Type: String
 
  ** [OwnerId](#API_CreateMountTarget_ResponseSyntax) **   <a name="efs-CreateMountTarget-response-OwnerId"></a>
-AWS account ID that owns the resource\.  
+ AWS account ID that owns the resource\.  
 Type: String  
 Length Constraints: Maximum length of 14\.  
 Pattern: `^(\d{12})|(\d{4}-\d{4}-\d{4})$` 
@@ -178,55 +178,55 @@ Type: String
 
 ## Errors<a name="API_CreateMountTarget_Errors"></a>
 
- **AvailabilityZonesMismatch**   
-Returned if the Availability Zone that was specified for a mount target is different from the Availability Zone that was specified for One Zone storage classes\. For more information, see [Regional and One Zone storage redundancy](https://docs.aws.amazon.com/efs/latest/ug/availability-durability.html)\.  
+ ** AvailabilityZonesMismatch **   
+Returned if the Availability Zone that was specified for a mount target is different from the Availability Zone that was specified for One Zone storage\. For more information, see [Regional and One Zone storage redundancy](https://docs.aws.amazon.com/efs/latest/ug/availability-durability.html)\.  
 HTTP Status Code: 400
 
- **BadRequest**   
+ ** BadRequest **   
 Returned if the request is malformed or contains an error such as an invalid parameter value or a missing required parameter\.  
 HTTP Status Code: 400
 
- **FileSystemNotFound**   
+ ** FileSystemNotFound **   
 Returned if the specified `FileSystemId` value doesn't exist in the requester's AWS account\.  
 HTTP Status Code: 404
 
- **IncorrectFileSystemLifeCycleState**   
+ ** IncorrectFileSystemLifeCycleState **   
 Returned if the file system's lifecycle state is not "available"\.  
 HTTP Status Code: 409
 
- **InternalServerError**   
+ ** InternalServerError **   
 Returned if an error occurred on the server side\.  
 HTTP Status Code: 500
 
- **IpAddressInUse**   
+ ** IpAddressInUse **   
 Returned if the request specified an `IpAddress` that is already in use in the subnet\.  
 HTTP Status Code: 409
 
- **MountTargetConflict**   
+ ** MountTargetConflict **   
 Returned if the mount target would violate one of the specified restrictions based on the file system's existing mount targets\.  
 HTTP Status Code: 409
 
- **NetworkInterfaceLimitExceeded**   
-The calling account has reached the limit for elastic network interfaces for the specific AWS Region\. The client should try to delete some elastic network interfaces or get the account limit raised\. For more information, see [Amazon VPC Limits](https://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_Appendix_Limits.html) in the *Amazon VPC User Guide * \(see the Network interfaces per VPC entry in the table\)\.   
+ ** NetworkInterfaceLimitExceeded **   
+The calling account has reached the limit for elastic network interfaces for the specific AWS Region\. Either delete some network interfaces or request that the account quota be raised\. For more information, see [Amazon VPC Quotas](https://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_Appendix_Limits.html) in the *Amazon VPC User Guide* \(see the **Network interfaces per Region** entry in the **Network interfaces** table\)\.   
 HTTP Status Code: 409
 
- **NoFreeAddressesInSubnet**   
+ ** NoFreeAddressesInSubnet **   
 Returned if `IpAddress` was not specified in the request and there are no free IP addresses in the subnet\.  
 HTTP Status Code: 409
 
- **SecurityGroupLimitExceeded**   
+ ** SecurityGroupLimitExceeded **   
 Returned if the size of `SecurityGroups` specified in the request is greater than five\.  
 HTTP Status Code: 400
 
- **SecurityGroupNotFound**   
-Returned if one of the specified security groups doesn't exist in the subnet's VPC\.  
+ ** SecurityGroupNotFound **   
+Returned if one of the specified security groups doesn't exist in the subnet's virtual private cloud \(VPC\)\.  
 HTTP Status Code: 400
 
- **SubnetNotFound**   
+ ** SubnetNotFound **   
 Returned if there is no subnet with ID `SubnetId` provided in the request\.  
 HTTP Status Code: 400
 
- **UnsupportedAvailabilityZone**   
+ ** UnsupportedAvailabilityZone **   
 Returned if the requested Amazon EFS functionality is not available in the specified Availability Zone\.  
 HTTP Status Code: 400
 

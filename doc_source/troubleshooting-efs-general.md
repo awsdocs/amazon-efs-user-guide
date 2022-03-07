@@ -34,7 +34,7 @@ perform: elasticfilesystem:CreateFileSystem on the specified resource.
 ```
 
 **Action to take**  
-Check your AWS Identity and Access Management \(IAM\) policy to confirm that you are authorized to create EFS file systems with the specified resource conditions\. For more information, see [Identity and Access Management for Amazon EFS](auth-and-access-control.md)\.
+Check your AWS Identity and Access Management \(IAM\) policy to confirm that you are authorized to create EFS file systems with the specified resource conditions\. For more information, see [Identity and access management for Amazon EFS](auth-and-access-control.md)\.
 
 ## Errors when accessing the Amazon EFS console<a name="efs-console-access-errors"></a>
 

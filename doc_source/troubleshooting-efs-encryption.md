@@ -11,7 +11,7 @@
 By default, when you use the Amazon EFS mount helper with Transport Layer Security \(TLS\), it enforces hostname checking\. Some systems don't support this feature, such as when you use Red Hat Enterprise Linux or CentOS\. In these cases, mounting an EFS file system using TLS fails\.
 
 **Action to take**  
- We recommend that you upgrade the version of stunnel on your client to support hostname checking\. For more information, see [Upgrading Stunnel](upgrading-stunnel.md)\.
+ We recommend that you upgrade the version of stunnel on your client to support hostname checking\. For more information, see [Upgrading `stunnel`](upgrading-stunnel.md)\.
 
 ## Mounting with Encryption of Data in Transit is Interrupted<a name="mounting-tls-interrupt"></a>
 
@@ -28,7 +28,7 @@ If your connection to your Amazon EFS file system with encryption of data in tra
    ps aux | grep [a]mazon-efs-mount-watchdog
    ```
 
-1. Check your support logs\. For more information, see [Getting Support Logs](efs-mount-helper.md#mount-helper-logs)\.
+1. Check your support logs\. For more information, see [Getting support logs](efs-mount-helper.md#mount-helper-logs)\.
 
 1. Optionally, you can enable your stunnel logs and check the information in those as well\. You can change the configuration of your logs in `/etc/amazon/efs/efs-utils.conf` to enable the stunnel logs\. However, doing so requires unmounting and then remounting the file system with the mount helper for the changes to take effect\.
 **Important**  

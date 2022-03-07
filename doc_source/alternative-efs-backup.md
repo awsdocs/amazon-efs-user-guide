@@ -9,7 +9,7 @@ There are two recommended solutions available for backing up your Amazon EFS fil
 + AWS Backup service
 + The EFS\-to\-EFS backup solution
 
-AWS Backup is a simple and cost\-effective way to back up your Amazon EFS file systems\. AWS Backup is a unified backup service designed to simplify the creation, migration, restoration, and deletion of backups, while providing improved reporting and auditing\. For more information, see [Using AWS Backup with Amazon EFS](awsbackup.md)\.
+AWS Backup is a simple and cost\-effective way to back up your Amazon EFS file systems\. AWS Backup is a unified backup service designed to simplify the creation, migration, restoration, and deletion of backups, while providing improved reporting and auditing\. For more information, see [Using AWS Backup to back up and restore Amazon EFS file systems](awsbackup.md)\.
 
 The EFS\-to\-EFS backup solution is suitable for all Amazon EFS file systems in all AWS Regions\. It includes an AWS CloudFormation template that launches, configures, and runs the AWS services required to deploy this solution\. This solution follows AWS best practices for security and availability\. For more information, see [EFS\-to\-EFS Backup Solution](https://aws.amazon.com/answers/infrastructure-management/efs-backup/) in AWS Answers\.
 
@@ -23,7 +23,7 @@ This solution consists of AWS Data Pipeline templates that implement the followi
 + Quicker backups using rsync, which only back up the changes made between one backup to the next\.
 + Efficient storage of backups using hard links\. A *hard link* is a directory entry that associates a name with a file in a file system\. By setting up a hard link, you can perform a full restoration of data from any backup while only storing what changed from backup to backup\.
 
-After you set up the backup solution, this walkthrough shows you how to access your backups to restore your data\. This backup solution depends on running scripts that are hosted on GitHub, and is therefore subject to GitHub availability\. If you'd prefer to eliminate this reliance and host the scripts in an Amazon S3 bucket instead, see [Hosting the rsync scripts in an Amazon S3 bucket](#hostingscripts)\.
+After you set up the backup solution, this walk\-through shows you how to access your backups to restore your data\. This backup solution depends on running scripts that are hosted on GitHub, and is therefore subject to GitHub availability\. If you'd prefer to eliminate this reliance and host the scripts in an Amazon S3 bucket instead, see [Hosting the rsync scripts in an Amazon S3 bucket](#hostingscripts)\.
 
 **Important**  
 This solution requires using AWS Data Pipeline in the same AWS Region as your file system\. Because AWS Data Pipeline is not supported in US East \(Ohio\), this solution doesn't work in that AWS Region\. We recommend that if you want to back up your file system using this solution, you use your file system in one of the other supported AWS Regions\.
@@ -64,7 +64,7 @@ Consider the following when you're deciding whether to implement an Amazon EFS b
   + One regularly scheduled AWS Data Pipeline for backing up data\.
   + An AWS Data Pipeline for restoring backups\.
 
-  When this solution is implemented, it results in billing to your account for these services\. For more information, see the pricing pages for [Amazon EFS](https://aws.amazon.com/efs/pricing/), [Amazon EC2](https://aws.amazon.com/ec2/pricing/), and [AWS Data Pipeline](https://aws.amazon.com/datapipeline/pricing/)\.
+  When this solution is implemented, it results in billing to your account for these services\. For more information, see the pricing pages for [Amazon EFS](http://aws.amazon.com/efs/pricing/), [Amazon EC2](http://aws.amazon.com/ec2/pricing/), and [AWS Data Pipeline](http://aws.amazon.com/datapipeline/pricing/)\.
 + This solution isn't an offline backup solution\. To ensure a fully consistent and complete backup, pause any file writes to the file system or unmount the file system while the backup occurs\. We recommend that you perform all backups during scheduled downtime or off hours\.
 
 ## Assumptions for Amazon EFS backup with AWS Data Pipeline<a name="backup-assumptions"></a>
@@ -381,17 +381,17 @@ If you'd prefer to eliminate this GitHub dependency, you can choose to host the 
 
 1. **Create an AWS Identity and Access Management User** – If you already have an IAM user, go ahead and skip to the next step\. Otherwise, see [Create an IAM User](setting-up.md#setting-up-iam)\.
 
-1. **Create an Amazon S3 bucket** – If you already have a bucket that you want to host the rsync scripts in, go ahead and skip to the next step\. Otherwise, see [Create a Bucket](https://docs.aws.amazon.com/AmazonS3/latest/gsg/CreatingABucket.html) in the *Amazon Simple Storage Service Getting Started Guide*\.
+1. **Create an Amazon S3 bucket** – If you already have a bucket that you want to host the rsync scripts in, go ahead and skip to the next step\. Otherwise, see [Create a Bucket](https://docs.aws.amazon.com/AmazonS3/latest/gsg/CreatingABucket.html) in the *Amazon Simple Storage Service User Guide*\.
 
 1. **Download the rsync scripts and templates** – Download all of the rsync scripts and templates in the [EFSBackup folder](https://github.com/awslabs/data-pipeline-samples/tree/master/samples/EFSBackup) from GitHub\. Make a note of the location on your computer where you downloaded these files\.
 
-1. **Upload the rsync scripts to your S3 bucket** – For instructions on how to upload objects into your S3 bucket, see [Add an Object to a Bucket](https://docs.aws.amazon.com/AmazonS3/latest/gsg/PuttingAnObjectInABucket.html) in the *Amazon Simple Storage Service Getting Started Guide*\.
+1. **Upload the rsync scripts to your S3 bucket** – For instructions on how to upload objects into your S3 bucket, see [Add an Object to a Bucket](https://docs.aws.amazon.com/AmazonS3/latest/gsg/PuttingAnObjectInABucket.html) in the *Amazon Simple Storage Service User Guide*\.
 
-1. Change the permissions on the uploaded rsync scripts to allow **Everyone** to **Open/Download** them\. For instructions on how to change the permissions on an object in your S3 bucket, see [Editing Object Permissions](https://docs.aws.amazon.com/AmazonS3/latest/user-guide/EditingPermissionsonanObject.html) in the *Amazon Simple Storage Service Console User Guide*\.  
+1. Change the permissions on the uploaded rsync scripts to allow **Everyone** to **Open/Download** them\. For instructions on how to change the permissions on an object in your S3 bucket, see [Editing Object Permissions](https://docs.aws.amazon.com/AmazonS3/latest/user-guide/EditingPermissionsonanObject.html) in the *Amazon Simple Storage Service User Guide*\.  
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/efs/latest/ug/images/s3upload.png)
 
 1. **Update your templates** – Modify the `wget` statement in the `shellCmd` parameter to point to the Amazon S3 bucket where you put the startup script\. Save the updated template, and use that template when you're following the procedure in [Step 3: Create a data pipeline for backup](#step3-create-pipeline)\.
 **Note**  
-We recommend that you limit access to your Amazon S3 bucket to include the IAM account that activates the AWS Data Pipeline for this backup solution\. For more information, see [Editing Bucket Permissions](https://docs.aws.amazon.com/AmazonS3/latest/user-guide/EditingBucketPermissions.html) in the *Amazon Simple Storage Service Console User Guide*\.
+We recommend that you limit access to your Amazon S3 bucket to include the IAM account that activates the AWS Data Pipeline for this backup solution\. For more information, see [Editing Bucket Permissions](https://docs.aws.amazon.com/AmazonS3/latest/user-guide/EditingBucketPermissions.html) in the *Amazon Simple Storage Service User Guide*\.
 
 You are now hosting the rsync scripts for this backup solution, and your backups are no longer dependent on GitHub availability\.

@@ -1,4 +1,4 @@
-# Step 2: Create Amazon EFS Resources<a name="wt1-create-efs-resources"></a>
+# Step 2: Create Amazon EFS resources<a name="wt1-create-efs-resources"></a>
 
 In this step, you do the following:
 + Create an encrypted Amazon EFS file system\. 
@@ -6,11 +6,11 @@ In this step, you do the following:
 + Create a mount target in the Availability Zone where you have your EC2 instance launched\.
 
 **Topics**
-+ [Step 2\.1: Create Amazon EFS File System](#wt1-create-file-system)
-+ [Step 2\.2: Enable Lifecycle Management](#wt1-lifecycle-management)
-+ [Step 2\.3: Create a Mount Target](#wt1-create-mount-target)
++ [Step 2\.1: Create an Amazon EFS file system](#wt1-create-file-system)
++ [Step 2\.2: Enable lifecycle management](#wt1-lifecycle-management)
++ [Step 2\.3: Create a mount target](#wt1-create-mount-target)
 
-## Step 2\.1: Create Amazon EFS File System<a name="wt1-create-file-system"></a>
+## Step 2\.1: Create an Amazon EFS file system<a name="wt1-create-file-system"></a>
 
 In this step, you create an Amazon EFS file system\. Write down the `FileSystemId` to use later when you create mount targets for the file system in the next step\.
 
@@ -21,7 +21,7 @@ In this step, you create an Amazon EFS file system\. Write down the `FileSystemI
 
      ```
      $  aws efs create-file-system \
-     --encrypted true \
+     --encrypted \
      --creation-token FileSystemForWalkthrough1 \
      --tags Key=Name,Value=SomeExampleNameValue \
      --region us-west-2 \
@@ -56,11 +56,11 @@ In this step, you create an Amazon EFS file system\. Write down the `FileSystemI
      }
      ```
 
-  1. Note the `FileSystemId` value\. You need this value when you create a mount target for this file system in [Step 2\.3: Create a Mount Target](#wt1-create-mount-target)\.
+  1. Note the `FileSystemId` value\. You need this value when you create a mount target for this file system in [Step 2\.3: Create a mount target](#wt1-create-mount-target)\.
 
-## Step 2\.2: Enable Lifecycle Management<a name="wt1-lifecycle-management"></a>
+## Step 2\.2: Enable lifecycle management<a name="wt1-lifecycle-management"></a>
 
-In this step, you enable lifecycle management on your ﬁle system in order to use the Infrequent Access storage class\. To learn more, see [Amazon EFS lifecycle management](lifecycle-management-efs.md) and [Managing EFS storage classes](storage-classes.md)\.
+In this step, you enable lifecycle management on your ﬁle system in order to use the Infrequent Access storage class\. To learn more, see [Amazon EFS lifecycle management](lifecycle-management-efs.md) and [EFS storage classes](storage-classes.md)\.
 
 **To enable lifecycle management**
 + At the command prompt, run the following AWS CLI `put-lifecycle-configuration` command\.
@@ -85,7 +85,7 @@ In this step, you enable lifecycle management on your ﬁle system in order to u
   }
   ```
 
-## Step 2\.3: Create a Mount Target<a name="wt1-create-mount-target"></a>
+## Step 2\.3: Create a mount target<a name="wt1-create-mount-target"></a>
 
 In this step, you create a mount target for your file system in the Availability Zone where you have your EC2 instance launched\. 
 
@@ -131,5 +131,5 @@ In this step, you create a mount target for your file system in the Availability
    --profile adminuser
    ```
 
-**Next Step**  
-[Step 3: Mount the Amazon EFS File System on the EC2 Instance and Test](wt1-test.md)
+**Next step**  
+[Step 3: Mount the file system on the EC2 instance and test](wt1-test.md)

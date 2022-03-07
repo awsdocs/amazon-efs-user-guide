@@ -11,14 +11,16 @@ As an example, suppose that you have one or more EC2 instances launched in your 
 
 If you are new to Amazon EFS, we recommend that you try the following exercises that provide a first\-hand, end\-to\-end experience of using an Amazon EFS file system:
 + [Getting started](getting-started.md) – The Getting Started exercise walks you through creating a file system with the service recommended settings using the Amazon EFS QuickCreate wizard, mounting it on an EC2 instance, and testing the setup\. The console takes care of many things for you and helps you set up the end\-to\-end experience quickly\.
-+ [Walkthrough: Create an Amazon EFS File System and Mount It on an Amazon EC2 Instance Using the AWS CLI](wt1-getting-started.md) – The walkthrough is similar to the Getting Started exercise, but it uses the AWS Command Line Interface \(AWS CLI\) to perform most of the tasks\. Because the AWS CLI commands closely map to the Amazon EFS API, the walkthrough can help you familiarize yourself with the Amazon EFS API operations\. 
++ [Walkthrough: Create an Amazon EFS file system and mount it on an Amazon EC2 instance using the AWS CLI](wt1-getting-started.md) – The walkthrough is similar to the Getting Started exercise, but it uses the AWS Command Line Interface \(AWS CLI\) to perform most of the tasks\. Because the AWS CLI commands closely map to the Amazon EFS API, the walkthrough can help you familiarize yourself with the Amazon EFS API operations\. 
 
 For more information about creating EFS resources and accessing a file system, see the following topics\.
 
 **Topics**
++ [Resource IDs](resource-ids.md)
 + [Creating Amazon EFS file systems](creating-using-create-fs.md)
 + [Deleting an Amazon EFS file system](delete-efs-fs.md)
 + [Creating and managing mount targets](accessing-fs.md)
 + [Creating security groups](accessing-fs-create-security-groups.md)
 + [Creating file system policies](create-file-system-policy.md)
 + [Creating and deleting access points](create-access-point.md)
++ [Tagging resources](manage-fs-tags.md)

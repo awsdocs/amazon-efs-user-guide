@@ -13,7 +13,7 @@ You can set custom budgets for your Amazon EFS costs and usage at the account, A
 To perform the procedures referenced in the following sections, make sure that you have the following:
 + An EFS file system
 + An AWS Identity and Access Management \(IAM\) policy with the following permissions:
-  + Access to the Billing and Cost Management console\.
+  + Access to the AWS Billing and Cost Management console\.
   + Ability to perform the `elasticfilesystem:CreateTags` and `elasticfilesystem:DescribeTags` actions\.
 
 ## Creating a monthly cost budget for an EFS file system<a name="create-cost-budget-efs"></a>
@@ -22,7 +22,7 @@ Creating a monthly cost budget for your Amazon EFS file system using tags is a t
 
 **To create a monthly cost budget for your EFS file system using tags**
 
-1.  Create a tag to use to identify the file system that you want to track costs for\. To learn how, see [Managing file system tags](manage-fs-tags.md)\. 
+1.  Create a tag to use to identify the file system that you want to track costs for\. To learn how, see [Tagging resources](manage-fs-tags.md)\. 
 
 1.  In the Billing and Cost Management console, activate the tag as a cost allocation tag\. For a detailed procedure, see [Activating user\-defined cost allocation tags](https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/activating-tags.html) in the *AWS Billing and Cost Management User Guide*\. 
 

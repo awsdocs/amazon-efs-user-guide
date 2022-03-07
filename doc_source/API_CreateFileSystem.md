@@ -67,7 +67,7 @@ Required: No
  ** [Backup](#API_CreateFileSystem_RequestSyntax) **   <a name="efs-CreateFileSystem-request-Backup"></a>
 Specifies whether automatic backups are enabled on the file system that you are creating\. Set the value to `true` to enable automatic backups\. If you are creating a file system that uses One Zone storage classes, automatic backups are enabled by default\. For more information, see [Automatic backups](https://docs.aws.amazon.com/efs/latest/ug/awsbackup.html#automatic-backups) in the *Amazon EFS User Guide*\.  
 Default is `false`\. However, if you specify an `AvailabilityZoneName`, the default is `true`\.  
-AWS Backup is not available in all AWS Regions where Amazon EFS is available\.
+ AWS Backup is not available in all AWS Regions where Amazon EFS is available\.
 Type: Boolean  
 Required: No
 
@@ -79,21 +79,21 @@ Pattern: `.+`
 Required: Yes
 
  ** [Encrypted](#API_CreateFileSystem_RequestSyntax) **   <a name="efs-CreateFileSystem-request-Encrypted"></a>
-A Boolean value that, if true, creates an encrypted file system\. When creating an encrypted file system, you have the option of specifying [CreateFileSystem:KmsKeyId](#efs-CreateFileSystem-request-KmsKeyId) for an existing AWS Key Management Service \(AWS KMS\) customer master key \(CMK\)\. If you don't specify a CMK, then the default CMK for Amazon EFS, `/aws/elasticfilesystem`, is used to protect the encrypted file system\.   
+A Boolean value that, if true, creates an encrypted file system\. When creating an encrypted file system, you have the option of specifying an existing AWS Key Management Service key \(KMS key\)\. If you don't specify a KMS key, then the default KMS key for Amazon EFS, `/aws/elasticfilesystem`, is used to protect the encrypted file system\.   
 Type: Boolean  
 Required: No
 
  ** [KmsKeyId](#API_CreateFileSystem_RequestSyntax) **   <a name="efs-CreateFileSystem-request-KmsKeyId"></a>
-The ID of the AWS KMS CMK to be used to protect the encrypted file system\. This parameter is only required if you want to use a non\-default CMK\. If this parameter is not specified, the default CMK for Amazon EFS is used\. This ID can be in one of the following formats:  
+The ID of the KMS key that you want to use to protect the encrypted file system\. This parameter is required only if you want to use a non\-default KMS key\. If this parameter is not specified, the default KMS key for Amazon EFS is used\. You can specify a KMS key ID using the following formats:  
 + Key ID \- A unique identifier of the key, for example `1234abcd-12ab-34cd-56ef-1234567890ab`\.
 + ARN \- An Amazon Resource Name \(ARN\) for the key, for example `arn:aws:kms:us-west-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab`\.
 + Key alias \- A previously created display name for a key, for example `alias/projectKey1`\.
 + Key alias ARN \- An ARN for a key alias, for example `arn:aws:kms:us-west-2:444455556666:alias/projectKey1`\.
-If `KmsKeyId` is specified, the [CreateFileSystem:Encrypted](#efs-CreateFileSystem-request-Encrypted) parameter must be set to true\.  
-EFS accepts only symmetric CMKs\. You cannot use asymmetric CMKs with EFS file systems\.
+If you use `KmsKeyId`, you must set the [CreateFileSystem:Encrypted](#efs-CreateFileSystem-request-Encrypted) parameter to true\.  
+EFS accepts only symmetric KMS keys\. You cannot use asymmetric KMS keys with Amazon EFS file systems\.
 Type: String  
 Length Constraints: Maximum length of 2048\.  
-Pattern: `^([0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}|alias/[a-zA-Z0-9/_-]+|(arn:aws[-a-z]*:kms:[a-z0-9-]+:\d{12}:((key/[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})|(alias/[a-zA-Z0-9/_-]+))))$`   
+Pattern: `^([0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}|mrk-[0-9a-f]{32}|alias/[a-zA-Z0-9/_-]+|(arn:aws[-a-z]*:kms:[a-z0-9-]+:\d{12}:((key/[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})|(key/mrk-[0-9a-f]{32})|(alias/[a-zA-Z0-9/_-]+))))$`   
 Required: No
 
  ** [PerformanceMode](#API_CreateFileSystem_RequestSyntax) **   <a name="efs-CreateFileSystem-request-PerformanceMode"></a>
@@ -110,7 +110,7 @@ Valid Range: Minimum value of 1\.0\.
 Required: No
 
  ** [Tags](#API_CreateFileSystem_RequestSyntax) **   <a name="efs-CreateFileSystem-request-Tags"></a>
-A value that specifies to create one or more tags associated with the file system\. Each tag is a user\-defined key\-value pair\. Name your file system on creation by including a `"Key":"Name","Value":"{value}"` key\-value pair\.  
+Use to create one or more tags associated with the file system\. Each tag is a user\-defined key\-value pair\. Name your file system on creation by including a `"Key":"Name","Value":"{value}"` key\-value pair\. Each key must be unique\. For more information, see [Tagging AWS resources](https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html) in the * AWS General Reference Guide*\.  
 Type: Array of [Tag](API_Tag.md) objects  
 Required: No
 
@@ -199,10 +199,10 @@ Length Constraints: Maximum length of 128\.
 Pattern: `^(arn:aws[-a-z]*:elasticfilesystem:[0-9a-z-:]+:file-system/fs-[0-9a-f]{8,40}|fs-[0-9a-f]{8,40})$` 
 
  ** [KmsKeyId](#API_CreateFileSystem_ResponseSyntax) **   <a name="efs-CreateFileSystem-response-KmsKeyId"></a>
-The ID of an AWS Key Management Service \(AWS KMS\) customer master key \(CMK\) that was used to protect the encrypted file system\.  
+The ID of an AWS KMS key used to protect the encrypted file system\.  
 Type: String  
 Length Constraints: Maximum length of 2048\.  
-Pattern: `^([0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}|alias/[a-zA-Z0-9/_-]+|(arn:aws[-a-z]*:kms:[a-z0-9-]+:\d{12}:((key/[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})|(alias/[a-zA-Z0-9/_-]+))))$` 
+Pattern: `^([0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}|mrk-[0-9a-f]{32}|alias/[a-zA-Z0-9/_-]+|(arn:aws[-a-z]*:kms:[a-z0-9-]+:\d{12}:((key/[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})|(key/mrk-[0-9a-f]{32})|(alias/[a-zA-Z0-9/_-]+))))$` 
 
  ** [LifeCycleState](#API_CreateFileSystem_ResponseSyntax) **   <a name="efs-CreateFileSystem-response-LifeCycleState"></a>
 The lifecycle phase of the file system\.  
@@ -251,31 +251,31 @@ Valid Values:` bursting | provisioned`
 
 ## Errors<a name="API_CreateFileSystem_Errors"></a>
 
- **BadRequest**   
+ ** BadRequest **   
 Returned if the request is malformed or contains an error such as an invalid parameter value or a missing required parameter\.  
 HTTP Status Code: 400
 
- **FileSystemAlreadyExists**   
+ ** FileSystemAlreadyExists **   
 Returned if the file system you are trying to create already exists, with the creation token you provided\.  
 HTTP Status Code: 409
 
- **FileSystemLimitExceeded**   
+ ** FileSystemLimitExceeded **   
 Returned if the AWS account has already created the maximum number of file systems allowed per account\.  
 HTTP Status Code: 403
 
- **InsufficientThroughputCapacity**   
-Returned if there's not enough capacity to provision additional throughput\. This value might be returned when you try to create a file system in provisioned throughput mode, when you attempt to increase the provisioned throughput of an existing file system, or when you attempt to change an existing file system from bursting to provisioned throughput mode\. Try again later\.  
+ ** InsufficientThroughputCapacity **   
+Returned if there's not enough capacity to provision additional throughput\. This value might be returned when you try to create a file system in provisioned throughput mode, when you attempt to increase the provisioned throughput of an existing file system, or when you attempt to change an existing file system from Bursting Throughput to Provisioned Throughput mode\. Try again later\.  
 HTTP Status Code: 503
 
- **InternalServerError**   
+ ** InternalServerError **   
 Returned if an error occurred on the server side\.  
 HTTP Status Code: 500
 
- **ThroughputLimitExceeded**   
+ ** ThroughputLimitExceeded **   
 Returned if the throughput mode or amount of provisioned throughput can't be changed because the throughput limit of 1024 MiB/s has been reached\.  
 HTTP Status Code: 400
 
- **UnsupportedAvailabilityZone**   
+ ** UnsupportedAvailabilityZone **   
 Returned if the requested Amazon EFS functionality is not available in the specified Availability Zone\.  
 HTTP Status Code: 400
 

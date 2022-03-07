@@ -20,7 +20,7 @@ The following procedures show you how to access the metrics using these various 
 
    The **File system metrics** page displays a default set of CloudWatch metrics for the file system\. Any CloudWatch alarms that you have configured also display with these metrics\. For file systems that use Max I/O performance mode, the default set of metrics includes Burst Credit balance in place of Percent IO limit\. You can override the default settings using the **Metrics settings** dialog box, accessed by choosing the settings icon \(![\[Image NOT FOUND\]](http://docs.aws.amazon.com/efs/latest/ug/images/settings.png)\)\. 
 **Note**  
-The Throughput utilization \(%\) metric is not a CloudWatch metric, it is derived using CloudWatch metric math\.
+The Throughput utilization \(%\) metric is not a CloudWatch metric; it is derived using CloudWatch metric math\.
 
 1. You can adjust the way metrics and alarms are displayed using the controls on the **File system metric** page, as follows\.  
 ![\[Console screen shot showing setting controls for metrics and alarms.\]](http://docs.aws.amazon.com/efs/latest/ug/images/console2-metrics-panel-controls.png)

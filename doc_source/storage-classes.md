@@ -1,4 +1,6 @@
-# Managing EFS storage classes<a name="storage-classes"></a>
+# EFS storage classes<a name="storage-classes"></a>
+
+First\-byte latency when reading from or writing to the IA storage class is higher than that for the Standard storage class\.  For file systems using Bursting Throughput, the allowed throughput is determined based on the amount of the data stored in the Standard storage class only\. For file systems using Provisioned Throughput mode, you're billed for the throughput provisioned above what you are provided based on the amount of data that is in the Standard storage class\. For more information on EFS performance, see [Throughput modes](performance.md#throughput-modes)\.
 
 Amazon EFS offers a range of storage classes that are designed for different use cases\. These include EFS Standard, EFS Standard–Infrequent Access \(Standard\-IA\), EFS One Zone, and EFS One Zone–Infrequent Access \(EFS One Zone\-IA\)\. The following sections provide details of these storage classes\.
 
@@ -57,8 +59,8 @@ You can view how much data is stored in each storage class of your file system u
 
 The **Metered size** tab on the **File system details** page displays the current metered size of the file system in binary multiples of bytes \(kibibytes, mebibytes, gibibytes, and tebibytes\)\. The metric is emitted every 15 minutes and lets you view your file system's metered size over time\. **Metered size** displays the following information for the file system storage size:
 + **Total size** is the size \(in binary bytes\) of data stored in the file system, including all storage classes\.
-+ **Size in Standard** is the size \(in binary bytes\) of data stored in the EFS Standard or EFS One Zone storage class\.
-+ **Size in Infrequent Access** is the size \(in binary bytes\) of data stored in the Standard\-IA or One Zone\-IA storage class, depending on whether your file system uses Standard or One Zone storage classes\.
++ **Size in Standard / One Zone** is the size \(in binary bytes\) of data stored in the EFS Standard or EFS One Zone storage class\.
++ **Size in Standard\-IA / One Zone\-IA** is the size \(in binary bytes\) of data stored in the Standard\-IA or One Zone\-IA storage class, depending on whether your file system uses Standard or One Zone storage classes\.
 
 You can also view the `Storage bytes` metric on the **Monitoring** tab on the **File system details** page in the Amazon EFS console\. For more information, see [Accessing CloudWatch metrics](accessingmetrics.md)\.
 

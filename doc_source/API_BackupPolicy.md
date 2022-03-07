@@ -4,11 +4,11 @@ The backup policy for the file system used to create automatic daily backups\. I
 
 ## Contents<a name="API_BackupPolicy_Contents"></a>
 
- **Status**   <a name="efs-Type-BackupPolicy-Status"></a>
+ ** Status **   <a name="efs-Type-BackupPolicy-Status"></a>
 Describes the status of the file system's backup policy\.  
-+  ** `ENABLED` ** \- EFS is automatically backing up the file system\.>
++  ** `ENABLED` ** \- EFS is automatically backing up the file system\.
 +  ** `ENABLING` ** \- EFS is turning on automatic backups for the file system\.
-+  ** `DISABLED` ** \- automatic back ups are turned off for the file system\.
++  ** `DISABLED` ** \- Automatic back ups are turned off for the file system\.
 +  ** `DISABLING` ** \- EFS is turning off automatic backups for the file system\.
 Type: String  
 Valid Values:` ENABLED | ENABLING | DISABLED | DISABLING`   

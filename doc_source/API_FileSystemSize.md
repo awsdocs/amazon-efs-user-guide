@@ -4,24 +4,24 @@ The latest known metered size \(in bytes\) of data stored in the file system, in
 
 ## Contents<a name="API_FileSystemSize_Contents"></a>
 
- **Timestamp**   <a name="efs-Type-FileSystemSize-Timestamp"></a>
+ ** Timestamp **   <a name="efs-Type-FileSystemSize-Timestamp"></a>
 The time at which the size of data, returned in the `Value` field, was determined\. The value is the integer number of seconds since 1970\-01\-01T00:00:00Z\.  
 Type: Timestamp  
 Required: No
 
- **Value**   <a name="efs-Type-FileSystemSize-Value"></a>
+ ** Value **   <a name="efs-Type-FileSystemSize-Value"></a>
 The latest known metered size \(in bytes\) of data stored in the file system\.  
 Type: Long  
 Valid Range: Minimum value of 0\.  
 Required: Yes
 
- **ValueInIA**   <a name="efs-Type-FileSystemSize-ValueInIA"></a>
+ ** ValueInIA **   <a name="efs-Type-FileSystemSize-ValueInIA"></a>
 The latest known metered size \(in bytes\) of data stored in the Infrequent Access storage class\.  
 Type: Long  
 Valid Range: Minimum value of 0\.  
 Required: No
 
- **ValueInStandard**   <a name="efs-Type-FileSystemSize-ValueInStandard"></a>
+ ** ValueInStandard **   <a name="efs-Type-FileSystemSize-ValueInStandard"></a>
 The latest known metered size \(in bytes\) of data stored in the Standard storage class\.  
 Type: Long  
 Valid Range: Minimum value of 0\.  

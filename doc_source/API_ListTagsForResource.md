@@ -19,7 +19,7 @@ The request uses the following URI parameters\.
 Valid Range: Minimum value of 1\.
 
  ** [NextToken](#API_ListTagsForResource_RequestSyntax) **   <a name="efs-ListTagsForResource-request-NextToken"></a>
-You can use `NextToken` in a subsequent request to fetch the next page of access point descriptions if the response payload was paginated\.  
+\(Optional\) You can use `NextToken` in a subsequent request to fetch the next page of access point descriptions if the response payload was paginated\.  
 Length Constraints: Minimum length of 1\. Maximum length of 128\.  
 Pattern: `.+` 
 
@@ -68,19 +68,19 @@ Type: Array of [Tag](API_Tag.md) objects
 
 ## Errors<a name="API_ListTagsForResource_Errors"></a>
 
- **AccessPointNotFound**   
+ ** AccessPointNotFound **   
 Returned if the specified `AccessPointId` value doesn't exist in the requester's AWS account\.  
 HTTP Status Code: 404
 
- **BadRequest**   
+ ** BadRequest **   
 Returned if the request is malformed or contains an error such as an invalid parameter value or a missing required parameter\.  
 HTTP Status Code: 400
 
- **FileSystemNotFound**   
+ ** FileSystemNotFound **   
 Returned if the specified `FileSystemId` value doesn't exist in the requester's AWS account\.  
 HTTP Status Code: 404
 
- **InternalServerError**   
+ ** InternalServerError **   
 Returned if an error occurred on the server side\.  
 HTTP Status Code: 500
 

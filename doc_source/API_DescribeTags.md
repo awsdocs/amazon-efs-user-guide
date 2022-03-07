@@ -1,5 +1,8 @@
 # DescribeTags<a name="API_DescribeTags"></a>
 
+**Note**  
+DEPRECATED \- The `DescribeTags` action is deprecated and not maintained\. To view tags associated with EFS resources, use the `ListTagsForResource` API action\.
+
 Returns the tags associated with a file system\. The order of tags returned in the response of one `DescribeTags` call and the order of tags returned across the responses of a multiple\-call iteration \(when using pagination\) is unspecified\. 
 
  This operation requires permissions for the `elasticfilesystem:DescribeTags` action\. 
@@ -75,15 +78,15 @@ Type: Array of [Tag](API_Tag.md) objects
 
 ## Errors<a name="API_DescribeTags_Errors"></a>
 
- **BadRequest**   
+ ** BadRequest **   
 Returned if the request is malformed or contains an error such as an invalid parameter value or a missing required parameter\.  
 HTTP Status Code: 400
 
- **FileSystemNotFound**   
+ ** FileSystemNotFound **   
 Returned if the specified `FileSystemId` value doesn't exist in the requester's AWS account\.  
 HTTP Status Code: 404
 
- **InternalServerError**   
+ ** InternalServerError **   
 Returned if an error occurred on the server side\.  
 HTTP Status Code: 500
 

@@ -4,13 +4,13 @@ Specifies the directory on the Amazon EFS file system that the access point prov
 
 ## Contents<a name="API_RootDirectory_Contents"></a>
 
- **CreationInfo**   <a name="efs-Type-RootDirectory-CreationInfo"></a>
+ ** CreationInfo **   <a name="efs-Type-RootDirectory-CreationInfo"></a>
 \(Optional\) Specifies the POSIX IDs and permissions to apply to the access point's `RootDirectory`\. If the `RootDirectory` > `Path` specified does not exist, EFS creates the root directory using the `CreationInfo` settings when a client connects to an access point\. When specifying the `CreationInfo`, you must provide values for all properties\.   
 If you do not provide `CreationInfo` and the specified `RootDirectory` > `Path` does not exist, attempts to mount the file system using the access point will fail\.
 Type: [CreationInfo](API_CreationInfo.md) object  
 Required: No
 
- **Path**   <a name="efs-Type-RootDirectory-Path"></a>
+ ** Path **   <a name="efs-Type-RootDirectory-Path"></a>
 Specifies the path on the EFS file system to expose as the root directory to NFS clients using the access point to access the EFS file system\. A path can have up to four subdirectories\. If the specified path does not exist, you are required to provide the `CreationInfo`\.  
 Type: String  
 Length Constraints: Minimum length of 1\. Maximum length of 100\.  

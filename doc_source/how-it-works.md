@@ -10,7 +10,7 @@ Following, you can find a description about how Amazon EFS works, its implementa
 + [Implementation summary](#how-it-works-implementation)
 + [Authentication and access control](#auth-access-intro)
 + [Data consistency in Amazon EFS](#consistency)
-+ [Storage classes and lifecycle management](#how-it-works-storage-classes)
++ [Storage classes](#how-it-works-storage-classes)
 
 ## Overview<a name="how-it-works-conceptual"></a>
 
@@ -20,7 +20,7 @@ Amazon EFS provides a simple, serverless, set\-and\-forget elastic file system\.
 
 For a list of Amazon EC2 Linux and macOS Amazon Machine Images \(AMIs\) that support this protocol, see [NFS support](mounting-fs-old.md#mounting-fs-nfs-info)\. For some AMIs, you must install an NFS client to mount your file system on your Amazon EC2 instance\. For instructions, see [Installing the NFS client](mounting-fs-old.md#mounting-fs-install-nfsclient)\.
 
- You can access your Amazon EFS file system concurrently from multiple NFS clients, so applications that scale beyond a single connection can access a file system\. Amazon EC2 instances running in multiple Availability Zones within the same AWS Region can access the file system, so that many users can access and share a common data source\.
+ You can access your Amazon EFS file system concurrently from multiple NFS clients, so applications that scale beyond a single connection can access a file system\. Amazon EC2 and other AWS compute instances running in multiple Availability Zones within the same AWS Region can access the file system, so that many users can access and share a common data source\.
 
 For a list of AWS Regions where you can create an Amazon EFS file system, see the [Amazon Web Services General Reference](https://docs.aws.amazon.com/general/latest/gr/rande.html#elasticfilesystem_region)\. 
 
@@ -28,7 +28,7 @@ To access your Amazon EFS file system in a VPC, you create one or more mount tar
 + For file systems using Standard storage classes, you can create a mount target in each availability Zone in the AWS Region\.
 + For file systems using One Zone storage classes, you create only a single mount target that is in the same Availability Zone as the file system\. 
 
-For more information, see [Managing EFS storage classes](storage-classes.md)\.
+For more information, see [EFS storage classes](storage-classes.md)\.
 
 A *mount target* provides an IP address for an NFSv4 endpoint at which you can mount an Amazon EFS file system\. You mount your file system using its Domain Name Service \(DNS\) name, which resolves to the IP address of the EFS mount target in the same Availability Zone as your EC2 instance\. You can create one mount target in each Availability Zone in an AWS Region\. If there are multiple subnets in an Availability Zone in your VPC, you create a mount target in one of the subnets\. Then all EC2 instances in that Availability Zone share that mount target\.
 
@@ -89,7 +89,7 @@ There is no additional cost for on\-premises access to your Amazon EFS file syst
 
 The following illustration shows an example of how to access an Amazon EFS file system from on\-premises \(the on\-premises servers have the file systems mounted\)\.
 
-![\[Image NOT FOUND\]](http://docs.aws.amazon.com/efs/latest/ug/images/onprem-overview-flow.png)
+![\[Diagram showing Amazon EFS works with AWS Direct Connect to mount an EFS file system on an on-premises server.\]](http://docs.aws.amazon.com/efs/latest/ug/images/efs-directconnect-how-it-works.png)
 
 You can use any mount target in your VPC if you can reach that mount target's subnet by using an AWS Direct Connect connection between your on\-premises server and VPC\. To access Amazon EFS from an on\-premises server, add a rule to your mount target security group to allow inbound traffic to the NFS port \(2049\) from your on\-premises server\.
 
@@ -101,11 +101,11 @@ To create a setup like this, you do the following:
 
 1. Mount the Amazon EFS file system on your on\-premises server\.
 
-For detailed steps, see [Walkthrough: Create and Mount a File System On\-Premises with AWS Direct Connect and VPN](efs-onpremises.md)\.
+For detailed steps, see [Walkthrough: Create and mount a file system on\-premises with AWS Direct Connect and VPN](efs-onpremises.md)\.
 
 ## How Amazon EFS works with AWS Backup<a name="how-it-works-backups"></a>
 
-For a comprehensive backup implementation for your file systems, you can use Amazon EFS with AWS Backup\. AWS Backup is a fully managed backup service that makes it easy to centralize and automate data backup across AWS services in the cloud and on\-premises\. Using AWS Backup, you can centrally configure backup policies and monitor backup activity for your AWS resources\. Amazon EFS always prioritizes file system operations over backup operations\. To learn more about backing up EFS file systems using AWS Backup, see [Using AWS Backup with Amazon EFS](awsbackup.md)\.
+For a comprehensive backup implementation for your file systems, you can use Amazon EFS with AWS Backup\. AWS Backup is a fully managed backup service that makes it easy to centralize and automate data backup across AWS services in the cloud and on\-premises\. Using AWS Backup, you can centrally configure backup policies and monitor backup activity for your AWS resources\. Amazon EFS always prioritizes file system operations over backup operations\. To learn more about backing up EFS file systems using AWS Backup, see [Using AWS Backup to back up and restore Amazon EFS file systems](awsbackup.md)\.
 
 ## Implementation summary<a name="how-it-works-implementation"></a>
 
@@ -133,14 +133,14 @@ Mount targets and tags are *subresources* that are associated with a file system
 
 Amazon EFS provides API operations for you to create and manage these resources\. In addition to the create and delete operations for each resource, Amazon EFS also supports a describe operation that enables you to retrieve resource information\. You have the following options for creating and managing these resources:
 + Use the Amazon EFS console – For an example, see [Getting started](getting-started.md)\.
-+ Use the Amazon EFS command line interface \(CLI\) – For an example, see [Walkthrough: Create an Amazon EFS File System and Mount It on an Amazon EC2 Instance Using the AWS CLI](wt1-getting-started.md)\.
++ Use the Amazon EFS command line interface \(CLI\) – For an example, see [Walkthrough: Create an Amazon EFS file system and mount it on an Amazon EC2 instance using the AWS CLI](wt1-getting-started.md)\.
 + You can also manage these resources programmatically as follows:
   + Use the AWS SDKs – The AWS SDKs simplify your programming tasks by wrapping the underlying Amazon EFS API\. The SDK clients also authenticate your requests by using access keys that you provide\. For more information, see [Sample Code and Libraries](https://aws.amazon.com/code)\.
   + Call the Amazon EFS API directly from your application – If you cannot use the SDKs for some reason, you can make the Amazon EFS API calls directly from your application\. However, you need to write the necessary code to authenticate your requests if you use this option\. For more information about the Amazon EFS API, see [Amazon EFS API](api-reference.md)\.
 
 ## Authentication and access control<a name="auth-access-intro"></a>
 
-You must have valid credentials to make Amazon EFS API requests, such as create a file system\. In addition, you must also have permissions to create or access resources\. By default, when you use the root account credentials of your AWS account you can create and access resources owned by that account\. However, we don't recommend using root account credentials\. In addition, any AWS Identity and Access Management \(IAM\) users and roles that you create in your account must be granted permissions to create or access resources\. For more information about permissions, see [Identity and Access Management for Amazon EFS](auth-and-access-control.md)\.
+You must have valid credentials to make Amazon EFS API requests, such as create a file system\. In addition, you must also have permissions to create or access resources\. By default, when you use the root account credentials of your AWS account you can create and access resources owned by that account\. However, we don't recommend using root account credentials\. In addition, any AWS Identity and Access Management \(IAM\) users and roles that you create in your account must be granted permissions to create or access resources\. For more information about permissions, see [Identity and access management for Amazon EFS](auth-and-access-control.md)\.
 
 IAM authorization for NFS clients is an additional security option for Amazon EFS that uses IAM to simplify access management for Network File System \(NFS\) clients at scale\. With IAM authorization for NFS clients, you can use IAM to manage access to an EFS file system in an inherently scalable way\. IAM authorization for NFS clients is also optimized for cloud environments\. For more information on using IAM authorization for NFS clients, see [Using IAM to control file system data access](iam-access-control-nfs-efs.md)\.
 
@@ -154,18 +154,24 @@ Amazon EFS provides the close\-to\-open consistency semantics that applications 
 
 Depending on the access pattern, Amazon EFS can provide stronger consistency guarantees than close\-to\-open semantics\. Applications that perform synchronous data access and perform non\-appending writes have read\-after\-write consistency for data access\.
 
-## Storage classes and lifecycle management<a name="how-it-works-storage-classes"></a>
+## Storage classes<a name="how-it-works-storage-classes"></a>
 
 With Amazon EFS, you can choose from a range of storage classes that are designed for different use cases:
 + **EFS Standard** – A regional storage class for frequently accessed data\. It offers the highest levels of availability and durability by storing file system data redundantly across multiple Availability Zones in an AWS Region\.
-+  **EFS Standard\-Infrequent Access \(IA\)** – A regional storage class for infrequently accessed data\. It offers the highest levels of availability and durability by storing file system data redundantly across multiple Availability Zones in an AWS Region\. 
++  **EFS Standard\-Infrequent Access \(Standard\-IA\)** – A regional storage class for infrequently accessed data\. It offers the highest levels of availability and durability by storing file system data redundantly across multiple Availability Zones in an AWS Region\. 
 +  **EFS One Zone** – For frequently accessed files stored redundantly within a single Availability Zone in an AWS Region\. 
-+ **EFS One Zone\-IA** – A lower\-cost storage class for infrequently accessed files stored redundantly within a single Availability Zone in an AWS Region\.
++ **EFS One Zone\-IA \(One Zone\-IA\)** – A lower\-cost storage class for infrequently accessed files stored redundantly within a single Availability Zone in an AWS Region\.
 
 The EFS Standard storage classes are regional storage classes that store file system data and metadata redundantly across multiple geographically separated Availability Zones within an AWS Region\. They offer the highest levels of availability and durability, providing continuous availability to data even when one or more Availability Zones in a Region are unavailable\.
 
 The EFS One Zone storage classes are lower cost, single Availability Zone storage classes\. They store file system data and metadata redundantly in a single Availability Zone within an AWS Region\.
 
-Both of the IA storage classes reduce storage costs for files that aren't accessed every day\. We recommend using IA storage if you need your full dataset to be readily accessible, and you want to automatically save on storage costs for files that are less frequently accessed\. Examples include keeping files accessible to satisfy audit requirements, perform historical analysis, or perform backup and recovery\. For more information about Amazon EFS storage classes, see [Managing EFS storage classes](storage-classes.md)\. 
+Both of the IA storage classes reduce storage costs for files that aren't accessed every day\. We recommend using IA storage if you need your full dataset to be readily accessible, and you want to automatically save on storage costs for files that are less frequently accessed\. Examples include keeping files accessible to satisfy audit requirements, perform historical analysis, or perform backup and recovery\. For more information about Amazon EFS storage classes, see [EFS storage classes](storage-classes.md)\. 
 
-Amazon EFS lifecycle management automatically manages cost\-effective file storage for your file systems\. When enabled, lifecycle management migrates files that haven't been accessed for a set period of time to an infrequent access storage class, Standard\-IA or One Zone\-IA\. You define that period of time by using a *lifecycle policy\. * To learn more about lifecycle management, see [Amazon EFS lifecycle management](lifecycle-management-efs.md)\. 
+### EFS lifecycle management<a name="storage-classes-lifecycle-mgnt"></a>
+
+Amazon EFS lifecycle management automatically manages cost\-effective file storage for your file systems\. When enabled, lifecycle management migrates files that haven't been accessed for a set period of time to an infrequent access storage class, Standard\-IA or One Zone\-IA\. You define that period of time by using a *lifecycle policy*\. For more information, see [Amazon EFS lifecycle management](lifecycle-management-efs.md)\.
+
+### EFS Intelligent‐Tiering<a name="lifecycle-mgmt-int-tiering"></a>
+
+Amazon EFS Intelligent‐Tiering uses lifecycle management to monitor the access patterns of your workload and is designed to automatically transition files to and from your corresponding Infrequent Access \(IA\) storage class\. With intelligent tiering, files in the standard storage class \(EFS Standard or EFS One Zone\) that are not accessed for a period of time, for example 30 days, are transitioned to the corresponding Infrequent Access \(IA\) storage class\. Additionally, if access patterns change, EFS Intelligent‐Tiering automatically moves files back to the EFS Standard or EFS One Zone storage classes\. This helps to eliminate the risk of unbounded access charges, while providing consistent low latencies\. For more information, see [Amazon EFS Intelligent\-Tiering](lifecycle-management-efs.md#intelligent-tiering-efs)\.

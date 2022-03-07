@@ -17,7 +17,8 @@ Your EC2 instances must be running one of the following operating systems in ord
 |  Amazon Linux  |  2017\.09, 2018\.03  | x86\_64 | 
 |  Amazon Linux 2  |  2\.0  | x86\_64, arm64 \(Amazon Linux 2, A1 instance types\) | 
 |  CentOS  |  7, 8  | x86\_64 | 
-|  Red Hat Enterprise Linux \(RHEL\)  |  7\.4\-7\.8, 8\.0\-8\.2  | x86\_64, arm64 \(RHEL 7\.6 and later, A1 instance types\) | 
+|  Red Hat Enterprise Linux \(RHEL\)  |  7, 8  | x86\_64, arm64 \(RHEL 7\.6 and later, A1 instance types\) | 
+| SUSE Linux Enterprise Server \(SLES\) | 12, 15 | x86\_64 | 
 |  Ubuntu Server  |  16\.04, 18\.04, 20\.04  | x86\_64, arm64 \(Ubuntu Server 16 and later, A1 instance types\) | 
 
 ## How to use AWS Systems Manager to automatically install or update amazon\-efs\-utils<a name="setting-up-aws-sys-mgr"></a>
@@ -45,4 +46,4 @@ To automatically install or update the amazon\-efs\-utils package on instances u
 + For **Targets** the recommended setting is **Choose all instances** to register all new and existing EC2 instances as targets to automatically install or update **AmazonEFSUtils**\. Alternatively, you can specify instance tags, select instances manually, or choose a resource group to apply the association to a subset of instances\. If you specify instance tags, you must launch your EC2 instances with the tags to allows AWS Systems Manager to automatically install or update the Amazon EFS client\.
 + For **Specify schedule** the recommended setting for **AmazonEFSUtils** is every 30 days\. You can use controls to create a cron or rate schedule for the association\.
 
-To use AWS Systems Manager to mount multiple an Amazon EFS file system to multiple EC2 instances, see [Mounting EFS to multiple EC2 instances using AWS Systems Manager](mount-multiple-ec2-instances.md)\.
+To use AWS Systems Manager to mount multiple an Amazon EFS file system to multiple EC2 instances, see [Mounting EFS to multiple EC2 instances using AWS Systems Manager](efs-mount-helper.md#mount-multiple-ec2-instances)\.

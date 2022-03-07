@@ -41,19 +41,19 @@ If the action is successful, the service sends back an HTTP 204 response with an
 
 ## Errors<a name="API_DeleteFileSystem_Errors"></a>
 
- **BadRequest**   
+ ** BadRequest **   
 Returned if the request is malformed or contains an error such as an invalid parameter value or a missing required parameter\.  
 HTTP Status Code: 400
 
- **FileSystemInUse**   
+ ** FileSystemInUse **   
 Returned if a file system has mount targets\.  
 HTTP Status Code: 409
 
- **FileSystemNotFound**   
+ ** FileSystemNotFound **   
 Returned if the specified `FileSystemId` value doesn't exist in the requester's AWS account\.  
 HTTP Status Code: 404
 
- **InternalServerError**   
+ ** InternalServerError **   
 Returned if an error occurred on the server side\.  
 HTTP Status Code: 500
 

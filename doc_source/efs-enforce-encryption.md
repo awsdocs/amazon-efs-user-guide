@@ -3,7 +3,7 @@
 Following, you can find details about how to enforce encryption at rest using Amazon CloudWatch and AWS CloudTrail\. This walkthrough is based upon the AWS white paper [Encrypt Data at Rest with Amazon EFS Encrypted File Systems](https://d1.awsstatic.com/whitepapers/Security/amazon-efs-encrypted-filesystems.pdf)\. 
 
 **Note**  
-The method for enforcing the creation of Amazon EFS file systems that are encrypted at rest described in this walkthrough is deprecated\. The preferred method to enforce the creation of file systems that are encrypted at rest is to use the `elasticfilesystem:Encrypted` condition key in AWS Identity and Access Management identity\-based policies\. For more information, see [Using IAM to Enforce Creating Encrypted File Systems](using-iam-to-enforce-encryption-at-rest.md)\. You can use this walkthrough to create CloudWatch alarms to validate that your IAM policies are preventing the creation of unencrypted file systems\.
+The method for enforcing the creation of Amazon EFS file systems that are encrypted at rest described in this walkthrough is deprecated\. The preferred method to enforce the creation of file systems that are encrypted at rest is to use the `elasticfilesystem:Encrypted` condition key in AWS Identity and Access Management identity\-based policies\. For more information, see [Using IAM to enforce creating encrypted file systems](using-iam-to-enforce-encryption-at-rest.md)\. You can use this walkthrough to create CloudWatch alarms to validate that your IAM policies are preventing the creation of unencrypted file systems\.
 
 ## Enforcing Encryption at Rest<a name="efs-enforce-overview"></a>
 

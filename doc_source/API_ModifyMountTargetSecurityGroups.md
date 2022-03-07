@@ -36,7 +36,7 @@ The request accepts the following data in JSON format\.
  ** [SecurityGroups](#API_ModifyMountTargetSecurityGroups_RequestSyntax) **   <a name="efs-ModifyMountTargetSecurityGroups-request-SecurityGroups"></a>
 An array of up to five VPC security group IDs\.  
 Type: Array of strings  
-Array Members: Maximum number of 5 items\.  
+Array Members: Maximum number of 100 items\.  
 Length Constraints: Minimum length of 11\. Maximum length of 43\.  
 Pattern: `^sg-[0-9a-f]{8,40}`   
 Required: No
@@ -53,28 +53,28 @@ If the action is successful, the service sends back an HTTP 204 response with an
 
 ## Errors<a name="API_ModifyMountTargetSecurityGroups_Errors"></a>
 
- **BadRequest**   
+ ** BadRequest **   
 Returned if the request is malformed or contains an error such as an invalid parameter value or a missing required parameter\.  
 HTTP Status Code: 400
 
- **IncorrectMountTargetState**   
+ ** IncorrectMountTargetState **   
 Returned if the mount target is not in the correct state for the operation\.  
 HTTP Status Code: 409
 
- **InternalServerError**   
+ ** InternalServerError **   
 Returned if an error occurred on the server side\.  
 HTTP Status Code: 500
 
- **MountTargetNotFound**   
-Returned if there is no mount target with the specified ID found in the caller's account\.  
+ ** MountTargetNotFound **   
+Returned if there is no mount target with the specified ID found in the caller's AWS account\.  
 HTTP Status Code: 404
 
- **SecurityGroupLimitExceeded**   
+ ** SecurityGroupLimitExceeded **   
 Returned if the size of `SecurityGroups` specified in the request is greater than five\.  
 HTTP Status Code: 400
 
- **SecurityGroupNotFound**   
-Returned if one of the specified security groups doesn't exist in the subnet's VPC\.  
+ ** SecurityGroupNotFound **   
+Returned if one of the specified security groups doesn't exist in the subnet's virtual private cloud \(VPC\)\.  
 HTTP Status Code: 400
 
 ## Examples<a name="API_ModifyMountTargetSecurityGroups_Examples"></a>
@@ -94,9 +94,9 @@ Content-Type: application/json
 Content-Length: 57
 
 {
-"SecurityGroups" : [
-"sg-188d9f74"
-]
+  "SecurityGroups" : [
+  "sg-188d9f74"
+  ]
 }
 ```
 

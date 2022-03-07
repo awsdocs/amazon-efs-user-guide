@@ -118,10 +118,10 @@ Length Constraints: Maximum length of 128\.
 Pattern: `^(arn:aws[-a-z]*:elasticfilesystem:[0-9a-z-:]+:file-system/fs-[0-9a-f]{8,40}|fs-[0-9a-f]{8,40})$` 
 
  ** [KmsKeyId](#API_UpdateFileSystem_ResponseSyntax) **   <a name="efs-UpdateFileSystem-response-KmsKeyId"></a>
-The ID of an AWS Key Management Service \(AWS KMS\) customer master key \(CMK\) that was used to protect the encrypted file system\.  
+The ID of an AWS KMS key used to protect the encrypted file system\.  
 Type: String  
 Length Constraints: Maximum length of 2048\.  
-Pattern: `^([0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}|alias/[a-zA-Z0-9/_-]+|(arn:aws[-a-z]*:kms:[a-z0-9-]+:\d{12}:((key/[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})|(alias/[a-zA-Z0-9/_-]+))))$` 
+Pattern: `^([0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}|mrk-[0-9a-f]{32}|alias/[a-zA-Z0-9/_-]+|(arn:aws[-a-z]*:kms:[a-z0-9-]+:\d{12}:((key/[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})|(key/mrk-[0-9a-f]{32})|(alias/[a-zA-Z0-9/_-]+))))$` 
 
  ** [LifeCycleState](#API_UpdateFileSystem_ResponseSyntax) **   <a name="efs-UpdateFileSystem-response-LifeCycleState"></a>
 The lifecycle phase of the file system\.  
@@ -170,32 +170,32 @@ Valid Values:` bursting | provisioned`
 
 ## Errors<a name="API_UpdateFileSystem_Errors"></a>
 
- **BadRequest**   
+ ** BadRequest **   
 Returned if the request is malformed or contains an error such as an invalid parameter value or a missing required parameter\.  
 HTTP Status Code: 400
 
- **FileSystemNotFound**   
+ ** FileSystemNotFound **   
 Returned if the specified `FileSystemId` value doesn't exist in the requester's AWS account\.  
 HTTP Status Code: 404
 
- **IncorrectFileSystemLifeCycleState**   
+ ** IncorrectFileSystemLifeCycleState **   
 Returned if the file system's lifecycle state is not "available"\.  
 HTTP Status Code: 409
 
- **InsufficientThroughputCapacity**   
-Returned if there's not enough capacity to provision additional throughput\. This value might be returned when you try to create a file system in provisioned throughput mode, when you attempt to increase the provisioned throughput of an existing file system, or when you attempt to change an existing file system from bursting to provisioned throughput mode\. Try again later\.  
+ ** InsufficientThroughputCapacity **   
+Returned if there's not enough capacity to provision additional throughput\. This value might be returned when you try to create a file system in provisioned throughput mode, when you attempt to increase the provisioned throughput of an existing file system, or when you attempt to change an existing file system from Bursting Throughput to Provisioned Throughput mode\. Try again later\.  
 HTTP Status Code: 503
 
- **InternalServerError**   
+ ** InternalServerError **   
 Returned if an error occurred on the server side\.  
 HTTP Status Code: 500
 
- **ThroughputLimitExceeded**   
+ ** ThroughputLimitExceeded **   
 Returned if the throughput mode or amount of provisioned throughput can't be changed because the throughput limit of 1024 MiB/s has been reached\.  
 HTTP Status Code: 400
 
- **TooManyRequests**   
-Returned if you don’t wait at least 24 hours before changing the throughput mode, or decreasing the Provisioned Throughput value\.  
+ ** TooManyRequests **   
+Returned if you don’t wait at least 24 hours before either changing the throughput mode, or decreasing the Provisioned Throughput value\.  
 HTTP Status Code: 429
 
 ## See Also<a name="API_UpdateFileSystem_SeeAlso"></a>

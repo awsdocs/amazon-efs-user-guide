@@ -2,6 +2,7 @@
 
 Applies an Amazon EFS `FileSystemPolicy` to an Amazon EFS file system\. A file system policy is an IAM resource\-based policy and can contain multiple policy statements\. A file system always has exactly one file system policy, which can be the default policy or an explicit policy set or updated using this API operation\. EFS file system policies have a 20,000 character limit\. When an explicit policy is set, it overrides the default policy\. For more information about the default file system policy, see [Default EFS File System Policy](https://docs.aws.amazon.com/efs/latest/ug/iam-access-control-nfs-efs.html#default-filesystempolicy)\. 
 
+**Note**  
 EFS file system policies have a 20,000 character limit\.
 
 This operation requires permissions for the `elasticfilesystem:PutFileSystemPolicy` action\.
@@ -33,7 +34,7 @@ Required: Yes
 The request accepts the following data in JSON format\.
 
  ** [BypassPolicyLockoutSafetyCheck](#API_PutFileSystemPolicy_RequestSyntax) **   <a name="efs-PutFileSystemPolicy-request-BypassPolicyLockoutSafetyCheck"></a>
-\(Optional\) A flag to indicate whether to bypass the `FileSystemPolicy` lockout safety check\. The policy lockout safety check determines whether the policy in the request will prevent the principal making the request will be locked out from making future `PutFileSystemPolicy` requests on the file system\. Set `BypassPolicyLockoutSafetyCheck` to `True` only when you intend to prevent the principal that is making the request from making a subsequent `PutFileSystemPolicy` request on the file system\. The default value is False\.   
+\(Optional\) A boolean that specifies whether or not to bypass the `FileSystemPolicy` lockout safety check\. The lockout safety check determines whether the policy in the request will lock out, or prevent, the IAM principal that is making the request from making future `PutFileSystemPolicy` requests on this file system\. Set `BypassPolicyLockoutSafetyCheck` to `True` only when you intend to prevent the IAM principal that is making the request from making subsequent `PutFileSystemPolicy` requests on this file system\. The default value is `False`\.   
 Type: Boolean  
 Required: No
 
@@ -76,20 +77,24 @@ Pattern: `[\s\S]+`
 
 ## Errors<a name="API_PutFileSystemPolicy_Errors"></a>
 
- **FileSystemNotFound**   
+ ** BadRequest **   
+Returned if the request is malformed or contains an error such as an invalid parameter value or a missing required parameter\.  
+HTTP Status Code: 400
+
+ ** FileSystemNotFound **   
 Returned if the specified `FileSystemId` value doesn't exist in the requester's AWS account\.  
 HTTP Status Code: 404
 
- **IncorrectFileSystemLifeCycleState**   
+ ** IncorrectFileSystemLifeCycleState **   
 Returned if the file system's lifecycle state is not "available"\.  
 HTTP Status Code: 409
 
- **InternalServerError**   
+ ** InternalServerError **   
 Returned if an error occurred on the server side\.  
 HTTP Status Code: 500
 
- **InvalidPolicyException**   
-Returned if the `FileSystemPolicy` is is malformed or contains an error such as an invalid parameter value or a missing required parameter\. Returned in the case of a policy lockout safety check error\.  
+ ** InvalidPolicyException **   
+Returned if the `FileSystemPolicy` is malformed or contains an error such as a parameter value that is not valid or a missing required parameter\. Returned in the case of a policy lockout safety check error\.  
 HTTP Status Code: 400
 
 ## Examples<a name="API_PutFileSystemPolicy_Examples"></a>

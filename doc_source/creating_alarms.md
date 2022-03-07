@@ -1,8 +1,8 @@
 # Creating CloudWatch alarms to monitor Amazon EFS<a name="creating_alarms"></a>
 
-You can create a CloudWatch alarm that sends an Amazon SNS message when the alarm changes state\. An alarm watches a single metric over a time period you specify, and performs one or more actions based on the value of the metric relative to a given threshold over a number of time periods\. The action is a notification sent to an Amazon SNS topic or Auto Scaling policy\.
+You can create a CloudWatch alarm that sends an Amazon SNS message when the alarm changes state\. An alarm watches a single metric over a time period that you specify\. The alarm then performs one or more actions based on the value of the metric relative to a given threshold over a number of time periods\. The action is a notification sent to an Amazon SNS topic or Auto Scaling policy\.
 
-Alarms invoke actions for sustained state changes only\. CloudWatch alarms don't invoke actions simply because they are in a particular state; the state must have changed and been maintained for a specified number of periods\.
+Alarms invoke actions for sustained state changes only\. CloudWatch alarms don't invoke actions only because they are in a particular state; the state must have changed and been maintained for a specified number of periods\.
 
 One important use of CloudWatch alarms for Amazon EFS is to enforce encryption at rest for your file system\. You can enable encryption at rest for an Amazon EFS file system when it's created\. To enforce data encryption\-at\-rest policies for Amazon EFS file systems, you can use Amazon CloudWatch and AWS CloudTrail to detect the creation of a file system and verify that encryption at rest is enabled\. For more information, see [Walkthrough: Enforcing Encryption on an Amazon EFS File System at Rest](efs-enforce-encryption.md)\.
 
@@ -17,7 +17,7 @@ The following procedures outline how to create alarms for Amazon EFS\.
 
 1.  Choose **Create Alarm**\. This launches the **Create Alarm Wizard**\. 
 
-1. Choose **EFS Metrics** and scroll through the Amazon EFS metrics to locate the metric you want to place an alarm on\. To display just the Amazon EFS metrics in this dialog box, search on the file system id of your file system\. Select the metric to create an alarm on and choose **Next**\.
+1. Choose **EFS Metrics** and scroll through the Amazon EFS metrics to locate the metric you want to place an alarm on\. To display only the Amazon EFS metrics in this dialog box, search for the file system ID of your file system\. Select the metric to create an alarm on, and choose **Next**\.
 
 1.  Fill in the **Name**, **Description**, **Whenever** values for the metric\. 
 

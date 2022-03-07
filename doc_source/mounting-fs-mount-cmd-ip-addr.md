@@ -6,6 +6,9 @@ You can also configure mounting a file system using the mount target IP address 
 
 You can view and copy the exact commands to mount your file system in the **Attach** dialog box\.
 
+**Note**  
+Prior to mounting your file system, you need to add a rule for the mount target security group to allow inbound NFS access from the EC2 security group\. For more information, see [Using VPC security groups for Amazon EC2 instances and mount targets](network-access.md)\.
+
 **To view and copy the exact commands to mount your EFS file system using the mount target IP address**
 
 1. Open the Amazon Elastic File System console at [https://console\.aws\.amazon\.com/efs/](https://console.aws.amazon.com/efs/)\.
@@ -21,12 +24,12 @@ You can view and copy the exact commands to mount your file system in the **Atta
 + Using the IP address of a mount target in the `mount` command, you can mount a file system on your Amazon EC2 Linux instance with the following command\.
 
   ```
-  sudo mount -t nfs -o nfsvers=4.1,rsize=1048576,wsize=1048576,hard,timeo=600,retrans=2,noresvport mount-target-IP:/   efs 
+  sudo mount -t nfs -o nfsvers=4.1,rsize=1048576,wsize=1048576,hard,timeo=600,retrans=2,noresvport mount-target-IP:/   /efs 
   ```
 + Using the IP address of a mount target in the `mount` command, you can mount a file system on your Amazon EC2 Mac instance running macOS Big Sur with the following command\.
 
   ```
-  sudo mount -t nfs -o nfsvers=4.0,rsize=65536,wsize=65536,hard,timeo=600,retrans=2,noresvport,mountport=2049 mount-target-IP:/ efs
+  sudo mount -t nfs -o nfsvers=4.0,rsize=65536,wsize=65536,hard,timeo=600,retrans=2,noresvport,mountport=2049 mount-target-IP:/ /efs
   ```
 **Important**  
 You must use `mountport=2049` in order to succesfully connect to the EFS file system when mounting on EC2 Mac instances running macOS Big Sur\.

@@ -12,11 +12,12 @@ Following, you can find a description of security considerations for working wit
 
 **Topics**
 + [Data encryption in Amazon EFS](encryption.md)
-+ [Identity and Access Management for Amazon EFS](auth-and-access-control.md)
++ [Identity and access management for Amazon EFS](auth-and-access-control.md)
 + [Controlling network access to Amazon EFS file systems for NFS clients](NFS-access-control-efs.md)
 + [Working with users, groups, and permissions at the Network File System \(NFS\) Level](accessing-fs-nfs-permissions.md)
 + [Working with Amazon EFS Access Points](efs-access-points.md)
 + [Logging and Monitoring in Amazon EFS](logging-monitoring.md)
++ [AWS managed policies for Amazon EFS](security-iam-awsmanpol.md)
 + [Compliance Validation for Amazon Elastic File System](SERVICENAME-compliance.md)
 + [Resilience in Amazon Elastic File System](disaster-recovery-resiliency.md)
 + [Amazon Elastic File System Network Isolation](network-isolation.md)

@@ -36,15 +36,15 @@ If the action is successful, the service sends back an HTTP 204 response with an
 
 ## Errors<a name="API_DeleteAccessPoint_Errors"></a>
 
- **AccessPointNotFound**   
+ ** AccessPointNotFound **   
 Returned if the specified `AccessPointId` value doesn't exist in the requester's AWS account\.  
 HTTP Status Code: 404
 
- **BadRequest**   
+ ** BadRequest **   
 Returned if the request is malformed or contains an error such as an invalid parameter value or a missing required parameter\.  
 HTTP Status Code: 400
 
- **InternalServerError**   
+ ** InternalServerError **   
 Returned if an error occurred on the server side\.  
 HTTP Status Code: 500
 

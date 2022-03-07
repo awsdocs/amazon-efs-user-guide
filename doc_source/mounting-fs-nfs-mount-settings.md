@@ -8,10 +8,12 @@ We recommend the following default values for mount options on Linux:
 + `retrans=2` – Sets to 2 the number of times the NFS client retries a request before it attempts further recovery action\.
 + `noresvport` – Tells the NFS client to use a new Transmission Control Protocol \(TCP\) source port when a network connection is reestablished\. Doing this helps make sure that the EFS file system has uninterrupted availability after a network recovery event\.
 + `_netdev` – When present in `/etc/fstab`, prevents the client from attempting to mount the EFS file system until the network has been enabled\.
++ `nofail` – If your EC2 instance needs to start regardless of the status of your mounted EFS file system, add the `nofail` option to your file system's entry in your `/etc/fstab` file\.
 
 If you don't use the preceding defaults, be aware of the following:
 + In general, avoid setting any other mount options that are different from the defaults, which can cause reduced performance and other issues\. For example, changing read or write buffer sizes or disabling attribute caching can result in reduced performance\.
 + Amazon EFS ignores source ports\. If you change Amazon EFS source ports, it doesn't have any effect\.
++ Amazon EFS does not support the `nconnect` mount option\.
 + Amazon EFS doesn't support any of the Kerberos security variants\. For example, the following mount command fails\.
 
   ```
@@ -19,6 +21,3 @@ If you don't use the preceding defaults, be aware of the following:
   ```
 + We recommend that you mount your file system using its DNS name\. This name resolves to the IP address of the Amazon EFS mount target in the same Availability Zone as your Amazon EC2 instance\. If you use a mount target in an Availability Zone different from that of your Amazon EC2 instance, you incur standard EC2 charges for data sent across Availability Zones\. You also might see increased latencies for file system operations\.
 + For more mount options, and detailed explanations of the defaults, see the [http://man7.org/linux/man-pages/man5/fstab.5.html](http://man7.org/linux/man-pages/man5/fstab.5.html) and [https://linux.die.net/man/5/nfs](https://linux.die.net/man/5/nfs) pages in the Linux documentation\.
-
-**Note**  
-If your EC2 instance needs to start regardless of the status of your mounted EFS file system, add the `nofail` option to your file system's entry in your `/etc/fstab` file\.

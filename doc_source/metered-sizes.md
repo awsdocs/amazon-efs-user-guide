@@ -32,11 +32,11 @@ $ /usr/bin/stat --format="%b*%B" . | bc
 4096
 ```
 
-## Metering an Amazon EFS file system<a name="metered-sizes-fs"></a>
+## Metered size of an Amazon EFS file system<a name="metered-sizes-fs"></a>
 
-The metered size of an Amazon EFS file system includes the sum of the sizes of all current objects in the Standard and IA storage classes\. The size of each object is calculated from a representative sampling that represents the size of the object during the metered hour\. An example is the hour from 8 AM to 9 AM\.
+The metered size of an Amazon EFS file system includes the sum of the sizes of all current objects in the Standard and IA storage classes\. The size of each object is calculated from a representative sampling of the size of the object during the metered hour, for example from 8 AM to 9 AM\.
 
-For example, an empty file contributes 6 KiB \(2 KiB metadata \+ 4 KiB data\) to the metered size of its file system\. Upon creation, a file system has a single empty root directory and therefore has a metered size of 6 KiB\.
+An empty file contributes 6 KiB \(2 KiB metadata \+ 4 KiB data\) to the metered size of a file system\. Upon creation, a file system has a single empty root directory and therefore has a metered size of 6 KiB\.
 
 The metered sizes of a particular file system define the usage for which the owner account is billed for that file system for that hour\.
 
@@ -44,16 +44,29 @@ The metered sizes of a particular file system define the usage for which the own
 The computed metered size doesn't represent a consistent snapshot of the file system at any particular time during that hour\. Instead, it represents the sizes of the objects that existed in the file system at varying times within each hour, or possibly the hour before it\. These sizes are summed to determine the file system's metered size for the hour\. The metered size of a file system is thus eventually consistent with the metered sizes of the objects stored when there are no writes to the file system\.
 
 You can see this metered size for an Amazon EFS file system in the following ways:
-+ Call the [DescribeFileSystems operation](API_DescribeFileSystems.md) using one the SDKs, HTTP, or the AWS CLI\.
-+ View the **File Systems** table, for each file system listed in the AWS Management Console\.
++ Using the [https://docs.aws.amazon.com/latest/reference/efs/describe-file-systems.html](https://docs.aws.amazon.com/latest/reference/efs/describe-file-systems.html) AWS CLI command and the [DescribeFileSystems](API_DescribeFileSystems.md) API operation, the response includes the following:
+
+  ```
+  "SizeInBytes":{
+              "Timestamp": 1403301078,
+              "Value": 29313417216,
+              "ValueInIA": 675432,
+              "ValueInStandard": 29312741784
+           }
+  ```
+
+  Where 
+
+  The metered size of `ValueInStandard` is also used to determine your I/O throughput baseline and burst rates for file systems using the [Bursting Throughput](performance.md#throughput-modes) mode\.
++ View the **Size in Standard / One Zone** column in the **File systems** table, for each file system listed in the EFS management console\.
 + Run the `df` command in Linux at the terminal prompt of an EC2 instance\. 
 
   Use the `df` command and not the `du` command\. Don't use the `du` command on the root of the file system for storage metering purposes\. The results don't provide full data\.
 
 **Note**  
-The metered size of the Standard storage class is also used to determine your I/O throughput baseline and burst rates\. For more information, see [Throughput scaling with bursting mode](performance.md#bursting)\. 
+The metered size of `ValueInStandard` is also used to determine your I/O throughput baseline and burst rates\. For more information, see [Bursting Throughput mode](performance.md#bursting)\. 
 
-### Metering for infrequent access<a name="metered-sizes-IA"></a>
+### Metering infrequent access<a name="metered-sizes-IA"></a>
 
 Infrequent Access \(IA\) storage is metered in 4 KiB increments\. IA file metadata \(2 KiB per file\) is always stored and metered in the Standard storage class\. Data access for IA storage is metered in 1 MiB increments\.
 

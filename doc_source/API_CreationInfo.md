@@ -9,19 +9,19 @@ If you do not provide `CreationInfo` and the specified `RootDirectory` does not 
 
 ## Contents<a name="API_CreationInfo_Contents"></a>
 
- **OwnerGid**   <a name="efs-Type-CreationInfo-OwnerGid"></a>
+ ** OwnerGid **   <a name="efs-Type-CreationInfo-OwnerGid"></a>
 Specifies the POSIX group ID to apply to the `RootDirectory`\. Accepts values from 0 to 2^32 \(4294967295\)\.  
 Type: Long  
 Valid Range: Minimum value of 0\. Maximum value of 4294967295\.  
 Required: Yes
 
- **OwnerUid**   <a name="efs-Type-CreationInfo-OwnerUid"></a>
+ ** OwnerUid **   <a name="efs-Type-CreationInfo-OwnerUid"></a>
 Specifies the POSIX user ID to apply to the `RootDirectory`\. Accepts values from 0 to 2^32 \(4294967295\)\.  
 Type: Long  
 Valid Range: Minimum value of 0\. Maximum value of 4294967295\.  
 Required: Yes
 
- **Permissions**   <a name="efs-Type-CreationInfo-Permissions"></a>
+ ** Permissions **   <a name="efs-Type-CreationInfo-Permissions"></a>
 Specifies the POSIX permissions to apply to the `RootDirectory`, in the format of an octal number representing the file's mode bits\.  
 Type: String  
 Length Constraints: Minimum length of 3\. Maximum length of 4\.  

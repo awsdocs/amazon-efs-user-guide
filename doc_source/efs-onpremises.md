@@ -1,17 +1,17 @@
-# Walkthrough: Create and Mount a File System On\-Premises with AWS Direct Connect and VPN<a name="efs-onpremises"></a>
+# Walkthrough: Create and mount a file system on\-premises with AWS Direct Connect and VPN<a name="efs-onpremises"></a>
 
-This walkthrough uses the AWS Management Console to create and mount a file system on an on\-premises client\. You do so using either an AWS Direct Connect connection or a connection on an AWS virtual private network \(VPN\)\.
+This walkthrough uses the AWS Management Console to create and mount a file system on an on\-premises client\. You do so using either an AWS Direct Connect connection or a connection on an AWS Virtual Private Network \(AWS VPN\)\.
 
 **Note**  
 Using Amazon EFS with Microsoft Windows–based clients isn't supported\.
 
 **Topics**
-+ [Before You Begin](#wt5-prepare)
-+ [Step 1: Create Your Amazon Elastic File System Resources](#wt5-step1-efs)
-+ [Step 2: Install the NFS Client](#wt5-step4-install-nfs)
-+ [Step 3: Mount the Amazon EFS File System on Your On\-Premises Client](#wt5-step3-connect)
-+ [Step 4: Clean Up Resources and Protect Your AWS Account](#wt5-step4-cleanup)
-+ [Optional: Encrypting Data in Transit](#wt5-step2-get-efs-utils)
++ [Before you begin](#wt5-prepare)
++ [Step 1: Create your Amazon Elastic File System resources](#wt5-step1-efs)
++ [Step 2: Install the NFS client](#wt5-step4-install-nfs)
++ [Step 3: Mount the Amazon EFS file system on your on\-premises Client](#wt5-step3-connect)
++ [Step 4: Clean up resources and protect your AWS account](#wt5-step4-cleanup)
++ [Optional: Encrypting data in transit](#wt5-step2-get-efs-utils)
 
 In this walkthrough, we assume that you already have an AWS Direct Connect or VPN connection\. If you don't have one, you can begin the connection process now and come back to this walkthrough when your connection is established\. For more information on AWS Direct Connect, see the [AWS Direct Connect User Guide](https://docs.aws.amazon.com/directconnect/latest/UserGuide/)\. For more information on setting up a VPN connection, see [VPN Connections](https://docs.aws.amazon.com/vpc/latest/userguide/vpn-connections.html) in the *Amazon VPC User Guide*\.
 
@@ -22,7 +22,7 @@ The walkthrough creates all these resources in the US West \(Oregon\) Region \(`
 **Note**  
 In some cases, your local application might need to know if the EFS file system is available\. In these cases, your application should be able to point to a different mount point IP address if the first mount point becomes temporarily unavailable\. In this scenario, we recommend that you have two on\-premises clients connected to your file system through different Availability Zones \(AZs\) for higher availability\. 
 
-## Before You Begin<a name="wt5-prepare"></a>
+## Before you begin<a name="wt5-prepare"></a>
 
 You can use the root credentials of your AWS account to sign in to the console and try this exercise\. However, AWS Identity and Access Management \(IAM\) best practices recommend that you don't use the root credentials of your AWS account\. Instead, create an administrator user in your account and use those credentials to manage resources in your account\. For more information, see [Setting Up](setting-up.md)\.
 
@@ -30,7 +30,7 @@ You can use a default VPC or a custom VPC that you have created in your account\
 + The internet gateway is attached to your VPC\. For more information, see [Internet Gateways](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Internet_Gateway.html) in the *Amazon VPC User Guide*\.
 + The VPC route table includes a rule to send all internet\-bound traffic to the Internet gateway\.
 
-## Step 1: Create Your Amazon Elastic File System Resources<a name="wt5-step1-efs"></a>
+## Step 1: Create your Amazon Elastic File System resources<a name="wt5-step1-efs"></a>
 
 In this step, you create your Amazon EFS file system and mount targets\.
 
@@ -62,7 +62,7 @@ Next, you add a rule to the mount target's security group to allow inbound traff
 
 1. Under **NETWORK & SECURITY**, choose **Security Groups**\.
 
-1. Choose the security group associated with your file system\. You made a note of this at the end of [Step 1: Create Your Amazon Elastic File System Resources](#wt5-step1-efs)\.
+1. Choose the security group associated with your file system\. You made a note of this at the end of [Step 1: Create your Amazon Elastic File System resources](#wt5-step1-efs)\.
 
 1. In the tabbed pane that appears below the list of security groups, choose the **Inbound** tab\.
 
@@ -76,7 +76,7 @@ Next, you add a rule to the mount target's security group to allow inbound traff
 **Note**  
 You don't need to add an outbound rule, because the default outbound rule allows all traffic to leave\. If you don't have this default outbound rule, add an outbound rule to open a TCP connection on the NFS port, identifying the mount target security group as the destination\.
 
-## Step 2: Install the NFS Client<a name="wt5-step4-install-nfs"></a>
+## Step 2: Install the NFS client<a name="wt5-step4-install-nfs"></a>
 
 In this step, you install the NFS client\.
 
@@ -100,7 +100,7 @@ If you require data to be encrypted in transit, use the Amazon EFS mount helper,
    $ sudo apt-get -y install nfs-common
    ```
 
-## Step 3: Mount the Amazon EFS File System on Your On\-Premises Client<a name="wt5-step3-connect"></a>
+## Step 3: Mount the Amazon EFS file system on your on\-premises Client<a name="wt5-step3-connect"></a>
 
 **To create a mount directory**
 
@@ -154,12 +154,12 @@ As a result, the following file is created\.
 -rw-rw-r-- 1 username username 0 Nov 15 15:32 test-file.txt
 ```
 
-You can also mount your file system automatically by adding an entry to the `/etc/fstab` file\. For more information, see [Mounting your Amazon EFS file system automatically](mount-fs-auto-mount-onreboot.md)\.
+You can also mount your file system automatically by adding an entry to the `/etc/fstab` file\. For more information, see [Mounting your Amazon EFS file system automatically](efs-mount-helper.md#mount-fs-auto-mount-onreboot)\.
 
 **Warning**  
 Use the `_netdev` option, used to identify network file systems, when mounting your file system automatically\. If `_netdev` is missing, your EC2 instance might stop responding\. This result is because network file systems need to be initialized after the compute instance starts its networking\. For more information, see [Automatic Mounting Fails and the Instance Is Unresponsive](troubleshooting-efs-mounting.md#automount-fails)\.
 
-## Step 4: Clean Up Resources and Protect Your AWS Account<a name="wt5-step4-cleanup"></a>
+## Step 4: Clean up resources and protect your AWS account<a name="wt5-step4-cleanup"></a>
 
 After you have finished this walkthrough, or if you don't want to explore the walkthroughs, you should follow these steps to clean up your resources and protect your AWS account\.
 
@@ -191,7 +191,7 @@ Don't delete the default security group for your VPC\.
 
 1. Choose the X at the end of the inbound rule you added, and choose **Save**\.
 
-## Optional: Encrypting Data in Transit<a name="wt5-step2-get-efs-utils"></a>
+## Optional: Encrypting data in transit<a name="wt5-step2-get-efs-utils"></a>
 
 To encrypt data in transit, use the Amazon EFS mount helper, amazon\-efs\-utils, instead of the NFS client\.
 

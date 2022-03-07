@@ -2,6 +2,9 @@
 
 File system deletion is a destructive action that you can't undo\. You lose the file system and any data you have in it\. Any data that you delete from a file system is gone, and you can't restore the data\. When users delete data from a file system, that data is immediately rendered unusable\. EFS force\-overwrites the data in an eventual manner\.
 
+**Note**  
+You cannot delete a file system that is part of an EFS Replication configuration\. You need to delete the replication configuration first\. For more information, see [Deleting a replication configuration](efs-replication.md#delete-replications)\.
+
 **Important**  
 You should always unmount a file system before you delete it\.
 
@@ -24,7 +27,7 @@ You should always unmount a file system before you delete it\.
 
 Before you can use the AWS CLI command to delete a file system, you must delete all of the mount targets and access points created for the file system\. 
 
-For example AWS CLI commands, see [Step 4: Clean Up](wt1-clean-up.md)\. 
+For example AWS CLI commands, see [Step 4: Clean up](wt1-clean-up.md)\. 
 
 ## Related topics<a name="manage-delete-fs-related"></a>
 

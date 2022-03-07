@@ -25,7 +25,7 @@ Content-type: application/json
 The request uses the following URI parameters\.
 
  ** [ResourceId](#API_TagResource_RequestSyntax) **   <a name="efs-TagResource-request-ResourceId"></a>
-The ID specifying the EFS resource that you want to create a tag for\.   
+The ID specifying the EFS resource that you want to create a tag for\.  
 Length Constraints: Maximum length of 128\.  
 Pattern: `^(arn:aws[-a-z]*:elasticfilesystem:[0-9a-z-:]+:(access-point/fsap|file-system/fs)-[0-9a-f]{8,40}|fs(ap)?-[0-9a-f]{8,40})$`   
 Required: Yes
@@ -35,7 +35,7 @@ Required: Yes
 The request accepts the following data in JSON format\.
 
  ** [Tags](#API_TagResource_RequestSyntax) **   <a name="efs-TagResource-request-Tags"></a>
-  
+An array of `Tag` objects to add\. Each `Tag` object is a key\-value pair\.  
 Type: Array of [Tag](API_Tag.md) objects  
 Required: Yes
 
@@ -51,21 +51,62 @@ If the action is successful, the service sends back an HTTP 200 response with an
 
 ## Errors<a name="API_TagResource_Errors"></a>
 
- **AccessPointNotFound**   
+ ** AccessPointNotFound **   
 Returned if the specified `AccessPointId` value doesn't exist in the requester's AWS account\.  
 HTTP Status Code: 404
 
- **BadRequest**   
+ ** BadRequest **   
 Returned if the request is malformed or contains an error such as an invalid parameter value or a missing required parameter\.  
 HTTP Status Code: 400
 
- **FileSystemNotFound**   
+ ** FileSystemNotFound **   
 Returned if the specified `FileSystemId` value doesn't exist in the requester's AWS account\.  
 HTTP Status Code: 404
 
- **InternalServerError**   
+ ** InternalServerError **   
 Returned if an error occurred on the server side\.  
 HTTP Status Code: 500
+
+## Examples<a name="API_TagResource_Examples"></a>
+
+### Create Tags on a File System<a name="API_TagResource_Example_1"></a>
+
+The following request creates three tags \(`"key1"`, `"key2"`, and `"key3"`\) on the specified file system\.
+
+#### Sample Request<a name="API_TagResource_Example_1_Request"></a>
+
+```
+POST /2015-02-01/tag-resource/fs-01234567 HTTP/1.1 
+Host: elasticfilesystem.us-west-2.amazonaws.com
+x-amz-date: 20140620T221118Z
+Authorization: <...>
+Content-Type: application/json
+Content-Length: 160
+
+{
+    "Tags": [
+        {
+            "Key": "key1",
+            "Value": "value1"            
+        },
+        {
+            "Key": "key2",
+            "Value": "value2"            
+        },
+        {
+            "Key": "key3",
+            "Value": "value3"            
+        }
+    ]
+}
+```
+
+#### Sample Response<a name="API_TagResource_Example_1_Response"></a>
+
+```
+HTTP/1.1 204 no content
+x-amzn-RequestId: 01234567-89ab-cdef-0123-456789abcdef
+```
 
 ## See Also<a name="API_TagResource_SeeAlso"></a>
 

@@ -1,4 +1,4 @@
-# Walkthrough: Create an Amazon EFS File System and Mount It on an Amazon EC2 Instance Using the AWS CLI<a name="wt1-getting-started"></a>
+# Walkthrough: Create an Amazon EFS file system and mount it on an Amazon EC2 instance using the AWS CLI<a name="wt1-getting-started"></a>
 
 This walkthrough uses the AWS CLI to explore the Amazon EFS API\. In this walkthrough, you create an encrypted Amazon EFS file system, mount it on an Amazon EC2 instance in your VPC, and test the setup\.
 
@@ -21,16 +21,16 @@ In this walkthrough, you create the following AWS resources in your account:
 
 The walkthrough creates all these resources in the US West \(Oregon\) Region \(`us-west-2`\)\. Whichever AWS Region you use, be sure to use it consistently\. All of your resources—your VPC, EC2 resources, and Amazon EFS resources—must be in the same AWS Region\. 
 
-## Before You Begin<a name="wt1-prepare"></a>
+## Before you begin<a name="wt1-prepare"></a>
 + You can use the root credentials of your AWS account to sign in to the console and try the Getting Started exercise\. However, AWS Identity and Access Management \(IAM\) recommends that you do not use the root credentials of your AWS account\. Instead, create an administrator user in your account and use those credentials to manage resources in your account\. For more information, see [Setting Up](setting-up.md)\.
 + You can use a default VPC or a custom VPC that you have created in your account\. For this walkthrough, the default VPC configuration works\. However, if you use a custom VPC, verify the following:
-  + DNS hostnames are enabled\. For more information, see [Updating DNS Support for Your VPC](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-dns.html#vpc-dns-viewing) in the *Amazon VPC User Guide*\. 
+  + DNS hostnames are enabled\. For more information, see [Updating DNS support for your VPC](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-dns.html#vpc-dns-viewing) in the *Amazon VPC User Guide*\. 
   + The Internet gateway is attached to your VPC\. For more information, see [Internet Gateways](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Internet_Gateway.html) in the *Amazon VPC User Guide*\.
   + The VPC subnets are configured to request public IP addresses for instances launched in the VPC subnets\. For more information, see [IP Addressing in Your VPC](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-ip-addressing.html) in the *Amazon VPC User Guide*\.
   + The VPC route table includes a rule to send all Internet\-bound traffic to the Internet gateway\.
 + You need to set up the AWS CLI and add the adminuser profile\.
 
-## Setting Up the AWS CLI<a name="wt1-setup-awscli"></a>
+## Setting up the AWS CLI<a name="wt1-setup-awscli"></a>
 
 Use the following instructions to set up the AWS CLI and user profile\. 
 
@@ -76,5 +76,5 @@ Use the following instructions to set up the AWS CLI and user profile\.
      --profile adminuser
      ```
 
-**Next Step**  
-[Step 1: Create Amazon EC2 Resources](wt1-create-ec2-resources.md) 
+**Next step**  
+[Step 1: Create Amazon EC2 resources](wt1-create-ec2-resources.md) 

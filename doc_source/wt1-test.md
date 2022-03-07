@@ -1,11 +1,11 @@
-# Step 3: Mount the Amazon EFS File System on the EC2 Instance and Test<a name="wt1-test"></a>
+# Step 3: Mount the file system on the EC2 instance and test<a name="wt1-test"></a>
 
 In this step, you do the following:
 
 **Topics**
 + [Step 3\.1: Gather Information](#wt1-connect-test-gather-info)
 + [Step 3\.2: Install the NFS Client on Your EC2 Instance](#wt1-connect-install-nfs-client)
-+ [Step 3\.3: Mount File System on Your EC2 Instance and Test](#wt1-mount-fs-and-test)
++ [Step 3\.3: Mount the file system on your EC2 instance and test](#wt1-mount-fs-and-test)
 
 ## Step 3\.1: Gather Information<a name="wt1-connect-test-gather-info"></a>
 
@@ -61,7 +61,7 @@ You can connect to your EC2 instance from Windows or from a computer running Lin
 **Note**  
 If you choose the **Amazon Linux AMI 2016\.03\.0** Amazon Linux AMI when launching your Amazon EC2 instance, you don't need to install `nfs-utils` because it is already included in the AMI by default\.
 
-## Step 3\.3: Mount File System on Your EC2 Instance and Test<a name="wt1-mount-fs-and-test"></a>
+## Step 3\.3: Mount the file system on your EC2 instance and test<a name="wt1-mount-fs-and-test"></a>
 
 Now you mount the file system on your EC2 instance\. 
 
@@ -133,7 +133,7 @@ Now you mount the file system on your EC2 instance\.
 
 You now have successfully created and mounted an Amazon EFS file system on your EC2 instance in your VPC\.
 
-The file system you mounted doesn't persist across reboots\. To automatically remount the directory, you can use the `fstab` file\. For more information, see [Automatic Remounting on Reboot](accessing-fs-nfs-permissions-per-user-subdirs.md#accessing-fs-nfs-permissions-per-user-subdirs-auto-mount-on-reboot)\. If you are using an Auto Scaling group to launch EC2 instances, you can also set scripts in a launch configuration\. For an example, see [Walkthrough: Set Up an Apache Web Server and Serve Amazon EFS Files](wt2-apache-web-server.md)\.
+The file system you mounted doesn't persist across reboots\. To automatically remount the directory, you can use the `fstab` file\. For more information, see [Automatic remounting on reboot](accessing-fs-nfs-permissions-per-user-subdirs.md#accessing-fs-nfs-permissions-per-user-subdirs-auto-mount-on-reboot)\. If you are using an Auto Scaling group to launch EC2 instances, you can also set scripts in a launch configuration\. For an example, see [Walkthrough: Set up an Apache web server and serve Amazon EFS files](wt2-apache-web-server.md)\.
 
-**Next Step**  
- [Step 4: Clean Up](wt1-clean-up.md) 
+**Next step**  
+ [Step 4: Clean up](wt1-clean-up.md) 

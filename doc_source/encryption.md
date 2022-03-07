@@ -14,6 +14,6 @@ For more information on encryption with Amazon EFS, see these related topics:
 + [Working with Amazon EFS resources](creating-using.md)
 + [Managing access to encrypted file systems](managing-encrypt.md)
 + [Amazon EFS performance tips](performance-tips.md)
-+ [Amazon EFS API Permissions: Actions, Resources, and Conditions Reference](access-control-managing-permissions.md#efs-api-permissions-ref)
++ [Amazon EFS API permissions: actions, resources, and conditions reference](access-control-managing-permissions.md#efs-api-permissions-ref)
 + [Amazon EFS Log File Entries for Encrypted\-at\-Rest File Systems](logging-using-cloudtrail.md#efs-encryption-cloudtrail)
 + [Troubleshooting Encryption](troubleshooting-efs-encryption.md)

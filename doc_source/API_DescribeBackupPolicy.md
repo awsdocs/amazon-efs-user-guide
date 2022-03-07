@@ -42,29 +42,29 @@ If the action is successful, the service sends back an HTTP 200 response\.
 The following data is returned in JSON format by the service\.
 
  ** [BackupPolicy](#API_DescribeBackupPolicy_ResponseSyntax) **   <a name="efs-DescribeBackupPolicy-response-BackupPolicy"></a>
-Describes the file system's backup policy, indicating whether automatic backups are turned on or off\.\.  
+Describes the file system's backup policy, indicating whether automatic backups are turned on or off\.  
 Type: [BackupPolicy](API_BackupPolicy.md) object
 
 ## Errors<a name="API_DescribeBackupPolicy_Errors"></a>
 
- **BadRequest**   
+ ** BadRequest **   
 Returned if the request is malformed or contains an error such as an invalid parameter value or a missing required parameter\.  
 HTTP Status Code: 400
 
- **FileSystemNotFound**   
+ ** FileSystemNotFound **   
 Returned if the specified `FileSystemId` value doesn't exist in the requester's AWS account\.  
 HTTP Status Code: 404
 
- **InternalServerError**   
+ ** InternalServerError **   
 Returned if an error occurred on the server side\.  
 HTTP Status Code: 500
 
- **PolicyNotFound**   
+ ** PolicyNotFound **   
 Returned if the default file system policy is in effect for the EFS file system specified\.  
 HTTP Status Code: 404
 
- **ValidationException**   
-Returned if the AWS Backup service is not available in the Region in which the request was made\.  
+ ** ValidationException **   
+Returned if the AWS Backup service is not available in the AWS Region in which the request was made\.  
 HTTP Status Code: 400
 
 ## See Also<a name="API_DescribeBackupPolicy_SeeAlso"></a>

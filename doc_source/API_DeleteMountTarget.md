@@ -45,20 +45,20 @@ If the action is successful, the service sends back an HTTP 204 response with an
 
 ## Errors<a name="API_DeleteMountTarget_Errors"></a>
 
- **BadRequest**   
+ ** BadRequest **   
 Returned if the request is malformed or contains an error such as an invalid parameter value or a missing required parameter\.  
 HTTP Status Code: 400
 
- **DependencyTimeout**   
+ ** DependencyTimeout **   
 The service timed out trying to fulfill the request, and the client should try the call again\.  
 HTTP Status Code: 504
 
- **InternalServerError**   
+ ** InternalServerError **   
 Returned if an error occurred on the server side\.  
 HTTP Status Code: 500
 
- **MountTargetNotFound**   
-Returned if there is no mount target with the specified ID found in the caller's account\.  
+ ** MountTargetNotFound **   
+Returned if there is no mount target with the specified ID found in the caller's AWS account\.  
 HTTP Status Code: 404
 
 ## Examples<a name="API_DeleteMountTarget_Examples"></a>

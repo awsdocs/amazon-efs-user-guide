@@ -1,12 +1,12 @@
 # Creating and managing mount targets<a name="accessing-fs"></a>
 
-After you create an Amazon EFS file system, you can create mount targets\. For Amazon EFS file systems that use Standard storage classes, you can create a mount target in each Available Zone in an AWS region\. For EFS file systems that use One Zone stoarge classes, you can only create a single mount target in the same Availability Zone as the file system\. Then you can mount the file system on compute instances, including Amazon EC2, Amazon ECS, and AWS Lambda in your virtual private cloud \(VPC\)\.
+After you create an Amazon EFS file system, you can create mount targets\. For Amazon EFS file systems that use Standard storage classes, you can create a mount target in each Availability Zone in an AWS Region\. For EFS file systems that use One Zone storage classes, you can only create a single mount target in the same Availability Zone as the file system\. Then you can mount the file system on compute instances, including Amazon EC2, Amazon ECS, and AWS Lambda in your virtual private cloud \(VPC\)\.
 
 The following diagram shows an Amazon EFS file system that uses Standard storage classes, with mount targets created in all Availability Zones in the VPC\.
 
 ![\[Diagram showing 3 Availability Zones in a VPC, containing EC2 instances and mount targets, and a mounted EFS regional file system.\]](http://docs.aws.amazon.com/efs/latest/ug/images/efs-ec2-how-it-works-Regional.png)
 
-The following diagram shows an Amazon EFS file system using One Zone storage classes, with a single mount target created in the same Availability Zone as the file system\.
+The following diagram shows an Amazon EFS file system using One Zone storage classes, with a single mount target created in the same Availability Zone as the file system\. Accessing the file system using the EC2 instance in the us\-west2c Availability Zone incurs data access charges because it is located in a different Availability Zone than the mount target\.
 
 ![\[Diagram showing 2 Availability Zones in a VPC, containing EC2 instances, only one mount target, and a mounted EFS One Zone file system.\]](http://docs.aws.amazon.com/efs/latest/ug/images/efs-ec2-how-it-works-OneZone.png)
 
@@ -124,7 +124,7 @@ For file systems that use One Zone storage classes, you can only create a single
   ```
 
 **To retrieve a list of mount targets for a file system \(CLI\)**
-+ You can also retrieve a list of mount targets created for a file system using the [ `describe-mount-targets`](https://docs.aws.amazon.com/cli/latest/reference/efs/describe-mount-targets.html) CLI command \(the corresponding operation is [DescribeMountTargets](API_DescribeMountTargets.md)\), as shown following\.
++ You can also retrieve a list of mount targets created for a file system using the [https://docs.aws.amazon.com/cli/latest/reference/efs/describe-mount-targets.html](https://docs.aws.amazon.com/cli/latest/reference/efs/describe-mount-targets.html) CLI command \(the corresponding operation is [DescribeMountTargets](API_DescribeMountTargets.md)\), as shown following\.
 
   ```
   $ aws efs describe-mount-targets --file-system-id fs-a576a6dc
@@ -209,4 +209,4 @@ Before deleting a mount target, first unmount the file system\.
   --region us-east-2
   ```
 
-For more information, see [Walkthrough: Create an Amazon EFS File System and Mount It on an Amazon EC2 Instance Using the AWS CLI](wt1-getting-started.md)\.
+For more information, see [Walkthrough: Create an Amazon EFS file system and mount it on an Amazon EC2 instance using the AWS CLI](wt1-getting-started.md)\.

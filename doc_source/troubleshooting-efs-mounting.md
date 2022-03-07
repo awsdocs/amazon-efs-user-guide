@@ -34,7 +34,7 @@ A file system mount fails with the following message:
 This issue can occur if your NFS client does not have permission to mount the file system\. 
 
 **Action to take**  
- If you are attempting to mount the file system using IAM, make sure you are using the `-o iam` option in your mount command\. This tells the EFS mount helper to pass your credentials to the EFS mount target\. If you still don't have access, check your file system policy and your identity policy to ensure there are no DENY clauses that apply to your connection, and that there is at least one ALLOW clause that applies to the connection\. 
+ If you are attempting to mount the file system using IAM, make sure you are using the `-o iam` option in your mount command\. This tells the EFS mount helper to pass your credentials to the EFS mount target\. If you still don't have access, check your file system policy and your identity policy to ensure there are no DENY clauses that apply to your connection, and that there is at least one ALLOW clause that applies to the connection\. For more information, see [Using IAM to control file system data access](iam-access-control-nfs-efs.md) and [Creating file system policies](create-file-system-policy.md)\. 
 
 ## Automatic Mounting Fails and the Instance Is Unresponsive<a name="automount-fails"></a>
 
@@ -154,7 +154,7 @@ Check your VPC configuration\. If you are using a custom VPC, make sure that DNS
 
 To specify a DNS name in the `mount` command, you must do the following:
 + Ensure that there's an Amazon EFS mount target in the same Availability Zone as the Amazon EC2 instance\.
-+ Ensure that there's a mount target in the same VPC as the Amazon EC2 instance\. Otherwise, you can't use DNS name resolution for EFS mount targets that are in another VPC\. For more information, see [Mounting EFS file systems from another account or VPC](manage-fs-access-vpc-peering.md)\.
++ Ensure that there's a mount target in the same VPC as the Amazon EC2 instance\. Otherwise, you can't use DNS name resolution for EFS mount targets that are in another VPC\. For more information, see [Mounting EFS file systems from another AWS account or VPC](efs-mount-helper.md#manage-fs-access-vpc-peering)\.
 + Connect your Amazon EC2 instance inside an Amazon VPC configured to use the DNS server provided by Amazon\. For more information, see [DHCP Options Sets](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_DHCP_Options.html) in the *Amazon VPC User Guide*\.
 + Ensure that the Amazon VPC of the connecting Amazon EC2 instance has DNS hostnames enabled\. For more information, see [Updating DNS Support for Your VPC](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-dns.html#vpc-dns-updating) in the *Amazon VPC User Guide*\.
 

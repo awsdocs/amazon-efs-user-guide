@@ -1,4 +1,4 @@
-# Step 1: Create Amazon EC2 Resources<a name="wt1-create-ec2-resources"></a>
+# Step 1: Create Amazon EC2 resources<a name="wt1-create-ec2-resources"></a>
 
 In this step, you do the following: 
 + Create two security groups\.
@@ -6,11 +6,11 @@ In this step, you do the following:
 + Launch an EC2 instance\. You create and mount an Amazon EFS file system on this instance in the next step\. 
 
 **Topics**
-+ [Step 1\.1: Create Two Security Groups](#wt1-create-sg)
-+ [Step 1\.2: Add Rules to the Security Groups to Authorize Inbound/Outbound Access](#wt1-update-sg)
-+ [Step 1\.3: Launch an EC2 Instance](#wt1-create-ec2-instance)
++ [Step 1\.1: Create two security groups](#wt1-create-sg)
++ [Step 1\.2: Add rules to the security groups to authorize inbound/outbound access](#wt1-update-sg)
++ [Step 1\.3: Launch an EC2 instance](#wt1-create-ec2-instance)
 
-## Step 1\.1: Create Two Security Groups<a name="wt1-create-sg"></a>
+## Step 1\.1: Create two security groups<a name="wt1-create-sg"></a>
 
 In this section, you create security groups in your VPC for your EC2 instance and Amazon EFS mount target\. Later in the walkthrough, you assign these security groups to an EC2 instance and an Amazon EFS mount target\. For information about security groups, see [Security Groups for EC2\-VPC](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-network-security.html#vpc-security-groups) in the *Amazon EC2 User Guide for Linux Instances*\. 
 
@@ -79,7 +79,7 @@ In this section, you create security groups in your VPC for your EC2 instance an
    + Enable you to connect to your EC2 instance\. 
    + Enable traffic between an EC2 instance and an Amazon EFS mount target \(with which you associate these security groups later in this walkthrough\)\.
 
-## Step 1\.2: Add Rules to the Security Groups to Authorize Inbound/Outbound Access<a name="wt1-update-sg"></a>
+## Step 1\.2: Add rules to the security groups to authorize inbound/outbound access<a name="wt1-update-sg"></a>
 
 In this step, you add rules to the security groups to authorize inbound/outbound access\.
 
@@ -129,7 +129,7 @@ In this step, you add rules to the security groups to authorize inbound/outbound
    --region us-west-2
    ```
 
-## Step 1\.3: Launch an EC2 Instance<a name="wt1-create-ec2-instance"></a>
+## Step 1\.3: Launch an EC2 instance<a name="wt1-create-ec2-instance"></a>
 
 In this step, you launch an EC2 instance\. 
 
@@ -197,7 +197,7 @@ You can use most general purpose Linux\-based AMIs\. If you use another Linux AM
    --profile adminuser
    ```
 
-   If you don't find the public DNS name, check the configuration of the VPC in which you launched the EC2 instance\. For more information, see [Before You Begin](wt1-getting-started.md#wt1-prepare)\.
+   If you don't find the public DNS name, check the configuration of the VPC in which you launched the EC2 instance\. For more information, see [Before you begin](wt1-getting-started.md#wt1-prepare)\.
 
 1. \(Optional\) Assign a name to the EC2 instance that you created\. To do so, add a tag with the key name and value set to the name that you want to assign to the instance\. You do this by running the following AWS CLI `create-tags` command\. 
 
@@ -209,5 +209,5 @@ You can use most general purpose Linux\-based AMIs\. If you use another Linux AM
    --profile adminuser
    ```
 
-**Next Step**  
-[Step 2: Create Amazon EFS Resources](wt1-create-efs-resources.md) 
+**Next step**  
+[Step 2: Create Amazon EFS resources](wt1-create-efs-resources.md) 

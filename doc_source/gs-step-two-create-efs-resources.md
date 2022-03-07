@@ -23,10 +23,10 @@ In this step, you create your Amazon EFS file system that has the service recomm
 **Note**  
 One Zone storage classes are not available in all Availability Zones in AWS Regions where Amazon EFS is available\.
 
-   For more information, see [Managing EFS storage classes](storage-classes.md)\.
+   For more information, see [EFS storage classes](storage-classes.md)\.
 
 1. Choose **Create** to create a file system that uses the following service recommended settings:
-   + Automatic backups turned on, for more information, see [Using AWS Backup with Amazon EFS](awsbackup.md)\.
+   + Automatic backups turned on, for more information, see [Using AWS Backup to back up and restore Amazon EFS file systems](awsbackup.md)\.
    + Mount targets – Amazon EFS creates mount targets with the following settings:
      + For file systems that use Standard storage classes, a mount target is created in each Availability Zone in the AWS Region in which the file system is created\. For file systems that use One Zone storage classes, a single mount target is created in the Availability Zone you specified\.
      + Located in the default subnets of the VPC you selected\.
@@ -36,13 +36,17 @@ One Zone storage classes are not available in all Availability Zones in AWS Regi
    + General Purpose performance mode – For more information, see [Performance modes](performance.md#performancemodes)\.
    + Bursting throughput mode – For more information, see [Throughput modes](performance.md#throughput-modes)\.
    + Encryption of data at rest enabled using your default key for Amazon EFS \(`aws/elasticfilesystem`\) – For more information, see [Encrypting data at rest](encryption-at-rest.md)\.
-   + Lifecycle management enabled with a 30\-day policy – For more information, see [Amazon EFS lifecycle management](lifecycle-management-efs.md)\.
+   + Lifecycle Management – Amazon EFS creates the file system with the following lifecycle policies:
+     + **Transition into IA** set to **30 days since last access**
+     + **Transition out of IA** set to **On first access**
+
+     For more information, see [Amazon EFS lifecycle management](lifecycle-management-efs.md)\.
 
    After you create the file system, you can customize the file system's settings with the exception of availability and durability, encryption, and performance mode\.
 
-   If you want to create a file system with a customized configuration, choose **Customize**\. For more information about creating a file system with customized settings, see [Creating a file system with custom settings using the Amazon EFS console](creating-using-create-fs.md#creating-using-fs-part1-console), 
+   If you want to create a file system with a customized configuration, choose **Customize**\. For more information about creating a file system with customized settings, see [Creating a file system with custom settings using the Amazon EFS console](creating-using-create-fs.md#creating-using-fs-part1-console)\. 
 
 1. The **File systems** page appears with a banner across the top showing the status of the file system you created\. A link to access the file system details page appears in the banner when the file system becomes available\.  
-![\[File system details page showing the newly created file system and its configuration details.\]](http://docs.aws.amazon.com/efs/latest/ug/images/console2-efs-filesystem-details.png)
+![\[File system details page showing the newly created file system and its configuration details.\]](http://docs.aws.amazon.com/efs/latest/ug/images/console2-efs-filesystem-INT-details.png)
 
    For more information about file system status, see [File system status](file-system-state.md)\.

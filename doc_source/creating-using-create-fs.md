@@ -32,7 +32,7 @@ If you use QuickCreate to create a file system with the service recommended sett
 
 To create EFS resources such as a file system and access points, a user must have AWS Identity and Access Management \(IAM\) permissions for the corresponding API action and resource\.
 
-You can perform any Amazon EFS operations using your AWS account root user credentials, but using root user credentials is not recommended\. We recommend that you create IAM users in your account, and grant them permissions for Amazon EFS actions with user policies\. You can also use roles to grant cross\-account permissions\. Amazon Elastic File System also uses an AWS IAM service\-linked role that includes permissions required to call other AWS services on your behalf\. For more information about managing permissions for the API actions, see [Identity and Access Management for Amazon EFS](auth-and-access-control.md)\.
+You can perform any Amazon EFS operations using your AWS account root user credentials, but using root user credentials is not recommended\. We recommend that you create IAM users in your account, and grant them permissions for Amazon EFS actions with user policies\. You can also use roles to grant cross\-account permissions\. Amazon Elastic File System also uses an AWS IAM service\-linked role that includes permissions required to call other AWS services on your behalf\. For more information about managing permissions for the API actions, see [Identity and access management for Amazon EFS](auth-and-access-control.md)\.
 
 ## Configuration options when creating a file system<a name="creating-using-create-fs-part1"></a>
 
@@ -43,7 +43,7 @@ When creating an Amazon EFS file system using the custom create flow or the AWS 
 ### Availability and durability<a name="availabiltydurability"></a>
 
 Availability and durability refer to the redundancy with which an Amazon EFS file system stores data within an AWS Region\. You have the following choices for your file system's availability and durability:
-+ Choosing **Regional** creates a file system that uses [Standard storage classes](storage-classes.md#regional-sc) that store file system data and metadata redundantly across all Availability Zones within an AWS Region\. You can also create mount targets in each Availability Zone in the AWS region\. **Regional** offers the highest levels of availability and durability\.
++ Choosing **Regional** creates a file system that uses [Standard storage classes](storage-classes.md#regional-sc) that store file system data and metadata redundantly across all Availability Zones within an AWS Region\. You can also create mount targets in each Availability Zone in the AWS Region\. **Regional** offers the highest levels of availability and durability\.
 + Choosing **One Zone** creates a file system that uses [One Zone storage classes](storage-classes.md#one-zone-sc) that store file system data and metadata redundantly within a single Availability Zone\. File systems using One Zone storage classes can have only a single mount target which is located in the Availability Zone in which the file system is created\.
 
   Amazon EFS One Zone storage classes store data in a single AWS Availability Zone\. Therefore, data stored in these storage classes may be lost in the event of a disaster or other fault that affects all copies of the data within the Availability Zone, or in the event of Availability Zone destruction\.
@@ -54,9 +54,13 @@ If you choose One Zone, you can choose the Availability Zone in which the file s
 
 Automatic backups are always enabled by default when you create a file system using the console\. When you use the CLI or API to create a file system, automatic backups are enabled by default only when you are creating file systems using One Zone storage classes\. For more information, see [Automatic backups](awsbackup.md#automatic-backups)\.
 
-### Lifecycle management<a name="create-fs-lifecycle-mgmnt"></a>
+### EFS Lifecycle Management and EFS Intelligent‐Tiering<a name="create-fs-lifecycle-mgmnt"></a>
 
- Lifecycle management migrates files that have not been accessed for a set period of time to the lower\-cost Infrequent Access \(IA\) storage class\. You can set the policy that Amazon EFS lifecycle management uses to automatically manage cost\-effective file storage for your file systems when you create your file system\. When you create a file system using the console, the policy is set to **30 days since last access** by default\. When you use the CLI or API, there is no default setting\. For more information, see [Amazon EFS lifecycle management](lifecycle-management-efs.md)\.
+ EFS Intelligent‐Tiering uses lifecycle management to automatically move files into and out of the lower\-cost Infrequent Access \(IA\) storage class based on access patterns\. When you create a file system using the AWS Management Console, the file system's lifecycle policy is configured with the following default settings:
++ **Transition into IA** set to **30 days since last access**
++ **Transition out of IA** set to **After first access**
+
+When you create a file system using the AWS CLI, API or SDKs, you cannot set a lifecycle policy\. You have to wait until the file system is created, and then use the [PutLifecycleConfiguration](API_PutLifecycleConfiguration.md) API action to update the lifecycle configuration\. For more information, see [Amazon EFS lifecycle management](lifecycle-management-efs.md)\.
 
 ### Performance modes<a name="create-fs-performance-mode"></a>
 
@@ -76,7 +80,7 @@ Additional charges are associated with using Provisioned Throughput mode\. For m
 
 You can enable encryption at rest when creating a file system\. If you enable encryption at rest for your file system, all data and metadata stored on it are encrypted\. You can enable encryption in transit later, when you mount the file system\. For more information about Amazon EFS encryption, see [Data encryption in Amazon EFS](encryption.md)\.
 
-To create the file system mount targets in your VPC, you must specify VPC subnets\. The console prepopulates the list of VPCs in your account that are in the selected AWS Region\. First, you select your VPC, and then the console lists the Availability Zones in the VPC\. For each Availability Zone, you can select a subnet from the list, or use the default subnet if it exists\. After you select a subnet, you can either specify an available IP address in the subnet or let Amazon EFS choose an address automatically\.
+To create the file system mount targets in your VPC, you must specify VPC subnets\. The console pre\-populates the list of VPCs in your account that are in the selected AWS Region\. First, you select your VPC, and then the console lists the Availability Zones in the VPC\. For each Availability Zone, you can select a subnet from the list, or use the default subnet if it exists\. After you select a subnet, you can either specify an available IP address in the subnet or let Amazon EFS choose an address automatically\.
 
 ## Creating a file system with custom settings using the Amazon EFS console<a name="creating-using-fs-part1-console"></a>
 
@@ -98,7 +102,7 @@ Creating an Amazon EFS file system using the console is a four\-step process:
 1. Choose **Customize** to create a customized file system instead of creating a file system using the service recommended settings\. 
 
    The **File system settings** page appears\.  
-![\[Step 1 in creating an EFS file system using the General settings page in the EFS console.\]](http://docs.aws.amazon.com/efs/latest/ug/images/console2-fscustomcreate-step1-general.png)
+![\[Step 1 in creating an EFS file system using the General settings page in the EFS console.\]](http://docs.aws.amazon.com/efs/latest/ug/images/console2-fscustomcreate-step1-INT-general.png)
 
 1. For **General** settings, enter the following\.
 
@@ -112,11 +116,11 @@ Creating an Amazon EFS file system using the console is a four\-step process:
 
       If you choose One Zone, choose the **Availability Zone** that you want the file system created in, or keep the default setting\.
 
-      For more information, see [Managing EFS storage classes](storage-classes.md)\.
+      For more information, see [EFS storage classes](storage-classes.md)\.
 
-   1. **Automatic backups** are turned on by default\. You can turn off automatic backups by clearing the check box\. For more information, see [Using AWS Backup with Amazon EFS](awsbackup.md)\.
+   1. **Automatic backups** are turned on by default\. You can turn off automatic backups by clearing the check box\. For more information, see [Using AWS Backup to back up and restore Amazon EFS file systems](awsbackup.md)\.
 
-   1. Choose a **Lifecycle management** policy\. The default policy is **30 days after last access**\. If you don't want to use lifecycle management, choose **None**\. For more information, see [Amazon EFS lifecycle management](lifecycle-management-efs.md)\.
+   1. For **Lifecycle management **, the default policy sets **Transition into IA** to **30 days after last access** and **Transition out of IA** to **After first access**\. If you don't want to use intelligent tiering, choose **None** for each of these policy settings\. For more information, see [Amazon EFS lifecycle management](lifecycle-management-efs.md)\.
 
    1. Choose a **Performance mode**, either the default **General Purpose** mode or **Max I/O**\. You can change the performance mode after the file system becomes available\. For more information, see [Performance modes](performance.md#performancemodes)\.
 **Note**  
@@ -177,15 +181,14 @@ Optionally, you can create a file system policy for your file system\. An EFS fi
 
 **Step 4: Review and create**
 
-1. Review each of the file system configuration groups\. You can make changes to each group at this time by choosing **Edit**\.  
-![\[File system details page showing the newly created file system and its configuration details.\]](http://docs.aws.amazon.com/efs/latest/ug/images/console2-fscustomcreate-step4-rvw.png)
+1. Review each of the file system configuration groups\. You can make changes to each group at this time by choosing **Edit**\.
 
 1. Choose **Create** to create your file system and return to the **File systems** page\. 
 
    A banner across the top shows that the new file system is being created\. A link to access the new file system details page appears in the banner when the file system becomes available\.
 
 1. The **File systems** page displays the file system and its configuration details, as shown following\.   
-![\[File system details page showing the newly created file system and its configuration details.\]](http://docs.aws.amazon.com/efs/latest/ug/images/console2-efs-filesystem-details.png)
+![\[File system details page showing the newly created file system and its configuration details.\]](http://docs.aws.amazon.com/efs/latest/ug/images/console2-efs-filesystem-INT-details.png)
 
 ## Creating a file system using the AWS CLI<a name="creating-using-fs-part1-cli"></a>
 
@@ -195,29 +198,29 @@ The following examples use the `adminuser` as the `profile` parameter values\. Y
 + To create an encrypted file system that uses Standard storage classes, with automatic backups enabled, use the Amazon EFS `create-file-system` CLI command \(the corresponding operation is [CreateFileSystem](API_CreateFileSystem.md)\), as shown following\.
 
   ```
-  $ aws efs create-file-system \
-  -\-creation-token creation-token \
-  -\-encrypted true \
-  -\-backup true \
-  -\-performance-mode generalPurpose \
-  -\-throughput-mode bursting \
-  -\-region aws-region \
-  -\-tags Key=key,Value=value Key=key1,Value=value1 \
-  -\-profile adminuser
+  aws efs create-file-system \
+  --creation-token creation-token \
+  --encrypted \
+  --backup \
+  --performance-mode generalPurpose \
+  --throughput-mode bursting \
+  --region aws-region \
+  --tags Key=key,Value=value Key=key1,Value=value1 \
+  --profile adminuser
   ```
 
   For example, the following `create-file-system` command creates a file system in the `us-west-2` AWS Region\. The command specifies `MyFirstFS` as the creation token\. For a list of AWS Regions where you can create an Amazon EFS file system, see the [Amazon Web Services General Reference](https://docs.aws.amazon.com/general/latest/gr/rande.html#elasticfilesystem_region)\.
 
   ```
-  $  aws efs create-file-system \
-  -\-creation-token MyFirstFS \
-  -\-backup true \
-  -\-encrypted true \
-  -\-performance-mode generalPurpose \
-  -\-throughput-mode bursting \
-  -\-region us-west-2 \
-  -\-tags Key=Name,Value="Test File System" Key=developer,Value=rhoward \
-  -\-profile adminuser
+  aws efs create-file-system \
+  --creation-token MyFirstFS \
+  --backup \
+  --encrypted \
+  --performance-mode generalPurpose \
+  --throughput-mode bursting \
+  --region us-west-2 \
+  --tags Key=Name,Value="Test File System" Key=developer,Value=rhoward \
+  --profile adminuser
   ```
 
   After successfully creating the file system, Amazon EFS returns the file system description as JSON, as shown in the following example\.
@@ -247,20 +250,19 @@ The following examples use the `adminuser` as the `profile` parameter values\. Y
      ]
   }
   ```
-
-  The following example creates a file system that uses One Zone storage classes in the `us-west-2a` Availability Zone using the `availability-zone-name` property\.
++ The following example creates a file system that uses One Zone storage classes in the `us-west-2a` Availability Zone using the `availability-zone-name` property\.
 
   ```
-  $  aws efs create-file-system \
-  -\-creation-token MyFirstFS \
-  -\-availability-zone-name us-west-2a \
-  -\-backup true \
-  -\-encrypted true \
-  -\-performance-mode generalPurpose \
-  -\-throughput-mode bursting \
-  -\-region us-west-2 \
-  -\-tags Key=Name,Value="Test File System" Key=developer,Value=rhoward \
-  -\-profile adminuser
+  aws efs create-file-system \
+  --creation-token MyFirstFS \
+  --availability-zone-name us-west-2a \
+  --backup \
+  --encrypted \
+  --performance-mode generalPurpose \
+  --throughput-mode bursting \
+  --region us-west-2 \
+  --tags Key=Name,Value="Test File System" Key=developer,Value=rhoward \
+  --profile adminuser
   ```
 
   After successfully creating the file system, Amazon EFS returns the file system description as JSON, as shown in the following example\.
@@ -296,9 +298,9 @@ The following examples use the `adminuser` as the `profile` parameter values\. Y
   Amazon EFS also provides the `describe-file-systems` CLI command \(the corresponding API operation is [DescribeFileSystems](API_DescribeFileSystems.md)\), which you can use to retrieve a list of file systems in your account, as shown following\.
 
   ```
-  $  aws efs describe-file-systems \
-  -\-region aws-region \
-  -\-profile adminuser
+  aws efs describe-file-systems \
+  --region aws-region \
+  --profile adminuser
   ```
 
   Amazon EFS returns a list of the file systems in your AWS account created in the specified Region\.

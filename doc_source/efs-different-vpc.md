@@ -103,11 +103,14 @@ Now that you know the Availability Zone ID of the EC2 instance, you can now retr
 You can now make an entry in the `/etc/hosts` file on the EC2 instance that maps the mount target IP address to your EFS file system's hostname\. 
 
 **To add a host entry for the mount target**
-+ Add a line for the mount target IP address to the EC2 instance's `/etc/hosts` file\. The entry uses the format `mount-target-IP-Address file-system-ID.efs.region.amazonaws.com`\. Use the following command to add the line to the file\.
 
-  ```
-  echo "10.0.2.153 fs-01234567.efs.us-east-2.amazonaws.com" | sudo tee -a /etc/hosts
-  ```
+1. Add a line for the mount target IP address to the EC2 instance's `/etc/hosts` file\. The entry uses the format `mount-target-IP-Address file-system-ID.efs.region.amazonaws.com`\. Use the following command to add the line to the file\.
+
+   ```
+   echo "10.0.2.153 fs-01234567.efs.us-east-2.amazonaws.com" | sudo tee -a /etc/hosts
+   ```
+
+1. Make sure that the VPC security groups for the EC2 instance and mount target have rules that allow access to the EFS system, as needed\. For more information, see [Using VPC security groups for Amazon EC2 instances and mount targets](network-access.md)\.
 
 ## Step 4: Mount Your File System Using the EFS Mount Helper<a name="wt6-efs-utils-step4"></a>
 
@@ -170,7 +173,7 @@ As a result, the following file is created\.
 -rw-rw-r-- 1 username username 0 Nov 15 15:32 test-file.txt
 ```
 
-You can also mount your file system automatically by adding an entry to the `/etc/fstab` file\. For more information, see [Using /etc/fstab to mount automatically](mount-fs-auto-mount-onreboot.md#mount-fs-auto-mount-update-fstab)\.
+You can also mount your file system automatically by adding an entry to the `/etc/fstab` file\. For more information, see [Using /etc/fstab to mount automatically](efs-mount-helper.md#mount-fs-auto-mount-update-fstab)\.
 
 **Warning**  
 Use the `_netdev` option, used to identify network file systems, when mounting your file system automatically\. If `_netdev` is missing, your EC2 instance might stop responding\. This result is because network file systems need to be initialized after the compute instance starts its networking\. For more information, see [Automatic Mounting Fails and the Instance Is Unresponsive](troubleshooting-efs-mounting.md#automount-fails)\.

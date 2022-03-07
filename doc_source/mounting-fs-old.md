@@ -8,6 +8,9 @@ Following, you can learn how to install the Network File System \(NFS\) client a
 **Note**  
 Before you can mount a file system, you must create, configure, and launch your related AWS resources\. For detailed instructions, see [Getting started with Amazon Elastic File System](getting-started.md)\.
 
+**Note**  
+Prior to mounting your file system, you need to create VPC security groups for your Amazon EC2 instances and mount targets with the required inbound and outbound access\. For more information, see [Using VPC security groups for Amazon EC2 instances and mount targets](network-access.md)\.
+
 **Topics**
 + [NFS support](#mounting-fs-nfs-info)
 + [Installing the NFS client](#mounting-fs-install-nfsclient)
@@ -17,10 +20,12 @@ Before you can mount a file system, you must create, configure, and launch your 
 
 ## NFS support<a name="mounting-fs-nfs-info"></a>
 
-Amazon EFS supports the Network File System versions 4\.0 and 4\.1 \(NFSv4\) protocols when mounting your file systems on Amazon EC2 instances\. Although NFSv4\.0 is supported, we recommend that you use NFSv4\.1\. Mounting your Amazon EFS file system on your Amazon EC2 instance also requires an NFS client that supports your chosen NFSv4 protocol\.
+Amazon EFS supports the Network File System versions 4\.0 and 4\.1 \(NFSv4\) protocols when mounting your file systems on Amazon EC2 instances\. Although NFSv4\.0 is supported, we recommend that you use NFSv4\.1\. Mounting your Amazon EFS file system on your Amazon EC2 instance also requires an NFS client that supports your chosen NFSv4 protocol\. Amazon EC2 Mac instances running macOS Big Sur only support NFS v4\.0\.
+
+Amazon EFS does not support the `nconnect` mount option\.
 
 **Note**  
-Amazon EC2 Mac instances running macOS Big Sur only support NFS v4\.0\.
+For Linux kernel versions 5\.4\.\*, the Linux NFS client uses a default `read_ahead_kb` value of 128 KB\. We recommend increasing this value to 15 MB\. For more information, see [Optimizing the NFS read\_ahead\_kb size](performance-tips.md#efs-perf-optimize-nfs-read-ahead)\.
 
 For optimal performance and to avoid a variety of known NFS client bugs, we recommend working with a recent Linux kernel\. If you are using an enterprise Linux distribution, we recommend the following:
 + Amazon Linux 2
@@ -35,7 +40,7 @@ If you are using another distribution or a custom kernel, we recommend kernel ve
 RHEL 6\.9 might be suboptimal for certain workloads due to [Poor Performance When Opening Many Files in Parallel](troubleshooting-efs-general.md#open-close-operations-serialized)\.
 
 **Note**  
-Using Amazon EFS with Amazon EC2 instances based on Microsoft Windows is not supported\.
+Using Amazon EFS with Amazon EC2 instances running Microsoft Windows is not supported\.
 
 ### Troubleshooting AMI and kernel versions<a name="ami-kernel-versions-troubleshooting"></a>
 
@@ -116,4 +121,4 @@ If you choose **Amazon Linux AMI 2016\.03\.0** or **Amazon Linux AMI 2016\
 Use one of the following procedures to mount your file system\.
 + [Mounting on Amazon EC2 with a DNS name](mounting-fs-mount-cmd-dns-name.md)
 + [Mounting with an IP address](mounting-fs-mount-cmd-ip-addr.md)
-+ [Mounting your Amazon EFS file system automatically](mount-fs-auto-mount-onreboot.md)
++ [Mounting your Amazon EFS file system automatically](efs-mount-helper.md#mount-fs-auto-mount-onreboot)

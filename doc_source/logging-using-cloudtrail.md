@@ -322,6 +322,7 @@ If you're using an encrypted\-at\-rest file system, the calls that Amazon EFS ma
 | Asia Pacific \(Seoul\) | 518632624599 | 
 | Asia Pacific \(Singapore\) | 448676862907 | 
 | Asia Pacific \(Sydney\) | 288718191711 | 
+| Asia Pacific \(Jakarta\) | TBD | 
 | Asia Pacific \(Tokyo\) | 620757817088 | 
 | Asia Pacific \(Osaka\) | 740446410266 | 
 | Canada \(Central\) | 838331228873 | 
@@ -338,7 +339,7 @@ If you're using an encrypted\-at\-rest file system, the calls that Amazon EFS ma
 | AWS GovCloud \(US\-East\) | 167972735943 | 
 | AWS GovCloud \(US\-West\) | 174619389399 | 
 
-### Amazon EFS Encryption Context for Encryption at Rest<a name="EFSKMSContext"></a>
+### Amazon EFS Encryption context for encryption at rest<a name="EFSKMSContext"></a>
 
 Amazon EFS sends [encryption context](https://docs.aws.amazon.com/kms/latest/developerguide/encryption-context.html) when making AWS KMS API requests to generate data keys and decrypt Amazon EFS data\. The file system ID is the encryption context for all file systems that are encrypted at rest\. In the `requestParameters` field of a CloudTrail log entry, the encryption context looks similar to the following\.
 

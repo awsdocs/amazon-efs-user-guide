@@ -1,17 +1,17 @@
 # Tag<a name="API_Tag"></a>
 
-A tag is a key\-value pair\. Allowed characters are letters, white space, and numbers that can be represented in UTF\-8, and the following characters:` + - = . _ : /` 
+A tag is a key\-value pair\. Allowed characters are letters, white space, and numbers that can be represented in UTF\-8, and the following characters:` + - = . _ : /`\.
 
 ## Contents<a name="API_Tag_Contents"></a>
 
- **Key**   <a name="efs-Type-Tag-Key"></a>
+ ** Key **   <a name="efs-Type-Tag-Key"></a>
 The tag key \(String\)\. The key can't start with `aws:`\.  
 Type: String  
 Length Constraints: Minimum length of 1\. Maximum length of 128\.  
 Pattern: `^(?![aA]{1}[wW]{1}[sS]{1}:)([\p{L}\p{Z}\p{N}_.:/=+\-@]+)$`   
 Required: Yes
 
- **Value**   <a name="efs-Type-Tag-Value"></a>
+ ** Value **   <a name="efs-Type-Tag-Value"></a>
 The value of the tag key\.  
 Type: String  
 Length Constraints: Maximum length of 256\.  

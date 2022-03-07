@@ -27,7 +27,7 @@ You use the EFS mount helper when mounting a file system using an access point\.
 $ mount -t efs -o tls,accesspoint=fsap-12345678 fs-12345678: /localmountpoint
 ```
 
-For more information on mounting file systems using an access point, see [Mounting with EFS access points](mounting-fs-mount-helper.md#mounting-access-points)\.
+For more information on mounting file systems using an access point, see [Mounting with EFS access points](efs-mount-helper.md#mounting-access-points)\.
 
 ## Enforcing a User Identity Using an Access Point<a name="enforce-identity-access-points"></a>
 

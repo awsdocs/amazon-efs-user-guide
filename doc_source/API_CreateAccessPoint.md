@@ -1,6 +1,6 @@
 # CreateAccessPoint<a name="API_CreateAccessPoint"></a>
 
-Creates an EFS access point\. An access point is an application\-specific view into an EFS file system that applies an operating system user and group, and a file system path, to any file system request made through the access point\. The operating system user and group override any identity information provided by the NFS client\. The file system path is exposed as the access point's root directory\. Applications using the access point can only access data in its own directory and below\. To learn more, see [Mounting a file system using EFS access points](https://docs.aws.amazon.com/efs/latest/ug/efs-access-points.html)\.
+Creates an EFS access point\. An access point is an application\-specific view into an EFS file system that applies an operating system user and group, and a file system path, to any file system request made through the access point\. The operating system user and group override any identity information provided by the NFS client\. The file system path is exposed as the access point's root directory\. Applications using the access point can only access data in the application's own directory and any subdirectories\. To learn more, see [Mounting a file system using EFS access points](https://docs.aws.amazon.com/efs/latest/ug/efs-access-points.html)\.
 
 This operation requires permissions for the `elasticfilesystem:CreateAccessPoint` action\.
 
@@ -63,13 +63,13 @@ Type: [PosixUser](API_PosixUser.md) object
 Required: No
 
  ** [RootDirectory](#API_CreateAccessPoint_RequestSyntax) **   <a name="efs-CreateAccessPoint-request-RootDirectory"></a>
-Specifies the directory on the Amazon EFS file system that the access point exposes as the root directory of your file system to NFS clients using the access point\. The clients using the access point can only access the root directory and below\. If the `RootDirectory` > `Path` specified does not exist, EFS creates it and applies the `CreationInfo` settings when a client connects to an access point\. When specifying a `RootDirectory`, you need to provide the `Path`, and the `CreationInfo`\.  
+Specifies the directory on the Amazon EFS file system that the access point exposes as the root directory of your file system to NFS clients using the access point\. The clients using the access point can only access the root directory and below\. If the `RootDirectory` > `Path` specified does not exist, EFS creates it and applies the `CreationInfo` settings when a client connects to an access point\. When specifying a `RootDirectory`, you must provide the `Path`, and the `CreationInfo`\.  
 Amazon EFS creates a root directory only if you have provided the CreationInfo: OwnUid, OwnGID, and permissions for the directory\. If you do not provide this information, Amazon EFS does not create the root directory\. If the root directory does not exist, attempts to mount using the access point will fail\.  
 Type: [RootDirectory](API_RootDirectory.md) object  
 Required: No
 
  ** [Tags](#API_CreateAccessPoint_RequestSyntax) **   <a name="efs-CreateAccessPoint-request-Tags"></a>
-Creates tags associated with the access point\. Each tag is a key\-value pair\.  
+Creates tags associated with the access point\. Each tag is a key\-value pair, each key must be unique\. For more information, see [Tagging AWS resources](https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html) in the * AWS General Reference Guide*\.  
 Type: Array of [Tag](API_Tag.md) objects  
 Required: No
 
@@ -168,27 +168,27 @@ Type: Array of [Tag](API_Tag.md) objects
 
 ## Errors<a name="API_CreateAccessPoint_Errors"></a>
 
- **AccessPointAlreadyExists**   
-Returned if the access point you are trying to create already exists, with the creation token you provided in the request\.  
+ ** AccessPointAlreadyExists **   
+Returned if the access point that you are trying to create already exists, with the creation token you provided in the request\.  
 HTTP Status Code: 409
 
- **AccessPointLimitExceeded**   
-Returned if the AWS account has already created the maximum number of access points allowed per file system\.  
+ ** AccessPointLimitExceeded **   
+Returned if the AWS account has already created the maximum number of access points allowed per file system\. For more informaton, see [https://docs.aws.amazon.com/efs/latest/ug/limits.html#limits-efs-resources-per-account-per-region](https://docs.aws.amazon.com/efs/latest/ug/limits.html#limits-efs-resources-per-account-per-region)\.  
 HTTP Status Code: 403
 
- **BadRequest**   
+ ** BadRequest **   
 Returned if the request is malformed or contains an error such as an invalid parameter value or a missing required parameter\.  
 HTTP Status Code: 400
 
- **FileSystemNotFound**   
+ ** FileSystemNotFound **   
 Returned if the specified `FileSystemId` value doesn't exist in the requester's AWS account\.  
 HTTP Status Code: 404
 
- **IncorrectFileSystemLifeCycleState**   
+ ** IncorrectFileSystemLifeCycleState **   
 Returned if the file system's lifecycle state is not "available"\.  
 HTTP Status Code: 409
 
- **InternalServerError**   
+ ** InternalServerError **   
 Returned if an error occurred on the server side\.  
 HTTP Status Code: 500
 

@@ -1,6 +1,9 @@
 # DeleteTags<a name="API_DeleteTags"></a>
 
-Deletes the specified tags from a file system\. If the `DeleteTags` request includes a tag key that doesn't exist, Amazon EFS ignores it and doesn't cause an error\. For more information about tags and related restrictions, see [Tag Restrictions](https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/cost-alloc-tags.html) in the *AWS Billing and Cost Management User Guide*\.
+**Note**  
+DEPRECATED \- `DeleteTags` is deprecated and not maintained\. To remove tags from EFS resources, use the [UntagResource](API_UntagResource.md) API action\.
+
+Deletes the specified tags from a file system\. If the `DeleteTags` request includes a tag key that doesn't exist, Amazon EFS ignores it and doesn't cause an error\. For more information about tags and related restrictions, see [Tag restrictions](https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/cost-alloc-tags.html) in the * AWS Billing and Cost Management User Guide*\.
 
 This operation requires permissions for the `elasticfilesystem:DeleteTags` action\.
 
@@ -49,47 +52,17 @@ If the action is successful, the service sends back an HTTP 204 response with an
 
 ## Errors<a name="API_DeleteTags_Errors"></a>
 
- **BadRequest**   
+ ** BadRequest **   
 Returned if the request is malformed or contains an error such as an invalid parameter value or a missing required parameter\.  
 HTTP Status Code: 400
 
- **FileSystemNotFound**   
+ ** FileSystemNotFound **   
 Returned if the specified `FileSystemId` value doesn't exist in the requester's AWS account\.  
 HTTP Status Code: 404
 
- **InternalServerError**   
+ ** InternalServerError **   
 Returned if an error occurred on the server side\.  
 HTTP Status Code: 500
-
-## Examples<a name="API_DeleteTags_Examples"></a>
-
-### Delete tags from a file system<a name="API_DeleteTags_Example_1"></a>
-
- The following request deletes the tag `key2` from the tag set associated with the file system\. 
-
-#### Sample Request<a name="API_DeleteTags_Example_1_Request"></a>
-
-```
-POST /2015-02-01/delete-tags/fs-01234567 HTTP/1.1
-Host: elasticfilesystem.us-west-2.amazonaws.com
-x-amz-date: 20140620T215123Z
-Authorization: <...>
-Content-Type: application/json
-Content-Length: 223
-
-{ 
-    "TagKeys":[ 
-        "key2"
-    ]
-}
-```
-
-#### Sample Response<a name="API_DeleteTags_Example_1_Response"></a>
-
-```
-HTTP/1.1 204 No Content
-x-amzn-RequestId: 01234567-89ab-cdef-0123-456789abcdef
-```
 
 ## See Also<a name="API_DeleteTags_SeeAlso"></a>
 

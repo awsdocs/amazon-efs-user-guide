@@ -96,19 +96,19 @@ Pattern: `.+`
 
 ## Errors<a name="API_DescribeAccessPoints_Errors"></a>
 
- **AccessPointNotFound**   
+ ** AccessPointNotFound **   
 Returned if the specified `AccessPointId` value doesn't exist in the requester's AWS account\.  
 HTTP Status Code: 404
 
- **BadRequest**   
+ ** BadRequest **   
 Returned if the request is malformed or contains an error such as an invalid parameter value or a missing required parameter\.  
 HTTP Status Code: 400
 
- **FileSystemNotFound**   
+ ** FileSystemNotFound **   
 Returned if the specified `FileSystemId` value doesn't exist in the requester's AWS account\.  
 HTTP Status Code: 404
 
- **InternalServerError**   
+ ** InternalServerError **   
 Returned if an error occurred on the server side\.  
 HTTP Status Code: 500
 

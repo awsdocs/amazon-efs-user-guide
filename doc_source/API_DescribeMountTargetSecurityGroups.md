@@ -46,26 +46,26 @@ The following data is returned in JSON format by the service\.
  ** [SecurityGroups](#API_DescribeMountTargetSecurityGroups_ResponseSyntax) **   <a name="efs-DescribeMountTargetSecurityGroups-response-SecurityGroups"></a>
 An array of security groups\.  
 Type: Array of strings  
-Array Members: Maximum number of 5 items\.  
+Array Members: Maximum number of 100 items\.  
 Length Constraints: Minimum length of 11\. Maximum length of 43\.  
 Pattern: `^sg-[0-9a-f]{8,40}` 
 
 ## Errors<a name="API_DescribeMountTargetSecurityGroups_Errors"></a>
 
- **BadRequest**   
+ ** BadRequest **   
 Returned if the request is malformed or contains an error such as an invalid parameter value or a missing required parameter\.  
 HTTP Status Code: 400
 
- **IncorrectMountTargetState**   
+ ** IncorrectMountTargetState **   
 Returned if the mount target is not in the correct state for the operation\.  
 HTTP Status Code: 409
 
- **InternalServerError**   
+ ** InternalServerError **   
 Returned if an error occurred on the server side\.  
 HTTP Status Code: 500
 
- **MountTargetNotFound**   
-Returned if there is no mount target with the specified ID found in the caller's account\.  
+ ** MountTargetNotFound **   
+Returned if there is no mount target with the specified ID found in the caller's AWS account\.  
 HTTP Status Code: 404
 
 ## Examples<a name="API_DescribeMountTargetSecurityGroups_Examples"></a>

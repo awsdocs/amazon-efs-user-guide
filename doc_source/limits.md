@@ -9,7 +9,6 @@ Following, you can find out about quotas when working with Amazon EFS\.
 + [Quotas for Amazon EFS file systems](#limits-fs-specific)
 + [Unsupported NFSv4\.0 and 4\.1 features](#nfs4-unsupported-features)
 + [Additional considerations](#limits-additional-considerations)
-+ [Availability Zones that support EFS single Availability Zone storage classes](#one-zone-azs)
 
 ## Amazon EFS quotas that you can increase<a name="soft-limits"></a>
 
@@ -54,7 +53,7 @@ Following are the quotas on Amazon EFS resources for each customer account in an
 | Number of VPCs for each file system | 1 | 
 
 **Note**  
-Clients can also connect to mount targets in another account or VPC\. For more information, see [Mounting EFS file systems from another account or VPC](manage-fs-access-vpc-peering.md)\.
+Clients can also connect to mount targets in another account or VPC\. For more information, see [Mounting EFS file systems from another AWS account or VPC](efs-mount-helper.md#manage-fs-access-vpc-peering)\.
 
 ## Quotas for NFS clients<a name="limits-client-specific"></a>
 
@@ -63,7 +62,7 @@ The following quotas for NFS clients apply, assuming a Linux NFSv4\.1 client:
 + Up to 128 active user accounts for each client can have files open at the same time\. Each user account represents one local user logged in to the instance\. A user account that is logged in multiple times counts as one active user\.
 + Up to 32,768 files open at the same time on the instance\. Listing directory contents doesn't count as opening a file\.
 + Each unique mount on the client can acquire up to a total of 8,192 locks across a maximum of 256 unique file\-process pairs\. For example, a single process can acquire one or more locks on 256 separate files\. As another example, eight processes can each acquire one or more locks on 32 files\.
-+ When connecting to Amazon EFS, NFS clients located on\-premises or in another AWS Region can observe lower throughput than when connecting to EFS from the same AWS Region\. This effect is because of increased network latency\. Network latency of 1 ms or less is required to achieve maximum per\-client throughput\. Use the DataSync data migration service when migrating large datasets from on\-premises NFS servers to EFS\. For more information, see [On\-premises performance considerations](performance-onpremises.md)\.
++ When connecting to Amazon EFS, NFS clients located on\-premises or in another AWS Region can observe lower throughput than when connecting to EFS from the same AWS Region\. This effect is because of increased network latency\. Network latency of 1 ms or less is required to achieve maximum per\-client throughput\. Use the DataSync data migration service when migrating large datasets from on\-premises NFS servers to EFS\. \.
 + Using Amazon EFS with Microsoft Windows isn't supported\.
 
 ## Quotas for Amazon EFS file systems<a name="limits-fs-specific"></a>
@@ -111,9 +110,6 @@ Although Amazon Elastic File System doesn't support NFSv2, or NFSv3, Amazon EFS 
 
 In addition, note the following:
 + For a list of AWS Regions where you can create Amazon EFS file systems, see the [AWS General Reference](https://docs.aws.amazon.com/general/latest/gr/rande.html#elasticfilesystem-region)\.
-+ You mount your file system from Amazon EC2 instances in your Amazon VPC by using the mount targets you create in the VPC\. You can also mount your file system on your EC2\-Classic instances, which are not in the VPC\. However, you must first link them to your VPC by using ClassicLink\. For more information about using ClassicLink, see [ClassicLink](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/vpc-classiclink.html) in the *Amazon EC2 User Guide for Linux Instances*\.
-+ You can mount an Amazon EFS file system from on\-premises data center servers using AWS Direct Connect and VPN\.
-
-## Availability Zones that support EFS single Availability Zone storage classes<a name="one-zone-azs"></a>
-
-The following AWS Availability Zones support Amazon EFS One Zone–Standard and EFS One Zone–IA single Availability Zone storage classes\.
++ Amazon EFS does not support the `nconnect` mount option\.
++ You mount your file system from Amazon EC2 instances in your Amazon VPC by using the mount targets you create in the VPC\. You can also mount your file system on your EC2\-Classic instances, which are not in the VPC\. However, you must first link them to your VPC by using Amazon VPC ClassicLink\. For more information about using ClassicLink, see [ClassicLink](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/vpc-classiclink.html) in the *Amazon EC2 User Guide for Linux Instances*\.
++ You can mount an Amazon EFS file system from on\-premises data center servers using AWS Direct Connect and VPN\. For more information, see [Mounting with on\-premises clients](efs-mount-helper.md#mounting-fs-mount-helper-direct)\.

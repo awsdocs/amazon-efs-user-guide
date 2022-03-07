@@ -1,90 +1,105 @@
-# Upgrading Stunnel<a name="upgrading-stunnel"></a>
+# Upgrading `stunnel`<a name="upgrading-stunnel"></a>
 
-Using encryption of data in transit with the Amazon EFS mount helper requires OpenSSL version 1\.0\.2 or newer, and a version of stunnel that supports both OCSP and certificate hostname checking\. The Amazon EFS mount helper uses the stunnel program for its TLS functionality\. Note that some versions of Linux don't include a version of stunnel that supports these TLS features by default\. When using one of those Linux distributions, mounting an Amazon EFS file system using TLS fails\.
+Encryption of data in transit with the Amazon EFS mount helper requires `OpenSSL` version 1\.0\.2 or newer, and a version of `stunnel` that supports both Online Certificate Status Protocol \(OCSP\) and certificate hostname checking\. The Amazon EFS mount helper uses the `stunnel` program for its TLS functionality\. Note that some versions of Linux don't include a version of `stunnel` that supports these TLS features by default\. When using one of those Linux distributions, mounting an Amazon EFS file system using TLS fails\.
 
 After installing the Amazon EFS mount helper, you can upgrade your system's version of stunnel with the following instructions\.
 
-**To upgrade stunnel on Amazon Linux, Amazon Linux 2, and other supported Linux distributions**
+**To upgrade `stunnel` on Amazon Linux, Amazon Linux 2, and other supported Linux distributions \(except for [SLES 12](#stunnel-on-sles12)\)**
 
-1.  In a web browser, go to the stunnel downloads page [https://stunnel\.org/downloads\.html](https://www.stunnel.org/downloads.html)\. 
+1.  In a web browser, go to the `stunnel` downloads page [https://www.stunnel.org/downloads.html](https://www.stunnel.org/downloads.html)\. 
 
-1.  Locate the latest stunnel version that is available in tar\.gz format\. Note the name of the file as you will need it in the following steps\. 
+1.  Locate the latest `stunnel` version that is available in `tar.gz` format\. Note the name of the file as you will need it in the following steps\. 
 
 1. Open a terminal on your Linux client, and run the following commands in the order presented\.
 
-1. 
+   1. For RPM:
 
-   ```
-   sudo yum install -y gcc openssl-devel tcp_wrappers-devel
-   ```
+      ```
+      sudo yum install -y gcc openssl-devel tcp_wrappers-devel
+      ```
 
-1. Replace *latest\-stunnel\-version* with the name of the file you noted previously in Step 2\.
+      For DEB:
 
-   ```
-   sudo curl -o latest-stunnel-version.tar.gz https://www.stunnel.org/downloads/latest-stunnel-version.tar.gz
-   ```
+      ```
+      sudo apt-get install build-essential libwrap0-dev libssl-dev
+      ```
 
-1. 
+   1. Replace *latest\-stunnel\-version* with the name of the file you noted previously in Step 2\.
 
-   ```
-   sudo tar xvfz latest-stunnel-version.tar.gz
-   ```
+      ```
+      sudo curl -o latest-stunnel-version.tar.gz https://www.stunnel.org/downloads/latest-stunnel-version.tar.gz
+      ```
 
-1. 
+   1. 
 
-   ```
-   cd latest-stunnel-version/
-   ```
+      ```
+      sudo tar xvfz latest-stunnel-version.tar.gz
+      ```
 
-1. 
+   1. 
 
-   ```
-   sudo ./configure
-   ```
+      ```
+      cd latest-stunnel-version/
+      ```
 
-1. 
+   1. 
 
-   ```
-   sudo make
-   ```
+      ```
+      sudo ./configure
+      ```
 
-1. The current amazon\-efs\-utils package is installed in `bin/stunnel`\. So that the new version can be installed, remove that directory with the following command\.
+   1. 
 
-   ```
-   sudo rm /bin/stunnel
-   ```
+      ```
+      sudo make
+      ```
 
-1. 
+   1. The current `stunnel` package is installed in `bin/stunnel`\. So that the new version can be installed, remove that directory with the following command\.
 
-   ```
-   sudo make install
-   ```
+      ```
+      sudo rm /bin/stunnel
+      ```
 
-1. 
+   1. Install the latest version:
+
+      ```
+      sudo make install
+      ```
+
+   1. 
 **Note**  
-The default CentOS shell is csh, which has different syntax than the bash shell\. The following code first invokes bash, then runs\.
+The default CentOS shell is csh, which has different syntax than the bash shell\. The following code first invokes bash, then moves `/bin/stunnel` to `/root`\.
 
-   ```
-   bash
-   ```
+      ```
+      bash
+      ```
 
-   ```
-   if [[ -f /bin/stunnel ]]; then
-   sudo mv /bin/stunnel /root
-   fi
-   ```
+      ```
+      if [[ -f /bin/stunnel ]]; then
+      sudo mv /bin/stunnel /root
+      fi
+      ```
 
-1. 
+   1. Create a symlink:
 
-   ```
-   $ sudo ln -s /usr/local/bin/stunnel /bin/stunnel
-   ```
+      ```
+      sudo ln -s /usr/local/bin/stunnel /bin/stunnel
+      ```
 
 **To upgrade stunnel on macOS Big Sur**
 + Open a terminal on your EC2 Mac instance, and run the following command to upgrade to the latest version of stunnel\.
 
   ```
   brew upgrade stunnel
+  ```<a name="stunnel-on-sles12"></a>
+
+**Upgrading stunnel for SLES 12**
++ Run the following commands and follow the zypper package manager instructions to upgrade stunnel on your compute instance running SLES12\.
+
+  ```
+  sudo zypper addrepo https://download.opensuse.org/repositories/security:Stunnel/SLE_12_SP5/security:Stunnel.repo
+  sudo zypper refresh
+  sudo zypper install -y stunnel
   ```
 
 After you've installed a version of stunnel with the required features, you can mount your file system using TLS with the Amazon EFS recommended settings\.

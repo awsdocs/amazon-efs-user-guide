@@ -1,5 +1,8 @@
 # CreateTags<a name="API_CreateTags"></a>
 
+**Note**  
+DEPRECATED \- `CreateTags` is deprecated and not maintained\. To create tags for EFS resources, use the [TagResource](API_TagResource.md) API action\.
+
 Creates or overwrites tags associated with a file system\. Each tag is a key\-value pair\. If a tag key specified in the request already exists on the file system, this operation overwrites its value with the value provided in the request\. If you add the `Name` tag to your file system, Amazon EFS returns it in the response to the [DescribeFileSystems](API_DescribeFileSystems.md) operation\. 
 
 This operation requires permission for the `elasticfilesystem:CreateTags` action\.
@@ -51,58 +54,17 @@ If the action is successful, the service sends back an HTTP 204 response with an
 
 ## Errors<a name="API_CreateTags_Errors"></a>
 
- **BadRequest**   
+ ** BadRequest **   
 Returned if the request is malformed or contains an error such as an invalid parameter value or a missing required parameter\.  
 HTTP Status Code: 400
 
- **FileSystemNotFound**   
+ ** FileSystemNotFound **   
 Returned if the specified `FileSystemId` value doesn't exist in the requester's AWS account\.  
 HTTP Status Code: 404
 
- **InternalServerError**   
+ ** InternalServerError **   
 Returned if an error occurred on the server side\.  
 HTTP Status Code: 500
-
-## Examples<a name="API_CreateTags_Examples"></a>
-
-### Create Tags on a File System<a name="API_CreateTags_Example_1"></a>
-
-The following request creates three tags \(`"key1"`, `"key2"`, and `"key3"`\) on the specified file system\.
-
-#### Sample Request<a name="API_CreateTags_Example_1_Request"></a>
-
-```
-POST /2015-02-01/create-tags/fs-01234567 HTTP/1.1 
-Host: elasticfilesystem.us-west-2.amazonaws.com
-x-amz-date: 20140620T221118Z
-Authorization: <...>
-Content-Type: application/json
-Content-Length: 160
-
-{
-    "Tags": [
-        {
-            "Value": "value1",
-            "Key": "key1"
-        },
-        {
-            "Value": "value2",
-            "Key": "key2"
-        },
-        {
-            "Value": "value3",
-            "Key": "key3"
-        }
-    ]
-}
-```
-
-#### Sample Response<a name="API_CreateTags_Example_1_Response"></a>
-
-```
-HTTP/1.1 204 no content
-x-amzn-RequestId: 01234567-89ab-cdef-0123-456789abcdef
-```
 
 ## See Also<a name="API_CreateTags_SeeAlso"></a>
 
