@@ -65,10 +65,9 @@ To use the Amazon EFS console, you need to grant permissions for additional acti
         "ec2:DescribeSecurityGroups",
         "ec2:DescribeVpcs",
         "ec2:DescribeVpcAttribute"
-
       ],
       "Resource": "*"
-    }
+    },
     {
      "Sid" : "Stmt2AdditionalKMSPermissionsForConsole",
       "Effect": "Allow",
@@ -171,7 +170,6 @@ The following permissions policy uses a wild card character \(`"elasticfilesyste
       ],
       "Resource": "*"
     }
-     
   ]
 }
 ```
