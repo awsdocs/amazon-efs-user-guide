@@ -108,9 +108,6 @@ $ grep CONFIG_NFS_V4_1 /boot/config*
 
 If the preceding command returns `# CONFIG_NFS_V4_1 is not set`, NFSv4\.1 is not supported on your Linux distribution\. For a list of the Amazon Machine Images \(AMIs\) for Amazon Elastic Compute Cloud \(Amazon EC2\) that support NFSv4\.1, see [NFS support](mounting-fs-old.md#mounting-fs-nfs-info)\. 
 
-**Action to take**  
-If you receive this message, install the `nfs-utils` \(or `nfs-common` on Ubuntu\) package\. For more information, see [Installing the NFS client](mounting-fs-old.md#mounting-fs-install-nfsclient)\.
-
 ## Mount Command Fails with "No such file or directory" Error Message<a name="mount-error-no-such-file-or-directory"></a>
 
 The mount command fails with the following error message\.
