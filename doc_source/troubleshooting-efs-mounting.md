@@ -7,6 +7,7 @@
 + [Mounting Multiple Amazon EFS File Systems in /etc/fstab Fails](#automount-fix-multiple-fs)
 + [Mount Command Fails with "wrong fs type" Error Message](#mount-error-wrong-fs)
 + [Mount Command Fails with "incorrect mount option" Error Message](#mount-error-incorrect-mount)
++ [Mount Command Fails with "No such file or directory" Error Message](#mount-error-no-such-file-or-directory)
 + [File System Mount Fails Immediately After File System Creation](#mount-fails-propegation)
 + [File System Mount Hangs and Then Fails with Timeout Error](#mount-hangs-fails-timeout)
 + [File System Mount Using DNS Name Fails](#mount-fails-dns-name)
@@ -106,6 +107,20 @@ $ grep CONFIG_NFS_V4_1 /boot/config*
 ```
 
 If the preceding command returns `# CONFIG_NFS_V4_1 is not set`, NFSv4\.1 is not supported on your Linux distribution\. For a list of the Amazon Machine Images \(AMIs\) for Amazon Elastic Compute Cloud \(Amazon EC2\) that support NFSv4\.1, see [NFS support](mounting-fs-old.md#mounting-fs-nfs-info)\. 
+
+**Action to take**  
+If you receive this message, install the `nfs-utils` \(or `nfs-common` on Ubuntu\) package\. For more information, see [Installing the NFS client](mounting-fs-old.md#mounting-fs-install-nfsclient)\.
+
+## Mount Command Fails with "No such file or directory" Error Message<a name="mount-error-no-such-file-or-directory"></a>
+
+The mount command fails with the following error message\.
+
+```
+mount.nfs4: mounting <access_point> failed, reason given by server: No such file or directory
+```
+
+**Action to take**  
+This error message most likely means that the specified EFS path does not exist.  Note that while the AWS Console to create an EFS access point does explicitly state that the specified EFS folder will be created if it does not already exist, this does not actually happen.  You must manually create the folder in the EFS file system.
 
 ## File System Mount Fails Immediately After File System Creation<a name="mount-fails-propegation"></a>
 
