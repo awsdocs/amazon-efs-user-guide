@@ -3,7 +3,7 @@
 The Amazon EFS client \(`amazon-efs-utils`\) is an open\-source collection of Amazon EFS tools\. There's no additional cost to use the Amazon EFS client, which you can download from GitHub here: [https://github\.com/aws/efs\-utils](https://github.com/aws/efs-utils)\. The `amazon-efs-utils` package is available in the Amazon Linux package repositories, and you can build and install the package on other Linux distributions\. You can also use AWS Systems Manager to automatically install or update the package\. For more information, see [Using AWS Systems Manager to automatically install or update Amazon EFS clients](manage-efs-utils-with-aws-sys-manager.md)\.
 
 **Note**  
-The `amzon-efs-utils` package comes preinstalled on Amazon Linux and Amazon Linux 2 Amazon Machine Images \(AMIs\)\.
+The `amazon-efs-utils` package comes preinstalled on Amazon Linux and Amazon Linux 2 Amazon Machine Images \(AMIs\)\.
 
 The Amazon EFS client includes a mount helper and tooling that makes it easier to perform encryption of data in transit for Amazon EFS file systems\. A *mount helper* is a program that you use when you mount a specific type of file system\. We recommend that you use the mount helper included with the Amazon EFS client to mount your Amazon EFS file systems\. Using the Amazon EFS client simplifies mounting EFS file systems, and can provide improved file system performance\. For more information about using the EFS client and mount helper, see [Mounting EFS file systems](mounting-fs.md)\.
 
