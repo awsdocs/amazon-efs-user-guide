@@ -32,7 +32,7 @@ To express conditions, you use predefined condition keys\. Amazon EFS has the fo
 | EFS Condition Key | Description | Operator | 
 | --- | --- | --- | 
 | aws:SecureTransport |  Use this key to require clients to use TLS when connecting to an EFS file system\.  |  Boolean  | 
-| elasticfilesystem:AccessPointArn | ARN of the EFS access point to which the client is connecting\. | 
+| elasticfilesystem:AccessPointArn | ARN of the EFS access point to which the client is connecting\. | String |
 | elasticfilesystem:AccessedViaMountTarget | Use this key to prevent access to an EFS file system by clients that are not using file system mount targets\. | Boolean | 
 
 ## File system policy examples<a name="file-sys-policy-examples"></a>
