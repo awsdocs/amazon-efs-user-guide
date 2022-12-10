@@ -32,7 +32,7 @@ If you're not using the mount helper, you can still enable encryption of data in
 
 1. Using the NFS client, mount `localhost:port`, where `port` is the port that you noted in the first step\.
 
-Because encryption of data in transit is configured on a per\-connection basis, each configured mount has a dedicated stunnel process running on the instance\. By default, the stunnel process used by the mount helper listens on local ports 20049 and 20449, and it connects to Amazon EFS on port 2049\.
+Because encryption of data in transit is configured on a per\-connection basis, each configured mount has a dedicated stunnel process running on the instance\. By default, the stunnel process used by the mount helper listens on a local port ranging from 20049 through 21048, and it connects to Amazon EFS on port 2049\.
 
 **Note**  
 By default, when using the Amazon EFS mount helper with TLS, the mount helper enforces certificate hostname checking\. The Amazon EFS mount helper uses the stunnel program for its TLS functionality\. Some versions of Linux don't include a version of stunnel that supports these TLS features by default\. When using one of those Linux versions, mounting an Amazon EFS file system using TLS fails\.  
