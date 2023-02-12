@@ -4,6 +4,7 @@ AWS Transfer Family is a fully managed AWS service that you can use to transfer 
 +  Secure Shell \(SSH\) File Transfer Protocol \(SFTP\) \(AWS Transfer for SFTP\)
 + File Transfer Protocol Secure \(FTPS\) \(AWS Transfer for FTPS\)
 + File Transfer Protocol \(FTP\) \(AWS Transfer for FTP\)
++ Applicability Statement 2 \(AS2\) \(AWS Transfer for AS2\)
 
 Using Transfer Family, you can securely enable third parties such as your vendors, partners, or customers access to your files over the supported protocols at scale globally, without needing to manage any infrastructure\. Additionally, you can now easily access your EFS file systems from Windows, macOS, and Linux environments using SFTP, FTPS, and FTP clients\. This helps expand the accessibility of your data beyond NFS clients and access points, to users across multiple environments\.
 
