@@ -71,13 +71,13 @@ Now you mount the file system on your EC2 instance\.
    $ mkdir ~/efs-mount-point 
    ```
 
-1. Mount the Amazon EFS file system\. 
+1. Mount the Amazon EFS file system using the DNS name of the EFS file system\.
 
    ```
    $ sudo mount -t nfs -o nfsvers=4.1,rsize=1048576,wsize=1048576,hard,timeo=600,retrans=2,noresvport mount-target-DNS:/   ~/efs-mount-point  
    ```
 
-   The EC2 instance can resolve the mount target DNS name to the IP address\. You can optionally specify the IP address of the mount target directly\.
+   If the EC2 instance cannot resolve the EFS file system DNS name to the underlying IP address, you can specify the IP address of the mount target directly\.
 
    ```
    $ sudo mount -t nfs -o nfsvers=4.1,rsize=1048576,wsize=1048576,hard,timeo=600,retrans=2,noresvport mount-target-ip:/  ~/efs-mount-point
