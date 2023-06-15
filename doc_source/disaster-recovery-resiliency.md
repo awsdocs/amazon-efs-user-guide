@@ -1,7 +1,0 @@
-# Resilience in Amazon Elastic File System<a name="disaster-recovery-resiliency"></a>
-
-The AWS global infrastructure is built around AWS Regions and Availability Zones\. AWS Regions provide multiple physically separated and isolated Availability Zones, which are connected with low\-latency, high\-throughput, and highly redundant networking\. With Availability Zones, you can design and operate applications and databases that automatically fail over between zones without interruption\. Availability Zones are more highly available, fault tolerant, and scalable than traditional single or multiple data center infrastructures\. 
-
-Amazon EFS file systems are resilient to one or more Availability Zone failures within an AWS Region\. Mount targets themselves are designed to be highly available\. As you design for high availability and failover to other Availability Zones \(AZs\), keep in mind that while the IP addresses and DNS for your mount targets in each AZ are static, they are redundant components backed by multiple resources\. For more information, see [How Amazon EFS works with Amazon EC2 and other supported compute instances](how-it-works.md#how-it-works-ec2)\.
-
-For more information about AWS Regions and Availability Zones, see [AWS Global Infrastructure](http://aws.amazon.com/about-aws/global-infrastructure/)\.

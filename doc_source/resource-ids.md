@@ -1,5 +1,0 @@
-# Resource IDs<a name="resource-ids"></a>
-
-Amazon EFS assigns unique resource identifiers \(IDs\) to all EFS resources when they are created\. All EFS resource IDs consist of a resource identifier and a combination of digits 0\-9 and lowercase letters a\-f\.
-
-Prior to October 2021, the IDs assigned to newly created file system and mount target resources used 8 characters after the hyphen \(for example, fs\-12345678\)\. From May 2021 to October 2021, we changed the IDs of these resource types to use 17 characters after the hyphen \(for example, fs\-1234567890abcdef0\)\. Depending on when your account was created, you might have file system and mount target resources with short IDs, though any new resources of these types receive the longer IDs\. The IDs of existing EFS resources never change\.
